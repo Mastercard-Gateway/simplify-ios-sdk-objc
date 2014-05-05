@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49748F5519182A2E00738BC9 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F4B191829A400738BC9 /* libOCMock.a */; };
 		7ED9E9F31917E2930082C2C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F21917E2930082C2C3 /* Foundation.framework */; };
 		7ED9E9F51917E2930082C2C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F41917E2930082C2C3 /* CoreGraphics.framework */; };
 		7ED9E9F71917E2930082C2C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F61917E2930082C2C3 /* UIKit.framework */; };
@@ -20,7 +21,6 @@
 		7ED9EA161917E2930082C2C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA141917E2930082C2C3 /* InfoPlist.strings */; };
 		7ED9EA181917E2930082C2C3 /* SimplifyiOSSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA171917E2930082C2C3 /* SimplifyiOSSDKTests.m */; };
 		7ED9EA25191817870082C2C3 /* CheckoutStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA24191817870082C2C3 /* CheckoutStoryboard.storyboard */; };
-		7ED9EA421918197D0082C2C3 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9EA3A1918197D0082C2C3 /* libOCMock.a */; };
 		7ED9EA4E1918205A0082C2C3 /* SIMTokenGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA4D1918205A0082C2C3 /* SIMTokenGenerator.m */; };
 		7ED9EA50191820620082C2C3 /* SIMTokenGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA4F191820620082C2C3 /* SIMTokenGeneratorTests.m */; };
 		7ED9EA531918206F0082C2C3 /* SIMDigitVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA521918206F0082C2C3 /* SIMDigitVerifier.m */; };
@@ -41,6 +41,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49748F4B191829A400738BC9 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
+		49748F4D191829A400738BC9 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		49748F4E191829A400738BC9 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		49748F4F191829A400738BC9 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		49748F50191829A400738BC9 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		49748F51191829A400738BC9 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		49748F52191829A400738BC9 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		7ED9E9EF1917E2930082C2C3 /* SimplifyiOSSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplifyiOSSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED9E9F21917E2930082C2C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7ED9E9F41917E2930082C2C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -59,13 +66,6 @@
 		7ED9EA171917E2930082C2C3 /* SimplifyiOSSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplifyiOSSDKTests.m; sourceTree = "<group>"; };
 		7ED9EA24191817870082C2C3 /* CheckoutStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CheckoutStoryboard.storyboard; sourceTree = "<group>"; };
 		7ED9EA37191818F30082C2C3 /* SimplifyiOSSDK-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SimplifyiOSSDK-Prefix.pch"; sourceTree = "<group>"; };
-		7ED9EA3A1918197D0082C2C3 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
-		7ED9EA3C1918197D0082C2C3 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
-		7ED9EA3D1918197D0082C2C3 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
-		7ED9EA3E1918197D0082C2C3 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
-		7ED9EA3F1918197D0082C2C3 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
-		7ED9EA401918197D0082C2C3 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
-		7ED9EA411918197D0082C2C3 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		7ED9EA4C1918205A0082C2C3 /* SIMTokenGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIMTokenGenerator.h; path = SimplifyiOSSDK/SIMTokenGenerator.h; sourceTree = "<group>"; };
 		7ED9EA4D1918205A0082C2C3 /* SIMTokenGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMTokenGenerator.m; path = SimplifyiOSSDK/SIMTokenGenerator.m; sourceTree = "<group>"; };
 		7ED9EA4F191820620082C2C3 /* SIMTokenGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMTokenGeneratorTests.m; path = SimplifyiOSSDK/SIMTokenGeneratorTests.m; sourceTree = "<group>"; };
@@ -85,7 +85,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7ED9E9F51917E2930082C2C3 /* CoreGraphics.framework in Frameworks */,
-				7ED9EA421918197D0082C2C3 /* libOCMock.a in Frameworks */,
 				7ED9E9F71917E2930082C2C3 /* UIKit.framework in Frameworks */,
 				7ED9E9F31917E2930082C2C3 /* Foundation.framework in Frameworks */,
 			);
@@ -95,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49748F5519182A2E00738BC9 /* libOCMock.a in Frameworks */,
 				7ED9EA0C1917E2930082C2C3 /* XCTest.framework in Frameworks */,
 				7ED9EA0E1917E2930082C2C3 /* UIKit.framework in Frameworks */,
 				7ED9EA0D1917E2930082C2C3 /* Foundation.framework in Frameworks */,
@@ -104,6 +104,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49748F4A191829A400738BC9 /* ocmock */ = {
+			isa = PBXGroup;
+			children = (
+				49748F4B191829A400738BC9 /* libOCMock.a */,
+				49748F4C191829A400738BC9 /* OCMock */,
+			);
+			name = ocmock;
+			path = vendor/ocmock;
+			sourceTree = "<group>";
+		};
+		49748F4C191829A400738BC9 /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				49748F4D191829A400738BC9 /* NSNotificationCenter+OCMAdditions.h */,
+				49748F4E191829A400738BC9 /* OCMArg.h */,
+				49748F4F191829A400738BC9 /* OCMConstraint.h */,
+				49748F50191829A400738BC9 /* OCMock.h */,
+				49748F51191829A400738BC9 /* OCMockObject.h */,
+				49748F52191829A400738BC9 /* OCMockRecorder.h */,
+			);
+			path = OCMock;
+			sourceTree = "<group>";
+		};
 		7ED9E9E61917E2930082C2C3 = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +134,6 @@
 				7ED9EA111917E2930082C2C3 /* SimplifyiOSSDKTests */,
 				7ED9E9F11917E2930082C2C3 /* Frameworks */,
 				7ED9E9F01917E2930082C2C3 /* Products */,
-				7ED9EA381918197D0082C2C3 /* usr */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +149,7 @@
 		7ED9E9F11917E2930082C2C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49748F4A191829A400738BC9 /* ocmock */,
 				7ED9E9F21917E2930082C2C3 /* Foundation.framework */,
 				7ED9E9F41917E2930082C2C3 /* CoreGraphics.framework */,
 				7ED9E9F61917E2930082C2C3 /* UIKit.framework */,
@@ -202,36 +225,6 @@
 			);
 			name = "Digit Verifier";
 			path = ..;
-			sourceTree = "<group>";
-		};
-		7ED9EA381918197D0082C2C3 /* usr */ = {
-			isa = PBXGroup;
-			children = (
-				7ED9EA391918197D0082C2C3 /* lib */,
-				7ED9EA3B1918197D0082C2C3 /* OCMock */,
-			);
-			path = usr;
-			sourceTree = "<group>";
-		};
-		7ED9EA391918197D0082C2C3 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				7ED9EA3A1918197D0082C2C3 /* libOCMock.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		7ED9EA3B1918197D0082C2C3 /* OCMock */ = {
-			isa = PBXGroup;
-			children = (
-				7ED9EA3C1918197D0082C2C3 /* NSNotificationCenter+OCMAdditions.h */,
-				7ED9EA3D1918197D0082C2C3 /* OCMArg.h */,
-				7ED9EA3E1918197D0082C2C3 /* OCMConstraint.h */,
-				7ED9EA3F1918197D0082C2C3 /* OCMock.h */,
-				7ED9EA401918197D0082C2C3 /* OCMockObject.h */,
-				7ED9EA411918197D0082C2C3 /* OCMockRecorder.h */,
-			);
-			path = OCMock;
 			sourceTree = "<group>";
 		};
 		7ED9EA48191819A50082C2C3 /* Token Generator */ = {
@@ -475,6 +468,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/usr/lib",
+					"$(PROJECT_DIR)/vendor/ocmock",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -492,6 +486,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/usr/lib",
+					"$(PROJECT_DIR)/vendor/ocmock",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -516,15 +511,17 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"\"(SRCROOT)/usr/include\"",
+					"\"(SRCROOT)/vendor\"/**",
 				);
 				INFOPLIST_FILE = "SimplifyiOSSDKTests/SimplifyiOSSDKTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/ocmock",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
 					XCTest,
-					"-force_load",
-					"\"$(SRCROOT)/usr/lib/libOCMock.a\"",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -547,15 +544,17 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"\"(SRCROOT)/usr/include\"",
+					"\"(SRCROOT)/vendor\"/**",
 				);
 				INFOPLIST_FILE = "SimplifyiOSSDKTests/SimplifyiOSSDKTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/ocmock",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
 					XCTest,
-					"-force_load",
-					"\"$(SRCROOT)/usr/lib/libOCMock.a\"",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -583,6 +582,7 @@
 				7ED9EA1D1917E2930082C2C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7ED9EA1E1917E2930082C2C3 /* Build configuration list for PBXNativeTarget "SimplifyiOSSDKTests" */ = {
 			isa = XCConfigurationList;
@@ -591,6 +591,7 @@
 				7ED9EA201917E2930082C2C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
