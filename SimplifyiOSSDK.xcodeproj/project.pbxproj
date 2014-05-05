@@ -1,0 +1,461 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7ED9E9F31917E2930082C2C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F21917E2930082C2C3 /* Foundation.framework */; };
+		7ED9E9F51917E2930082C2C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F41917E2930082C2C3 /* CoreGraphics.framework */; };
+		7ED9E9F71917E2930082C2C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F61917E2930082C2C3 /* UIKit.framework */; };
+		7ED9E9FD1917E2930082C2C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9E9FB1917E2930082C2C3 /* InfoPlist.strings */; };
+		7ED9E9FF1917E2930082C2C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9E9FE1917E2930082C2C3 /* main.m */; };
+		7ED9EA031917E2930082C2C3 /* SIMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA021917E2930082C2C3 /* SIMAppDelegate.m */; };
+		7ED9EA051917E2930082C2C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA041917E2930082C2C3 /* Images.xcassets */; };
+		7ED9EA0C1917E2930082C2C3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9EA0B1917E2930082C2C3 /* XCTest.framework */; };
+		7ED9EA0D1917E2930082C2C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F21917E2930082C2C3 /* Foundation.framework */; };
+		7ED9EA0E1917E2930082C2C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F61917E2930082C2C3 /* UIKit.framework */; };
+		7ED9EA161917E2930082C2C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA141917E2930082C2C3 /* InfoPlist.strings */; };
+		7ED9EA181917E2930082C2C3 /* SimplifyiOSSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA171917E2930082C2C3 /* SimplifyiOSSDKTests.m */; };
+		7ED9EA231917F6540082C2C3 /* SIMCheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA221917F6540082C2C3 /* SIMCheckoutViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7ED9EA0F1917E2930082C2C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7ED9E9E71917E2930082C2C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7ED9E9EE1917E2930082C2C3;
+			remoteInfo = SimplifyiOSSDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7ED9E9EF1917E2930082C2C3 /* SimplifyiOSSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplifyiOSSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ED9E9F21917E2930082C2C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7ED9E9F41917E2930082C2C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7ED9E9F61917E2930082C2C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7ED9E9FA1917E2930082C2C3 /* SimplifyiOSSDK-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimplifyiOSSDK-Info.plist"; sourceTree = "<group>"; };
+		7ED9E9FC1917E2930082C2C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7ED9E9FE1917E2930082C2C3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7ED9EA001917E2930082C2C3 /* SimplifyiOSSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimplifyiOSSDK-Prefix.pch"; sourceTree = "<group>"; };
+		7ED9EA011917E2930082C2C3 /* SIMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIMAppDelegate.h; sourceTree = "<group>"; };
+		7ED9EA021917E2930082C2C3 /* SIMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SIMAppDelegate.m; sourceTree = "<group>"; };
+		7ED9EA041917E2930082C2C3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7ED9EA0A1917E2930082C2C3 /* SimplifyiOSSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimplifyiOSSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ED9EA0B1917E2930082C2C3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		7ED9EA131917E2930082C2C3 /* SimplifyiOSSDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimplifyiOSSDKTests-Info.plist"; sourceTree = "<group>"; };
+		7ED9EA151917E2930082C2C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7ED9EA171917E2930082C2C3 /* SimplifyiOSSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplifyiOSSDKTests.m; sourceTree = "<group>"; };
+		7ED9EA211917F6540082C2C3 /* SIMCheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMCheckoutViewController.h; sourceTree = "<group>"; };
+		7ED9EA221917F6540082C2C3 /* SIMCheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMCheckoutViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7ED9E9EC1917E2930082C2C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7ED9E9F51917E2930082C2C3 /* CoreGraphics.framework in Frameworks */,
+				7ED9E9F71917E2930082C2C3 /* UIKit.framework in Frameworks */,
+				7ED9E9F31917E2930082C2C3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ED9EA071917E2930082C2C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7ED9EA0C1917E2930082C2C3 /* XCTest.framework in Frameworks */,
+				7ED9EA0E1917E2930082C2C3 /* UIKit.framework in Frameworks */,
+				7ED9EA0D1917E2930082C2C3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7ED9E9E61917E2930082C2C3 = {
+			isa = PBXGroup;
+			children = (
+				7ED9E9F81917E2930082C2C3 /* SimplifyiOSSDK */,
+				7ED9EA111917E2930082C2C3 /* SimplifyiOSSDKTests */,
+				7ED9E9F11917E2930082C2C3 /* Frameworks */,
+				7ED9E9F01917E2930082C2C3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7ED9E9F01917E2930082C2C3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9E9EF1917E2930082C2C3 /* SimplifyiOSSDK.app */,
+				7ED9EA0A1917E2930082C2C3 /* SimplifyiOSSDKTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7ED9E9F11917E2930082C2C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9E9F21917E2930082C2C3 /* Foundation.framework */,
+				7ED9E9F41917E2930082C2C3 /* CoreGraphics.framework */,
+				7ED9E9F61917E2930082C2C3 /* UIKit.framework */,
+				7ED9EA0B1917E2930082C2C3 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7ED9E9F81917E2930082C2C3 /* SimplifyiOSSDK */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9EA011917E2930082C2C3 /* SIMAppDelegate.h */,
+				7ED9EA021917E2930082C2C3 /* SIMAppDelegate.m */,
+				7ED9EA041917E2930082C2C3 /* Images.xcassets */,
+				7ED9E9F91917E2930082C2C3 /* Supporting Files */,
+				7ED9EA211917F6540082C2C3 /* SIMCheckoutViewController.h */,
+				7ED9EA221917F6540082C2C3 /* SIMCheckoutViewController.m */,
+			);
+			path = SimplifyiOSSDK;
+			sourceTree = "<group>";
+		};
+		7ED9E9F91917E2930082C2C3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9E9FA1917E2930082C2C3 /* SimplifyiOSSDK-Info.plist */,
+				7ED9E9FB1917E2930082C2C3 /* InfoPlist.strings */,
+				7ED9E9FE1917E2930082C2C3 /* main.m */,
+				7ED9EA001917E2930082C2C3 /* SimplifyiOSSDK-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7ED9EA111917E2930082C2C3 /* SimplifyiOSSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9EA171917E2930082C2C3 /* SimplifyiOSSDKTests.m */,
+				7ED9EA121917E2930082C2C3 /* Supporting Files */,
+			);
+			path = SimplifyiOSSDKTests;
+			sourceTree = "<group>";
+		};
+		7ED9EA121917E2930082C2C3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9EA131917E2930082C2C3 /* SimplifyiOSSDKTests-Info.plist */,
+				7ED9EA141917E2930082C2C3 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7ED9E9EE1917E2930082C2C3 /* SimplifyiOSSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7ED9EA1B1917E2930082C2C3 /* Build configuration list for PBXNativeTarget "SimplifyiOSSDK" */;
+			buildPhases = (
+				7ED9E9EB1917E2930082C2C3 /* Sources */,
+				7ED9E9EC1917E2930082C2C3 /* Frameworks */,
+				7ED9E9ED1917E2930082C2C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimplifyiOSSDK;
+			productName = SimplifyiOSSDK;
+			productReference = 7ED9E9EF1917E2930082C2C3 /* SimplifyiOSSDK.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7ED9EA091917E2930082C2C3 /* SimplifyiOSSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7ED9EA1E1917E2930082C2C3 /* Build configuration list for PBXNativeTarget "SimplifyiOSSDKTests" */;
+			buildPhases = (
+				7ED9EA061917E2930082C2C3 /* Sources */,
+				7ED9EA071917E2930082C2C3 /* Frameworks */,
+				7ED9EA081917E2930082C2C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7ED9EA101917E2930082C2C3 /* PBXTargetDependency */,
+			);
+			name = SimplifyiOSSDKTests;
+			productName = SimplifyiOSSDKTests;
+			productReference = 7ED9EA0A1917E2930082C2C3 /* SimplifyiOSSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7ED9E9E71917E2930082C2C3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SIM;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = MasterCard;
+				TargetAttributes = {
+					7ED9EA091917E2930082C2C3 = {
+						TestTargetID = 7ED9E9EE1917E2930082C2C3;
+					};
+				};
+			};
+			buildConfigurationList = 7ED9E9EA1917E2930082C2C3 /* Build configuration list for PBXProject "SimplifyiOSSDK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7ED9E9E61917E2930082C2C3;
+			productRefGroup = 7ED9E9F01917E2930082C2C3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7ED9E9EE1917E2930082C2C3 /* SimplifyiOSSDK */,
+				7ED9EA091917E2930082C2C3 /* SimplifyiOSSDKTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7ED9E9ED1917E2930082C2C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7ED9E9FD1917E2930082C2C3 /* InfoPlist.strings in Resources */,
+				7ED9EA051917E2930082C2C3 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ED9EA081917E2930082C2C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7ED9EA161917E2930082C2C3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7ED9E9EB1917E2930082C2C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7ED9EA031917E2930082C2C3 /* SIMAppDelegate.m in Sources */,
+				7ED9E9FF1917E2930082C2C3 /* main.m in Sources */,
+				7ED9EA231917F6540082C2C3 /* SIMCheckoutViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ED9EA061917E2930082C2C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7ED9EA181917E2930082C2C3 /* SimplifyiOSSDKTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7ED9EA101917E2930082C2C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7ED9E9EE1917E2930082C2C3 /* SimplifyiOSSDK */;
+			targetProxy = 7ED9EA0F1917E2930082C2C3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7ED9E9FB1917E2930082C2C3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7ED9E9FC1917E2930082C2C3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7ED9EA141917E2930082C2C3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7ED9EA151917E2930082C2C3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7ED9EA191917E2930082C2C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7ED9EA1A1917E2930082C2C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7ED9EA1C1917E2930082C2C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimplifyiOSSDK/SimplifyiOSSDK-Prefix.pch";
+				INFOPLIST_FILE = "SimplifyiOSSDK/SimplifyiOSSDK-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7ED9EA1D1917E2930082C2C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimplifyiOSSDK/SimplifyiOSSDK-Prefix.pch";
+				INFOPLIST_FILE = "SimplifyiOSSDK/SimplifyiOSSDK-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		7ED9EA1F1917E2930082C2C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SimplifyiOSSDK.app/SimplifyiOSSDK";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimplifyiOSSDK/SimplifyiOSSDK-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SimplifyiOSSDKTests/SimplifyiOSSDKTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		7ED9EA201917E2930082C2C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SimplifyiOSSDK.app/SimplifyiOSSDK";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimplifyiOSSDK/SimplifyiOSSDK-Prefix.pch";
+				INFOPLIST_FILE = "SimplifyiOSSDKTests/SimplifyiOSSDKTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7ED9E9EA1917E2930082C2C3 /* Build configuration list for PBXProject "SimplifyiOSSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ED9EA191917E2930082C2C3 /* Debug */,
+				7ED9EA1A1917E2930082C2C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7ED9EA1B1917E2930082C2C3 /* Build configuration list for PBXNativeTarget "SimplifyiOSSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ED9EA1C1917E2930082C2C3 /* Debug */,
+				7ED9EA1D1917E2930082C2C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		7ED9EA1E1917E2930082C2C3 /* Build configuration list for PBXNativeTarget "SimplifyiOSSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ED9EA1F1917E2930082C2C3 /* Debug */,
+				7ED9EA201917E2930082C2C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7ED9E9E71917E2930082C2C3 /* Project object */;
+}
