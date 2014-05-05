@@ -1,8 +1,8 @@
-#import "SIMCheckoutModel.h"
+#import "SIMRetrieveTokenModel.h"
 #import "SIMDigitVerifier.h"
 #import "SIMTokenGenerator.h"
 
-@interface SIMCheckoutModel ()
+@interface SIMRetrieveTokenModel ()
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;
 @property (nonatomic, strong, readwrite) NSString *cardNumber;
 @property (nonatomic, strong, readwrite) NSString *expirationDate;
@@ -13,7 +13,7 @@
 @property (nonatomic, strong, readwrite) NSString *cvcCode;
 @end
 
-@implementation SIMCheckoutModel
+@implementation SIMRetrieveTokenModel
 
 - (instancetype) init {
     if (self) {
@@ -24,7 +24,7 @@
     return self;
 }
 
-- (BOOL)checkoutPossible {
+- (BOOL)isRetrievalPossible {
     if (self.cardNumber.length > 12 && self.expirationDate.length > 2) {
         return YES;
     }
@@ -90,9 +90,10 @@
     return @"";
 }
 
-- (void)chargeCard {
+- (void)retrieveToken {
     SIMTokenGenerator *tokenGenerator = [SIMTokenGenerator new];
     NSString *token = [tokenGenerator createCardTokenWithCardNumber:self.cardNumber expirationMonth:self.expirationMonth expirationYear:self.expirationYear cvc:self.cvcCode error:nil];
+    NSLog(@"token: %@", token);
 }
 
 @end

@@ -1,15 +1,15 @@
-#import "SIMCheckoutModel.h"
+#import "SIMRetrieveTokenModel.h"
 
-@interface SIMCheckoutModelTests : XCTestCase
-@property (nonatomic, strong) SIMCheckoutModel *testCheckoutModel;
+@interface SIMRetrieveTokenModelTests : XCTestCase
+@property (nonatomic, strong) SIMRetrieveTokenModel *testCheckoutModel;
 @end
 
-@implementation SIMCheckoutModelTests
+@implementation SIMRetrieveTokenModelTests
 
 - (void)setUp
 {
     [super setUp];
-    self.testCheckoutModel = [SIMCheckoutModel new];
+    self.testCheckoutModel = [SIMRetrieveTokenModel new];
 }
 
 - (void)tearDown

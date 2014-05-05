@@ -1,12 +1,12 @@
-#import "SIMCheckoutViewController.h"
-#import "SIMCheckoutModel.h"
+#import "SIMRetrieveTokenViewController.h"
+#import "SIMRetrieveTokenModel.h"
 
-@interface SIMCheckoutViewController ()
-@property (nonatomic, strong) SIMCheckoutModel *checkoutModel;
+@interface SIMRetrieveTokenViewController ()
+@property (nonatomic, strong) SIMRetrieveTokenModel *checkoutModel;
 
 @end
 
-@implementation SIMCheckoutViewController
+@implementation SIMRetrieveTokenViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,7 +23,7 @@
     self.cardNumberField.delegate = self;
     self.expirationField.delegate = self;
     self.cvcField.delegate = self;
-    self.checkoutModel = [SIMCheckoutModel new];
+    self.checkoutModel = [SIMRetrieveTokenModel new];
     [self buttonSetUp];
     
     // Do any additional setup after loading the view.
@@ -41,7 +41,7 @@
 }
 
 -(void)buttonsEnabled {
-    BOOL isEnabled = [self.checkoutModel checkoutPossible];
+    BOOL isEnabled = [self.checkoutModel isRetrievalPossible];
     [self.chargeCardButton setEnabled:isEnabled];
 }
 
@@ -85,8 +85,8 @@
     return YES;
 }
 
-- (IBAction)chargeCard:(id)sender {
-    [self.checkoutModel chargeCard];
+- (IBAction)retrieveToken:(id)sender {
+    [self.checkoutModel retrieveToken];
 }
 
 /*

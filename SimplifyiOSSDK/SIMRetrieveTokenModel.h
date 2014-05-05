@@ -1,4 +1,4 @@
-@interface SIMCheckoutModel : NSObject
+@interface SIMRetrieveTokenModel : NSObject
 @property (nonatomic, strong, readonly) NSString *cardNumber;
 @property (nonatomic, strong, readonly) NSString *expirationDate;
 @property (nonatomic, strong, readonly) NSString *expirationMonth;
@@ -7,9 +7,9 @@
 @property (nonatomic, strong, readonly) NSString *formattedExpirationDate;
 @property (nonatomic, strong, readonly) NSString *cvcCode;
 
-- (BOOL)checkoutPossible;
+- (BOOL) isRetrievalPossible;
 - (void) updateCardNumberWithString:(NSString *)newString;
 - (void) updateExpirationDateWithString:(NSString *)newString;
 - (void) updateCVCNumberWithString:(NSString *)newString;
-- (void) chargeCard;
+- (void) retrieveToken;
 @end
