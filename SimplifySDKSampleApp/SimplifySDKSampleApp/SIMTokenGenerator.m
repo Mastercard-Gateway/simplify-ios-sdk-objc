@@ -46,7 +46,7 @@
 //				cardToken = [SIMCreditCardToken cardTokenFromDictionary:json];
 //			} else {
 //				NSString *errorMessage = [NSString stringWithFormat:@"Received bad status code of: %d. Expected between 200-299", response.statusCode];
-//				NSError *newError = [NSError errorWithDomain:@"com.simplify.simplifyiossdk" code:1 userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
+//				NSError *newError = [NSError errorWithDomain:@"com.simplify.simplifysdksampleapp" code:1 userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
 //				*error = newError;
 //			}
 //		}

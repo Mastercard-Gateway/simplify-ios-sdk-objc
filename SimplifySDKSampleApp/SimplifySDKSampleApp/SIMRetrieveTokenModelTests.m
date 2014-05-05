@@ -125,26 +125,26 @@
     [self.testCheckoutModel updateCardNumberWithString:@"1234567890123"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
     [self.testCheckoutModel updateCVCNumberWithString:@"123"];
-    XCTAssertTrue([self.testCheckoutModel checkoutPossible], "should be yes");
+    XCTAssertTrue([self.testCheckoutModel isRetrievalPossible], "should be yes");
 }
 
 -(void)testCheckoutPossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigitsButNoCVCCode {
     [self.testCheckoutModel updateCardNumberWithString:@"1234567890123"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
     
-    XCTAssertTrue([self.testCheckoutModel checkoutPossible], "should be yes");
+    XCTAssertTrue([self.testCheckoutModel isRetrievalPossible], "should be yes");
 }
 
 -(void)testCheckoutPossibleReturnsNoWhenExpirationDateIsLessThanThreeDigits {
     [self.testCheckoutModel updateCardNumberWithString:@"1234567893240123"];
     [self.testCheckoutModel updateExpirationDateWithString:@"12"];
-    XCTAssertFalse([self.testCheckoutModel checkoutPossible], "should be no");
+    XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no");
 }
 
 -(void)testCheckoutPossibleReturnsNoWhenCardNumberIsLessThanThirteenDigits {
     [self.testCheckoutModel updateCardNumberWithString:@"123456789013"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
-    XCTAssertFalse([self.testCheckoutModel checkoutPossible], "should be no");
+    XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no");
 }
 
 -(void)testUpdateCardNumberWithStringCorrectlyRemovesSpaces {

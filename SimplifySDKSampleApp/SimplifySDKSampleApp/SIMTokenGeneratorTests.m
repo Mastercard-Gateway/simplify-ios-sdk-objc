@@ -1,10 +1,10 @@
 #import <XCTest/XCTest.h>
 
-@interface SimplifyiOSSDKTests : XCTestCase
+@interface SIMTokenGeneratorTests : XCTestCase
 
 @end
 
-@implementation SimplifyiOSSDKTests
+@implementation SIMTokenGeneratorTests
 
 - (void)setUp
 {
@@ -20,7 +20,6 @@
 
 - (void)testExample
 {
-
 }
 
 @end
