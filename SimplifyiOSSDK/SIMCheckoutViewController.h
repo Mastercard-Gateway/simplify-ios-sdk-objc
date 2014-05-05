@@ -1,13 +1,8 @@
-//
-//  SIMCheckoutViewController.h
-//  SimplifyiOSSDK
-//
-//  Created by Neem Serra on 5/5/14.
-//  Copyright (c) 2014 MasterCard. All rights reserved.
-//
+@interface SIMCheckoutViewController : UIViewController <UITextFieldDelegate>
+@property (strong, nonatomic) IBOutlet UITextField *cardNumberField;
+@property (strong, nonatomic) IBOutlet UITextField *expirationField;
+@property (strong, nonatomic) IBOutlet UITextField *cvcField;
+@property (strong, nonatomic) IBOutlet UIButton *chargeCardButton;
 
-#import <UIKit/UIKit.h>
-
-@interface SIMCheckoutViewController : UIViewController
 
 @end

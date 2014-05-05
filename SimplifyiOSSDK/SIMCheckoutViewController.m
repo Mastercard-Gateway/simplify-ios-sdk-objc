@@ -1,14 +1,8 @@
-//
-//  SIMCheckoutViewController.m
-//  SimplifyiOSSDK
-//
-//  Created by Neem Serra on 5/5/14.
-//  Copyright (c) 2014 MasterCard. All rights reserved.
-//
-
 #import "SIMCheckoutViewController.h"
+#import "SIMCheckoutModel.h"
 
 @interface SIMCheckoutViewController ()
+@property (nonatomic, strong) SIMCheckoutModel *checkoutModel;
 
 @end
 
@@ -26,6 +20,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.cardNumberField.delegate = self;
+    self.expirationField.delegate = self;
+    self.cvcField.delegate = self;
+    self.checkoutModel = [SIMCheckoutModel new];
+    [self buttonSetUp];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -33,6 +33,60 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)buttonSetUp {
+    [self.chargeCardButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateDisabled];
+    [self buttonsEnabled];
+}
+
+-(void)buttonsEnabled {
+    BOOL isEnabled = [self.checkoutModel checkoutPossible];
+    [self.chargeCardButton setEnabled:isEnabled];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+
+    if (textField == self.cardNumberField) {
+        [self.checkoutModel updateCardNumberWithString:newString];
+        self.cardNumberField.text = self.checkoutModel.formattedCardNumber;
+    }
+    
+    else if (textField == self.cvcField) {
+        [self.checkoutModel updateCVCNumberWithString:newString];
+        self.cvcField.text = self.checkoutModel.cvcCode;
+    }
+    
+    else if (textField == self.expirationField) {
+        [self.checkoutModel updateExpirationDateWithString:newString];
+        self.expirationField.text = self.checkoutModel.formattedExpirationDate;
+    }
+    
+    [self buttonsEnabled];
+
+    return NO;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+    if (textField == self.cardNumberField) {
+        [self.checkoutModel updateCardNumberWithString:@""];
+    }
+    
+    else if (textField == self.cvcField) {
+        [self.checkoutModel updateCVCNumberWithString:@""];
+    }
+    
+    else if (textField == self.expirationField) {
+        [self.checkoutModel updateExpirationDateWithString:@""];
+    }
+    
+    return YES;
+}
+
+- (IBAction)chargeCard:(id)sender {
+    [self.checkoutModel chargeCard];
 }
 
 /*

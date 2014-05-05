@@ -1,10 +1,18 @@
+//
+//  SIMTokenGeneratorTests.m
+//  SimplifyiOSSDK
+//
+//  Created by Neem Serra on 5/5/14.
+//  Copyright (c) 2014 MasterCard. All rights reserved.
+//
+
 #import <XCTest/XCTest.h>
 
-@interface SimplifyiOSSDKTests : XCTestCase
+@interface SIMTokenGeneratorTests : XCTestCase
 
 @end
 
-@implementation SimplifyiOSSDKTests
+@implementation SIMTokenGeneratorTests
 
 - (void)setUp
 {
@@ -20,7 +28,6 @@
 
 - (void)testExample
 {
-
 }
 
 @end

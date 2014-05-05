@@ -19,7 +19,15 @@
 		7ED9EA0E1917E2930082C2C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F61917E2930082C2C3 /* UIKit.framework */; };
 		7ED9EA161917E2930082C2C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA141917E2930082C2C3 /* InfoPlist.strings */; };
 		7ED9EA181917E2930082C2C3 /* SimplifyiOSSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA171917E2930082C2C3 /* SimplifyiOSSDKTests.m */; };
-		7ED9EA231917F6540082C2C3 /* SIMCheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA221917F6540082C2C3 /* SIMCheckoutViewController.m */; };
+		7ED9EA25191817870082C2C3 /* CheckoutStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA24191817870082C2C3 /* CheckoutStoryboard.storyboard */; };
+		7ED9EA421918197D0082C2C3 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9EA3A1918197D0082C2C3 /* libOCMock.a */; };
+		7ED9EA4E1918205A0082C2C3 /* SIMTokenGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA4D1918205A0082C2C3 /* SIMTokenGenerator.m */; };
+		7ED9EA50191820620082C2C3 /* SIMTokenGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA4F191820620082C2C3 /* SIMTokenGeneratorTests.m */; };
+		7ED9EA531918206F0082C2C3 /* SIMDigitVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA521918206F0082C2C3 /* SIMDigitVerifier.m */; };
+		7ED9EA55191820760082C2C3 /* SIMDigitVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA54191820760082C2C3 /* SIMDigitVerifierTests.m */; };
+		7ED9EA5A191820820082C2C3 /* SIMCheckoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA57191820820082C2C3 /* SIMCheckoutModel.m */; };
+		7ED9EA5B191820820082C2C3 /* SIMCheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA59191820820082C2C3 /* SIMCheckoutViewController.m */; };
+		7ED9EA5D191820880082C2C3 /* SIMCheckoutModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA5C191820880082C2C3 /* SIMCheckoutModelTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,8 +57,26 @@
 		7ED9EA131917E2930082C2C3 /* SimplifyiOSSDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimplifyiOSSDKTests-Info.plist"; sourceTree = "<group>"; };
 		7ED9EA151917E2930082C2C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7ED9EA171917E2930082C2C3 /* SimplifyiOSSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplifyiOSSDKTests.m; sourceTree = "<group>"; };
-		7ED9EA211917F6540082C2C3 /* SIMCheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMCheckoutViewController.h; sourceTree = "<group>"; };
-		7ED9EA221917F6540082C2C3 /* SIMCheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMCheckoutViewController.m; sourceTree = "<group>"; };
+		7ED9EA24191817870082C2C3 /* CheckoutStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CheckoutStoryboard.storyboard; sourceTree = "<group>"; };
+		7ED9EA37191818F30082C2C3 /* SimplifyiOSSDK-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SimplifyiOSSDK-Prefix.pch"; sourceTree = "<group>"; };
+		7ED9EA3A1918197D0082C2C3 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
+		7ED9EA3C1918197D0082C2C3 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		7ED9EA3D1918197D0082C2C3 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		7ED9EA3E1918197D0082C2C3 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		7ED9EA3F1918197D0082C2C3 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		7ED9EA401918197D0082C2C3 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		7ED9EA411918197D0082C2C3 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
+		7ED9EA4C1918205A0082C2C3 /* SIMTokenGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIMTokenGenerator.h; path = SimplifyiOSSDK/SIMTokenGenerator.h; sourceTree = "<group>"; };
+		7ED9EA4D1918205A0082C2C3 /* SIMTokenGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMTokenGenerator.m; path = SimplifyiOSSDK/SIMTokenGenerator.m; sourceTree = "<group>"; };
+		7ED9EA4F191820620082C2C3 /* SIMTokenGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMTokenGeneratorTests.m; path = SimplifyiOSSDK/SIMTokenGeneratorTests.m; sourceTree = "<group>"; };
+		7ED9EA511918206F0082C2C3 /* SIMDigitVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIMDigitVerifier.h; path = SimplifyiOSSDK/SIMDigitVerifier.h; sourceTree = "<group>"; };
+		7ED9EA521918206F0082C2C3 /* SIMDigitVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMDigitVerifier.m; path = SimplifyiOSSDK/SIMDigitVerifier.m; sourceTree = "<group>"; };
+		7ED9EA54191820760082C2C3 /* SIMDigitVerifierTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMDigitVerifierTests.m; path = SimplifyiOSSDK/SIMDigitVerifierTests.m; sourceTree = "<group>"; };
+		7ED9EA56191820820082C2C3 /* SIMCheckoutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIMCheckoutModel.h; path = SimplifyiOSSDK/SIMCheckoutModel.h; sourceTree = "<group>"; };
+		7ED9EA57191820820082C2C3 /* SIMCheckoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMCheckoutModel.m; path = SimplifyiOSSDK/SIMCheckoutModel.m; sourceTree = "<group>"; };
+		7ED9EA58191820820082C2C3 /* SIMCheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIMCheckoutViewController.h; path = SimplifyiOSSDK/SIMCheckoutViewController.h; sourceTree = "<group>"; };
+		7ED9EA59191820820082C2C3 /* SIMCheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMCheckoutViewController.m; path = SimplifyiOSSDK/SIMCheckoutViewController.m; sourceTree = "<group>"; };
+		7ED9EA5C191820880082C2C3 /* SIMCheckoutModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMCheckoutModelTests.m; path = SimplifyiOSSDK/SIMCheckoutModelTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7ED9E9F51917E2930082C2C3 /* CoreGraphics.framework in Frameworks */,
+				7ED9EA421918197D0082C2C3 /* libOCMock.a in Frameworks */,
 				7ED9E9F71917E2930082C2C3 /* UIKit.framework in Frameworks */,
 				7ED9E9F31917E2930082C2C3 /* Foundation.framework in Frameworks */,
 			);
@@ -84,6 +111,7 @@
 				7ED9EA111917E2930082C2C3 /* SimplifyiOSSDKTests */,
 				7ED9E9F11917E2930082C2C3 /* Frameworks */,
 				7ED9E9F01917E2930082C2C3 /* Products */,
+				7ED9EA381918197D0082C2C3 /* usr */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,12 +138,14 @@
 		7ED9E9F81917E2930082C2C3 /* SimplifyiOSSDK */ = {
 			isa = PBXGroup;
 			children = (
+				7ED9EA48191819A50082C2C3 /* Token Generator */,
+				7ED9EA34191818480082C2C3 /* Digit Verifier */,
+				7ED9EA2E191818110082C2C3 /* Checkout */,
 				7ED9EA011917E2930082C2C3 /* SIMAppDelegate.h */,
 				7ED9EA021917E2930082C2C3 /* SIMAppDelegate.m */,
 				7ED9EA041917E2930082C2C3 /* Images.xcassets */,
 				7ED9E9F91917E2930082C2C3 /* Supporting Files */,
-				7ED9EA211917F6540082C2C3 /* SIMCheckoutViewController.h */,
-				7ED9EA221917F6540082C2C3 /* SIMCheckoutViewController.m */,
+				7ED9EA24191817870082C2C3 /* CheckoutStoryboard.storyboard */,
 			);
 			path = SimplifyiOSSDK;
 			sourceTree = "<group>";
@@ -143,10 +173,76 @@
 		7ED9EA121917E2930082C2C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7ED9EA37191818F30082C2C3 /* SimplifyiOSSDK-Prefix.pch */,
 				7ED9EA131917E2930082C2C3 /* SimplifyiOSSDKTests-Info.plist */,
 				7ED9EA141917E2930082C2C3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7ED9EA2E191818110082C2C3 /* Checkout */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9EA5C191820880082C2C3 /* SIMCheckoutModelTests.m */,
+				7ED9EA56191820820082C2C3 /* SIMCheckoutModel.h */,
+				7ED9EA57191820820082C2C3 /* SIMCheckoutModel.m */,
+				7ED9EA58191820820082C2C3 /* SIMCheckoutViewController.h */,
+				7ED9EA59191820820082C2C3 /* SIMCheckoutViewController.m */,
+			);
+			name = Checkout;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		7ED9EA34191818480082C2C3 /* Digit Verifier */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9EA54191820760082C2C3 /* SIMDigitVerifierTests.m */,
+				7ED9EA511918206F0082C2C3 /* SIMDigitVerifier.h */,
+				7ED9EA521918206F0082C2C3 /* SIMDigitVerifier.m */,
+			);
+			name = "Digit Verifier";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		7ED9EA381918197D0082C2C3 /* usr */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9EA391918197D0082C2C3 /* lib */,
+				7ED9EA3B1918197D0082C2C3 /* OCMock */,
+			);
+			path = usr;
+			sourceTree = "<group>";
+		};
+		7ED9EA391918197D0082C2C3 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9EA3A1918197D0082C2C3 /* libOCMock.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		7ED9EA3B1918197D0082C2C3 /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9EA3C1918197D0082C2C3 /* NSNotificationCenter+OCMAdditions.h */,
+				7ED9EA3D1918197D0082C2C3 /* OCMArg.h */,
+				7ED9EA3E1918197D0082C2C3 /* OCMConstraint.h */,
+				7ED9EA3F1918197D0082C2C3 /* OCMock.h */,
+				7ED9EA401918197D0082C2C3 /* OCMockObject.h */,
+				7ED9EA411918197D0082C2C3 /* OCMockRecorder.h */,
+			);
+			path = OCMock;
+			sourceTree = "<group>";
+		};
+		7ED9EA48191819A50082C2C3 /* Token Generator */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9EA4F191820620082C2C3 /* SIMTokenGeneratorTests.m */,
+				7ED9EA4C1918205A0082C2C3 /* SIMTokenGenerator.h */,
+				7ED9EA4D1918205A0082C2C3 /* SIMTokenGenerator.m */,
+			);
+			name = "Token Generator";
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +323,7 @@
 			files = (
 				7ED9E9FD1917E2930082C2C3 /* InfoPlist.strings in Resources */,
 				7ED9EA051917E2930082C2C3 /* Images.xcassets in Resources */,
+				7ED9EA25191817870082C2C3 /* CheckoutStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,9 +342,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ED9EA5A191820820082C2C3 /* SIMCheckoutModel.m in Sources */,
 				7ED9EA031917E2930082C2C3 /* SIMAppDelegate.m in Sources */,
+				7ED9EA531918206F0082C2C3 /* SIMDigitVerifier.m in Sources */,
+				7ED9EA4E1918205A0082C2C3 /* SIMTokenGenerator.m in Sources */,
+				7ED9EA5B191820820082C2C3 /* SIMCheckoutViewController.m in Sources */,
 				7ED9E9FF1917E2930082C2C3 /* main.m in Sources */,
-				7ED9EA231917F6540082C2C3 /* SIMCheckoutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,7 +355,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ED9EA55191820760082C2C3 /* SIMDigitVerifierTests.m in Sources */,
+				7ED9EA5D191820880082C2C3 /* SIMCheckoutModelTests.m in Sources */,
 				7ED9EA181917E2930082C2C3 /* SimplifyiOSSDKTests.m in Sources */,
+				7ED9EA50191820620082C2C3 /* SIMTokenGeneratorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +472,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimplifyiOSSDK/SimplifyiOSSDK-Prefix.pch";
 				INFOPLIST_FILE = "SimplifyiOSSDK/SimplifyiOSSDK-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/usr/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -382,6 +489,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimplifyiOSSDK/SimplifyiOSSDK-Prefix.pch";
 				INFOPLIST_FILE = "SimplifyiOSSDK/SimplifyiOSSDK-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/usr/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -397,12 +508,25 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SimplifyiOSSDK/SimplifyiOSSDK-Prefix.pch";
+				GCC_PREFIX_HEADER = "SimplifyiOSSDKTests/SimplifyiOSSDK-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"(SRCROOT)/usr/include\"",
+				);
 				INFOPLIST_FILE = "SimplifyiOSSDKTests/SimplifyiOSSDKTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-force_load",
+					"\"$(SRCROOT)/usr/lib/libOCMock.a\"",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -419,8 +543,21 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SimplifyiOSSDK/SimplifyiOSSDK-Prefix.pch";
+				GCC_PREFIX_HEADER = "SimplifyiOSSDKTests/SimplifyiOSSDK-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"(SRCROOT)/usr/include\"",
+				);
 				INFOPLIST_FILE = "SimplifyiOSSDKTests/SimplifyiOSSDKTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-force_load",
+					"\"$(SRCROOT)/usr/lib/libOCMock.a\"",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
