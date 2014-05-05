@@ -1,0 +1,34 @@
+//
+//  SimplifyMerchantSDKTests.m
+//  SimplifyMerchantSDKTests
+//
+//  Created by Adam Axe on 5/5/14.
+//  Copyright (c) 2014 MasterCard Labs. All rights reserved.
+//
+
+#import <XCTest/XCTest.h>
+
+@interface SimplifyMerchantSDKTests : XCTestCase
+
+@end
+
+@implementation SimplifyMerchantSDKTests
+
+- (void)setUp
+{
+    [super setUp];
+    // Put setup code here. This method is called before the invocation of each test method in the class.
+}
+
+- (void)tearDown
+{
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [super tearDown];
+}
+
+- (void)testExample
+{
+    XCTAssertTrue(YES, @"");
+}
+
+@end

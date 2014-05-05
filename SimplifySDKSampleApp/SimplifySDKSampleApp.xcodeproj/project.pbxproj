@@ -504,7 +504,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"(SRCROOT)/../vendor/**",
+					"$(PROJECT_DIR)/../vendor/ocmock",
 				);
 				INFOPLIST_FILE = "SimplifySDKSampleAppTests/SimplifySDKSampleAppTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -537,7 +537,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"(SRCROOT)/../vendor/**",
+					"$(PROJECT_DIR)/../vendor/ocmock",
 				);
 				INFOPLIST_FILE = "SimplifySDKSampleTests/SimplifySDKSampleAppTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (

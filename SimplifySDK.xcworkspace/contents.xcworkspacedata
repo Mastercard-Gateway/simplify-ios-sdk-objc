@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:SimplifyMerchantSDK/SimplifyMerchantSDK.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:SimplifySDKSampleApp/SimplifySDKSampleApp.xcodeproj">
    </FileRef>
 </Workspace>
