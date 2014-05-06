@@ -1,3 +1,0 @@
-@interface SimplifyMerchantSDK : NSObject
-
-@end

@@ -19,7 +19,6 @@
 		7ED9EA0D1917E2930082C2C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F21917E2930082C2C3 /* Foundation.framework */; };
 		7ED9EA0E1917E2930082C2C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F61917E2930082C2C3 /* UIKit.framework */; };
 		7ED9EA161917E2930082C2C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA141917E2930082C2C3 /* InfoPlist.strings */; };
-		7ED9EA181917E2930082C2C3 /* SimplifySDKSampleAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA171917E2930082C2C3 /* SimplifySDKSampleAppTests.m */; };
 		7ED9EA25191817870082C2C3 /* TokenStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA24191817870082C2C3 /* TokenStoryboard.storyboard */; };
 		7ED9EA4E1918205A0082C2C3 /* SIMTokenGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA4D1918205A0082C2C3 /* SIMTokenGenerator.m */; };
 		7ED9EA50191820620082C2C3 /* SIMTokenGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA4F191820620082C2C3 /* SIMTokenGeneratorTests.m */; };
@@ -81,7 +80,6 @@
 		7ED9EA0B1917E2930082C2C3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7ED9EA131917E2930082C2C3 /* SimplifySDKSampleAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimplifySDKSampleAppTests-Info.plist"; sourceTree = "<group>"; };
 		7ED9EA151917E2930082C2C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		7ED9EA171917E2930082C2C3 /* SimplifySDKSampleAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplifySDKSampleAppTests.m; sourceTree = "<group>"; };
 		7ED9EA24191817870082C2C3 /* TokenStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TokenStoryboard.storyboard; sourceTree = "<group>"; };
 		7ED9EA37191818F30082C2C3 /* SimplifySDKSampleAppTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SimplifySDKSampleAppTests-Prefix.pch"; sourceTree = "<group>"; };
 		7ED9EA4C1918205A0082C2C3 /* SIMTokenGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIMTokenGenerator.h; path = SimplifySDKSampleApp/SIMTokenGenerator.h; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 		7ED9EA111917E2930082C2C3 /* SimplifySDKSampleAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				7ED9EA171917E2930082C2C3 /* SimplifySDKSampleAppTests.m */,
 				7ED9EA121917E2930082C2C3 /* Supporting Files */,
 			);
 			path = SimplifySDKSampleAppTests;
@@ -442,7 +439,6 @@
 				7ED9EA55191820760082C2C3 /* SIMDigitVerifierTests.m in Sources */,
 				7ED9EA5D191820880082C2C3 /* SIMRetrieveTokenModelTests.m in Sources */,
 				7ED9EA6819186F3C0082C2C3 /* SIMCardTypeTests.m in Sources */,
-				7ED9EA181917E2930082C2C3 /* SimplifySDKSampleAppTests.m in Sources */,
 				7ED9EA50191820620082C2C3 /* SIMTokenGeneratorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

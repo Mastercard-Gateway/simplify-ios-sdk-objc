@@ -1,0 +1,3 @@
+@interface SIMCardTokenRequest : NSObject
+
+@end
