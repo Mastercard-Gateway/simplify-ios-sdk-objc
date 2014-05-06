@@ -37,6 +37,8 @@
     XCTAssertFalse([self.testLuhnValidator luhnValidateString:@"79927398717"], "invalid");
     XCTAssertFalse([self.testLuhnValidator luhnValidateString:@"79927398718"], "invalid");
     XCTAssertFalse([self.testLuhnValidator luhnValidateString:@"79927398719"], "invalid");
+    XCTAssertFalse([self.testLuhnValidator luhnValidateString:@"a"], "invalid");
+    XCTAssertFalse([self.testLuhnValidator luhnValidateString:@"799273987a1s9"], "invalid");
 }
 
 @end
