@@ -16,7 +16,6 @@
 		49748F77191849C600738BC9 /* libSimplifyMerchantSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F5F191849C600738BC9 /* libSimplifyMerchantSDK.a */; };
 		49748F7D191849C600738BC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49748F7B191849C600738BC9 /* InfoPlist.strings */; };
 		49748F7F191849C600738BC9 /* SimplifyMerchantSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49748F7E191849C600738BC9 /* SimplifyMerchantSDKTests.m */; };
-		49748F9119184A3F00738BC9 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F8919184A3F00738BC9 /* libOCMock.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +60,7 @@
 		49748F8E19184A3F00738BC9 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
 		49748F8F19184A3F00738BC9 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		49748F9019184A3F00738BC9 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
+		49748F9219184D3700738BC9 /* SimplifyMerchantSDKTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SimplifyMerchantSDKTests-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				49748F63191849C600738BC9 /* Foundation.framework in Frameworks */,
-				49748F9119184A3F00738BC9 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				49748F7A191849C600738BC9 /* SimplifyMerchantSDKTests-Info.plist */,
+				49748F9219184D3700738BC9 /* SimplifyMerchantSDKTests-Prefix.pch */,
 				49748F7B191849C600738BC9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -410,7 +410,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SimplifyMerchantSDK/SimplifyMerchantSDK-Prefix.pch";
+				GCC_PREFIX_HEADER = "SimplifyMerchantSDKTests/SimplifyMerchantSDKTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -430,7 +430,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SimplifyMerchantSDK/SimplifyMerchantSDK-Prefix.pch";
+				GCC_PREFIX_HEADER = "SimplifyMerchantSDKTests/SimplifyMerchantSDKTests-Prefix.pch";
 				INFOPLIST_FILE = "SimplifyMerchantSDKTests/SimplifyMerchantSDKTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;

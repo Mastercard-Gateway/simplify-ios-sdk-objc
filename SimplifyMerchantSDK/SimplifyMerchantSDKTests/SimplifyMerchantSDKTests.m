@@ -1,13 +1,3 @@
-//
-//  SimplifyMerchantSDKTests.m
-//  SimplifyMerchantSDKTests
-//
-//  Created by Adam Axe on 5/5/14.
-//  Copyright (c) 2014 MasterCard Labs. All rights reserved.
-//
-
-#import <XCTest/XCTest.h>
-
 @interface SimplifyMerchantSDKTests : XCTestCase
 
 @end
