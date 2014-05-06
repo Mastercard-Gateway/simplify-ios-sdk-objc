@@ -1,6 +1,7 @@
 #import "SIMRetrieveTokenModel.h"
 #import "SIMDigitVerifier.h"
 #import "SIMCardType.h"
+#import <Simplify/SIMCardTokenRequest.h>
 
 @interface SIMRetrieveTokenModel ()
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;
@@ -97,9 +98,8 @@
 }
 
 - (void)retrieveToken {
-//    SIMCardTokenRequest *tokenGenerator = [SIMCardTokenRequest new];
-//    NSString *token = [tokenGenerator createCardTokenWithCardNumber:self.cardNumber expirationMonth:self.expirationMonth expirationYear:self.expirationYear cvc:self.cvcCode error:nil];
-//    NSLog(@"token: %@", token);
+    SIMCardTokenRequest *tokenGenerator = [SIMCardTokenRequest new];
+    //NSLog(@"token: %@", token);
 }
 
 @end
