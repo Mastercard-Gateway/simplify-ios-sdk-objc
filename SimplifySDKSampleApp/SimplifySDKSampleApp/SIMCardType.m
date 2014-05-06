@@ -12,7 +12,7 @@
         return @"discover";
     } else if ([self hasPrefixFromArray:@[@"3528", @"3529", @"353", @"354", @"355", @"356", @"357", @"358"] inString:cardNumber]) {
             return @"jcb";
-	} else if ([self hasPrefixFromArray:@[@"50", @"51", @"52", @"53", @"54", @"55", @"67"] inString:cardNumber]) {
+	} else if ([self hasPrefixFromArray:@[@"51", @"52", @"53", @"54", @"55", @"67"] inString:cardNumber]) {
 		return @"mastercard";
 	} else if ([cardNumber hasPrefix:@"4"]) {
 		return @"visa";
