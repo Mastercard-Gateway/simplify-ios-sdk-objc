@@ -28,6 +28,22 @@
 		7ED9EA5A191820820082C2C3 /* SIMRetrieveTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA57191820820082C2C3 /* SIMRetrieveTokenModel.m */; };
 		7ED9EA5B191820820082C2C3 /* SIMRetrieveTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA59191820820082C2C3 /* SIMRetrieveTokenViewController.m */; };
 		7ED9EA5D191820880082C2C3 /* SIMRetrieveTokenModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA5C191820880082C2C3 /* SIMRetrieveTokenModelTests.m */; };
+		7ED9EA6619186F0B0082C2C3 /* SIMCardType.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA6519186F0B0082C2C3 /* SIMCardType.m */; };
+		7ED9EA6819186F3C0082C2C3 /* SIMCardTypeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA6719186F3C0082C2C3 /* SIMCardTypeTests.m */; };
+		7ED9EA7B191871F50082C2C3 /* amex.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA6B191871F50082C2C3 /* amex.png */; };
+		7ED9EA7C191871F50082C2C3 /* amex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA6C191871F50082C2C3 /* amex@2x.png */; };
+		7ED9EA7D191871F50082C2C3 /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA6D191871F50082C2C3 /* blank.png */; };
+		7ED9EA7E191871F50082C2C3 /* blank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA6E191871F50082C2C3 /* blank@2x.png */; };
+		7ED9EA81191871F50082C2C3 /* diners.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA71191871F50082C2C3 /* diners.png */; };
+		7ED9EA82191871F50082C2C3 /* diners@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA72191871F50082C2C3 /* diners@2x.png */; };
+		7ED9EA83191871F50082C2C3 /* discover.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA73191871F50082C2C3 /* discover.png */; };
+		7ED9EA84191871F50082C2C3 /* discover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA74191871F50082C2C3 /* discover@2x.png */; };
+		7ED9EA87191871F50082C2C3 /* mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA77191871F50082C2C3 /* mastercard.png */; };
+		7ED9EA88191871F50082C2C3 /* mastercard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA78191871F50082C2C3 /* mastercard@2x.png */; };
+		7ED9EA89191871F50082C2C3 /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA79191871F50082C2C3 /* visa.png */; };
+		7ED9EA8A191871F50082C2C3 /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA7A191871F50082C2C3 /* visa@2x.png */; };
+		7ED9EA8D191875D40082C2C3 /* jcb.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA8B191875D40082C2C3 /* jcb.png */; };
+		7ED9EA8E191875D40082C2C3 /* jcb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA8C191875D40082C2C3 /* jcb@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +93,23 @@
 		7ED9EA58191820820082C2C3 /* SIMRetrieveTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIMRetrieveTokenViewController.h; path = SimplifySDKSampleApp/SIMRetrieveTokenViewController.h; sourceTree = "<group>"; };
 		7ED9EA59191820820082C2C3 /* SIMRetrieveTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMRetrieveTokenViewController.m; path = SimplifySDKSampleApp/SIMRetrieveTokenViewController.m; sourceTree = "<group>"; };
 		7ED9EA5C191820880082C2C3 /* SIMRetrieveTokenModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMRetrieveTokenModelTests.m; path = SimplifySDKSampleApp/SIMRetrieveTokenModelTests.m; sourceTree = "<group>"; };
+		7ED9EA6419186F0B0082C2C3 /* SIMCardType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMCardType.h; sourceTree = "<group>"; };
+		7ED9EA6519186F0B0082C2C3 /* SIMCardType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMCardType.m; sourceTree = "<group>"; };
+		7ED9EA6719186F3C0082C2C3 /* SIMCardTypeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMCardTypeTests.m; sourceTree = "<group>"; };
+		7ED9EA6B191871F50082C2C3 /* amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amex.png; sourceTree = "<group>"; };
+		7ED9EA6C191871F50082C2C3 /* amex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "amex@2x.png"; sourceTree = "<group>"; };
+		7ED9EA6D191871F50082C2C3 /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
+		7ED9EA6E191871F50082C2C3 /* blank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank@2x.png"; sourceTree = "<group>"; };
+		7ED9EA71191871F50082C2C3 /* diners.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diners.png; sourceTree = "<group>"; };
+		7ED9EA72191871F50082C2C3 /* diners@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diners@2x.png"; sourceTree = "<group>"; };
+		7ED9EA73191871F50082C2C3 /* discover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discover.png; sourceTree = "<group>"; };
+		7ED9EA74191871F50082C2C3 /* discover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "discover@2x.png"; sourceTree = "<group>"; };
+		7ED9EA77191871F50082C2C3 /* mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mastercard.png; sourceTree = "<group>"; };
+		7ED9EA78191871F50082C2C3 /* mastercard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mastercard@2x.png"; sourceTree = "<group>"; };
+		7ED9EA79191871F50082C2C3 /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visa.png; sourceTree = "<group>"; };
+		7ED9EA7A191871F50082C2C3 /* visa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa@2x.png"; sourceTree = "<group>"; };
+		7ED9EA8B191875D40082C2C3 /* jcb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jcb.png; sourceTree = "<group>"; };
+		7ED9EA8C191875D40082C2C3 /* jcb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jcb@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,11 +195,13 @@
 		7ED9E9F81917E2930082C2C3 /* SimplifySDKSampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				7ED9EA6A191871F50082C2C3 /* Card Icons */,
 				7ED9EA48191819A50082C2C3 /* Token Generator */,
 				7ED9EA34191818480082C2C3 /* Digit Verifier */,
 				7ED9EA2E191818110082C2C3 /* Checkout */,
 				7ED9EA011917E2930082C2C3 /* SIMAppDelegate.h */,
 				7ED9EA021917E2930082C2C3 /* SIMAppDelegate.m */,
+				7ED9EA6919186F410082C2C3 /* Card Type */,
 				7ED9EA041917E2930082C2C3 /* Images.xcassets */,
 				7ED9E9F91917E2930082C2C3 /* Supporting Files */,
 				7ED9EA24191817870082C2C3 /* TokenStoryboard.storyboard */,
@@ -237,6 +272,38 @@
 			);
 			name = "Token Generator";
 			path = ..;
+			sourceTree = "<group>";
+		};
+		7ED9EA6919186F410082C2C3 /* Card Type */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9EA6419186F0B0082C2C3 /* SIMCardType.h */,
+				7ED9EA6519186F0B0082C2C3 /* SIMCardType.m */,
+				7ED9EA6719186F3C0082C2C3 /* SIMCardTypeTests.m */,
+			);
+			name = "Card Type";
+			sourceTree = "<group>";
+		};
+		7ED9EA6A191871F50082C2C3 /* Card Icons */ = {
+			isa = PBXGroup;
+			children = (
+				7ED9EA8B191875D40082C2C3 /* jcb.png */,
+				7ED9EA8C191875D40082C2C3 /* jcb@2x.png */,
+				7ED9EA6B191871F50082C2C3 /* amex.png */,
+				7ED9EA6C191871F50082C2C3 /* amex@2x.png */,
+				7ED9EA6D191871F50082C2C3 /* blank.png */,
+				7ED9EA6E191871F50082C2C3 /* blank@2x.png */,
+				7ED9EA71191871F50082C2C3 /* diners.png */,
+				7ED9EA72191871F50082C2C3 /* diners@2x.png */,
+				7ED9EA73191871F50082C2C3 /* discover.png */,
+				7ED9EA74191871F50082C2C3 /* discover@2x.png */,
+				7ED9EA77191871F50082C2C3 /* mastercard.png */,
+				7ED9EA78191871F50082C2C3 /* mastercard@2x.png */,
+				7ED9EA79191871F50082C2C3 /* visa.png */,
+				7ED9EA7A191871F50082C2C3 /* visa@2x.png */,
+			);
+			name = "Card Icons";
+			path = CardIcons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,8 +382,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ED9EA88191871F50082C2C3 /* mastercard@2x.png in Resources */,
+				7ED9EA7C191871F50082C2C3 /* amex@2x.png in Resources */,
+				7ED9EA89191871F50082C2C3 /* visa.png in Resources */,
+				7ED9EA8A191871F50082C2C3 /* visa@2x.png in Resources */,
+				7ED9EA7E191871F50082C2C3 /* blank@2x.png in Resources */,
+				7ED9EA81191871F50082C2C3 /* diners.png in Resources */,
 				7ED9E9FD1917E2930082C2C3 /* InfoPlist.strings in Resources */,
+				7ED9EA84191871F50082C2C3 /* discover@2x.png in Resources */,
+				7ED9EA7D191871F50082C2C3 /* blank.png in Resources */,
+				7ED9EA8D191875D40082C2C3 /* jcb.png in Resources */,
+				7ED9EA87191871F50082C2C3 /* mastercard.png in Resources */,
+				7ED9EA83191871F50082C2C3 /* discover.png in Resources */,
+				7ED9EA8E191875D40082C2C3 /* jcb@2x.png in Resources */,
 				7ED9EA051917E2930082C2C3 /* Images.xcassets in Resources */,
+				7ED9EA7B191871F50082C2C3 /* amex.png in Resources */,
+				7ED9EA82191871F50082C2C3 /* diners@2x.png in Resources */,
 				7ED9EA25191817870082C2C3 /* TokenStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ED9EA6619186F0B0082C2C3 /* SIMCardType.m in Sources */,
 				7ED9EA5A191820820082C2C3 /* SIMRetrieveTokenModel.m in Sources */,
 				7ED9EA031917E2930082C2C3 /* SIMAppDelegate.m in Sources */,
 				7ED9EA531918206F0082C2C3 /* SIMDigitVerifier.m in Sources */,
@@ -351,6 +433,7 @@
 			files = (
 				7ED9EA55191820760082C2C3 /* SIMDigitVerifierTests.m in Sources */,
 				7ED9EA5D191820880082C2C3 /* SIMRetrieveTokenModelTests.m in Sources */,
+				7ED9EA6819186F3C0082C2C3 /* SIMCardTypeTests.m in Sources */,
 				7ED9EA181917E2930082C2C3 /* SimplifySDKSampleAppTests.m in Sources */,
 				7ED9EA50191820620082C2C3 /* SIMTokenGeneratorTests.m in Sources */,
 			);

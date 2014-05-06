@@ -6,6 +6,7 @@
 @property (nonatomic, strong, readonly) NSString *formattedCardNumber;
 @property (nonatomic, strong, readonly) NSString *formattedExpirationDate;
 @property (nonatomic, strong, readonly) NSString *cvcCode;
+@property (nonatomic, strong, readonly) NSString *cardType;
 
 - (BOOL) isRetrievalPossible;
 - (void) updateCardNumberWithString:(NSString *)newString;

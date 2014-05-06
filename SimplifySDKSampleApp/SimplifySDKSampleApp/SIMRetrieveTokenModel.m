@@ -1,6 +1,7 @@
 #import "SIMRetrieveTokenModel.h"
 #import "SIMDigitVerifier.h"
 #import "SIMTokenGenerator.h"
+#import "SIMCardType.h"
 
 @interface SIMRetrieveTokenModel ()
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;
@@ -11,6 +12,7 @@
 @property (nonatomic, strong, readwrite) NSString *formattedCardNumber;
 @property (nonatomic, strong, readwrite) NSString *formattedExpirationDate;
 @property (nonatomic, strong, readwrite) NSString *cvcCode;
+@property (nonatomic, strong, readwrite) NSString *cardType;
 @end
 
 @implementation SIMRetrieveTokenModel
@@ -88,6 +90,11 @@
         return [self.expirationDate substringFromIndex:2];
     }
     return @"";
+}
+
+- (NSString *)cardType {
+    SIMCardType *cardType = [SIMCardType new];
+    return [cardType cardTypeFromCardNumberString:self.cardNumber];
 }
 
 - (void)retrieveToken {
