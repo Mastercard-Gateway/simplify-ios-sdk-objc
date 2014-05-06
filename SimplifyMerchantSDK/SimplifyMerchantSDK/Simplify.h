@@ -1,3 +1,2 @@
-#import <Foundation/Foundation.h>
-
-#import <Simplify/SimplifyMerchantSDK.h>
+#import <Simplify/SIMAPIManager.h>
+#import <Simplify/SIMCardTokenRequest.h>

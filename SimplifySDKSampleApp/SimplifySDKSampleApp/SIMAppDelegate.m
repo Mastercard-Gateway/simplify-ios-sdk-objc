@@ -1,4 +1,5 @@
 #import "SIMAppDelegate.h"
+#import <Simplify/SIMAPIManager.h>
 
 @implementation SIMAppDelegate
 

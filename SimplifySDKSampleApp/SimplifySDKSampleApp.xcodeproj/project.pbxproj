@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		49748F5519182A2E00738BC9 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F4B191829A400738BC9 /* libOCMock.a */; };
+		49748FB2191935B600738BC9 /* libSimplify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748FB1191935B600738BC9 /* libSimplify.a */; };
 		7ED9E9F31917E2930082C2C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F21917E2930082C2C3 /* Foundation.framework */; };
 		7ED9E9F51917E2930082C2C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F41917E2930082C2C3 /* CoreGraphics.framework */; };
 		7ED9E9F71917E2930082C2C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F61917E2930082C2C3 /* UIKit.framework */; };
@@ -65,6 +66,7 @@
 		49748F50191829A400738BC9 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
 		49748F51191829A400738BC9 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		49748F52191829A400738BC9 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
+		49748FB1191935B600738BC9 /* libSimplify.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSimplify.a; path = "../SimplifyMerchantSDK/build/Debug-iphoneos/libSimplify.a"; sourceTree = "<group>"; };
 		7ED9E9EF1917E2930082C2C3 /* SimplifySDKSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplifySDKSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED9E9F21917E2930082C2C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7ED9E9F41917E2930082C2C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -119,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49748FB2191935B600738BC9 /* libSimplify.a in Frameworks */,
 				7ED9E9F51917E2930082C2C3 /* CoreGraphics.framework in Frameworks */,
 				7ED9E9F71917E2930082C2C3 /* UIKit.framework in Frameworks */,
 				7ED9E9F31917E2930082C2C3 /* Foundation.framework in Frameworks */,
@@ -185,6 +188,7 @@
 		7ED9E9F11917E2930082C2C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49748FB1191935B600738BC9 /* libSimplify.a */,
 				49748F4A191829A400738BC9 /* ocmock */,
 				7ED9E9F21917E2930082C2C3 /* Foundation.framework */,
 				7ED9E9F41917E2930082C2C3 /* CoreGraphics.framework */,
@@ -552,8 +556,16 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimplifySDKSampleApp/SimplifySDKSampleApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers",
+				);
 				INFOPLIST_FILE = "SimplifySDKSampleApp/SimplifySDKSampleApp-Info.plist";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/adamaxe/workspace/sdk-ios/SimplifyMerchantSDK/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = SimplifySDKSampleApp;
 				WRAPPER_EXTENSION = app;
 			};
@@ -566,8 +578,16 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimplifySDKSampleApp/SimplifySDKSampleApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers",
+				);
 				INFOPLIST_FILE = "SimplifySDKSampleApp/SimplifySDKSampleApp-Info.plist";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/adamaxe/workspace/sdk-ios/SimplifyMerchantSDK/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = SimplifySDKSampleApp;
 				WRAPPER_EXTENSION = app;
 			};

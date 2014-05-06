@@ -1,5 +1,8 @@
 #import "SIMAPIManager.h"
 
+#define SIMAPIManagerPrefixLive @"lv"
+#define SIMAPIManagerPrefixSandbox @"sb"
+
 @interface SIMAPIManagerTests : XCTestCase
 
 @property (nonatomic) SIMAPIManager *testSubject;
@@ -11,7 +14,7 @@
 
 - (void)setUp
 {
-//    self.mockURLSession = [ mo]
+    self.mockURLSession = [OCMockObject mockForClass:NSURLSession.class];
     [super setUp];
 }
 
@@ -20,9 +23,9 @@
     [super tearDown];
 }
 
-- (void)testAPIManagerCanDetermineLiveOrSandboxMode
+- (void)testAPIManagerCanDetermineLiveMode
 {
-
+    [self.testSubject initWithPublicApiToken:@"" urlSession:self.mockURLSession];
     
 }
 

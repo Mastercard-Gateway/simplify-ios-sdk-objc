@@ -31,12 +31,14 @@
 		49748F7F191849C600738BC9 /* SimplifyMerchantSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49748F7E191849C600738BC9 /* SimplifyMerchantSDKTests.m */; };
 		49748F9D1918733B00738BC9 /* Simplify.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49748F9B191872A100738BC9 /* Simplify.h */; };
 		49748F9E1918734600738BC9 /* Simplify.h in Headers */ = {isa = PBXBuildFile; fileRef = 49748F9B191872A100738BC9 /* Simplify.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49748FA119188C6600738BC9 /* SIMCardTokenRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 49748F9F19188C6600738BC9 /* SIMCardTokenRequest.h */; };
+		49748FA119188C6600738BC9 /* SIMCardTokenRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 49748F9F19188C6600738BC9 /* SIMCardTokenRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49748FA219188C6600738BC9 /* SIMCardTokenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 49748FA019188C6600738BC9 /* SIMCardTokenRequest.m */; };
-		49748FA819188D2C00738BC9 /* SIMAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 49748FA619188D2C00738BC9 /* SIMAPIManager.h */; };
+		49748FA819188D2C00738BC9 /* SIMAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 49748FA619188D2C00738BC9 /* SIMAPIManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49748FA919188D2C00738BC9 /* SIMAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49748FA719188D2C00738BC9 /* SIMAPIManager.m */; };
 		49748FAB191927E600738BC9 /* SIMAPIManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49748FAA191927E600738BC9 /* SIMAPIManagerTests.m */; };
 		49748FAC19192A8900738BC9 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F8919184A3F00738BC9 /* libOCMock.a */; };
+		49748FAF1919323600738BC9 /* NSString+Simplify.h in Headers */ = {isa = PBXBuildFile; fileRef = 49748FAD1919323600738BC9 /* NSString+Simplify.h */; };
+		49748FB01919323600738BC9 /* NSString+Simplify.m in Sources */ = {isa = PBXBuildFile; fileRef = 49748FAE1919323600738BC9 /* NSString+Simplify.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		49748FA619188D2C00738BC9 /* SIMAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMAPIManager.h; sourceTree = "<group>"; };
 		49748FA719188D2C00738BC9 /* SIMAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMAPIManager.m; sourceTree = "<group>"; };
 		49748FAA191927E600738BC9 /* SIMAPIManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMAPIManagerTests.m; sourceTree = "<group>"; };
+		49748FAD1919323600738BC9 /* NSString+Simplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Simplify.h"; sourceTree = "<group>"; };
+		49748FAE1919323600738BC9 /* NSString+Simplify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Simplify.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +220,8 @@
 				49748FAA191927E600738BC9 /* SIMAPIManagerTests.m */,
 				49748FA619188D2C00738BC9 /* SIMAPIManager.h */,
 				49748FA719188D2C00738BC9 /* SIMAPIManager.m */,
+				49748FAD1919323600738BC9 /* NSString+Simplify.h */,
+				49748FAE1919323600738BC9 /* NSString+Simplify.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -237,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49748FA119188C6600738BC9 /* SIMCardTokenRequest.h in Headers */,
+				49748FAF1919323600738BC9 /* NSString+Simplify.h in Headers */,
 				49748FA819188D2C00738BC9 /* SIMAPIManager.h in Headers */,
 				49748F9E1918734600738BC9 /* Simplify.h in Headers */,
 			);
@@ -357,6 +364,7 @@
 			files = (
 				49748FA919188D2C00738BC9 /* SIMAPIManager.m in Sources */,
 				49748FA219188C6600738BC9 /* SIMCardTokenRequest.m in Sources */,
+				49748FB01919323600738BC9 /* NSString+Simplify.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
