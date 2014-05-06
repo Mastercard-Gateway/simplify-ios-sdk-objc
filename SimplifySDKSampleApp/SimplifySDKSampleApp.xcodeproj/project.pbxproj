@@ -44,6 +44,8 @@
 		7ED9EA8A191871F50082C2C3 /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA7A191871F50082C2C3 /* visa@2x.png */; };
 		7ED9EA8D191875D40082C2C3 /* jcb.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA8B191875D40082C2C3 /* jcb.png */; };
 		7ED9EA8E191875D40082C2C3 /* jcb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA8C191875D40082C2C3 /* jcb@2x.png */; };
+		7ED9EA911918841B0082C2C3 /* china-union.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA8F1918841B0082C2C3 /* china-union.png */; };
+		7ED9EA921918841B0082C2C3 /* china-union@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA901918841B0082C2C3 /* china-union@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,8 @@
 		7ED9EA7A191871F50082C2C3 /* visa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa@2x.png"; sourceTree = "<group>"; };
 		7ED9EA8B191875D40082C2C3 /* jcb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jcb.png; sourceTree = "<group>"; };
 		7ED9EA8C191875D40082C2C3 /* jcb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jcb@2x.png"; sourceTree = "<group>"; };
+		7ED9EA8F1918841B0082C2C3 /* china-union.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "china-union.png"; sourceTree = "<group>"; };
+		7ED9EA901918841B0082C2C3 /* china-union@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "china-union@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +291,8 @@
 		7ED9EA6A191871F50082C2C3 /* Card Icons */ = {
 			isa = PBXGroup;
 			children = (
+				7ED9EA8F1918841B0082C2C3 /* china-union.png */,
+				7ED9EA901918841B0082C2C3 /* china-union@2x.png */,
 				7ED9EA8B191875D40082C2C3 /* jcb.png */,
 				7ED9EA8C191875D40082C2C3 /* jcb@2x.png */,
 				7ED9EA6B191871F50082C2C3 /* amex.png */,
@@ -388,6 +394,7 @@
 				7ED9EA8A191871F50082C2C3 /* visa@2x.png in Resources */,
 				7ED9EA7E191871F50082C2C3 /* blank@2x.png in Resources */,
 				7ED9EA81191871F50082C2C3 /* diners.png in Resources */,
+				7ED9EA921918841B0082C2C3 /* china-union@2x.png in Resources */,
 				7ED9E9FD1917E2930082C2C3 /* InfoPlist.strings in Resources */,
 				7ED9EA84191871F50082C2C3 /* discover@2x.png in Resources */,
 				7ED9EA7D191871F50082C2C3 /* blank.png in Resources */,
@@ -397,6 +404,7 @@
 				7ED9EA8E191875D40082C2C3 /* jcb@2x.png in Resources */,
 				7ED9EA051917E2930082C2C3 /* Images.xcassets in Resources */,
 				7ED9EA7B191871F50082C2C3 /* amex.png in Resources */,
+				7ED9EA911918841B0082C2C3 /* china-union.png in Resources */,
 				7ED9EA82191871F50082C2C3 /* diners@2x.png in Resources */,
 				7ED9EA25191817870082C2C3 /* TokenStoryboard.storyboard in Resources */,
 			);

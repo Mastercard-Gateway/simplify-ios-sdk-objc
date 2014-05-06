@@ -24,6 +24,7 @@
     self.expirationField.delegate = self;
     self.cvcField.delegate = self;
     self.checkoutModel = [SIMRetrieveTokenModel new];
+    [self setCardTypeImage];
     [self buttonSetUp];
     
     // Do any additional setup after loading the view.
@@ -52,6 +53,7 @@
     if (textField == self.cardNumberField) {
         [self.checkoutModel updateCardNumberWithString:newString];
         self.cardNumberField.text = self.checkoutModel.formattedCardNumber;
+        [self setCardTypeImage];
     }
     
     else if (textField == self.cvcField) {
@@ -83,6 +85,11 @@
     }
     
     return YES;
+}
+
+-(void)setCardTypeImage {
+    UIImage *cardImage = [UIImage imageNamed:self.checkoutModel.cardType];
+    [self.cardTypeImage setImage:cardImage];
 }
 
 - (IBAction)retrieveToken:(id)sender {

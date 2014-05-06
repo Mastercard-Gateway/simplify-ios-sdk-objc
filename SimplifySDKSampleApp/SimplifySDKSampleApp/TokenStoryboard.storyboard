@@ -75,13 +75,17 @@
                                 <rect key="frame" x="20" y="80" width="280" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type Your Card Number Here" adjustsFontSizeToFit="NO" minimumFontSize="20" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="EOh-8W-jBh">
-                                        <rect key="frame" x="11" y="0.0" width="261" height="40"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Card Number" adjustsFontSizeToFit="NO" minimumFontSize="20" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="EOh-8W-jBh">
+                                        <rect key="frame" x="46" y="0.0" width="227" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.0" green="0.32549019610000002" blue="0.66666666669999997" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
                                     </textField>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A0t-dZ-qLh">
+                                        <rect key="frame" x="8" y="10" width="32" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -91,6 +95,7 @@
                     <navigationItem key="navigationItem" id="iJh-jM-keO"/>
                     <connections>
                         <outlet property="cardNumberField" destination="EOh-8W-jBh" id="wrx-7n-Ayb"/>
+                        <outlet property="cardTypeImage" destination="A0t-dZ-qLh" id="uk0-0y-MZr"/>
                         <outlet property="chargeCardButton" destination="yCA-iL-RwQ" id="Pnq-ds-iQF"/>
                         <outlet property="cvcField" destination="yGp-PY-W6j" id="Z2T-Hd-t77"/>
                         <outlet property="expirationField" destination="nUN-rS-YRj" id="S6u-oC-kXP"/>
