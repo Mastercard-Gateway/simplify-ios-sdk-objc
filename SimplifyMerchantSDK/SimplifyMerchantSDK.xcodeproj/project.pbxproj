@@ -6,20 +6,43 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		49748F94191870F500738BC9 /* SimplifyFramework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 49748F95191870F500738BC9 /* Build configuration list for PBXAggregateTarget "SimplifyFramework" */;
+			buildPhases = (
+				49748F9A1918710700738BC9 /* ShellScript */,
+			);
+			dependencies = (
+				49748F991918710400738BC9 /* PBXTargetDependency */,
+			);
+			name = SimplifyFramework;
+			productName = SimplifyFramework;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		49748F63191849C600738BC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F62191849C600738BC9 /* Foundation.framework */; };
-		49748F68191849C600738BC9 /* SimplifyMerchantSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49748F67191849C600738BC9 /* SimplifyMerchantSDK.h */; };
 		49748F6A191849C600738BC9 /* SimplifyMerchantSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 49748F69191849C600738BC9 /* SimplifyMerchantSDK.m */; };
 		49748F71191849C600738BC9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F70191849C600738BC9 /* XCTest.framework */; };
 		49748F72191849C600738BC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F62191849C600738BC9 /* Foundation.framework */; };
 		49748F74191849C600738BC9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F73191849C600738BC9 /* UIKit.framework */; };
-		49748F77191849C600738BC9 /* libSimplifyMerchantSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F5F191849C600738BC9 /* libSimplifyMerchantSDK.a */; };
+		49748F77191849C600738BC9 /* libSimplify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F5F191849C600738BC9 /* libSimplify.a */; };
 		49748F7D191849C600738BC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49748F7B191849C600738BC9 /* InfoPlist.strings */; };
 		49748F7F191849C600738BC9 /* SimplifyMerchantSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49748F7E191849C600738BC9 /* SimplifyMerchantSDKTests.m */; };
+		49748F9D1918733B00738BC9 /* Simplify.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49748F9B191872A100738BC9 /* Simplify.h */; };
+		49748F9E1918734600738BC9 /* Simplify.h in Headers */ = {isa = PBXBuildFile; fileRef = 49748F9B191872A100738BC9 /* Simplify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		49748F75191849C600738BC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49748F57191849C600738BC9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49748F5E191849C600738BC9;
+			remoteInfo = SimplifyMerchantSDK;
+		};
+		49748F981918710400738BC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 49748F57191849C600738BC9 /* Project object */;
 			proxyType = 1;
@@ -35,14 +58,14 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				49748F68191849C600738BC9 /* SimplifyMerchantSDK.h in CopyFiles */,
+				49748F9D1918733B00738BC9 /* Simplify.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		49748F5F191849C600738BC9 /* libSimplifyMerchantSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimplifyMerchantSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		49748F5F191849C600738BC9 /* libSimplify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimplify.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		49748F62191849C600738BC9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49748F66191849C600738BC9 /* SimplifyMerchantSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimplifyMerchantSDK-Prefix.pch"; sourceTree = "<group>"; };
 		49748F67191849C600738BC9 /* SimplifyMerchantSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplifyMerchantSDK.h; sourceTree = "<group>"; };
@@ -61,6 +84,7 @@
 		49748F8F19184A3F00738BC9 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		49748F9019184A3F00738BC9 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		49748F9219184D3700738BC9 /* SimplifyMerchantSDKTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SimplifyMerchantSDKTests-Prefix.pch"; sourceTree = "<group>"; };
+		49748F9B191872A100738BC9 /* Simplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simplify.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +103,7 @@
 				49748F71191849C600738BC9 /* XCTest.framework in Frameworks */,
 				49748F74191849C600738BC9 /* UIKit.framework in Frameworks */,
 				49748F72191849C600738BC9 /* Foundation.framework in Frameworks */,
-				49748F77191849C600738BC9 /* libSimplifyMerchantSDK.a in Frameworks */,
+				49748F77191849C600738BC9 /* libSimplify.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +123,7 @@
 		49748F60191849C600738BC9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				49748F5F191849C600738BC9 /* libSimplifyMerchantSDK.a */,
+				49748F5F191849C600738BC9 /* libSimplify.a */,
 				49748F6F191849C600738BC9 /* SimplifyMerchantSDKTests.xctest */,
 			);
 			name = Products;
@@ -119,6 +143,7 @@
 		49748F64191849C600738BC9 /* SimplifyMerchantSDK */ = {
 			isa = PBXGroup;
 			children = (
+				49748F9B191872A100738BC9 /* Simplify.h */,
 				49748F67191849C600738BC9 /* SimplifyMerchantSDK.h */,
 				49748F69191849C600738BC9 /* SimplifyMerchantSDK.m */,
 				49748F65191849C600738BC9 /* Supporting Files */,
@@ -178,22 +203,35 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		49748F9C1918731E00738BC9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49748F9E1918734600738BC9 /* Simplify.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		49748F5E191849C600738BC9 /* SimplifyMerchantSDK */ = {
+		49748F5E191849C600738BC9 /* Simplify */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 49748F82191849C600738BC9 /* Build configuration list for PBXNativeTarget "SimplifyMerchantSDK" */;
+			buildConfigurationList = 49748F82191849C600738BC9 /* Build configuration list for PBXNativeTarget "Simplify" */;
 			buildPhases = (
 				49748F5B191849C600738BC9 /* Sources */,
 				49748F5C191849C600738BC9 /* Frameworks */,
 				49748F5D191849C600738BC9 /* CopyFiles */,
+				49748F9C1918731E00738BC9 /* Headers */,
+				49748F93191870A400738BC9 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SimplifyMerchantSDK;
+			name = Simplify;
 			productName = SimplifyMerchantSDK;
-			productReference = 49748F5F191849C600738BC9 /* libSimplifyMerchantSDK.a */;
+			productReference = 49748F5F191849C600738BC9 /* libSimplify.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		49748F6E191849C600738BC9 /* SimplifyMerchantSDKTests */ = {
@@ -235,7 +273,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				49748F5E191849C600738BC9 /* SimplifyMerchantSDK */,
+				49748F5E191849C600738BC9 /* Simplify */,
+				49748F94191870F500738BC9 /* SimplifyFramework */,
 				49748F6E191849C600738BC9 /* SimplifyMerchantSDKTests */,
 			);
 		};
@@ -251,6 +290,35 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49748F93191870A400738BC9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n";
+		};
+		49748F9A1918710700738BC9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=Simplify\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nlipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\nopen ${BUILT_PRODUCTS_DIR}";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		49748F5B191849C600738BC9 /* Sources */ = {
@@ -274,8 +342,13 @@
 /* Begin PBXTargetDependency section */
 		49748F76191849C600738BC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 49748F5E191849C600738BC9 /* SimplifyMerchantSDK */;
+			target = 49748F5E191849C600738BC9 /* Simplify */;
 			targetProxy = 49748F75191849C600738BC9 /* PBXContainerItemProxy */;
+		};
+		49748F991918710400738BC9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49748F5E191849C600738BC9 /* Simplify */;
+			targetProxy = 49748F981918710400738BC9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -362,6 +435,7 @@
 		49748F83191849C600738BC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/SimplifyMerchantSDK.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimplifyMerchantSDK/SimplifyMerchantSDK-Prefix.pch";
@@ -376,13 +450,17 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
 			};
 			name = Debug;
 		};
 		49748F84191849C600738BC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/SimplifyMerchantSDK.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimplifyMerchantSDK/SimplifyMerchantSDK-Prefix.pch";
@@ -397,7 +475,9 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
 			};
 			name = Release;
 		};
@@ -437,6 +517,20 @@
 			};
 			name = Release;
 		};
+		49748F96191870F500738BC9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		49748F97191870F500738BC9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -449,7 +543,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		49748F82191849C600738BC9 /* Build configuration list for PBXNativeTarget "SimplifyMerchantSDK" */ = {
+		49748F82191849C600738BC9 /* Build configuration list for PBXNativeTarget "Simplify" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				49748F83191849C600738BC9 /* Debug */,
@@ -462,6 +556,14 @@
 			buildConfigurations = (
 				49748F86191849C600738BC9 /* Debug */,
 				49748F87191849C600738BC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		49748F95191870F500738BC9 /* Build configuration list for PBXAggregateTarget "SimplifyFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49748F96191870F500738BC9 /* Debug */,
+				49748F97191870F500738BC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
