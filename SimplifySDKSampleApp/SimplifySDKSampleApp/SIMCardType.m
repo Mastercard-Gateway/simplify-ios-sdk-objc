@@ -12,7 +12,7 @@
         return @"discover";
     } else if ([self hasPrefixFromArray:@[@"3528", @"3529", @"353", @"354", @"355", @"356", @"357", @"358"] inString:cardNumber]) {
             return @"jcb";
-	} else if ([self hasPrefixFromArray:@[@"50", @"51", @"52", @"53", @"54", @"55"] inString:cardNumber]) {
+	} else if ([self hasPrefixFromArray:@[@"50", @"51", @"52", @"53", @"54", @"55", @"67"] inString:cardNumber]) {
 		return @"mastercard";
 	} else if ([cardNumber hasPrefix:@"4"]) {
 		return @"visa";
@@ -20,10 +20,10 @@
     
     return @"blank";
     
-    //Source for Amex: http://en.wikipedia.org/wiki/List_of_Issuer_Identification_Numbers
+    //Source for Amex: https://secure.cmax.americanexpress.com/Internet/International/japa/SG_en/Merchant/PROSPECT/WorkingWithUs/AvoidingCardFraud/HowToCheckCardFaces/Files/Guide_to_checking_Card_Faces.pdf
     //Source for China Union, Diners Club, Discover, JCB: http://www.discovernetwork.com/merchants/images/Merchant_Marketing_PDF.pdf
-    //Source for MasterCard: http://en.wikipedia.org/wiki/List_of_Issuer_Identification_Numbers
-    //Source for Visa: http://en.wikipedia.org/wiki/List_of_Issuer_Identification_Numbers
+    //Source for MasterCard: http://www.mastercard.com/hu/merchant/PDF/ADC.pdf - 2-6
+    //Source for Visa: http://usa.visa.com/download/merchants/card-security-features-mini-vcp-111512.pdf
 }
 
 
