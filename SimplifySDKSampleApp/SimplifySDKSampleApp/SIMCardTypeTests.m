@@ -54,7 +54,7 @@
     NSString *dinersClub = @"dinersclub";
     int cvcLength = 3;
     int minCardLength = 14;
-    int maxCardLength = 14;
+    int maxCardLength = 16;
 	SIMCardType *testCardType  = [SIMCardType cardTypeFromCardNumberString:@"300"];
 	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
     XCTAssertEqual(cvcLength, testCardType.CVCLength, "cvc");

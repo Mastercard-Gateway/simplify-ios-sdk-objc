@@ -1,6 +1,5 @@
 #import "SIMRetrieveTokenModel.h"
 #import "SIMDigitVerifier.h"
-#import "SIMCardType.h"
 #import <Simplify/SIMCardTokenRequest.h>
 
 @interface SIMRetrieveTokenModel ()
@@ -61,7 +60,7 @@
 
 - (NSString *)formattedCardNumber {
     NSMutableString *formattedString =[NSMutableString stringWithString:self.cardNumber];
-    if (![self.cardType isEqual: @"amex"]) {
+    if (![self.cardTypeString isEqual: @"amex"]) {
         int index=4;
     
         while (index < formattedString.length && formattedString.length < 19) {
@@ -69,7 +68,12 @@
             index +=5;
         }
     } else {
-        
+        if (self.cardNumber.length > 4 && self.cardNumber.length < 10) {
+            [formattedString insertString:@" " atIndex:4];
+        } else if (self.cardNumber.length > 10) {
+            [formattedString insertString:@" " atIndex:4];
+            [formattedString insertString:@" " atIndex:11];
+        }
     }
     
     return formattedString;

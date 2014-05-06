@@ -122,6 +122,36 @@
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "16 digits");
 }
 
+-(void) testFormatttedCreditCardStringFormatsCorrectlyWith4NumbersWhenTypeAmex {
+    NSString *expectedCreditCardString = @"3434";
+    
+    [self.testCheckoutModel updateCardNumberWithString:@"3434"];
+    
+    NSString *actualCreditCardString = self.testCheckoutModel.formattedCardNumber;
+    
+    XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "four digits");
+}
+
+-(void) testFormatttedCreditCardStringFormatsCorrectlyWith5NumbersWhenTypeAmex {
+    NSString *expectedCreditCardString = @"3434 5";
+    
+    [self.testCheckoutModel updateCardNumberWithString:@"34345"];
+    
+    NSString *actualCreditCardString = self.testCheckoutModel.formattedCardNumber;
+    
+    XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "five digits");
+}
+
+-(void) testFormatttedCreditCardStringFormatsCorrectlyWith11NumbersWhenTypeAmex {
+    NSString *expectedCreditCardString = @"3434 567890 1";
+    
+    [self.testCheckoutModel updateCardNumberWithString:@"34345678901"];
+    
+    NSString *actualCreditCardString = self.testCheckoutModel.formattedCardNumber;
+    
+    XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "11 digits");
+}
+
 -(void)testIsRetrievalPossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigits {
     [self.testCheckoutModel updateCardNumberWithString:@"1234567890123"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
