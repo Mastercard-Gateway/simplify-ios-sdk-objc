@@ -11,6 +11,8 @@
 @property (nonatomic, strong, readonly) SIMCardType *cardType;
 
 - (BOOL) isRetrievalPossible;
+- (BOOL) isCardNumberValid;
+- (BOOL) isExpirationDateValid;
 - (void) updateCardNumberWithString:(NSString *)newString;
 - (void) updateExpirationDateWithString:(NSString *)newString;
 - (void) updateCVCNumberWithString:(NSString *)newString;
