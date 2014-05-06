@@ -153,37 +153,57 @@
 }
 
 -(void)testIsRetrievalPossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigits {
-    [self.testCheckoutModel updateCardNumberWithString:@"1234567890123"];
+    [self.testCheckoutModel updateCardNumberWithString:@"5105 1051 0510 5100"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
     [self.testCheckoutModel updateCVCNumberWithString:@"123"];
+
+    XCTAssertTrue([self.testCheckoutModel isExpirationDateValid], "should be a valid expiration date");
+    XCTAssertTrue([self.testCheckoutModel isCardNumberValid], "should be a valid card");
     XCTAssertTrue([self.testCheckoutModel isRetrievalPossible], "should be yes");
 }
 
 -(void)testIsRetrievalPossibleReturnsNoWhenCardNumberIsLessThanMinimumNumberOfDigitsPerCardType {
     [self.testCheckoutModel updateCardNumberWithString:@"412345678901"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
+    XCTAssertFalse([self.testCheckoutModel isCardNumberValid], "should not be a valid card");
     XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no, less than minumum for visa");
 }
 
 -(void)testIsRetrievalPossibleReturnsNoWhenCardNumberIsMoreThanMaximumNumberOfDigitsPerCardType {
     [self.testCheckoutModel updateCardNumberWithString:@"34123456789013"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
+    XCTAssertFalse([self.testCheckoutModel isCardNumberValid], "should not be a valid card");
+    XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no, more than max for amex");
+}
+
+-(void)testIsRetrievalPossibleReturnsNoWhenCardNumberIsNotLuhnValidated {
+    [self.testCheckoutModel updateCardNumberWithString:@"5105 1051 0510 5102"];
+    [self.testCheckoutModel updateExpirationDateWithString:@"123"];
+    XCTAssertFalse([self.testCheckoutModel isCardNumberValid], "should not be a valid card");
     XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no, more than max for amex");
 }
 
 -(void)testIsRetrievalPossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigitsButNoCVCCode {
-    [self.testCheckoutModel updateCardNumberWithString:@"1234567890123"];
+    [self.testCheckoutModel updateCardNumberWithString:@"5105 1051 0510 5100"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
-    
+    XCTAssertTrue([self.testCheckoutModel isExpirationDateValid], "should be yes");
+    XCTAssertTrue([self.testCheckoutModel isCardNumberValid], "should be a valid card");
     XCTAssertTrue([self.testCheckoutModel isRetrievalPossible], "should be yes");
 }
 
 -(void)testIsRetrievalPossibleReturnsNoWhenExpirationDateIsLessThanThreeDigits {
-    [self.testCheckoutModel updateCardNumberWithString:@"1234567893240123"];
+    [self.testCheckoutModel updateCardNumberWithString:@"5105 1051 0510 5100"];
     [self.testCheckoutModel updateExpirationDateWithString:@"12"];
+    XCTAssertFalse([self.testCheckoutModel isExpirationDateValid], "should be no");
     XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no");
 }
 
+-(void)testIsRetrievalPossibleReturnsNoWhenExpirationDateIsExpired {
+    [self.testCheckoutModel updateCardNumberWithString:@"5105 1051 0510 5100"];
+    [self.testCheckoutModel updateExpirationDateWithString:@"112"];
+    XCTAssertFalse([self.testCheckoutModel isExpirationDateValid], "should be no");
+    XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no");
+}
 
 
 -(void)testUpdateCardNumberWithStringCorrectlyRemovesSpaces {

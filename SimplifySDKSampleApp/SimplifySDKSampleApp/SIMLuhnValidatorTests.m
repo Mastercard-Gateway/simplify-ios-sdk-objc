@@ -22,6 +22,8 @@
     XCTAssertTrue([self.testLuhnValidator luhnValidateString:@"49927398716"], "valid");
     XCTAssertTrue([self.testLuhnValidator luhnValidateString:@"1234567812345670"], "valid");
     XCTAssertTrue([self.testLuhnValidator luhnValidateString:@"79927398713"], "valid");
+    XCTAssertTrue([self.testLuhnValidator luhnValidateString:@"5105105105105100"], "valid");
+    
 }
 
 - (void)testLuhnValidatorReturnsNoForInvalidCards

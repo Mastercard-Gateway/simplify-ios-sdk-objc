@@ -1,6 +1,7 @@
 #import "SIMRetrieveTokenModel.h"
 #import "SIMDigitVerifier.h"
 #import <Simplify/SIMCardTokenRequest.h>
+#import "SIMLuhnValidator.h"
 
 @interface SIMRetrieveTokenModel ()
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;
@@ -29,7 +30,22 @@
 }
 
 - (BOOL)isRetrievalPossible {
-    if ((self.cardNumber.length >= self.cardNumberMinLength) && (self.cardNumber.length <= self.cardNumberMaxLength) && (self.expirationDate.length > 2)) {
+    if ([self isCardNumberValid] && [self isExpirationDateValid]) {
+        return YES;
+    }
+    return NO;
+}
+
+-(BOOL)isCardNumberValid {
+    if ((self.cardNumber.length >= self.cardNumberMinLength) && (self.cardNumber.length <= self.cardNumberMaxLength)) {
+        SIMLuhnValidator *luhnValidator = [SIMLuhnValidator new];
+        return [luhnValidator luhnValidateString:self.cardNumber];
+    }
+    return NO;
+}
+
+-(BOOL)isExpirationDateValid {
+    if (self.expirationDate.length > 2) {
         return YES;
     }
     return NO;
@@ -63,14 +79,14 @@
     if (![self.cardTypeString isEqual: @"amex"]) {
         int index=4;
     
-        while (index < formattedString.length && formattedString.length < 19) {
+        while (index < formattedString.length && formattedString.length < 23) {
             [formattedString insertString:@" " atIndex:index];
             index +=5;
         }
     } else {
         if (self.cardNumber.length > 4 && self.cardNumber.length < 10) {
             [formattedString insertString:@" " atIndex:4];
-        } else if (self.cardNumber.length > 10) {
+        } else if (self.cardNumber.length >= 10) {
             [formattedString insertString:@" " atIndex:4];
             [formattedString insertString:@" " atIndex:11];
         }

@@ -42,6 +42,19 @@
 }
 
 -(void)buttonsEnabled {
+    UIColor *cardBackgroundColor = [UIColor whiteColor];
+    UIColor *dateBackgroundColor = [UIColor whiteColor];
+    
+    if ([self.checkoutModel isCardNumberValid]) {
+        cardBackgroundColor = [UIColor colorWithRed:0.8 green:1.0 blue:0.8 alpha:1.0];
+
+    }
+    if ([self.checkoutModel isExpirationDateValid]) {
+        dateBackgroundColor = [UIColor colorWithRed:0.8 green:1.0 blue:0.8 alpha:1.0];
+    }
+    
+    self.cardNumberView.backgroundColor = cardBackgroundColor;
+    self.expirationDateView.backgroundColor = dateBackgroundColor;
     BOOL isEnabled = [self.checkoutModel isRetrievalPossible];
     [self.chargeCardButton setEnabled:isEnabled];
 }
