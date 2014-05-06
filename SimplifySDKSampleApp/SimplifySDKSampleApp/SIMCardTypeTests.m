@@ -1,7 +1,6 @@
 #import "SIMCardType.h"
 
 @interface SIMCardTypeTests : XCTestCase
-@property (nonatomic, strong) SIMCardType *testCardType;
 @end
 
 @implementation SIMCardTypeTests
@@ -9,7 +8,6 @@
 - (void)setUp
 {
     [super setUp];
-    self.testCardType = [SIMCardType new];
 }
 
 - (void)tearDown
@@ -20,116 +18,164 @@
 
 -(void)testAmexRangeReturnsAmex {
     NSString *americanExpress = @"amex";
-	NSString *creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"34"];
-	XCTAssertEqualObjects(creditCardTypeString, americanExpress, "amex");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"37"];
-	XCTAssertEqualObjects(americanExpress, creditCardTypeString, "amex");
+    int cvcLength = 4;
+    int minCardLength = 15;
+    int maxCardLength = 15;
+    SIMCardType *testCardType  = [SIMCardType cardTypeFromCardNumberString:@"34"];
+	XCTAssertEqualObjects(americanExpress, testCardType.cardTypeString, "amex");
+    XCTAssertEqual(cvcLength, testCardType.CVCLength, "cvc");
+    XCTAssertEqual(minCardLength, testCardType.minCardLength, "min card length");
+    XCTAssertEqual(maxCardLength, testCardType.maxCardLength, "max card length");
+    testCardType  = [SIMCardType cardTypeFromCardNumberString:@"37"];
+	XCTAssertEqualObjects(americanExpress, testCardType.cardTypeString, "amex");
 }
 
 -(void)testChinaUnionRangeReturnsChinaUnion {
     NSString *chinaUnion = @"china-union";
-	NSString *creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"622"];
-	XCTAssertEqualObjects(chinaUnion, creditCardTypeString, "china union");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"624"];
-	XCTAssertEqualObjects(chinaUnion, creditCardTypeString, "china union");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"625"];
-	XCTAssertEqualObjects(chinaUnion, creditCardTypeString, "china union");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"626"];
-	XCTAssertEqualObjects(chinaUnion, creditCardTypeString, "china union");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"628"];
-	XCTAssertEqualObjects(chinaUnion, creditCardTypeString, "china union");
+    int cvcLength = 3;
+    int minCardLength = 16;
+    int maxCardLength = 19;
+    SIMCardType *testCardType  = [SIMCardType cardTypeFromCardNumberString:@"622"];
+	XCTAssertEqualObjects(chinaUnion, testCardType.cardTypeString, "china union");
+    XCTAssertEqual(cvcLength, testCardType.CVCLength, "cvc");
+    XCTAssertEqual(minCardLength, testCardType.minCardLength, "min card length");
+    XCTAssertEqual(maxCardLength, testCardType.maxCardLength, "max card length");
+    testCardType  = [SIMCardType cardTypeFromCardNumberString:@"624"];
+	XCTAssertEqualObjects(chinaUnion, testCardType.cardTypeString, "china union");
+    testCardType  = [SIMCardType cardTypeFromCardNumberString:@"625"];
+	XCTAssertEqualObjects(chinaUnion, testCardType.cardTypeString, "china union");
+    testCardType  = [SIMCardType cardTypeFromCardNumberString:@"626"];
+	XCTAssertEqualObjects(chinaUnion, testCardType.cardTypeString, "china union");
+    testCardType  = [SIMCardType cardTypeFromCardNumberString:@"628"];
+	XCTAssertEqualObjects(chinaUnion, testCardType.cardTypeString, "china union");
 }
 
 -(void)testDinersClubRangeReturnsDinersClub{
     NSString *dinersClub = @"dinersclub";
-	NSString *creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"300"];
-	XCTAssertEqualObjects(dinersClub, creditCardTypeString, "dinersClub");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"301"];
-	XCTAssertEqualObjects(dinersClub, creditCardTypeString, "dinersClub");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"302"];
-	XCTAssertEqualObjects(dinersClub, creditCardTypeString, "dinersClub");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"303"];
-	XCTAssertEqualObjects(dinersClub, creditCardTypeString, "dinersClub");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"304"];
-	XCTAssertEqualObjects(dinersClub, creditCardTypeString, "dinersClub");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"305"];
-	XCTAssertEqualObjects(dinersClub, creditCardTypeString, "dinersClub");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"309"];
-	XCTAssertEqualObjects(dinersClub, creditCardTypeString, "dinersClub");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"36"];
-	XCTAssertEqualObjects(dinersClub, creditCardTypeString, "dinersClub");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"38"];
-	XCTAssertEqualObjects(dinersClub, creditCardTypeString, "dinersClub");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"39"];
-	XCTAssertEqualObjects(dinersClub, creditCardTypeString, "dinersClub");
+    int cvcLength = 3;
+    int minCardLength = 14;
+    int maxCardLength = 14;
+	SIMCardType *testCardType  = [SIMCardType cardTypeFromCardNumberString:@"300"];
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+    XCTAssertEqual(cvcLength, testCardType.CVCLength, "cvc");
+    XCTAssertEqual(minCardLength, testCardType.minCardLength, "min card length");
+    XCTAssertEqual(maxCardLength, testCardType.maxCardLength, "max card length");
+	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"301"];
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"302"];
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"303"];
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"304"];
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"305"];
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+    testCardType  = [SIMCardType cardTypeFromCardNumberString:@"309"];
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"36"];
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"38"];
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"39"];
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
 }
 
 -(void)testDiscoverCardRangeReturnsDiscover {
     NSString *discover = @"discover";
-    NSString *creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"65"];
-	XCTAssertEqualObjects(discover, creditCardTypeString, "discover");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"6011"];
-	XCTAssertEqualObjects(discover, creditCardTypeString, "discover");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"644"];
-	XCTAssertEqualObjects(discover, creditCardTypeString, "discover");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"645"];
-	XCTAssertEqualObjects(discover, creditCardTypeString, "discover");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"646"];
-	XCTAssertEqualObjects(discover, creditCardTypeString, "discover");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"647"];
-	XCTAssertEqualObjects(discover, creditCardTypeString, "discover");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"648"];
-	XCTAssertEqualObjects(discover, creditCardTypeString, "discover");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"649"];
-	XCTAssertEqualObjects(discover, creditCardTypeString, "discover");
+    int cvcLength = 3;
+    int minCardLength = 16;
+    int maxCardLength = 16;
+    SIMCardType *testCardType  = [SIMCardType cardTypeFromCardNumberString:@"65"];
+	XCTAssertEqualObjects(discover, testCardType.cardTypeString, "discover");
+    XCTAssertEqual(cvcLength, testCardType.CVCLength, "cvc");
+    XCTAssertEqual(minCardLength, testCardType.minCardLength, "min card length");
+    XCTAssertEqual(maxCardLength, testCardType.maxCardLength, "max card length");
+	testCardType = [SIMCardType cardTypeFromCardNumberString:@"6011"];
+	XCTAssertEqualObjects(discover, testCardType.cardTypeString, "discover");
+	testCardType = [SIMCardType cardTypeFromCardNumberString:@"644"];
+	XCTAssertEqualObjects(discover, testCardType.cardTypeString, "discover");
+    testCardType = [SIMCardType cardTypeFromCardNumberString:@"645"];
+	XCTAssertEqualObjects(discover, testCardType.cardTypeString, "discover");
+    testCardType = [SIMCardType cardTypeFromCardNumberString:@"646"];
+	XCTAssertEqualObjects(discover, testCardType.cardTypeString, "discover");
+    testCardType = [SIMCardType cardTypeFromCardNumberString:@"647"];
+	XCTAssertEqualObjects(discover, testCardType.cardTypeString, "discover");
+    testCardType = [SIMCardType cardTypeFromCardNumberString:@"648"];
+	XCTAssertEqualObjects(discover, testCardType.cardTypeString, "discover");
+    testCardType = [SIMCardType cardTypeFromCardNumberString:@"649"];
+	XCTAssertEqualObjects(discover, testCardType.cardTypeString, "discover");
 }
 
 -(void)testJCBRangeReturnsJCB {
 	NSString *jcb = @"jcb";
-    NSString *creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"3528"];
-    XCTAssertEqualObjects(jcb, creditCardTypeString, "jcb");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"3529"];
-    XCTAssertEqualObjects(jcb, creditCardTypeString, "jcb");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"353"];
-    XCTAssertEqualObjects(jcb, creditCardTypeString, "jcb");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"354"];
-    XCTAssertEqualObjects(jcb, creditCardTypeString, "jcb");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"355"];
-    XCTAssertEqualObjects(jcb, creditCardTypeString, "jcb");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"356"];
-    XCTAssertEqualObjects(jcb, creditCardTypeString, "jcb");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"357"];
-    XCTAssertEqualObjects(jcb, creditCardTypeString, "jcb");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"358"];
-    XCTAssertEqualObjects(jcb, creditCardTypeString, "jcb");
+    int cvcLength = 3;
+    int minCardLength = 16;
+    int maxCardLength = 16;
+    SIMCardType *testCardType  = [SIMCardType cardTypeFromCardNumberString:@"3528"];
+    XCTAssertEqualObjects(jcb, testCardType.cardTypeString, "jcb");
+    XCTAssertEqual(cvcLength, testCardType.CVCLength, "cvc");
+    XCTAssertEqual(minCardLength, testCardType.minCardLength, "min card length");
+    XCTAssertEqual(maxCardLength, testCardType.maxCardLength, "max card length");
+    testCardType = [SIMCardType cardTypeFromCardNumberString:@"3529"];
+    XCTAssertEqualObjects(jcb, testCardType.cardTypeString, "jcb");
+    testCardType = [SIMCardType cardTypeFromCardNumberString:@"353"];
+    XCTAssertEqualObjects(jcb, testCardType.cardTypeString, "jcb");
+    testCardType = [SIMCardType cardTypeFromCardNumberString:@"354"];
+    XCTAssertEqualObjects(jcb, testCardType.cardTypeString, "jcb");
+    testCardType = [SIMCardType cardTypeFromCardNumberString:@"355"];
+    XCTAssertEqualObjects(jcb, testCardType.cardTypeString, "jcb");
+    testCardType = [SIMCardType cardTypeFromCardNumberString:@"356"];
+    XCTAssertEqualObjects(jcb, testCardType.cardTypeString, "jcb");
+    testCardType = [SIMCardType cardTypeFromCardNumberString:@"357"];
+    XCTAssertEqualObjects(jcb, testCardType.cardTypeString, "jcb");
+    testCardType = [SIMCardType cardTypeFromCardNumberString:@"358"];
+    XCTAssertEqualObjects(jcb, testCardType.cardTypeString, "jcb");
 }
 
 -(void)testMasterCardRangeReturnsMasterCard {
     NSString *mastercard = @"mastercard";
-	NSString *creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"51"];
-	XCTAssertEqualObjects(mastercard, creditCardTypeString, "mastercard");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"52"];
-	XCTAssertEqualObjects(mastercard, creditCardTypeString, "mastercard");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"53"];
-	XCTAssertEqualObjects(mastercard, creditCardTypeString, "mastercard");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"54"];
-	XCTAssertEqualObjects(mastercard, creditCardTypeString, "mastercard");
-	creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"55"];
-	XCTAssertEqualObjects(mastercard, creditCardTypeString, "mastercard");
-    creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"67"];
-	XCTAssertEqualObjects(mastercard, creditCardTypeString, "mastercard");
+    int cvcLength = 3;
+    int minCardLength = 16;
+    int maxCardLength = 16;
+	SIMCardType *testCardType  = [SIMCardType cardTypeFromCardNumberString:@"51"];
+	XCTAssertEqualObjects(mastercard, testCardType.cardTypeString, "mastercard");
+    XCTAssertEqual(cvcLength, testCardType.CVCLength, "cvc");
+    XCTAssertEqual(minCardLength, testCardType.minCardLength, "min card length");
+    XCTAssertEqual(maxCardLength, testCardType.maxCardLength, "max card length");
+	testCardType = [SIMCardType cardTypeFromCardNumberString:@"52"];
+	XCTAssertEqualObjects(mastercard, testCardType.cardTypeString, "mastercard");
+	testCardType = [SIMCardType cardTypeFromCardNumberString:@"53"];
+	XCTAssertEqualObjects(mastercard, testCardType.cardTypeString, "mastercard");
+	testCardType = [SIMCardType cardTypeFromCardNumberString:@"54"];
+	XCTAssertEqualObjects(mastercard, testCardType.cardTypeString, "mastercard");
+	testCardType = [SIMCardType cardTypeFromCardNumberString:@"55"];
+	XCTAssertEqualObjects(mastercard, testCardType.cardTypeString, "mastercard");
+    testCardType = [SIMCardType cardTypeFromCardNumberString:@"67"];
+	XCTAssertEqualObjects(mastercard, testCardType.cardTypeString, "mastercard");
 }
 
 -(void)testVisaRangeReturnsVisa {
 	NSString *visa = @"visa";
-    NSString *creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"4"];
-	XCTAssertEqualObjects(visa, creditCardTypeString, "visa");
+    int cvcLength = 3;
+    int minCardLength = 13;
+    int maxCardLength = 19;
+    SIMCardType *testCardType  = [SIMCardType cardTypeFromCardNumberString:@"4"];
+	XCTAssertEqualObjects(visa, testCardType.cardTypeString, "visa");
+    XCTAssertEqual(cvcLength, testCardType.CVCLength, "cvc");
+    XCTAssertEqual(minCardLength, testCardType.minCardLength, "min card length");
+    XCTAssertEqual(maxCardLength, testCardType.maxCardLength, "max card length");
 }
 
 -(void)testUnknownRangeReturnsBlankType {
 	NSString *blank = @"blank";
-    NSString *creditCardTypeString = [self.testCardType cardTypeFromCardNumberString:@"1"];
-	XCTAssertEqualObjects(blank, creditCardTypeString, "blank card");
+    int cvcLength = 4;
+    int minCardLength = 13;
+    int maxCardLength = 19;
+    SIMCardType *testCardType = [SIMCardType cardTypeFromCardNumberString:@"1"];
+	XCTAssertEqualObjects(blank, testCardType.cardTypeString, "blank card");
+    XCTAssertEqual(cvcLength, testCardType.CVCLength, "cvc");
+    XCTAssertEqual(minCardLength, testCardType.minCardLength, "min card length");
+    XCTAssertEqual(maxCardLength, testCardType.maxCardLength, "max card length");
 }
 
 @end

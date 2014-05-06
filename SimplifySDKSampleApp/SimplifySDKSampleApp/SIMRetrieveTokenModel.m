@@ -12,7 +12,10 @@
 @property (nonatomic, strong, readwrite) NSString *formattedCardNumber;
 @property (nonatomic, strong, readwrite) NSString *formattedExpirationDate;
 @property (nonatomic, strong, readwrite) NSString *cvcCode;
-@property (nonatomic, strong, readwrite) NSString *cardType;
+@property (nonatomic, strong, readwrite) NSString *cardTypeString;
+@property (nonatomic, readwrite) int cvcLength;
+@property (nonatomic, readwrite) int cardNumberMinLength;
+@property (nonatomic, readwrite) int cardNumberMaxLength;
 @end
 
 @implementation SIMRetrieveTokenModel
@@ -27,7 +30,7 @@
 }
 
 - (BOOL)isRetrievalPossible {
-    if (self.cardNumber.length > 12 && self.expirationDate.length > 2) {
+    if ((self.cardNumber.length >= self.cardNumberMinLength) && (self.cardNumber.length <= self.cardNumberMaxLength) && (self.expirationDate.length > 2)) {
         return YES;
     }
     return NO;
@@ -36,7 +39,7 @@
 - (void) updateCardNumberWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
 
-    if (updatedString.length <= 16) {
+    if (updatedString.length <= self.cardNumberMaxLength) {
         self.cardNumber = updatedString;
     }
 }
@@ -50,18 +53,23 @@
 
 - (void) updateCVCNumberWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
-    if (updatedString.length <= 4) {
+    
+    if (updatedString.length <= self.cvcLength) {
         self.cvcCode = updatedString;
     }
 }
 
 - (NSString *)formattedCardNumber {
     NSMutableString *formattedString =[NSMutableString stringWithString:self.cardNumber];
-    int index=4;
+    if (![self.cardType isEqual: @"amex"]) {
+        int index=4;
     
-    while (index < formattedString.length && formattedString.length < 19) {
-        [formattedString insertString:@" " atIndex:index];
-        index +=5;
+        while (index < formattedString.length && formattedString.length < 19) {
+            [formattedString insertString:@" " atIndex:index];
+            index +=5;
+        }
+    } else {
+        
     }
     
     return formattedString;
@@ -92,9 +100,24 @@
     return @"";
 }
 
-- (NSString *)cardType {
-    SIMCardType *cardType = [SIMCardType new];
-    return [cardType cardTypeFromCardNumberString:self.cardNumber];
+- (NSString *)cardTypeString {
+    return self.cardType.cardTypeString;
+}
+
+- (SIMCardType *)cardType {
+    return [SIMCardType cardTypeFromCardNumberString:self.cardNumber];
+}
+
+- (int)cvcLength {
+    return self.cardType.CVCLength;
+}
+
+- (int)cardNumberMaxLength {
+    return self.cardType.maxCardLength;
+}
+
+- (int)cardNumberMinLength {
+    return self.cardType.minCardLength;
 }
 
 - (void)retrieveToken {

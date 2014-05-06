@@ -25,6 +25,7 @@
     XCTAssertEqualObjects(self.testCheckoutModel.formattedCardNumber, @"", "no card number!");
     XCTAssertEqualObjects(self.testCheckoutModel.formattedExpirationDate, @"", "no expiration!");
     XCTAssertEqualObjects(self.testCheckoutModel.cvcCode, @"", "no cvc code");
+    XCTAssertEqualObjects(self.testCheckoutModel.cardTypeString, @"blank", "blank type");
 }
 
 -(void) testFormattedExpirationDateFormatsCorrectlyWhenStringIsOneDigitLong {
@@ -81,7 +82,7 @@
     XCTAssertEqualObjects(@"14", actualExpirationYear, "two digits");
 }
 
--(void) testFormatttedCreditCardStringFormatsCorrectlyWith4Numbers {
+-(void) testFormatttedCreditCardStringFormatsCorrectlyWith4NumbersWhenNotTypeAmex {
     NSString *expectedCreditCardString = @"1234";
     
     [self.testCheckoutModel updateCardNumberWithString:@"1234"];
@@ -91,7 +92,7 @@
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "four digits");
 }
 
--(void) testFormatttedCreditCardStringFormatsCorrectlyWith5Numbers {
+-(void) testFormatttedCreditCardStringFormatsCorrectlyWith5NumbersWhenNotTypeAmex {
     NSString *expectedCreditCardString = @"1234 5";
     
     [self.testCheckoutModel updateCardNumberWithString:@"12345"];
@@ -101,7 +102,7 @@
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "five digits");
 }
 
--(void) testFormatttedCreditCardStringFormatsCorrectlyWith11Numbers {
+-(void) testFormatttedCreditCardStringFormatsCorrectlyWith11NumbersWhenNotTypeAmex {
     NSString *expectedCreditCardString = @"1234 5678 901";
     
     [self.testCheckoutModel updateCardNumberWithString:@"12345678901"];
@@ -111,7 +112,7 @@
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "11 digits");
 }
 
--(void) testFormatttedCreditCardStringFormatsCorrectlyWith16Numbers {
+-(void) testFormatttedCreditCardStringFormatsCorrectlyWith16NumbersWhenNotTypeAmex {
     NSString *expectedCreditCardString = @"1234 5678 9012 3456";
     
     [self.testCheckoutModel updateCardNumberWithString:@"1234567890123456"];
@@ -121,31 +122,39 @@
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "16 digits");
 }
 
--(void)testCheckoutPossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigits {
+-(void)testIsRetrievalPossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigits {
     [self.testCheckoutModel updateCardNumberWithString:@"1234567890123"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
     [self.testCheckoutModel updateCVCNumberWithString:@"123"];
     XCTAssertTrue([self.testCheckoutModel isRetrievalPossible], "should be yes");
 }
 
--(void)testCheckoutPossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigitsButNoCVCCode {
+-(void)testIsRetrievalPossibleReturnsNoWhenCardNumberIsLessThanMinimumNumberOfDigitsPerCardType {
+    [self.testCheckoutModel updateCardNumberWithString:@"412345678901"];
+    [self.testCheckoutModel updateExpirationDateWithString:@"123"];
+    XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no, less than minumum for visa");
+}
+
+-(void)testIsRetrievalPossibleReturnsNoWhenCardNumberIsMoreThanMaximumNumberOfDigitsPerCardType {
+    [self.testCheckoutModel updateCardNumberWithString:@"34123456789013"];
+    [self.testCheckoutModel updateExpirationDateWithString:@"123"];
+    XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no, more than max for amex");
+}
+
+-(void)testIsRetrievalPossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigitsButNoCVCCode {
     [self.testCheckoutModel updateCardNumberWithString:@"1234567890123"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
     
     XCTAssertTrue([self.testCheckoutModel isRetrievalPossible], "should be yes");
 }
 
--(void)testCheckoutPossibleReturnsNoWhenExpirationDateIsLessThanThreeDigits {
+-(void)testIsRetrievalPossibleReturnsNoWhenExpirationDateIsLessThanThreeDigits {
     [self.testCheckoutModel updateCardNumberWithString:@"1234567893240123"];
     [self.testCheckoutModel updateExpirationDateWithString:@"12"];
     XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no");
 }
 
--(void)testCheckoutPossibleReturnsNoWhenCardNumberIsLessThanThirteenDigits {
-    [self.testCheckoutModel updateCardNumberWithString:@"123456789013"];
-    [self.testCheckoutModel updateExpirationDateWithString:@"123"];
-    XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no");
-}
+
 
 -(void)testUpdateCardNumberWithStringCorrectlyRemovesSpaces {
     NSString *expectedStringWithNoSpaces = @"123434563456";
@@ -163,11 +172,47 @@
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.cardNumber, "no non-digits");
 }
 
--(void)testUpdateCardNumberWithStringDoesNotUpdateCardNumberIfOver16Digits {
+-(void)testUpdateCardNumberWithStringDoesNotUpdateCardNumberIfOver19Digits {
     [self.testCheckoutModel updateCardNumberWithString:@"1234 3456 3456 3456"];
     NSString *expectedStringWithNoSpaces = @"1234345634563456";
     
     [self.testCheckoutModel updateCardNumberWithString:@"1234 3456 3456 3456 1234"];
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.cardNumber, "no spaces");
+}
+
+-(void)testUpdateCardNumberWithStringDoesNotUpdateCardNumberIfDinersAndOver14Digits {
+    [self.testCheckoutModel updateCardNumberWithString:@"3004 3456 3456 34"];
+    NSString *expectedStringWithNoSpaces = @"30043456345634";
+    
+    [self.testCheckoutModel updateCardNumberWithString:@"3004 3456 3456 3456 1234"];
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.cardNumber, "no spaces");
+}
+
+-(void)testUpdateCardNumberWithStringDoesNotUpdateCardNumberIfAmexAndOver15Digits {
+    [self.testCheckoutModel updateCardNumberWithString:@"34234 3456 3456 3456"];
+    NSString *expectedStringWithNoSpaces = @"34234345634563456";
+    
+    [self.testCheckoutModel updateCardNumberWithString:@"341234 3456 3456 3456 1234"];
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.cardNumber, "no spaces");
+}
+
+-(void)testUpdateCardNumberWithStringDoesNotUpdateCardNumberIfMasterCardAndOver16Digits {
+    [self.testCheckoutModel updateCardNumberWithString:@"3528 3456 3456 3456"];
+    NSString *expectedStringWithNoSpaces = @"3528345634563456";
+    
+    [self.testCheckoutModel updateCardNumberWithString:@"35289 3456 3456 3456 1234"];
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.cardNumber, "no spaces");
+}
+
+-(void)testUpdateCardNumberWithStringDoesNotUpdateCardNumberIfJCBAndOver16Digits {
+    [self.testCheckoutModel updateCardNumberWithString:@"5134 3456 3456 3456"];
+    NSString *expectedStringWithNoSpaces = @"5134345634563456";
+    
+    [self.testCheckoutModel updateCardNumberWithString:@"351234 3456 3456 3456 1234"];
     
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.cardNumber, "no spaces");
 }
@@ -197,13 +242,34 @@
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.expirationDate, "four digits");
 }
 
--(void)testUpdateCVCNumberWithStringDoesNotUpdateCVCCodeIfOverDigits {
+-(void)testUpdateCVCNumberWithStringDoesNotUpdateCVCCodeIfOverFourDigitsIfCardTypeBlank {
+    [self.testCheckoutModel updateCardNumberWithString:@"1"];
     [self.testCheckoutModel updateCVCNumberWithString:@"1234"];
     NSString *expectedStringWithNoSpaces = @"1234";
     
     [self.testCheckoutModel updateCVCNumberWithString:@"12345"];
     
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.cvcCode, "four digits");
+}
+
+-(void)testUpdateCVCNumberWithStringDoesNotUpdateCVCCodeIfOverFourDigitsIfCardTypeAmex {
+    [self.testCheckoutModel updateCardNumberWithString:@"341234"];
+    [self.testCheckoutModel updateCVCNumberWithString:@"1234"];
+    NSString *expectedStringWithNoSpaces = @"1234";
+    
+    [self.testCheckoutModel updateCVCNumberWithString:@"12345"];
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.cvcCode, "four digits");
+}
+
+-(void)testUpdateCVCNumberWithStringDoesNotUpdateCVCCodeIfOverThreeDigitsIfCardTypeNotBlankOrAmex {
+    [self.testCheckoutModel updateCardNumberWithString:@"41234"];
+    [self.testCheckoutModel updateCVCNumberWithString:@"123"];
+    NSString *expectedStringWithNoSpaces = @"123";
+    
+    [self.testCheckoutModel updateCVCNumberWithString:@"12345"];
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.cvcCode, "three digits");
 }
 
 -(void)testUpdateCVCNumberWithStringDoesNotAddNonDigits {

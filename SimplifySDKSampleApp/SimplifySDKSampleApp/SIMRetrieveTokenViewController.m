@@ -88,7 +88,7 @@
 }
 
 -(void)setCardTypeImage {
-    UIImage *cardImage = [UIImage imageNamed:self.checkoutModel.cardType];
+    UIImage *cardImage = [UIImage imageNamed:self.checkoutModel.cardTypeString];
     [self.cardTypeImage setImage:cardImage];
 }
 
