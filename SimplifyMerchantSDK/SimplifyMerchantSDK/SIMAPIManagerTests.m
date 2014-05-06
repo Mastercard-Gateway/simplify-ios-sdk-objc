@@ -1,8 +1,5 @@
 #import "SIMAPIManager.h"
 
-#define SIMAPIManagerPrefixLive @"lv"
-#define SIMAPIManagerPrefixSandbox @"sb"
-
 @interface SIMAPIManagerTests : XCTestCase
 
 @property (nonatomic) SIMAPIManager *testSubject;
@@ -23,28 +20,18 @@
     [super tearDown];
 }
 
-- (void)testAPIManagerCanDetermineLiveMode
-{
+- (void)testAPIManagerCanDetermineLiveMode {
     NSString *apiKey = @"lv1234";
     
-//    [self.testSubject initWithPublicApiToken:apiKey urlSession:self.mockURLSession];
-//    XCTAssertTrue(self.testSubject.isLiveMode, @"");
+    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey urlSession:self.mockURLSession];
+    XCTAssertTrue(self.testSubject.isLiveMode, @"");
     
 }
 
-- (void)testAPIManagerCanDetermineSandboxMode
-{
+- (void)testAPIManagerCanDetermineSandboxMode {
     NSString *apiKey = @"sb1234";
-//    [self.testSubject initWithPublicApiToken:apiKey urlSession:self.mockURLSession];
-//    XCTAssertFalse(self.testSubject.isLiveMode, @"");
-    
-}
-
-- (void)testAPIManagerDefaultsToSandboxMode
-{
-    NSString *apiKey = @"in1234";
-//    [self.testSubject initWithPublicApiToken:apiKey urlSession:self.mockURLSession];
-//    XCTAssertFalse(self.testSubject.isLiveMode, @"");
+    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey urlSession:self.mockURLSession];
+    XCTAssertFalse(self.testSubject.isLiveMode, @"");
     
 }
 

@@ -563,7 +563,7 @@
 				INFOPLIST_FILE = "SimplifySDKSampleApp/SimplifySDKSampleApp-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/adamaxe/workspace/sdk-ios/SimplifyMerchantSDK/build/Debug-iphoneos",
+					"$(",
 				);
 				PRODUCT_NAME = SimplifySDKSampleApp;
 				WRAPPER_EXTENSION = app;
@@ -585,7 +585,7 @@
 				INFOPLIST_FILE = "SimplifySDKSampleApp/SimplifySDKSampleApp-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/adamaxe/workspace/sdk-ios/SimplifyMerchantSDK/build/Debug-iphoneos",
+					"$(",
 				);
 				PRODUCT_NAME = SimplifySDKSampleApp;
 				WRAPPER_EXTENSION = app;

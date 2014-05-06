@@ -18,13 +18,7 @@
 
 - (void)testExample
 {
-
-    id testmock = [OCMockObject mockForClass:NSString.class];
-    [[testmock reject] description];
-    
     XCTAssertTrue(YES, @"");
-    
-    [testmock verify];
 }
 
 @end

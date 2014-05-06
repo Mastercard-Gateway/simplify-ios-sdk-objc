@@ -1,24 +1,29 @@
 #import "SIMAPIManager.h"
 
-@interface SIMAPIManager ()
+#define SIMAPIManagerPrefixLive @"lv"
+#define SIMAPIManagerPrefixSandbox @"sb"
 
-@property (nonatomic) NSString *apiKey;
-@property (nonatomic) NSURLSession *urlSession;
-@property (nonatomic) NSURL *currentAPIURL;
+@interface SIMAPIManager ()
 
 @end
 
 @implementation SIMAPIManager
 
-static NSString *prodAPILiveURL = @"https://api.simplify.com/v1/api";
-static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
-
-- (id)initWithPublicApiToken:(NSString *)publicApiToken urlSession:(NSURLSession *)urlSession {
+- (id)initWithPublicApiKey:(NSString *)publicApiKey urlSession:(NSURLSession *)urlSession {
     self = [super init];
     
     if (self) {
 
+        self.isLiveMode = [self isAPIKeyLiveMode:publicApiKey];
+
     }
+
     return self;
 }
+
+-(BOOL)isAPIKeyLiveMode:(NSString *)apiKey {
+    return [apiKey hasPrefix:SIMAPIManagerPrefixLive];
+    
+}
+
 @end

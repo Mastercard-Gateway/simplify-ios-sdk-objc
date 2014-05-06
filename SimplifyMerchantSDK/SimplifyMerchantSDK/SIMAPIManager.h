@@ -2,6 +2,6 @@
 
 @property (nonatomic) BOOL isLiveMode;
 
-- (id)initWithPublicApiToken:(NSString *)publicApiToken urlSession:(NSURLSession *)urlSession;
+- (id)initWithPublicApiKey:(NSString *)publicApiKey urlSession:(NSURLSession *)urlSession;
 
 @end
