@@ -2,7 +2,6 @@
 
 @interface SIMAPIManager ()
 
-
 @property (nonatomic) NSString *apiKey;
 @property (nonatomic) NSURLSession *urlSession;
 @property (nonatomic) NSURL *currentAPIURL;
@@ -22,6 +21,4 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
     }
     return self;
 }
-
-
 @end

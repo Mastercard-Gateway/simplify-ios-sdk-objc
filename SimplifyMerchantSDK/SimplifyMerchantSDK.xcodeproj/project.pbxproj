@@ -542,6 +542,13 @@
 				);
 				INFOPLIST_FILE = "SimplifyMerchantSDKTests/SimplifyMerchantSDKTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../vendor/ocmock";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -564,6 +571,13 @@
 				);
 				INFOPLIST_FILE = "SimplifyMerchantSDKTests/SimplifyMerchantSDKTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../vendor/ocmock";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
