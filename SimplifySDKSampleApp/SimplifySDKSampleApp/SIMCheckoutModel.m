@@ -214,10 +214,10 @@
     //Process Request
 //    if (error) {
 //        NSLog(@"error:%@", error);
-//        [self.delegate showAlertWithError:(NSError *)error:error];
+//        [self.delegate processPaymentWithError:error];
 //    } else {
-//        [self.delegate showAlertWithError:(NSError *)error:nil];
-//    
+        [self.delegate processPaymentWithError:nil];
+//
 //}
 
 }
