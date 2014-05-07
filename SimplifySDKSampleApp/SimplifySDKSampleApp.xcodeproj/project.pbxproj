@@ -565,6 +565,7 @@
 					"$(inherited)",
 					"$(",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = SimplifySDKSampleApp;
 				WRAPPER_EXTENSION = app;
 			};
@@ -587,6 +588,7 @@
 					"$(inherited)",
 					"$(",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = SimplifySDKSampleApp;
 				WRAPPER_EXTENSION = app;
 			};

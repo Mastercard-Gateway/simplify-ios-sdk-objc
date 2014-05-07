@@ -5,7 +5,7 @@ typedef enum {
 
 @interface SIMAPIManager : NSObject
 
-typedef void (^ CardTokenCompletionHandler)(NSString *cardToken, NSError **error);
+typedef void (^CardTokenCompletionHandler)(NSString *cardToken, NSError *error);
 
 @property (nonatomic, readonly) BOOL isLiveMode;
 

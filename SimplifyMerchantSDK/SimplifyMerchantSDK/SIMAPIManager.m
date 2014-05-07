@@ -12,8 +12,8 @@ typedef enum {
 
 #define SIMAPIManagerErrorDomain @"com.mastercard.simplify.errordomain"
 
-static NSString *prodAPILiveURL = @"https://api.simplify.com/v1/analytics";
-static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/analytics";
+static NSString *prodAPILiveURL = @"https://api.simplify.com/v1/api";
+static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
 
 @interface SIMAPIManager () <NSURLSessionDelegate>
 
@@ -34,7 +34,7 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/analytics
     [sessionConfig setHTTPAdditionalHeaders:httpHeaders];
     [sessionConfig setRequestCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
     
     return [self initWithPublicApiKey:publicApiKey error:error urlSession:session];
 }
@@ -87,6 +87,7 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/analytics
                                              cvc:(NSString *)cvc
                                 completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler {
 
+    NSError *requestError;
     NSError *jsonError;
 	NSURL *url = [self.currentAPIURL URLByAppendingPathComponent:@"payment/cardToken"];
     
@@ -102,25 +103,27 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/analytics
         request.HTTPMethod = @"POST";
         request.HTTPBody = jsonData;
         
-        [self.urlSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
+        
+        NSHTTPURLResponse *httpURLResponse;
+        [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        
+        NSData *data =  [NSURLConnection sendSynchronousRequest:request returningResponse:&httpURLResponse error:&requestError];
+        
+        if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode < 300) {
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
             
-            if (!error) {
-                NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
-                if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode < 300) {
-                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-                    
-                    cardTokenCompletionHandler([self cardTokenFromDictionary:json], nil);
-                } else {
-                    NSString *errorMessage = [NSString stringWithFormat:@"Bad Response: %d.", httpURLResponse.statusCode];
-                    NSError *responseError = [NSError errorWithDomain:@"com.mastercard.simplify" code:SIMAPIManagerErrorCodeCardTokenResponseError userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
-                    error = responseError;
-                    
-                    cardTokenCompletionHandler(nil, &responseError);
-                }
-            }
-        }];
+            cardTokenCompletionHandler([self cardTokenFromDictionary:json], nil);
+        } else {
+            NSString *errorMessage = [NSString stringWithFormat:@"Bad Response: %d.", httpURLResponse.statusCode];
+            NSError *responseError = [NSError errorWithDomain:@"com.mastercard.simplify" code:SIMAPIManagerErrorCodeCardTokenResponseError userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
+            
+            cardTokenCompletionHandler(nil, responseError);
+        }
+
     } else {
-        cardTokenCompletionHandler(nil, &jsonError);
+        cardTokenCompletionHandler(nil, jsonError);
     }
     
 }
