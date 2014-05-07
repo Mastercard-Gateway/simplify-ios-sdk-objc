@@ -20,6 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.chargeAmountField.delegate = self;
     self.cardNumberField.delegate = self;
     self.expirationField.delegate = self;
     self.cvcField.delegate = self;
@@ -63,7 +64,12 @@
 
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
 
-    if (textField == self.cardNumberField) {
+    if (textField == self.chargeAmountField) {
+        [self.checkoutModel updateChargeAmountWithString:newString];
+        self.chargeAmountField.text = self.checkoutModel.formattedChargeAmount;
+    }
+    
+    else if (textField == self.cardNumberField) {
         [self.checkoutModel updateCardNumberWithString:newString];
         self.cardNumberField.text = self.checkoutModel.formattedCardNumber;
         [self setCardTypeImage];
@@ -85,7 +91,11 @@
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
-    if (textField == self.cardNumberField) {
+    if (textField == self.chargeAmountField) {
+        [self.checkoutModel updateChargeAmountWithString:@""];
+    }
+    
+    else if (textField == self.cardNumberField) {
         [self.checkoutModel updateCardNumberWithString:@""];
     }
     
