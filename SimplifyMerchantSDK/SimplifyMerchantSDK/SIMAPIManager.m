@@ -45,7 +45,7 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
         
         self.isLiveMode = [self isAPIKeyLiveMode:publicApiKey error:error];
         
-        if (*error) {
+        if (error) {
             return nil;
         } else {
             self.publicApiKey = publicApiKey;
