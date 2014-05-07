@@ -1,8 +1,7 @@
 #import "SIMRetrieveTokenModel.h"
-#import "SIMDigitVerifier.h"
-#import <Simplify/SIMCardTokenRequest.h>
+#import <Simplify/SIMDigitVerifier.h>
 #import <Simplify/SIMAPIManager.h>
-#import "SIMLuhnValidator.h"
+#import <Simplify/SIMLuhnValidator.h>
 
 @interface SIMRetrieveTokenModel ()
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;

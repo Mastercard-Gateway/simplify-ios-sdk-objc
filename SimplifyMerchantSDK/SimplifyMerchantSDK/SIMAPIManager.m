@@ -7,8 +7,8 @@ typedef enum {
     SIMAPIManagerModeInvalid,
 }SIMAPIManagerMode;
 
-#define SIMAPIManagerPrefixLive @"lv"
-#define SIMAPIManagerPrefixSandbox @"sb"
+#define SIMAPIManagerPrefixLive @"lvpb_"
+#define SIMAPIManagerPrefixSandbox @"sbpb_"
 
 #define SIMAPIManagerErrorDomain @"com.mastercard.simplify.errordomain"
 
@@ -38,21 +38,19 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
     return [self initWithPublicApiKey:publicApiKey error:error urlRequest:request];
 }
 
-- (id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **) error urlRequest:(NSMutableURLRequest *)request{
+- (id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **)error urlRequest:(NSMutableURLRequest *)request{
     self = [super init];
     
     if (self) {
-
+        
         self.isLiveMode = [self isAPIKeyLiveMode:publicApiKey error:error];
         
-        if (error) {
+        if (*error) {
             return nil;
         } else {
-
             self.publicApiKey = publicApiKey;
             NSString *apiURLString = (self.isLiveMode) ? prodAPILiveURL : prodAPISandboxURL;
             self.currentAPIURL = [NSURL URLWithString:apiURLString];
-
         }
         
     }
@@ -66,8 +64,10 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
     
     if ([apiKey hasPrefix:SIMAPIManagerPrefixLive]) {
         isLive = YES;
+        error = nil;
     } else if ([apiKey hasPrefix:SIMAPIManagerPrefixSandbox]){
         isLive = NO;
+        error = nil;
     } else {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"Could not create API Manager: Invalid API Key."};
         *error = [NSError errorWithDomain:SIMAPIManagerErrorDomain code:SIMAPIManagerErrorCodeInvalidAPIKey userInfo:userInfo];
@@ -109,7 +109,7 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
                 cardTokenCompletionHandler([self cardTokenFromDictionary:json], nil);
             } else {
                 NSString *errorMessage = [NSString stringWithFormat:@"Bad HTTP Response: %d.", httpURLResponse.statusCode];
-                NSError *responseError = [NSError errorWithDomain:@"com.mastercard.simplify" code:SIMAPIManagerErrorCodeCardTokenResponseError userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
+                NSError *responseError = [NSError errorWithDomain:SIMAPIManagerErrorDomain code:SIMAPIManagerErrorCodeCardTokenResponseError userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
                 
                 cardTokenCompletionHandler(nil, responseError);
             }
@@ -118,7 +118,6 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
     } else {
         cardTokenCompletionHandler(nil, jsonSerializationError);
     }
-    
     
 }
 

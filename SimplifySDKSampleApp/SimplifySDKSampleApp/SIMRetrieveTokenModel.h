@@ -1,4 +1,4 @@
-#import "SIMCardType.h"
+#import <Simplify/SIMCardType.h>
 @protocol SIMRetrieveTokenModelDelegate
 
 - (void)transitionToNextScreenBasedOnError:(NSError *)error;

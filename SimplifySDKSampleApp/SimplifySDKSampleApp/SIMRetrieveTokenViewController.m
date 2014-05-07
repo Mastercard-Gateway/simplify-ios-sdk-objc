@@ -1,3 +1,4 @@
+#import <Simplify/SIMSDKHelper.h>
 #import "SIMRetrieveTokenViewController.h"
 #import "SIMRetrieveTokenModel.h"
 
@@ -114,7 +115,7 @@
 }
 
 -(void)setCardTypeImage {
-    UIImage *cardImage = [UIImage imageNamed:self.checkoutModel.cardTypeString];
+    UIImage *cardImage = [SIMSDKHelper imageNamed:self.checkoutModel.cardTypeString];
     [self.cardTypeImage setImage:cardImage];
 }
 
