@@ -124,11 +124,21 @@
 }
 
 #pragma mark SIMRetrieveTokenModelDelegate methods
--(void) processCardTokenWithError:(NSError *)error {
+-(void) processCardToken:(NSString *)cardToken WithError:(NSError *)error {
     if (error) {
-        
+        UIAlertView *view = [
     } else {
+
+        NSURL *url= [NSURL URLWithString:@"https://your_payment_server/your_payment_endpoint"];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                           timeoutInterval:5.0];
+        [request setHTTPMethod:@"POST"];
+        NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@", cardToken];
         
+        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+
+        //Process Request
     }
 }
 

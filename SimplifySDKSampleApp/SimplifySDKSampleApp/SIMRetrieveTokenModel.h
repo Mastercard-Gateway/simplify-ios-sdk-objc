@@ -1,7 +1,7 @@
 #import <Simplify/SIMCardType.h>
 @protocol SIMRetrieveTokenModelDelegate
 
-- (void)processCardTokenWithError:(NSError *)error;
+- (void)processCardToken:(NSString *)cardToken WithError:(NSError *)error;
 
 @end
 

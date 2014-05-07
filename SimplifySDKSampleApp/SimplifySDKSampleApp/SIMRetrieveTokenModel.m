@@ -192,10 +192,10 @@
     [apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode completionHander:^(NSString *cardToken, NSError *error) {
         if (error) {
             NSLog(@"error:%@", error);
-            [self.delegate processCardTokenWithError:error];
+            [self.delegate processCardToken:cardToken WithError:error];
         } else {
             NSLog(@"token: %@", cardToken);
-            [self.delegate processCardTokenWithError:nil];
+            [self.delegate processCardToken:cardToken WithError:nil];
         }
     }];
     
