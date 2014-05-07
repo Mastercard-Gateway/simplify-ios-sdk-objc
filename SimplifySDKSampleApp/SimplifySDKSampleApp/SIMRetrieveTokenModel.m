@@ -45,10 +45,20 @@
 }
 
 -(BOOL)isExpirationDateValid {
-    if (self.expirationDate.length > 2) {
+    if ((self.expirationDate.length > 2) && [self expirationDateInFuture]) {
         return YES;
     }
     return NO;
+}
+
+-(BOOL)expirationDateInFuture {
+    NSDate *currentDate = [NSDate date];
+
+    NSString *dateString = [NSString stringWithFormat:@"%@-%@", self.expirationMonth, self.expirationYear];
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = @"MM-yy";
+    NSDate *expirationDate = [dateFormatter dateFromString:dateString];
+    return [expirationDate compare:currentDate] == NSOrderedDescending || [expirationDate compare:currentDate] == NSOrderedSame;
 }
 
 - (void) updateCardNumberWithString:(NSString *)newString {
