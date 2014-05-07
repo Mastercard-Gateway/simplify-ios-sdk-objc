@@ -138,6 +138,7 @@
 
 -(void) processCardToken:(NSString *)cardToken WithError:(NSError *)error {
     if (error) {
+
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error processing payment"
                                                         message:error.localizedDescription
                                                        delegate:self
@@ -146,6 +147,7 @@
         [alert performSelectorOnMainThread:@selector(show)
                                 withObject:nil
                              waitUntilDone:NO];
+
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
                                                         message:@"Payment Processed Successfully"
