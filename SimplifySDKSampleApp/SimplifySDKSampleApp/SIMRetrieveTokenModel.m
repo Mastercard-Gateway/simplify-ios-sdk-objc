@@ -53,8 +53,8 @@
 
 -(BOOL)expirationDateInFuture {
     NSDate *currentDate = [NSDate date];
-
-    NSString *dateString = [NSString stringWithFormat:@"%@-%@", self.expirationMonth, self.expirationYear];
+    int expirationMonthInt = [self.expirationMonth intValue] + 1;
+    NSString *dateString = [NSString stringWithFormat:@"%d-%@", expirationMonthInt, self.expirationYear];
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     dateFormatter.dateFormat = @"MM-yy";
     NSDate *expirationDate = [dateFormatter dateFromString:dateString];

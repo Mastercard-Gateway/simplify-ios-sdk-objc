@@ -200,7 +200,7 @@
 
 -(void)testIsRetrievalPossibleReturnsNoWhenExpirationDateIsExpired {
     [self.testCheckoutModel updateCardNumberWithString:@"5105 1051 0510 5100"];
-    [self.testCheckoutModel updateExpirationDateWithString:@"112"];
+    [self.testCheckoutModel updateExpirationDateWithString:@"4/14"];
     XCTAssertFalse([self.testCheckoutModel isExpirationDateValid], "should be no");
     XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no");
 }
