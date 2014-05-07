@@ -29,9 +29,9 @@
 }
 
 -(void) testFormattedExpirationDateFormatsCorrectlyWhenStringIsOneDigitLong {
-    NSString *expectedExpirationDate = @"1";
+    NSString *expectedExpirationDate = @"2";
     
-    [self.testCheckoutModel updateExpirationDateWithString:@"1"];
+    [self.testCheckoutModel updateExpirationDateWithString:@"2"];
     
     NSString *actualExpirationDate = self.testCheckoutModel.formattedExpirationDate;
     NSString *actualExpirationMonth = self.testCheckoutModel.expirationMonth;
@@ -55,16 +55,16 @@
 }
 
 -(void) testFormattedExpirationDateFormatsCorrectlyWhenStringIsThreeDigitsLong {
-    NSString *expectedExpirationDate = @"1/24";
+    NSString *expectedExpirationDate = @"2/24";
     
-    [self.testCheckoutModel updateExpirationDateWithString:@"124"];
+    [self.testCheckoutModel updateExpirationDateWithString:@"224"];
     
     NSString *actualExpirationDate = self.testCheckoutModel.formattedExpirationDate;
     NSString *actualExpirationMonth = self.testCheckoutModel.expirationMonth;
     NSString *actualExpirationYear = self.testCheckoutModel.expirationYear;
     
     XCTAssertEqualObjects(expectedExpirationDate, actualExpirationDate, "three digits");
-    XCTAssertEqualObjects(@"1", actualExpirationMonth, "one digit");
+    XCTAssertEqualObjects(@"2", actualExpirationMonth, "one digit");
     XCTAssertEqualObjects(@"24", actualExpirationYear, "two digits");
 }
 
@@ -288,6 +288,31 @@
     NSString *expectedStringWithNoSpaces = @"1234";
     
     [self.testCheckoutModel updateExpirationDateWithString:@"12345"];
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.expirationDate, "four digits");
+}
+
+-(void)testUpdateExpirationDateWithStringIsNot4DigitsLongIfMonthDoesNotStartWith0or1 {
+    [self.testCheckoutModel updateExpirationDateWithString:@"234"];
+    NSString *expectedStringWithNoSpaces = @"234";
+    
+    [self.testCheckoutModel updateExpirationDateWithString:@"2345"];
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.expirationDate, "four digits");
+}
+
+-(void)testUpdateExpirationDateWithStringDoesNotUpdateExpirationDateIfMonthMoreThan12 {
+    [self.testCheckoutModel updateExpirationDateWithString:@"1234"];
+    NSString *expectedStringWithNoSpaces = @"1234";
+    
+    [self.testCheckoutModel updateExpirationDateWithString:@"1345"];
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.expirationDate, "four digits");
+}
+
+-(void)testUpdateExpirationDateWithStringDoesUpdateExpirationDateIfMonthStartsWithZero {
+    [self.testCheckoutModel updateExpirationDateWithString:@"0234"];
+    NSString *expectedStringWithNoSpaces = @"0234";
     
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.expirationDate, "four digits");
 }

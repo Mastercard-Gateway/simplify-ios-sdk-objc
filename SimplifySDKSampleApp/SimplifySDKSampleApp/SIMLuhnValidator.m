@@ -18,7 +18,7 @@
             if (isOdd) {
                 oddSum += digit;
             } else {
-                evenSum += digit/5 + (2*digit) % 10;
+                evenSum += digit / 5 + (2 * digit) % 10;
             }
             
             isOdd = !isOdd;

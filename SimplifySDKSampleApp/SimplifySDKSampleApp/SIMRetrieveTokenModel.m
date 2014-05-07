@@ -61,10 +61,21 @@
 
 - (void) updateExpirationDateWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
-    if (updatedString.length <= 4) {
+    int firstDigit = (int)([updatedString characterAtIndex:0] - '0');
+    
+    if (updatedString.length <= 3) {
         self.expirationDate = updatedString;
+        
+    } else if ((firstDigit <= 1) && (updatedString.length == 4)) {
+        int secondDigit = (int)([updatedString characterAtIndex:1] - '0');
+        if (firstDigit == 0) {
+            self.expirationDate = updatedString;
+        } else if ((firstDigit == 1) && (secondDigit < 3)) {
+            self.expirationDate = updatedString;
+        }
     }
 }
+
 
 - (void) updateCVCNumberWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
