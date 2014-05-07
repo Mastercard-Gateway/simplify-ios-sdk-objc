@@ -183,6 +183,18 @@
 
     XCTAssertTrue([self.testCheckoutModel isExpirationDateValid], "should be a valid expiration date");
     XCTAssertTrue([self.testCheckoutModel isCardNumberValid], "should be a valid card");
+    XCTAssertTrue([self.testCheckoutModel isCVCCodeValid], "should be a correct number of digits");
+    XCTAssertTrue([self.testCheckoutModel isCheckoutPossible], "should be yes");
+}
+
+-(void)testIsCheckoutPossibleReturnsYesWhenCardTypeBlankAndCVCLengthIs3 {
+    [self.testCheckoutModel updateCardNumberWithString:@"6709507858655272"];
+    [self.testCheckoutModel updateExpirationDateWithString:@"123"];
+    [self.testCheckoutModel updateCVCNumberWithString:@"123"];
+    
+    XCTAssertTrue([self.testCheckoutModel isExpirationDateValid], "should be a valid expiration date");
+    XCTAssertTrue([self.testCheckoutModel isCardNumberValid], "should be a valid card");
+    XCTAssertTrue([self.testCheckoutModel isCVCCodeValid], "should be a correct number of digits");
     XCTAssertTrue([self.testCheckoutModel isCheckoutPossible], "should be yes");
 }
 
@@ -212,6 +224,7 @@
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
     XCTAssertTrue([self.testCheckoutModel isExpirationDateValid], "should be yes");
     XCTAssertTrue([self.testCheckoutModel isCardNumberValid], "should be a valid card");
+    XCTAssertTrue([self.testCheckoutModel isCVCCodeValid], "should be valid with no code");
     XCTAssertTrue([self.testCheckoutModel isCheckoutPossible], "should be yes");
 }
 
@@ -226,6 +239,13 @@
     [self.testCheckoutModel updateCardNumberWithString:@"5105 1051 0510 5100"];
     [self.testCheckoutModel updateExpirationDateWithString:@"4/14"];
     XCTAssertFalse([self.testCheckoutModel isExpirationDateValid], "should be no");
+    XCTAssertFalse([self.testCheckoutModel isCheckoutPossible], "should be no");
+}
+
+-(void)testIsCheckoutPossibleReturnsNoWhenCVCCodeIsNotLongEnough {
+    [self.testCheckoutModel updateCardNumberWithString:@"5105 1051 0510 5100"];
+    [self.testCheckoutModel updateCVCNumberWithString:@"12"];
+    XCTAssertFalse([self.testCheckoutModel isCVCCodeValid], "should be no");
     XCTAssertFalse([self.testCheckoutModel isCheckoutPossible], "should be no");
 }
 

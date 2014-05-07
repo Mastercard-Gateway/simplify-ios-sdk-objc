@@ -1,7 +1,8 @@
 #import <Simplify/SIMCardType.h>
 @protocol SIMCheckoutModelDelegate
 
-- (void)processPaymentWithError:(NSError *)error;
+- (void)paymentFailedWithError:(NSError *)error;
+- (void)paymentProcessedWithPaymentID:(NSString *)paymentID;
 
 @end
 
@@ -22,6 +23,7 @@
 - (BOOL) isCheckoutPossible;
 - (BOOL) isCardNumberValid;
 - (BOOL) isExpirationDateValid;
+- (BOOL) isCVCCodeValid;
 - (void) updateChargeAmountWithString:(NSString *)newString;
 - (void) updateCardNumberWithString:(NSString *)newString;
 - (void) updateExpirationDateWithString:(NSString *)newString;

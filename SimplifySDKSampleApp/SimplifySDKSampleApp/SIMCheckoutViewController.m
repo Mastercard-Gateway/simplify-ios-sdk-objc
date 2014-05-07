@@ -47,6 +47,7 @@
 -(void)buttonsEnabled {
     UIColor *cardBackgroundColor = [UIColor whiteColor];
     UIColor *dateBackgroundColor = [UIColor whiteColor];
+    UIColor *cvcBackgroundColor = [UIColor whiteColor];
     
     if ([self.checkoutModel isCardNumberValid]) {
         cardBackgroundColor = [UIColor colorWithRed:0.8 green:1.0 blue:0.8 alpha:1.0];
@@ -56,8 +57,13 @@
         dateBackgroundColor = [UIColor colorWithRed:0.8 green:1.0 blue:0.8 alpha:1.0];
     }
     
+    if ([self.checkoutModel isCVCCodeValid] && self.checkoutModel.cvcCode.length > 0) {
+        cvcBackgroundColor = [UIColor colorWithRed:0.8 green:1.0 blue:0.8 alpha:1.0];
+    }
+    
     self.cardNumberView.backgroundColor = cardBackgroundColor;
     self.expirationDateView.backgroundColor = dateBackgroundColor;
+    self.cvcCodeView.backgroundColor = cvcBackgroundColor;
     BOOL isEnabled = [self.checkoutModel isCheckoutPossible];
     [self.chargeCardButton setEnabled:isEnabled];
 }
@@ -132,39 +138,37 @@
     self.cardNumberField.text = self.checkoutModel.formattedCardNumber;
     self.cvcField.text = self.checkoutModel.cvcCode;
     self.expirationField.text = self.checkoutModel.formattedExpirationDate;
+    [self buttonsEnabled];
 }
 
 #pragma mark SIMRetrieveTokenModelDelegate methods
-
--(void) processPaymentWithError:(NSError *)error {
-    if (error) {
-
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error processing payment"
-                                                        message:error.localizedDescription
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert performSelectorOnMainThread:@selector(show)
-                                withObject:nil
-                             waitUntilDone:NO];
-
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                        message:@"Payment Processed Successfully"
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-
-        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
-    }
+- (void)paymentFailedWithError:(NSError *)error {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error processing payment"
+                                                    message:error.localizedDescription
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
     
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self clearTextFields];
-        [self buttonsEnabled];
     });
 
 }
 
+- (void)paymentProcessedWithPaymentID:(NSString *)paymentID {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                    message:@"Payment Processed Successfully"
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    
+    [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self clearTextFields];
+    });
+}
 /*
 #pragma mark - Navigation
 

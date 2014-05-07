@@ -5,6 +5,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *chargeAmountField;
 @property (strong, nonatomic) IBOutlet UIButton *chargeCardButton;
 @property (strong, nonatomic) IBOutlet UIImageView *cardTypeImage;
+@property (strong, nonatomic) IBOutlet UIView *cvcCodeView;
 @property (strong, nonatomic) IBOutlet UIView *cardNumberView;
 @property (strong, nonatomic) IBOutlet UIView *expirationDateView;
 

@@ -120,6 +120,7 @@
                         <outlet property="cardTypeImage" destination="A0t-dZ-qLh" id="uk0-0y-MZr"/>
                         <outlet property="chargeAmountField" destination="J6q-2z-9qQ" id="GxB-eH-Obx"/>
                         <outlet property="chargeCardButton" destination="yCA-iL-RwQ" id="Pnq-ds-iQF"/>
+                        <outlet property="cvcCodeView" destination="3Jm-gX-XFp" id="hJd-pE-c7m"/>
                         <outlet property="cvcField" destination="yGp-PY-W6j" id="Z2T-Hd-t77"/>
                         <outlet property="expirationDateView" destination="AZI-Nd-j5r" id="FEH-DN-BVl"/>
                         <outlet property="expirationField" destination="nUN-rS-YRj" id="S6u-oC-kXP"/>

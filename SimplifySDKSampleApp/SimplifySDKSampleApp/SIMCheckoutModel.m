@@ -33,7 +33,7 @@
 }
 
 - (BOOL)isCheckoutPossible {
-    if ([self isCardNumberValid] && [self isExpirationDateValid]) {
+    if ([self isCardNumberValid] && [self isExpirationDateValid] && [self isCVCCodeValid]) {
         return YES;
     }
     return NO;
@@ -49,6 +49,13 @@
 
 -(BOOL)isExpirationDateValid {
     if ((self.expirationDate.length > 2) && [self expirationDateInFuture]) {
+        return YES;
+    }
+    return NO;
+}
+
+-(BOOL)isCVCCodeValid {
+    if (self.cvcCode.length == self.cvcLength || self.cvcCode.length == 0  || (self.cvcCode.length == 3 && [self.cardType.cardTypeString  isEqual: @"blank"])) {
         return YES;
     }
     return NO;
@@ -192,7 +199,7 @@
     [apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode completionHander:^(NSString *cardToken, NSError *error) {
         if (error) {
             NSLog(@"error:%@", error);
-            [self.delegate processPaymentWithError:(NSError *)error];
+            [self.delegate paymentFailedWithError:error];
         } else {
             NSLog(@"token: %@", cardToken);
             [self makePaymentWithToken:cardToken];
@@ -216,7 +223,7 @@
 //        NSLog(@"error:%@", error);
 //        [self.delegate processPaymentWithError:error];
 //    } else {
-        [self.delegate processPaymentWithError:nil];
+        [self.delegate paymentProcessedWithPaymentID:nil];
 //
 //}
 
