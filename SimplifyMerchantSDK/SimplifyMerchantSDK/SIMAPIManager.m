@@ -20,7 +20,7 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
 @property (nonatomic) BOOL isLiveMode;
 
 @property (nonatomic) NSString *publicApiKey;
-@property (nonatomic) NSURLSession *urlSession;
+@property (nonatomic) NSMutableURLRequest *request;
 @property (nonatomic) NSURL *currentAPIURL;
 
 @end
@@ -28,18 +28,17 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
 @implementation SIMAPIManager
 
 - (id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **) error{
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    request.HTTPMethod = @"POST";
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
     
-    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSDictionary *httpHeaders = @{@"Content-Type":@"application/json",@"Accept":@"application/json"};
-    [sessionConfig setHTTPAdditionalHeaders:httpHeaders];
-    [sessionConfig setRequestCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
-    
-    return [self initWithPublicApiKey:publicApiKey error:error urlSession:session];
+    self.request = request;
+    return [self initWithPublicApiKey:publicApiKey error:error urlRequest:request];
 }
 
-- (id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **) error urlSession:(NSURLSession *)urlSession{
+- (id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **) error urlRequest:(NSMutableURLRequest *)request{
     self = [super init];
     
     if (self) {
@@ -51,7 +50,6 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
         } else {
 
             self.publicApiKey = publicApiKey;
-            self.urlSession = urlSession;
             NSString *apiURLString = (self.isLiveMode) ? prodAPILiveURL : prodAPISandboxURL;
             self.currentAPIURL = [NSURL URLWithString:apiURLString];
 
@@ -72,7 +70,6 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
         isLive = NO;
     } else {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"Could not create API Manager: Invalid API Key."};
-        
         *error = [NSError errorWithDomain:SIMAPIManagerErrorDomain code:SIMAPIManagerErrorCodeInvalidAPIKey userInfo:userInfo];
     }
     
@@ -87,44 +84,41 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
                                              cvc:(NSString *)cvc
                                 completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler {
 
-    NSError *requestError;
-    NSError *jsonError;
+    NSError *jsonSerializationError;
 	NSURL *url = [self.currentAPIURL URLByAppendingPathComponent:@"payment/cardToken"];
     
     NSMutableDictionary *cardData = [NSMutableDictionary dictionaryWithDictionary:@{@"number":[NSString urlEncodedString:cardNumber], @"expMonth":[NSString urlEncodedString:expirationMonth], @"expYear": [NSString urlEncodedString:expirationYear], @"cvc": [NSString urlEncodedString:cvc]}];
     
     NSDictionary *tokenData = @{@"key": [NSString urlEncodedString:self.publicApiKey], @"card":cardData};
     
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:tokenData options:0 error:&jsonError];
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:tokenData options:0 error:&jsonSerializationError];
     
-    if (!jsonError) {
+    if (!jsonSerializationError) {
 
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-        request.HTTPMethod = @"POST";
-        request.HTTPBody = jsonData;
+        self.request.HTTPBody = jsonData;
+        [self.request setURL:url];
         
+        [NSURLConnection sendAsynchronousRequest:self.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            
+            NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
 
-        
-        NSHTTPURLResponse *httpURLResponse;
-        [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        
-        NSData *data =  [NSURLConnection sendSynchronousRequest:request returningResponse:&httpURLResponse error:&requestError];
-        
-        if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode < 300) {
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-            
-            cardTokenCompletionHandler([self cardTokenFromDictionary:json], nil);
-        } else {
-            NSString *errorMessage = [NSString stringWithFormat:@"Bad Response: %d.", httpURLResponse.statusCode];
-            NSError *responseError = [NSError errorWithDomain:@"com.mastercard.simplify" code:SIMAPIManagerErrorCodeCardTokenResponseError userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
-            
-            cardTokenCompletionHandler(nil, responseError);
-        }
+            if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode < 300) {
+                NSError *jsonDeserializationError;
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonDeserializationError];
+                
+                cardTokenCompletionHandler([self cardTokenFromDictionary:json], nil);
+            } else {
+                NSString *errorMessage = [NSString stringWithFormat:@"Bad HTTP Response: %d.", httpURLResponse.statusCode];
+                NSError *responseError = [NSError errorWithDomain:@"com.mastercard.simplify" code:SIMAPIManagerErrorCodeCardTokenResponseError userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
+                
+                cardTokenCompletionHandler(nil, responseError);
+            }
+        }];
 
     } else {
-        cardTokenCompletionHandler(nil, jsonError);
+        cardTokenCompletionHandler(nil, jsonSerializationError);
     }
+    
     
 }
 
