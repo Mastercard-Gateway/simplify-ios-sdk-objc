@@ -205,7 +205,6 @@
     XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no");
 }
 
-
 -(void)testUpdateCardNumberWithStringCorrectlyRemovesSpaces {
     NSString *expectedStringWithNoSpaces = @"123434563456";
     
@@ -299,6 +298,15 @@
     [self.testCheckoutModel updateExpirationDateWithString:@"2345"];
     
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.expirationDate, "four digits");
+}
+
+-(void)testUpdateExpirationDateWithStringIfStringIsEmpty {
+    [self.testCheckoutModel updateExpirationDateWithString:@""];
+    NSString *expectedStringWithNoSpaces = @"";
+    
+    [self.testCheckoutModel updateExpirationDateWithString:@""];
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.expirationDate, "no digits");
 }
 
 -(void)testUpdateExpirationDateWithStringDoesNotUpdateExpirationDateIfMonthMoreThan12 {
