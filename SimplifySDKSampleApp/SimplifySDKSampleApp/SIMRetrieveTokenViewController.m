@@ -124,8 +124,10 @@
 }
 
 #pragma mark SIMRetrieveTokenModelDelegate methods
--(void) transitionToNextScreenBasedOnError:(NSError *)error {
+-(void) processCardTokenWithError:(NSError *)error {
     if (error) {
+        
+    } else {
         
     }
 }
