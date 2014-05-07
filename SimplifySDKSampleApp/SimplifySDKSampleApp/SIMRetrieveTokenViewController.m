@@ -126,7 +126,7 @@
 #pragma mark SIMRetrieveTokenModelDelegate methods
 -(void) processCardToken:(NSString *)cardToken WithError:(NSError *)error {
     if (error) {
-        UIAlertView *view = [
+
     } else {
 
         NSURL *url= [NSURL URLWithString:@"https://your_payment_server/your_payment_endpoint"];
