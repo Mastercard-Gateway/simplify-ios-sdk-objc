@@ -1,9 +1,9 @@
-#import "SIMRetrieveTokenModel.h"
+#import "SIMCheckoutModel.h"
 #import <Simplify/SIMDigitVerifier.h>
 #import <Simplify/SIMAPIManager.h>
 #import <Simplify/SIMLuhnValidator.h>
 
-@interface SIMRetrieveTokenModel ()
+@interface SIMCheckoutModel ()
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;
 @property (nonatomic, strong, readwrite) NSString *chargeAmount;
 @property (nonatomic, strong, readwrite) NSString *cardNumber;
@@ -20,7 +20,7 @@
 @property (nonatomic, readwrite) int cardNumberMaxLength;
 @end
 
-@implementation SIMRetrieveTokenModel
+@implementation SIMCheckoutModel
 
 - (instancetype) init {
     if (self) {
@@ -32,7 +32,7 @@
     return self;
 }
 
-- (BOOL)isRetrievalPossible {
+- (BOOL)isCheckoutPossible {
     if ([self isCardNumberValid] && [self isExpirationDateValid]) {
         return YES;
     }
@@ -192,13 +192,33 @@
     [apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode completionHander:^(NSString *cardToken, NSError *error) {
         if (error) {
             NSLog(@"error:%@", error);
-            [self.delegate processCardToken:cardToken WithError:error];
+            [self.delegate processPaymentWithError:(NSError *)error];
         } else {
             NSLog(@"token: %@", cardToken);
-            [self.delegate processCardToken:cardToken WithError:nil];
+            [self makePaymentWithToken:cardToken];
         }
     }];
+}
+
+-(void)makePaymentWithToken:(NSString *)cardToken {
+
+    NSURL *url= [NSURL URLWithString:@"https://Your_server/charge.rb"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:10.0];
+    [request setHTTPMethod:@"POST"];
+    NSString *postString = @"simplifyToken=";
+    postString = [postString stringByAppendingString:cardToken];
     
+    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    //Process Request
+//    if (error) {
+//        NSLog(@"error:%@", error);
+//        [self.delegate showAlertWithError:(NSError *)error:error];
+//    } else {
+//        [self.delegate showAlertWithError:(NSError *)error:nil];
+//    
+//}
 
 }
 

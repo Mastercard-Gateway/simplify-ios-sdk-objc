@@ -1,13 +1,13 @@
 #import <Simplify/SIMSDKHelper.h>
-#import "SIMRetrieveTokenViewController.h"
-#import "SIMRetrieveTokenModel.h"
+#import "SIMCheckoutViewController.h"
+#import "SIMCheckoutModel.h"
 
-@interface SIMRetrieveTokenViewController ()<SIMRetrieveTokenModelDelegate>
-@property (nonatomic, strong) SIMRetrieveTokenModel *checkoutModel;
+@interface SIMCheckoutViewController ()<SIMCheckoutModelDelegate>
+@property (nonatomic, strong) SIMCheckoutModel *checkoutModel;
 
 @end
 
-@implementation SIMRetrieveTokenViewController
+@implementation SIMCheckoutViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,7 +25,7 @@
     self.cardNumberField.delegate = self;
     self.expirationField.delegate = self;
     self.cvcField.delegate = self;
-    self.checkoutModel = [SIMRetrieveTokenModel new];
+    self.checkoutModel = [SIMCheckoutModel new];
     self.checkoutModel.delegate = self;
     [self setCardTypeImage];
     [self buttonSetUp];
@@ -58,7 +58,7 @@
     
     self.cardNumberView.backgroundColor = cardBackgroundColor;
     self.expirationDateView.backgroundColor = dateBackgroundColor;
-    BOOL isEnabled = [self.checkoutModel isRetrievalPossible];
+    BOOL isEnabled = [self.checkoutModel isCheckoutPossible];
     [self.chargeCardButton setEnabled:isEnabled];
 }
 
@@ -136,7 +136,7 @@
 
 #pragma mark SIMRetrieveTokenModelDelegate methods
 
--(void) processCardToken:(NSString *)cardToken WithError:(NSError *)error {
+-(void) processPaymentWithError:(NSError *)error {
     if (error) {
 
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error processing payment"

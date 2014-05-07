@@ -1,7 +1,7 @@
-#import "SIMRetrieveTokenModel.h"
+#import "SIMCheckoutModel.h"
 
 @interface SIMRetrieveTokenModelTests : XCTestCase
-@property (nonatomic, strong) SIMRetrieveTokenModel *testCheckoutModel;
+@property (nonatomic, strong) SIMCheckoutModel *testCheckoutModel;
 @end
 
 @implementation SIMRetrieveTokenModelTests
@@ -9,7 +9,7 @@
 - (void)setUp
 {
     [super setUp];
-    self.testCheckoutModel = [SIMRetrieveTokenModel new];
+    self.testCheckoutModel = [SIMCheckoutModel new];
 }
 
 - (void)tearDown
@@ -176,57 +176,57 @@
 }
 
 //Tests for isRetrivalPossible, isExpirationDateValid, and isCardNumberValid
--(void)testIsRetrievalPossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigits {
+-(void)testIsCheckoutPossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigits {
     [self.testCheckoutModel updateCardNumberWithString:@"5105 1051 0510 5100"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
     [self.testCheckoutModel updateCVCNumberWithString:@"123"];
 
     XCTAssertTrue([self.testCheckoutModel isExpirationDateValid], "should be a valid expiration date");
     XCTAssertTrue([self.testCheckoutModel isCardNumberValid], "should be a valid card");
-    XCTAssertTrue([self.testCheckoutModel isRetrievalPossible], "should be yes");
+    XCTAssertTrue([self.testCheckoutModel isCheckoutPossible], "should be yes");
 }
 
--(void)testIsRetrievalPossibleReturnsNoWhenCardNumberIsLessThanMinimumNumberOfDigitsPerCardType {
+-(void)testIsCheckoutPossibleReturnsNoWhenCardNumberIsLessThanMinimumNumberOfDigitsPerCardType {
     [self.testCheckoutModel updateCardNumberWithString:@"412345678901"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
     XCTAssertFalse([self.testCheckoutModel isCardNumberValid], "should not be a valid card");
-    XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no, less than minumum for visa");
+    XCTAssertFalse([self.testCheckoutModel isCheckoutPossible], "should be no, less than minumum for visa");
 }
 
--(void)testIsRetrievalPossibleReturnsNoWhenCardNumberIsMoreThanMaximumNumberOfDigitsPerCardType {
+-(void)testIsCheckoutPossibleReturnsNoWhenCardNumberIsMoreThanMaximumNumberOfDigitsPerCardType {
     [self.testCheckoutModel updateCardNumberWithString:@"34123456789013"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
     XCTAssertFalse([self.testCheckoutModel isCardNumberValid], "should not be a valid card");
-    XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no, more than max for amex");
+    XCTAssertFalse([self.testCheckoutModel isCheckoutPossible], "should be no, more than max for amex");
 }
 
--(void)testIsRetrievalPossibleReturnsNoWhenCardNumberIsNotLuhnValidated {
+-(void)testIsCheckoutPossibleReturnsNoWhenCardNumberIsNotLuhnValidated {
     [self.testCheckoutModel updateCardNumberWithString:@"5105 1051 0510 5102"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
     XCTAssertFalse([self.testCheckoutModel isCardNumberValid], "should not be a valid card");
-    XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no, more than max for amex");
+    XCTAssertFalse([self.testCheckoutModel isCheckoutPossible], "should be no, more than max for amex");
 }
 
--(void)testIsRetrievalPossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigitsButNoCVCCode {
+-(void)testIsCheckoutPossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigitsButNoCVCCode {
     [self.testCheckoutModel updateCardNumberWithString:@"5105 1051 0510 5100"];
     [self.testCheckoutModel updateExpirationDateWithString:@"123"];
     XCTAssertTrue([self.testCheckoutModel isExpirationDateValid], "should be yes");
     XCTAssertTrue([self.testCheckoutModel isCardNumberValid], "should be a valid card");
-    XCTAssertTrue([self.testCheckoutModel isRetrievalPossible], "should be yes");
+    XCTAssertTrue([self.testCheckoutModel isCheckoutPossible], "should be yes");
 }
 
--(void)testIsRetrievalPossibleReturnsNoWhenExpirationDateIsLessThanThreeDigits {
+-(void)testIsCheckoutPossibleReturnsNoWhenExpirationDateIsLessThanThreeDigits {
     [self.testCheckoutModel updateCardNumberWithString:@"5105 1051 0510 5100"];
     [self.testCheckoutModel updateExpirationDateWithString:@"12"];
     XCTAssertFalse([self.testCheckoutModel isExpirationDateValid], "should be no");
-    XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no");
+    XCTAssertFalse([self.testCheckoutModel isCheckoutPossible], "should be no");
 }
 
--(void)testIsRetrievalPossibleReturnsNoWhenExpirationDateIsExpired {
+-(void)testIsCheckoutPossibleReturnsNoWhenExpirationDateIsExpired {
     [self.testCheckoutModel updateCardNumberWithString:@"5105 1051 0510 5100"];
     [self.testCheckoutModel updateExpirationDateWithString:@"4/14"];
     XCTAssertFalse([self.testCheckoutModel isExpirationDateValid], "should be no");
-    XCTAssertFalse([self.testCheckoutModel isRetrievalPossible], "should be no");
+    XCTAssertFalse([self.testCheckoutModel isCheckoutPossible], "should be no");
 }
 
 //Tests for updating charge amount, card number, expiration date, and CVC code

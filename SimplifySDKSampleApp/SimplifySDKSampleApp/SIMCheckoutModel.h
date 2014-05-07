@@ -1,12 +1,12 @@
 #import <Simplify/SIMCardType.h>
-@protocol SIMRetrieveTokenModelDelegate
+@protocol SIMCheckoutModelDelegate
 
-- (void)processCardToken:(NSString *)cardToken WithError:(NSError *)error;
+- (void)processPaymentWithError:(NSError *)error;
 
 @end
 
-@interface SIMRetrieveTokenModel : NSObject
-@property (nonatomic, weak) id<SIMRetrieveTokenModelDelegate> delegate;
+@interface SIMCheckoutModel : NSObject
+@property (nonatomic, weak) id<SIMCheckoutModelDelegate> delegate;
 @property (nonatomic, strong, readonly) NSString *chargeAmount;
 @property (nonatomic, strong, readonly) NSString *cardNumber;
 @property (nonatomic, strong, readonly) NSString *expirationDate;
@@ -19,7 +19,7 @@
 @property (nonatomic, strong, readonly) NSString *cardTypeString;
 @property (nonatomic, strong, readonly) SIMCardType *cardType;
 
-- (BOOL) isRetrievalPossible;
+- (BOOL) isCheckoutPossible;
 - (BOOL) isCardNumberValid;
 - (BOOL) isExpirationDateValid;
 - (void) updateChargeAmountWithString:(NSString *)newString;

@@ -22,8 +22,8 @@
 		7ED9EA0E1917E2930082C2C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F61917E2930082C2C3 /* UIKit.framework */; };
 		7ED9EA161917E2930082C2C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA141917E2930082C2C3 /* InfoPlist.strings */; };
 		7ED9EA25191817870082C2C3 /* TokenStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA24191817870082C2C3 /* TokenStoryboard.storyboard */; };
-		7ED9EA5A191820820082C2C3 /* SIMRetrieveTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA57191820820082C2C3 /* SIMRetrieveTokenModel.m */; };
-		7ED9EA5B191820820082C2C3 /* SIMRetrieveTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA59191820820082C2C3 /* SIMRetrieveTokenViewController.m */; };
+		7ED9EA5A191820820082C2C3 /* SIMCheckoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA57191820820082C2C3 /* SIMCheckoutModel.m */; };
+		7ED9EA5B191820820082C2C3 /* SIMCheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA59191820820082C2C3 /* SIMCheckoutViewController.m */; };
 		7ED9EA5D191820880082C2C3 /* SIMRetrieveTokenModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA5C191820880082C2C3 /* SIMRetrieveTokenModelTests.m */; };
 /* End PBXBuildFile section */
 
@@ -98,10 +98,10 @@
 		7ED9EA151917E2930082C2C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7ED9EA24191817870082C2C3 /* TokenStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TokenStoryboard.storyboard; sourceTree = "<group>"; };
 		7ED9EA37191818F30082C2C3 /* SimplifySDKSampleAppTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SimplifySDKSampleAppTests-Prefix.pch"; sourceTree = "<group>"; };
-		7ED9EA56191820820082C2C3 /* SIMRetrieveTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIMRetrieveTokenModel.h; path = SimplifySDKSampleApp/SIMRetrieveTokenModel.h; sourceTree = "<group>"; };
-		7ED9EA57191820820082C2C3 /* SIMRetrieveTokenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMRetrieveTokenModel.m; path = SimplifySDKSampleApp/SIMRetrieveTokenModel.m; sourceTree = "<group>"; };
-		7ED9EA58191820820082C2C3 /* SIMRetrieveTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIMRetrieveTokenViewController.h; path = SimplifySDKSampleApp/SIMRetrieveTokenViewController.h; sourceTree = "<group>"; };
-		7ED9EA59191820820082C2C3 /* SIMRetrieveTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMRetrieveTokenViewController.m; path = SimplifySDKSampleApp/SIMRetrieveTokenViewController.m; sourceTree = "<group>"; };
+		7ED9EA56191820820082C2C3 /* SIMCheckoutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIMCheckoutModel.h; path = SimplifySDKSampleApp/SIMCheckoutModel.h; sourceTree = "<group>"; };
+		7ED9EA57191820820082C2C3 /* SIMCheckoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMCheckoutModel.m; path = SimplifySDKSampleApp/SIMCheckoutModel.m; sourceTree = "<group>"; };
+		7ED9EA58191820820082C2C3 /* SIMCheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIMCheckoutViewController.h; path = SimplifySDKSampleApp/SIMCheckoutViewController.h; sourceTree = "<group>"; };
+		7ED9EA59191820820082C2C3 /* SIMCheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMCheckoutViewController.m; path = SimplifySDKSampleApp/SIMCheckoutViewController.m; sourceTree = "<group>"; };
 		7ED9EA5C191820880082C2C3 /* SIMRetrieveTokenModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMRetrieveTokenModelTests.m; path = SimplifySDKSampleApp/SIMRetrieveTokenModelTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -243,10 +243,10 @@
 			isa = PBXGroup;
 			children = (
 				7ED9EA5C191820880082C2C3 /* SIMRetrieveTokenModelTests.m */,
-				7ED9EA56191820820082C2C3 /* SIMRetrieveTokenModel.h */,
-				7ED9EA57191820820082C2C3 /* SIMRetrieveTokenModel.m */,
-				7ED9EA58191820820082C2C3 /* SIMRetrieveTokenViewController.h */,
-				7ED9EA59191820820082C2C3 /* SIMRetrieveTokenViewController.m */,
+				7ED9EA56191820820082C2C3 /* SIMCheckoutModel.h */,
+				7ED9EA57191820820082C2C3 /* SIMCheckoutModel.m */,
+				7ED9EA58191820820082C2C3 /* SIMCheckoutViewController.h */,
+				7ED9EA59191820820082C2C3 /* SIMCheckoutViewController.m */,
 			);
 			name = "Retrieve Token";
 			path = ..;
@@ -382,9 +382,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7ED9EA5A191820820082C2C3 /* SIMRetrieveTokenModel.m in Sources */,
+				7ED9EA5A191820820082C2C3 /* SIMCheckoutModel.m in Sources */,
 				7ED9EA031917E2930082C2C3 /* SIMAppDelegate.m in Sources */,
-				7ED9EA5B191820820082C2C3 /* SIMRetrieveTokenViewController.m in Sources */,
+				7ED9EA5B191820820082C2C3 /* SIMCheckoutViewController.m in Sources */,
 				7ED9E9FF1917E2930082C2C3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
