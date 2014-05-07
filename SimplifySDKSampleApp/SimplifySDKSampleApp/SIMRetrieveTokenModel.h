@@ -1,5 +1,12 @@
 #import "SIMCardType.h"
+@protocol SIMRetrieveTokenModelDelegate
+
+- (void)transitionToNextScreenBasedOnError:(NSError *)error;
+
+@end
+
 @interface SIMRetrieveTokenModel : NSObject
+@property (nonatomic, weak) id<SIMRetrieveTokenModelDelegate> delegate;
 @property (nonatomic, strong, readonly) NSString *chargeAmount;
 @property (nonatomic, strong, readonly) NSString *cardNumber;
 @property (nonatomic, strong, readonly) NSString *expirationDate;

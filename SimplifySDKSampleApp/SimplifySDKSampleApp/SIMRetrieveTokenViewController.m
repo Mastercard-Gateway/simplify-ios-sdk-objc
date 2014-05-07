@@ -1,7 +1,7 @@
 #import "SIMRetrieveTokenViewController.h"
 #import "SIMRetrieveTokenModel.h"
 
-@interface SIMRetrieveTokenViewController ()
+@interface SIMRetrieveTokenViewController ()<SIMRetrieveTokenModelDelegate>
 @property (nonatomic, strong) SIMRetrieveTokenModel *checkoutModel;
 
 @end
@@ -25,6 +25,7 @@
     self.expirationField.delegate = self;
     self.cvcField.delegate = self;
     self.checkoutModel = [SIMRetrieveTokenModel new];
+    self.checkoutModel.delegate = self;
     [self setCardTypeImage];
     [self buttonSetUp];
     
@@ -119,6 +120,13 @@
 
 - (IBAction)retrieveToken:(id)sender {
     [self.checkoutModel retrieveToken];
+}
+
+#pragma mark SIMRetrieveTokenModelDelegate methods
+-(void) transitionToNextScreenBasedOnError:(NSError *)error {
+    if (error) {
+        
+    }
 }
 
 /*
