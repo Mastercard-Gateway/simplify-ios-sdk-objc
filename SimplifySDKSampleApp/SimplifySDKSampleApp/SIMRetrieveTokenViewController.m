@@ -97,6 +97,8 @@
         [self.checkoutModel updateExpirationDateWithString:@""];
     }
     
+    [self buttonsEnabled];
+    
     return YES;
 }
 
