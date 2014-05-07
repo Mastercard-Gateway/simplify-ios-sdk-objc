@@ -55,9 +55,9 @@
 -(BOOL)expirationDateInFuture {
     NSDate *currentDate = [NSDate date];
     int expirationMonthInt = [self.expirationMonth intValue] + 1;
-    NSString *dateString = [NSString stringWithFormat:@"%d-%@", expirationMonthInt, self.expirationYear];
+    NSString *dateString = [NSString stringWithFormat:@"%d-20%@", expirationMonthInt, self.expirationYear];
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.dateFormat = @"MM-yy";
+    dateFormatter.dateFormat = @"MM-yyyy";
     NSDate *expirationDate = [dateFormatter dateFromString:dateString];
     return [expirationDate compare:currentDate] == NSOrderedDescending || [expirationDate compare:currentDate] == NSOrderedSame;
 }
@@ -72,18 +72,23 @@
 
 - (void) updateExpirationDateWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
-    int firstDigit = (int)([updatedString characterAtIndex:0] - '0');
+    if (updatedString.length > 0) {
+        int firstDigit = (int)([updatedString characterAtIndex:0] - '0');
+
     
-    if (updatedString.length <= 3) {
-        self.expirationDate = updatedString;
+        if (updatedString.length <= 3) {
+            self.expirationDate = updatedString;
         
-    } else if ((firstDigit <= 1) && (updatedString.length == 4)) {
-        int secondDigit = (int)([updatedString characterAtIndex:1] - '0');
-        if (firstDigit == 0) {
-            self.expirationDate = updatedString;
-        } else if ((firstDigit == 1) && (secondDigit < 3)) {
-            self.expirationDate = updatedString;
+        } else if ((firstDigit <= 1) && (updatedString.length == 4)) {
+            int secondDigit = (int)([updatedString characterAtIndex:1] - '0');
+            if (firstDigit == 0) {
+                self.expirationDate = updatedString;
+            } else if ((firstDigit == 1) && (secondDigit < 3)) {
+                self.expirationDate = updatedString;
+            }
         }
+    } else {
+        self.expirationDate = updatedString;
     }
 }
 
