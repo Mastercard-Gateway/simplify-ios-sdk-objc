@@ -1,5 +1,11 @@
 #import "SIMAPIManager.h"
 
+@interface SIMAPIManager (Test)
+
+- (id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **) error urlSession:(NSURLSession *)urlSession;
+
+@end
+
 @interface SIMAPIManagerTests : XCTestCase
 
 @property (nonatomic) SIMAPIManager *testSubject;
@@ -23,7 +29,7 @@
 - (void)testAPIManagerCanDetermineLiveMode {
     NSString *apiKey = @"lv1234";
     NSError *error;
-    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey urlSession:self.mockURLSession error:&error];
+    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error urlSession:self.mockURLSession];
 
     XCTAssertNotNil(this.testSubject, @"");
     XCTAssertTrue(self.testSubject.isLiveMode, @"");
@@ -33,7 +39,7 @@
 
 - (void)testAPIManagerCanDetermineSandboxMode {
     NSString *apiKey = @"sb1234";
-    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey urlSession:self.mockURLSession error:&error];
+    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error urlSession:self.mockURLSession];
 
     XCTAssertNotNil(this.testSubject, @"");
     XCTAssertFalse(self.testSubject.isLiveMode, @"");
@@ -44,14 +50,24 @@
     NSString *apiKey = @"invalid1234";
     NSError *error;
 
-    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey urlSession:self.mockURLSession error:&error];
-
-    NSString *expectedErrorCode = SIMAPIManagerErrorCodeInvalidAPIKey;
+    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error urlSession:self.mockURLSession];
     
     XCTAssertNil(self.testSubject, @"");
     XCTAssertNotNil(error, @"");
     XCTAssertEqual(error.code, SIMAPIManagerErrorCodeInvalidAPIKey, @"");
 }
 
+- (void)testAPIManagerSendsRequestsToTheCorrectServiceHost {
+    NSString *apiKey = @"sb1234";
+    NSString *endpoint = @"testendpoint";
+    
+    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:nil urlSession:self.mockURLSession];
+    
+    NSString *expectedErrorCode = SIMAPIManagerErrorCodeInvalidAPIKey;
+    
+    XCTAssertNil(self.testSubject, @"");
+    XCTAssertNotNil(error, @"");
+    XCTAssertEqual(error.code, SIMAPIManagerErrorCodeInvalidAPIKey, @"");
+}
 
 @end

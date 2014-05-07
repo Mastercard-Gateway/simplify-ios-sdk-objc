@@ -1,6 +1,7 @@
 #import "SIMRetrieveTokenModel.h"
 #import "SIMDigitVerifier.h"
 #import <Simplify/SIMCardTokenRequest.h>
+#import <Simplify/SIMAPIManager.h>
 #import "SIMLuhnValidator.h"
 
 @interface SIMRetrieveTokenModel ()
@@ -162,8 +163,15 @@
 }
 
 - (void)retrieveToken {
-    SIMCardTokenRequest *tokenGenerator = [SIMCardTokenRequest new];
-    //NSLog(@"token: %@", token);
+    SIMAPIManager *apiManager = [[SIMAPIManager alloc] initWithPublicApiKey:@"sbpb_OWNjNGE3MTQtYzA4NC00ODdmLTlkOWItYjk1OWMzMWQ0NDUy" error:nil];
+    
+    [apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode completionHander:^(NSString *cardToken, NSError *error) {
+        if (error) {
+            NSLog(@"error:%@", error);
+        } else {
+            NSLog(@"token: %@", cardToken);
+        }
+    }];
 }
 
 @end
