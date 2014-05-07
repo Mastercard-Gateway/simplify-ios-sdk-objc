@@ -94,7 +94,7 @@
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
     if (textField == self.chargeAmountField) {
-        [self.checkoutModel updateChargeAmountWithString:@""];
+        [self.checkoutModel updateChargeAmountWithString:@"0"];
     }
     
     else if (textField == self.cardNumberField) {
@@ -123,23 +123,44 @@
     [self.checkoutModel retrieveToken];
 }
 
+-(void) clearTextFields {
+    [self.checkoutModel updateChargeAmountWithString:@"0"];
+    [self.checkoutModel updateCardNumberWithString:@""];
+    [self.checkoutModel updateCVCNumberWithString:@""];
+    [self.checkoutModel updateExpirationDateWithString:@""];
+    self.chargeAmountField.text = self.checkoutModel.formattedChargeAmount;
+    self.cardNumberField.text = self.checkoutModel.formattedCardNumber;
+    self.cvcField.text = self.checkoutModel.cvcCode;
+    self.expirationField.text = self.checkoutModel.formattedExpirationDate;
+}
+
 #pragma mark SIMRetrieveTokenModelDelegate methods
+
 -(void) processCardToken:(NSString *)cardToken WithError:(NSError *)error {
     if (error) {
-        UIAlertView *view = [
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error processing payment"
+                                                        message:error.localizedDescription
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert performSelectorOnMainThread:@selector(show)
+                                withObject:nil
+                             waitUntilDone:NO];
     } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                        message:@"Payment Processed Successfully"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
 
-        NSURL *url= [NSURL URLWithString:@"https://your_payment_server/your_payment_endpoint"];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                           timeoutInterval:5.0];
-        [request setHTTPMethod:@"POST"];
-        NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@", cardToken];
-        
-        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-
-        //Process Request
+        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
     }
+    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self clearTextFields];
+        [self buttonsEnabled];
+    });
+
 }
 
 /*
