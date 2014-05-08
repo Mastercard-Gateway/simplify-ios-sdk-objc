@@ -25,4 +25,19 @@
 	XCTAssertTrue([self.testSubject.country isEqualToString:@"US"]);
 }
 
+- (void)testThatAddressFieldsWithNilAreSafelyConvertedToEmptyStrings {
+
+    self.testSubject = [[SIMAddress alloc] initWithName:@"Sam Simple" addressLine1:@"2200 Mastercard Blvd" addressLine2:@"Area 1" city:@"O'Fallon" state:@"MO" zip:@"63368"];
+
+	XCTAssertNotNil(self.testSubject.name);
+	XCTAssertNotNil(self.testSubject.addressLine1);
+	XCTAssertNotNil(self.testSubject.addressLine2);
+	XCTAssertNotNil(self.testSubject.city);
+	XCTAssertNotNil(self.testSubject.state);
+	XCTAssertNotNil(self.testSubject.zip);
+	XCTAssertNotNil(self.testSubject.country);
+
+
+}
+
 @end

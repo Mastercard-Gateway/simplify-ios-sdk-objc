@@ -5,6 +5,10 @@
 
 @implementation SIMCardTokenTests
 
+//- (void)testThatSimCardTokenCanBeCreated {
+//    self.testSubject = [[SIMCreditCardToken alloc] initWithToken:@"1234566" id:@"id" name:@"name" type:@"type" last4:@"1234" address:@"address" expMonth:@"11" expYear:@"15" dateCreated:[NSDate date]];
+//    
+//}
 
 - (void)testFromDictionary_BuildsObjectFromDictionaryCorrectly {
 	NSDictionary *cardDictionary = @{

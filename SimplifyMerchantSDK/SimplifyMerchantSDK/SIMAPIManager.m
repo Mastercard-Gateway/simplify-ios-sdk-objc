@@ -78,7 +78,12 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
     NSError *jsonSerializationError;
 	NSURL *url = [self.currentAPIURL URLByAppendingPathComponent:@"payment/cardToken"];
     
-    NSMutableDictionary *cardData = [NSMutableDictionary dictionaryWithDictionary:@{@"number":[NSString urlEncodedString:cardNumber], @"expMonth":[NSString urlEncodedString:expirationMonth], @"expYear": [NSString urlEncodedString:expirationYear], @"cvc": [NSString urlEncodedString:cvc]}];
+    NSString *safeCardNumber = cardNumber ? cardNumber : @"";
+    NSString *safeExpMonth = expirationMonth ? expirationMonth : @"";
+    NSString *safeExpYear = expirationYear ? expirationYear : @"";
+    NSString *safeCvc = cvc ? cvc : @"";
+    
+    NSMutableDictionary *cardData = [NSMutableDictionary dictionaryWithDictionary:@{@"number":[NSString urlEncodedString:safeCardNumber], @"expMonth":[NSString urlEncodedString:safeExpMonth], @"expYear": [NSString urlEncodedString:safeExpYear], @"cvc": [NSString urlEncodedString:safeCvc]}];
     
     if (address.name.length) {
         cardData[@"name"] = address.name;
