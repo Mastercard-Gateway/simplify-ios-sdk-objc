@@ -23,6 +23,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEEC6191B372900AEC402 /* SIMAddress.h */; };
+		495EEEC9191B372900AEC402 /* SIMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEEC7191B372900AEC402 /* SIMAddress.m */; };
+		495EEECC191B387200AEC402 /* SIMCreditCardToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEECA191B387200AEC402 /* SIMCreditCardToken.h */; };
+		495EEECD191B387200AEC402 /* SIMCreditCardToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEECB191B387200AEC402 /* SIMCreditCardToken.m */; };
 		49748F63191849C600738BC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F62191849C600738BC9 /* Foundation.framework */; };
 		49748F71191849C600738BC9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F70191849C600738BC9 /* XCTest.framework */; };
 		49748F72191849C600738BC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F62191849C600738BC9 /* Foundation.framework */; };
@@ -107,6 +111,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		495EEEC6191B372900AEC402 /* SIMAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMAddress.h; sourceTree = "<group>"; };
+		495EEEC7191B372900AEC402 /* SIMAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMAddress.m; sourceTree = "<group>"; };
+		495EEECA191B387200AEC402 /* SIMCreditCardToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMCreditCardToken.h; sourceTree = "<group>"; };
+		495EEECB191B387200AEC402 /* SIMCreditCardToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMCreditCardToken.m; sourceTree = "<group>"; };
 		49748F5F191849C600738BC9 /* libSimplify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimplify.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		49748F62191849C600738BC9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49748F66191849C600738BC9 /* SimplifyMerchantSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimplifyMerchantSDK-Prefix.pch"; sourceTree = "<group>"; };
@@ -195,6 +203,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		495EEEC5191B36D800AEC402 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				495EEEC6191B372900AEC402 /* SIMAddress.h */,
+				495EEEC7191B372900AEC402 /* SIMAddress.m */,
+				495EEECA191B387200AEC402 /* SIMCreditCardToken.h */,
+				495EEECB191B387200AEC402 /* SIMCreditCardToken.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		49748F56191849C600738BC9 = {
 			isa = PBXGroup;
 			children = (
@@ -230,11 +249,12 @@
 		49748F64191849C600738BC9 /* SimplifyMerchantSDK */ = {
 			isa = PBXGroup;
 			children = (
-				4977D053191A9C9000AC621F /* Luhn Validator */,
-				4977D054191A9CB800AC621F /* Card Identification */,
-				4977D055191A9D2A00AC621F /* Digit Verification */,
 				49748FA519188CE300738BC9 /* API */,
+				4977D054191A9CB800AC621F /* Card Identification */,
 				49748FA319188CCD00738BC9 /* Common */,
+				4977D055191A9D2A00AC621F /* Digit Verification */,
+				4977D053191A9C9000AC621F /* Luhn Validator */,
+				495EEEC5191B36D800AEC402 /* Models */,
 				49748F9B191872A100738BC9 /* Simplify.h */,
 				4977D07C191ABA3500AC621F /* SIMSDKHelper.h */,
 				4977D07D191ABA3500AC621F /* SIMSDKHelper.m */,
@@ -383,6 +403,8 @@
 				49748FAF1919323600738BC9 /* NSString+Simplify.h in Headers */,
 				49748FA819188D2C00738BC9 /* SIMAPIManager.h in Headers */,
 				49748F9E1918734600738BC9 /* Simplify.h in Headers */,
+				495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */,
+				495EEECC191B387200AEC402 /* SIMCreditCardToken.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +567,8 @@
 				49748FB01919323600738BC9 /* NSString+Simplify.m in Sources */,
 				4977D04D191A9C6F00AC621F /* SIMCardType.m in Sources */,
 				4977D04A191A9C6F00AC621F /* SIMLuhnValidator.m in Sources */,
+				495EEEC9191B372900AEC402 /* SIMAddress.m in Sources */,
+				495EEECD191B387200AEC402 /* SIMCreditCardToken.m in Sources */,
 				4977D07F191ABA3500AC621F /* SIMSDKHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

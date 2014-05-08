@@ -9,7 +9,7 @@ typedef void (^CardTokenCompletionHandler)(NSString *cardToken, NSError *error);
 
 @property (nonatomic, readonly) BOOL isLiveMode;
 
-- (id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **) error;
+- (instancetype)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **) error;
 
 - (void)createCardTokenWithExpirationMonth:(NSString *)expirationMonth
                                   expirationYear:(NSString *)expirationYear
