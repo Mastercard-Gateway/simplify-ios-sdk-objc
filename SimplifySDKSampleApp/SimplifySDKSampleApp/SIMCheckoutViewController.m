@@ -43,7 +43,7 @@
 }
 
 -(void)buttonSetUp {
-    [self.chargeCardButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateDisabled];
+    [self.chargeCardButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateDisabled];
     [self buttonsEnabled];
 }
 
@@ -86,11 +86,6 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-
-//    if (textField == self.chargeAmountField) {
-//        [self.checkoutModel updateChargeAmountWithString:newString];
-//        self.chargeAmountField.text = self.checkoutModel.formattedChargeAmount;
-//    }
     
     if (textField == self.cardNumberField) {
         [self.checkoutModel updateCardNumberWithString:newString];
@@ -114,9 +109,6 @@
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
-//    if (textField == self.chargeAmountField) {
-//        [self.checkoutModel updateChargeAmountWithString:@"0"];
-//    }
     
     if (textField == self.cardNumberField) {
         [self.checkoutModel updateCardNumberWithString:@""];
@@ -146,11 +138,9 @@
 }
 
 -(void) clearTextFields {
-//    [self.checkoutModel updateChargeAmountWithString:@"0"];
     [self.checkoutModel updateCardNumberWithString:@""];
     [self.checkoutModel updateCVCNumberWithString:@""];
     [self.checkoutModel updateExpirationDateWithString:@""];
-//    self.chargeAmountField.text = self.checkoutModel.formattedChargeAmount;
     self.cardNumberField.text = self.checkoutModel.formattedCardNumber;
     self.cvcField.text = self.checkoutModel.cvcCode;
     self.expirationField.text = self.checkoutModel.formattedExpirationDate;

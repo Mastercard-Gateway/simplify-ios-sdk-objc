@@ -20,10 +20,8 @@
 
 - (void)testInitWithCartInitializesCheckoutModelProperly
 {
-    XCTAssertEqualObjects(self.testCheckoutModel.chargeAmount, @"0", "no charge amount");
     XCTAssertEqualObjects(self.testCheckoutModel.cardNumber, @"", "no card number!");
     XCTAssertEqualObjects(self.testCheckoutModel.expirationDate, @"", "no expiration!");
-    XCTAssertEqualObjects(self.testCheckoutModel.formattedCardNumber, @"", "no charge amount");
     XCTAssertEqualObjects(self.testCheckoutModel.formattedCardNumber, @"", "no card number!");
     XCTAssertEqualObjects(self.testCheckoutModel.formattedExpirationDate, @"", "no expiration!");
     XCTAssertEqualObjects(self.testCheckoutModel.cvcCode, @"", "no cvc code");
@@ -31,26 +29,6 @@
 }
 
 //Tests for format
--(void) testFormattedChargeAmountCorrectlyFormatsFor0Dollars {
-    NSString *expectedFormattedChargeAmount = @"$0.00";
-    
-    [self.testCheckoutModel updateChargeAmountWithString:@"0"];
-    
-    NSString *actualChargeAmount = self.testCheckoutModel.formattedChargeAmount;
-    
-    XCTAssertEqualObjects(expectedFormattedChargeAmount, actualChargeAmount, "zero dollars");
-}
-
--(void) testFormattedChargeAmountCorrectlyFormatsFor8Dollars56Cents {
-    NSString *expectedFormattedChargeAmount = @"$8.56";
-    
-    [self.testCheckoutModel updateChargeAmountWithString:@"856"];
-    
-    NSString *actualChargeAmount = self.testCheckoutModel.formattedChargeAmount;
-    
-    XCTAssertEqualObjects(expectedFormattedChargeAmount, actualChargeAmount, "8.56");
-}
-
 -(void) testFormattedExpirationDateFormatsCorrectlyWhenStringIsOneDigitLong {
     NSString *expectedExpirationDate = @"2";
     
@@ -250,32 +228,6 @@
 }
 
 //Tests for updating charge amount, card number, expiration date, and CVC code
--(void)testUpdateChargeAmountWithStringCorrectlyRemovesSpaces {
-    NSString *expectedStringWithNoSpaces = @"856";
-    
-    [self.testCheckoutModel updateChargeAmountWithString:@"8 56"];
-    
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.chargeAmount, "no spaces");
-}
-
--(void)testUpdateChargeAmountWithStringDoesNotAddNonDigits {
-    NSString *expectedStringWithNoSpaces = @"856";
-    
-    [self.testCheckoutModel updateChargeAmountWithString:@"8 s56d"];
-    
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.chargeAmount, "no non digits");
-}
-
--(void)testUpdateChargeAmountWithStringDoesNotAddMoreThan8Digits {
-    NSString *expectedStringWithNoSpaces = @"85612345";
-    
-    [self.testCheckoutModel updateChargeAmountWithString:@"85612345"];
-    
-    [self.testCheckoutModel updateChargeAmountWithString:@"85612345343"];
-    
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.chargeAmount, "no non digits");
-}
-
 -(void)testUpdateCardNumberWithStringCorrectlyRemovesSpaces {
     NSString *expectedStringWithNoSpaces = @"123434563456";
     
