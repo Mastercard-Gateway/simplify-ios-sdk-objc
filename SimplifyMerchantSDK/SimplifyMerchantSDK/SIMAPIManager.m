@@ -17,6 +17,10 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
 
 @interface SIMAPIManager () <NSURLSessionDelegate>
 
+typedef void (^PrinterBlock)(NSString*);
+
+typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError *error);
+
 @property (nonatomic) BOOL isLiveMode;
 
 @property (nonatomic) NSString *publicApiKey;
@@ -74,14 +78,6 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
                                              cvc:(NSString *)cvc
                                 completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler {
 
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    request.HTTPMethod = @"POST";
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
-    
-    self.request = request;
-
     NSError *jsonSerializationError;
 	NSURL *url = [self.currentAPIURL URLByAppendingPathComponent:@"payment/cardToken"];
     
@@ -92,27 +88,13 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:tokenData options:0 error:&jsonSerializationError];
     
     if (!jsonSerializationError) {
-
-        self.request.HTTPBody = jsonData;
-        [self.request setURL:url];
-
         
-        [NSURLConnection sendAsynchronousRequest:self.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        SimplifyApiCompletionHandler apiCompletionHander = ^(NSDictionary *jsonResponse, NSError *error) {
             
-            NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
-
-            if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode < 300) {
-                NSError *jsonDeserializationError;
-                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonDeserializationError];
-                
-                cardTokenCompletionHandler([self cardTokenFromDictionary:json], nil);
-            } else {
-                NSString *errorMessage = [NSString stringWithFormat:@"Bad HTTP Response: %d.", httpURLResponse.statusCode];
-                NSError *responseError = [NSError errorWithDomain:SIMAPIManagerErrorDomain code:SIMAPIManagerErrorCodeCardTokenResponseError userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
-                
-                cardTokenCompletionHandler(nil, responseError);
-            }
-        }];
+            cardTokenCompletionHandler([self cardTokenFromDictionary:jsonResponse], nil);
+        };
+        
+        [self performRequestWithData:jsonData url:url completionHander:apiCompletionHander];
 
     } else {
         cardTokenCompletionHandler(nil, jsonSerializationError);
@@ -123,5 +105,38 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
 - (NSString *)cardTokenFromDictionary:(NSDictionary *)jsonResponse {
     return jsonResponse[@"id"];
 }
+
+- (void)performRequestWithData:(NSData *)jsonData url:(NSURL *)url completionHander:(SimplifyApiCompletionHandler)apiCompletionHandler{
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    request.HTTPMethod = @"POST";
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
+    
+    self.request = request;
+    
+    self.request.HTTPBody = jsonData;
+    [self.request setURL:url];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:self.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
+        
+        if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode < 300) {
+            NSError *jsonDeserializationError;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonDeserializationError];
+            
+            apiCompletionHandler(json, nil);
+            
+        } else {
+            NSString *errorMessage = [NSString stringWithFormat:@"Bad HTTP Response: %d.", httpURLResponse.statusCode];
+            NSError *responseError = [NSError errorWithDomain:SIMAPIManagerErrorDomain code:SIMAPIManagerErrorCodeCardTokenResponseError userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
+            
+            apiCompletionHandler(nil, responseError);
+        }
+    }];
+}
+
 
 @end
