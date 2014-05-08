@@ -7,7 +7,7 @@
         <!--Token View Controller-->
         <scene sceneID="mKt-MS-Kzf">
             <objects>
-                <viewController id="TJi-0h-wEy" userLabel="Token View Controller" customClass="SIMCheckoutViewController" sceneMemberID="viewController">
+                <viewController id="TJi-0h-wEy" userLabel="Token View Controller" customClass="SIMChargeCardViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TUF-Zd-oBd"/>
                         <viewControllerLayoutGuide type="bottom" id="Pwx-3Q-XDg"/>

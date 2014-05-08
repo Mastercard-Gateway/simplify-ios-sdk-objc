@@ -1,9 +1,9 @@
-#import "SIMCheckoutModel.h"
+#import "SIMChargeCardModel.h"
 #import <Simplify/SIMDigitVerifier.h>
 #import <Simplify/SIMAPIManager.h>
 #import <Simplify/SIMLuhnValidator.h>
 
-@interface SIMCheckoutModel ()
+@interface SIMChargeCardModel ()
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;
 @property (nonatomic, strong, readwrite) NSString *cardNumber;
 @property (nonatomic, strong, readwrite) NSString *expirationDate;
@@ -19,9 +19,9 @@
 @property (nonatomic, readwrite) int cardNumberMaxLength;
 @end
 
-@implementation SIMCheckoutModel
+@implementation SIMChargeCardModel
 
-- (instancetype) init {
+-(instancetype) init {
     if (self) {
         self.cardNumber = @"";
         self.expirationDate = @"";
@@ -30,7 +30,7 @@
     return self;
 }
 
-- (BOOL)isCheckoutPossible {
+-(BOOL)isCardChargePossible {
     if ([self isCardNumberValid] && [self isExpirationDateValid] && [self isCVCCodeValid]) {
         return YES;
     }
@@ -76,7 +76,7 @@
     return [expirationDate compare:currentDate] == NSOrderedDescending || [expirationDate compare:currentDate] == NSOrderedSame;
 }
 
-- (void) updateCardNumberWithString:(NSString *)newString {
+-(void) updateCardNumberWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
 
     if (updatedString.length <= self.cardNumberMaxLength) {
@@ -84,7 +84,7 @@
     }
 }
 
-- (void) updateExpirationDateWithString:(NSString *)newString {
+-(void) updateExpirationDateWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     if (updatedString.length > 0) {
         int firstDigit = (int)([updatedString characterAtIndex:0] - '0');
@@ -107,7 +107,7 @@
 }
 
 
-- (void) updateCVCNumberWithString:(NSString *)newString {
+-(void) updateCVCNumberWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     
     if (updatedString.length <= self.cvcLength) {
@@ -115,7 +115,7 @@
     }
 }
 
-- (NSString *)formattedCardNumber {
+-(NSString *)formattedCardNumber {
     NSMutableString *formattedString =[NSMutableString stringWithString:self.cardNumber];
     if (![self.cardTypeString isEqual: @"amex"]) {
         int index=4;
@@ -136,14 +136,14 @@
     return formattedString;
 }
 
-- (NSString *)formattedExpirationDate {
+-(NSString *)formattedExpirationDate {
     if (self.expirationDate.length > 1) {
         return [NSString stringWithFormat:@"%@/%@",self.expirationMonth, self.expirationYear];
     }
     return self.expirationDate;
 }
 
-- (NSString *)expirationMonth {
+-(NSString *)expirationMonth {
     if (self.expirationDate.length  > 0 && self.expirationDate.length <= 3) {
         return [self.expirationDate substringToIndex:1];
     } else if (self.expirationDate.length > 3){
@@ -152,7 +152,7 @@
     return @"";
 }
 
-- (NSString *)expirationYear {
+-(NSString *)expirationYear {
     if (self.expirationDate.length  > 0 && self.expirationDate.length <= 3) {
         return [self.expirationDate substringFromIndex:1];
     } else if (self.expirationDate.length > 3){
@@ -161,27 +161,27 @@
     return @"";
 }
 
-- (NSString *)cardTypeString {
+-(NSString *)cardTypeString {
     return self.cardType.cardTypeString;
 }
 
-- (SIMCardType *)cardType {
+-(SIMCardType *)cardType {
     return [SIMCardType cardTypeFromCardNumberString:self.cardNumber];
 }
 
-- (int)cvcLength {
+-(int)cvcLength {
     return self.cardType.CVCLength;
 }
 
-- (int)cardNumberMaxLength {
+-(int)cardNumberMaxLength {
     return self.cardType.maxCardLength;
 }
 
-- (int)cardNumberMinLength {
+-(int)cardNumberMinLength {
     return self.cardType.minCardLength;
 }
 
-- (void)retrieveToken {
+-(void)retrieveToken {
     NSError *error;
     SIMAPIManager *apiManager = [[SIMAPIManager alloc] initWithPublicApiKey:@"sbpb_OWNjNGE3MTQtYzA4NC00ODdmLTlkOWItYjk1OWMzMWQ0NDUy" error:&error];
     
@@ -213,7 +213,6 @@
 //        [self.delegate processPaymentWithError:error];
 //    } else {
         [self.delegate paymentProcessedWithPaymentID:nil];
-//
 //}
 
 }
