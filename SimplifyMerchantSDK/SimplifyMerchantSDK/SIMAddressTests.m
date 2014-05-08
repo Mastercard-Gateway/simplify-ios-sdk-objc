@@ -27,7 +27,7 @@
 
 - (void)testThatAddressFieldsWithNilAreSafelyConvertedToEmptyStrings {
 
-    self.testSubject = [[SIMAddress alloc] initWithName:@"Sam Simple" addressLine1:@"2200 Mastercard Blvd" addressLine2:@"Area 1" city:@"O'Fallon" state:@"MO" zip:@"63368"];
+    self.testSubject = [[SIMAddress alloc] initWithName:nil addressLine1:nil addressLine2:nil city:nil state:nil zip:nil];
 
 	XCTAssertNotNil(self.testSubject.name);
 	XCTAssertNotNil(self.testSubject.addressLine1);
