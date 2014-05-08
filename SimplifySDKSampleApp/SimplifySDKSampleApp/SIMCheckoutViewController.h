@@ -1,12 +1,15 @@
-@interface SIMCheckoutViewController : UIViewController <UITextFieldDelegate>
-@property (strong, nonatomic) IBOutlet UITextField *cardNumberField;
-@property (strong, nonatomic) IBOutlet UITextField *expirationField;
-@property (strong, nonatomic) IBOutlet UITextField *cvcField;
-@property (strong, nonatomic) IBOutlet UIButton *chargeCardButton;
-@property (strong, nonatomic) IBOutlet UIImageView *cardTypeImage;
-@property (strong, nonatomic) IBOutlet UIView *cvcCodeView;
-@property (strong, nonatomic) IBOutlet UIView *cardNumberView;
-@property (strong, nonatomic) IBOutlet UIView *expirationDateView;
+#import <Simplify/SIMCreditCardToken.h>
 
+@protocol SIMCheckoutViewControllerDelegate
+
+-(void)checkoutCancelled;
+-(void)requestedCreditCardToken:(SIMCreditCardToken *)token withError:(NSError *)error;
+-(void)requestedPaymentProcess:(NSString *)paymentID withError:(NSError *)error;
+
+@end
+
+@interface SIMCheckoutViewController : UIViewController
+
+@property (nonatomic, weak) id <SIMCheckoutViewControllerDelegate> delegate;
 
 @end
