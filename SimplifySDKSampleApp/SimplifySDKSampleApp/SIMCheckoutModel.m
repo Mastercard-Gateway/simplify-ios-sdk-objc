@@ -197,13 +197,13 @@
     NSError *error;
     SIMAPIManager *apiManager = [[SIMAPIManager alloc] initWithPublicApiKey:@"sbpb_OWNjNGE3MTQtYzA4NC00ODdmLTlkOWItYjk1OWMzMWQ0NDUy" error:&error];
     
-    [apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode completionHander:^(NSString *cardToken, NSError *error) {
+    [apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode completionHander:^(SIMCreditCardToken *cardToken, NSError *error) {
         if (error) {
             NSLog(@"error:%@", error);
             [self.delegate paymentFailedWithError:error];
         } else {
-            NSLog(@"token: %@", cardToken);
-            [self makePaymentWithToken:cardToken];
+            NSLog(@"token: %@", cardToken.token);
+            [self makePaymentWithToken:cardToken.token];
         }
     }];
 }

@@ -23,9 +23,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEEC6191B372900AEC402 /* SIMAddress.h */; };
+		495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEEC6191B372900AEC402 /* SIMAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		495EEEC9191B372900AEC402 /* SIMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEEC7191B372900AEC402 /* SIMAddress.m */; };
-		495EEECC191B387200AEC402 /* SIMCreditCardToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEECA191B387200AEC402 /* SIMCreditCardToken.h */; };
+		495EEECC191B387200AEC402 /* SIMCreditCardToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEECA191B387200AEC402 /* SIMCreditCardToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		495EEECD191B387200AEC402 /* SIMCreditCardToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEECB191B387200AEC402 /* SIMCreditCardToken.m */; };
 		49748F63191849C600738BC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F62191849C600738BC9 /* Foundation.framework */; };
 		49748F71191849C600738BC9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F70191849C600738BC9 /* XCTest.framework */; };
@@ -402,9 +402,9 @@
 				49748FA119188C6600738BC9 /* SIMCardTokenRequest.h in Headers */,
 				49748FAF1919323600738BC9 /* NSString+Simplify.h in Headers */,
 				49748FA819188D2C00738BC9 /* SIMAPIManager.h in Headers */,
-				49748F9E1918734600738BC9 /* Simplify.h in Headers */,
 				495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */,
 				495EEECC191B387200AEC402 /* SIMCreditCardToken.h in Headers */,
+				49748F9E1918734600738BC9 /* Simplify.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
