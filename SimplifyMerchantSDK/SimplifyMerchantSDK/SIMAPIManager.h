@@ -14,10 +14,6 @@ typedef void (^CardTokenCompletionHandler)(SIMCreditCardToken *cardToken, NSErro
 
 - (instancetype)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **) error;
 
-- (void)createCardTokenWithExpirationMonth:(NSString *)expirationMonth
-                                  expirationYear:(NSString *)expirationYear
-                                      cardNumber:(NSString *)cardNumber
-                                             cvc:(NSString *)cvc
-                                        address:(SIMAddress *)address
-                                completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler;
+- (void)createCardTokenWithExpirationMonth:(NSString *)expirationMonth expirationYear:(NSString *)expirationYear
+        cardNumber:(NSString *)cardNumber cvc:(NSString *)cvc address:(SIMAddress *)address completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler;
 @end

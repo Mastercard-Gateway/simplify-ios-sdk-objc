@@ -72,12 +72,8 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
     
 }
 
-- (void)createCardTokenWithExpirationMonth:(NSString *)expirationMonth
-                                  expirationYear:(NSString *)expirationYear
-                                      cardNumber:(NSString *)cardNumber
-                                             cvc:(NSString *)cvc
-                                        address:(SIMAddress *)address
-                                completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler {
+- (void)createCardTokenWithExpirationMonth:(NSString *)expirationMonth expirationYear:(NSString *)expirationYear
+                                cardNumber:(NSString *)cardNumber cvc:(NSString *)cvc address:(SIMAddress *)address completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler {
 
     NSError *jsonSerializationError;
 	NSURL *url = [self.currentAPIURL URLByAppendingPathComponent:@"payment/cardToken"];
