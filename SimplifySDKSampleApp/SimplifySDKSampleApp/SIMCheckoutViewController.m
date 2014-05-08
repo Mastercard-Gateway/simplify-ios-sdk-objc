@@ -21,7 +21,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.chargeAmountField.delegate = self;
     self.cardNumberField.delegate = self;
     self.expirationField.delegate = self;
     self.cvcField.delegate = self;
@@ -44,7 +43,7 @@
 }
 
 -(void)buttonSetUp {
-    [self.chargeCardButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateDisabled];
+    [self.chargeCardButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateDisabled];
     [self buttonsEnabled];
 }
 
@@ -88,12 +87,12 @@
 
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
 
-    if (textField == self.chargeAmountField) {
-        [self.checkoutModel updateChargeAmountWithString:newString];
-        self.chargeAmountField.text = self.checkoutModel.formattedChargeAmount;
-    }
+//    if (textField == self.chargeAmountField) {
+//        [self.checkoutModel updateChargeAmountWithString:newString];
+//        self.chargeAmountField.text = self.checkoutModel.formattedChargeAmount;
+//    }
     
-    else if (textField == self.cardNumberField) {
+    if (textField == self.cardNumberField) {
         [self.checkoutModel updateCardNumberWithString:newString];
         self.cardNumberField.text = self.checkoutModel.formattedCardNumber;
         [self setCardTypeImage];
@@ -115,11 +114,11 @@
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
-    if (textField == self.chargeAmountField) {
-        [self.checkoutModel updateChargeAmountWithString:@"0"];
-    }
+//    if (textField == self.chargeAmountField) {
+//        [self.checkoutModel updateChargeAmountWithString:@"0"];
+//    }
     
-    else if (textField == self.cardNumberField) {
+    if (textField == self.cardNumberField) {
         [self.checkoutModel updateCardNumberWithString:@""];
         [self setCardTypeImage];
     }
@@ -147,11 +146,11 @@
 }
 
 -(void) clearTextFields {
-    [self.checkoutModel updateChargeAmountWithString:@"0"];
+//    [self.checkoutModel updateChargeAmountWithString:@"0"];
     [self.checkoutModel updateCardNumberWithString:@""];
     [self.checkoutModel updateCVCNumberWithString:@""];
     [self.checkoutModel updateExpirationDateWithString:@""];
-    self.chargeAmountField.text = self.checkoutModel.formattedChargeAmount;
+//    self.chargeAmountField.text = self.checkoutModel.formattedChargeAmount;
     self.cardNumberField.text = self.checkoutModel.formattedCardNumber;
     self.cvcField.text = self.checkoutModel.cvcCode;
     self.expirationField.text = self.checkoutModel.formattedExpirationDate;

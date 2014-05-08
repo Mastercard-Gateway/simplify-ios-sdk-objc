@@ -5,12 +5,10 @@
 
 @interface SIMCheckoutModel ()
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;
-@property (nonatomic, strong, readwrite) NSString *chargeAmount;
 @property (nonatomic, strong, readwrite) NSString *cardNumber;
 @property (nonatomic, strong, readwrite) NSString *expirationDate;
 @property (nonatomic, strong, readwrite) NSString *expirationMonth;
 @property (nonatomic, strong, readwrite) NSString *expirationYear;
-@property (nonatomic, strong, readwrite) NSString *formattedChargeAmount;
 @property (nonatomic, strong, readwrite) NSString *formattedCardNumber;
 @property (nonatomic, strong, readwrite) NSString *formattedExpirationDate;
 @property (nonatomic, strong, readwrite) NSString *cvcCode;
@@ -28,7 +26,6 @@
         self.cardNumber = @"";
         self.expirationDate = @"";
         self.cvcCode = @"";
-        self.chargeAmount = @"0";
     }
     return self;
 }
@@ -79,14 +76,6 @@
     return [expirationDate compare:currentDate] == NSOrderedDescending || [expirationDate compare:currentDate] == NSOrderedSame;
 }
 
-- (void) updateChargeAmountWithString:(NSString *)newString {
-    NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
-    
-    if (updatedString.length <= 8) {
-        self.chargeAmount = updatedString;
-    }
-}
-
 - (void) updateCardNumberWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
 
@@ -125,15 +114,6 @@
         self.cvcCode = updatedString;
     }
 }
-
-- (NSString *)formattedChargeAmount {
-    NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc] init];
-    [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    NSDecimalNumber *convertedAmount = [NSDecimalNumber decimalNumberWithString:self.chargeAmount];
-    NSDecimalNumber *chargeInDollars = [convertedAmount decimalNumberByMultiplyingByPowerOf10:-2];
-    return [currencyFormatter stringFromNumber:chargeInDollars];
-}
-
 
 - (NSString *)formattedCardNumber {
     NSMutableString *formattedString =[NSMutableString stringWithString:self.cardNumber];
