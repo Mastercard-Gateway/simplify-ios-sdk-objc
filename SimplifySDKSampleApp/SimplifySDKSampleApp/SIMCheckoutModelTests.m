@@ -1,10 +1,10 @@
 #import "SIMCheckoutModel.h"
 
-@interface SIMRetrieveTokenModelTests : XCTestCase
+@interface SIMCheckoutModelTests : XCTestCase
 @property (nonatomic, strong) SIMCheckoutModel *testCheckoutModel;
 @end
 
-@implementation SIMRetrieveTokenModelTests
+@implementation SIMCheckoutModelTests
 
 - (void)setUp
 {
@@ -351,6 +351,15 @@
     [self.testCheckoutModel updateExpirationDateWithString:@"2a4"];
     
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testCheckoutModel.expirationDate, "only digits");
+}
+
+-(void)testUpdateExpirationDateWithStringDoesNotAllow00ForMonth {
+    NSString *expectedStringWithNoDoubleZero = @"024";
+    
+    [self.testCheckoutModel updateExpirationDateWithString:@"024"];
+    [self.testCheckoutModel updateExpirationDateWithString:@"0024"];
+    
+    XCTAssertEqualObjects(expectedStringWithNoDoubleZero, self.testCheckoutModel.expirationDate, "no double zero for month");
 }
 
 -(void)testUpdateExpirationDateWithStringDoesNotUpdateExpirationDateIfOver4Digits {

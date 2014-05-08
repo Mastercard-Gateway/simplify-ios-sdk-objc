@@ -49,7 +49,14 @@
 }
 
 -(BOOL)isExpirationDateValid {
-    if ((self.expirationDate.length > 2) && [self expirationDateInFuture]) {
+    if ((self.expirationDate.length > 2) && [self expirationDateInFuture] && [self isExpirationMonthValid]) {
+        return YES;
+    }
+    return NO;
+}
+
+-(BOOL)isExpirationMonthValid {
+    if (([self.expirationMonth integerValue] < 12) && ([self.expirationMonth integerValue] > 0)) {
         return YES;
     }
     return NO;
@@ -99,7 +106,7 @@
         
         } else if ((firstDigit <= 1) && (updatedString.length == 4)) {
             int secondDigit = (int)([updatedString characterAtIndex:1] - '0');
-            if (firstDigit == 0) {
+            if ((firstDigit == 0)  && (secondDigit > 0)) {
                 self.expirationDate = updatedString;
             } else if ((firstDigit == 1) && (secondDigit < 3)) {
                 self.expirationDate = updatedString;

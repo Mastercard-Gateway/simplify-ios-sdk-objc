@@ -29,8 +29,12 @@
     self.checkoutModel.delegate = self;
     [self setCardTypeImage];
     [self buttonSetUp];
-    
+    [self.cardNumberField becomeFirstResponder];
     // Do any additional setup after loading the view.
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,16 +53,28 @@
     UIColor *dateBackgroundColor = [UIColor whiteColor];
     UIColor *cvcBackgroundColor = [UIColor whiteColor];
     
-    if ([self.checkoutModel isCardNumberValid]) {
-        cardBackgroundColor = [UIColor colorWithRed:0.8 green:1.0 blue:0.8 alpha:1.0];
-
-    }
-    if ([self.checkoutModel isExpirationDateValid]) {
-        dateBackgroundColor = [UIColor colorWithRed:0.8 green:1.0 blue:0.8 alpha:1.0];
+    if (self.checkoutModel.cardNumber.length > 0) {
+        if ([self.checkoutModel isCardNumberValid]) {
+            cardBackgroundColor = [UIColor colorWithRed:(250.0/255.0) green:1.0 blue:(248.0/255.0) alpha:1.0];
+        } else {
+            cardBackgroundColor = [UIColor colorWithRed:(255.0/255.0) green:(248.0/255.0) blue:(248.0/255.0) alpha:1.0];
+        }
     }
     
-    if ([self.checkoutModel isCVCCodeValid] && self.checkoutModel.cvcCode.length > 0) {
-        cvcBackgroundColor = [UIColor colorWithRed:0.8 green:1.0 blue:0.8 alpha:1.0];
+    if (self.checkoutModel.expirationDate.length > 0) {
+        if ([self.checkoutModel isExpirationDateValid]) {
+            dateBackgroundColor = [UIColor colorWithRed:(250.0/255.0) green:1.0 blue:(248.0/255.0) alpha:1.0];
+        } else {
+            dateBackgroundColor = [UIColor colorWithRed:(255.0/255.0) green:(248.0/255.0) blue:(248.0/255.0) alpha:1.0];
+        }
+    }
+    
+    if (self.checkoutModel.cvcCode.length > 0) {
+        if ([self.checkoutModel isCVCCodeValid]) {
+            cvcBackgroundColor = [UIColor colorWithRed:(250.0/255.0) green:1.0 blue:(248.0/255.0) alpha:1.0];
+        } else {
+            cvcBackgroundColor = [UIColor colorWithRed:(255.0/255.0) green:(248.0/255.0) blue:(248.0/255.0) alpha:1.0];
+        }
     }
     
     self.cardNumberView.backgroundColor = cardBackgroundColor;
@@ -105,6 +121,7 @@
     
     else if (textField == self.cardNumberField) {
         [self.checkoutModel updateCardNumberWithString:@""];
+        [self setCardTypeImage];
     }
     
     else if (textField == self.cvcField) {
@@ -138,6 +155,7 @@
     self.cardNumberField.text = self.checkoutModel.formattedCardNumber;
     self.cvcField.text = self.checkoutModel.cvcCode;
     self.expirationField.text = self.checkoutModel.formattedExpirationDate;
+    [self setCardTypeImage];
     [self buttonsEnabled];
 }
 
