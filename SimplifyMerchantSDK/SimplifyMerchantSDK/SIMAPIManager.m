@@ -76,12 +76,35 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
                                   expirationYear:(NSString *)expirationYear
                                       cardNumber:(NSString *)cardNumber
                                              cvc:(NSString *)cvc
+                                        address:(SIMAddress *)address
                                 completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler {
 
     NSError *jsonSerializationError;
 	NSURL *url = [self.currentAPIURL URLByAppendingPathComponent:@"payment/cardToken"];
     
     NSMutableDictionary *cardData = [NSMutableDictionary dictionaryWithDictionary:@{@"number":[NSString urlEncodedString:cardNumber], @"expMonth":[NSString urlEncodedString:expirationMonth], @"expYear": [NSString urlEncodedString:expirationYear], @"cvc": [NSString urlEncodedString:cvc]}];
+    
+    if (address.name.length) {
+        cardData[@"name"] = address.name;
+	}
+	if (address.addressLine1.length) {
+        cardData[@"addressLine1"] = address.addressLine1;
+	}
+	if (address.addressLine2.length) {
+        cardData[@"addressLine2"] = address.addressLine2;
+	}
+	if (address.city.length) {
+        cardData[@"addressCity"] = address.city;
+	}
+	if (address.state.length) {
+        cardData[@"addressState"] = address.state;
+    }
+	if (address.zip.length) {
+        cardData[@"addressZip"] = address.zip;
+	}
+	if (address.country.length) {
+        cardData[@"addressCountry"] = address.country;
+	}
     
     NSDictionary *tokenData = @{@"key": [NSString urlEncodedString:self.publicApiKey], @"card":cardData};
     
@@ -113,7 +136,6 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
     
     self.request.HTTPBody = jsonData;
     [self.request setURL:url];
-    
     
     [NSURLConnection sendAsynchronousRequest:self.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         

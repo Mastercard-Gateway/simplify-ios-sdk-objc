@@ -15,6 +15,7 @@
 @property (nonatomic, strong, readwrite) NSString *formattedExpirationDate;
 @property (nonatomic, strong, readwrite) NSString *cvcCode;
 @property (nonatomic, strong, readwrite) NSString *cardTypeString;
+@property (nonatomic, strong, readwrite) SIMAddress *address;
 @property (nonatomic, readwrite) int cvcLength;
 @property (nonatomic, readwrite) int cardNumberMinLength;
 @property (nonatomic, readwrite) int cardNumberMaxLength;
@@ -197,7 +198,7 @@
     NSError *error;
     SIMAPIManager *apiManager = [[SIMAPIManager alloc] initWithPublicApiKey:@"sbpb_OWNjNGE3MTQtYzA4NC00ODdmLTlkOWItYjk1OWMzMWQ0NDUy" error:&error];
     
-    [apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode completionHander:^(SIMCreditCardToken *cardToken, NSError *error) {
+    [apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address completionHander:^(SIMCreditCardToken *cardToken, NSError *error) {
         if (error) {
             NSLog(@"error:%@", error);
             [self.delegate paymentFailedWithError:error];

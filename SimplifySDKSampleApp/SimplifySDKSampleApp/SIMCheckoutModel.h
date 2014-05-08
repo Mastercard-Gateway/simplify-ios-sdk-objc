@@ -1,4 +1,5 @@
 #import <Simplify/SIMCardType.h>
+#import <Simplify/SIMAddress.h>
 @protocol SIMCheckoutModelDelegate
 
 - (void)paymentFailedWithError:(NSError *)error;
@@ -18,6 +19,7 @@
 @property (nonatomic, strong, readonly) NSString *formattedExpirationDate;
 @property (nonatomic, strong, readonly) NSString *cvcCode;
 @property (nonatomic, strong, readonly) NSString *cardTypeString;
+@property (nonatomic, strong, readonly) SIMAddress *address;
 @property (nonatomic, strong, readonly) SIMCardType *cardType;
 
 - (BOOL) isCheckoutPossible;

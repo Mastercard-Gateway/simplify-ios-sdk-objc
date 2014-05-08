@@ -1,3 +1,4 @@
+#import "SIMAddress.h"
 #import "SIMCreditCardToken.h"
 
 typedef enum {
@@ -17,5 +18,6 @@ typedef void (^CardTokenCompletionHandler)(SIMCreditCardToken *cardToken, NSErro
                                   expirationYear:(NSString *)expirationYear
                                       cardNumber:(NSString *)cardNumber
                                              cvc:(NSString *)cvc
+                                        address:(SIMAddress *)address
                                 completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler;
 @end
