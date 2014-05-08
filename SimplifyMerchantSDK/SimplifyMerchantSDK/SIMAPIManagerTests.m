@@ -2,14 +2,13 @@
 
 @interface SIMAPIManager (Test)
 
-- (id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **) error urlRequest:(NSMutableURLRequest *)request;
+@property (nonatomic) NSURL *currentAPIURL;
 
 @end
 
 @interface SIMAPIManagerTests : XCTestCase
 
 @property (nonatomic) SIMAPIManager *testSubject;
-@property (nonatomic) id mockURLRequest;
 
 @end
 
@@ -17,7 +16,6 @@
 
 - (void)setUp
 {
-    self.mockURLRequest = [OCMockObject mockForClass:NSMutableURLRequest.class];
     [super setUp];
 }
 
@@ -29,63 +27,56 @@
 - (void)testAPIManagerCanDetermineLiveMode {
     NSString *apiKey = @"lvpb_1234";
     NSError *error;
-    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error urlRequest:self.mockURLRequest];
+    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error];
 
+    NSURL *apiURL = [NSURL URLWithString:@"https://api.simplify.com/v1/api"];
+    
     XCTAssertNotNil(self.testSubject, @"");
     XCTAssertTrue(self.testSubject.isLiveMode, @"");
     XCTAssertNil(error, @"");
-    
+    XCTAssertEqualObjects(apiURL, self.testSubject.currentAPIURL, @"");
 }
 
 - (void)testAPIManagerCanDetermineSandboxMode {
     NSString *apiKey = @"sbpb_1234";
     NSError *error;
-    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error urlRequest:self.mockURLRequest];
+    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error];
+
+    NSURL *apiURL = [NSURL URLWithString:@"https://sandbox.simplify.com/v1/api"];
 
     XCTAssertNotNil(self.testSubject, @"");
     XCTAssertFalse(self.testSubject.isLiveMode, @"");
     XCTAssertNil(error, @"");
+    XCTAssertEqualObjects(apiURL, self.testSubject.currentAPIURL, @"");
+    
 }
 
 - (void)testAPIManagerReturnsNilAndErrorWhenAPIKeyIsInvalid {
     NSString *apiKey = @"invalid1234";
     NSError *error;
-    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error urlRequest:self.mockURLRequest];
+    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error];
     
     XCTAssertNil(self.testSubject, @"");
     XCTAssertNotNil(error, @"");
     XCTAssertEqual(error.code, SIMAPIManagerErrorCodeInvalidAPIKey, @"");
 }
 
-//- (void)testAPIManagerAcceptsNilErrorOnSuccess {
-//    NSString *apiKey = @"sbpb_1234";
-//    NSError *error;
-//    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:nil urlRequest:self.mockURLRequest];
-//    
-//    XCTAssertNil(self.testSubject, @"");
-//    XCTAssertNil(error, @"");
-//}
-//
-//- (void)testAPIManagerAcceptsNilErrorOnFailureAndNilObject {
-//    NSString *apiKey = @"invalid1234";
-//    NSError *error;
-//    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:nil urlRequest:self.mockURLRequest];
-//    
-//    XCTAssertNil(self.testSubject, @"");
-//    XCTAssertNil(error, @"");
-//}
-//
-//
-//- (void)testAPIManagerSendsRequestsToTheCorrectServiceHost {
-//    NSString *apiKey = @"sbpb_1234";
-////    NSString *endpoint = @"testendpoint";
-//    NSError *error;
-//    
-//    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error urlRequest:self.mockURLRequest];
-//    
-//    XCTAssertNil(self.testSubject, @"");
-//    XCTAssertNotNil(error, @"");
-//    XCTAssertEqual(error.code, SIMAPIManagerErrorCodeInvalidAPIKey, @"");
-//}
+- (void)testAPIManagerAcceptsNilErrorOnSuccess {
+    NSString *apiKey = @"sbpb_1234";
+    NSError *error;
+    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:nil];
+    
+    XCTAssertNotNil(self.testSubject, @"");
+    XCTAssertNil(error, @"");
+}
+
+- (void)testAPIManagerAcceptsNilErrorOnFailureAndNilObject {
+    NSString *apiKey = @"invalid1234";
+    NSError *error;
+    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:nil];
+    
+    XCTAssertNil(self.testSubject, @"");
+    XCTAssertNil(error, @"");
+}
 
 @end

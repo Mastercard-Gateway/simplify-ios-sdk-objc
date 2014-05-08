@@ -194,7 +194,8 @@
 }
 
 - (void)retrieveToken {
-    SIMAPIManager *apiManager = [[SIMAPIManager alloc] initWithPublicApiKey:@"sbpb_OWNjNGE3MTQtYzA4NC00ODdmLTlkOWItYjk1OWMzMWQ0NDUy" error:nil];
+    NSError *error;
+    SIMAPIManager *apiManager = [[SIMAPIManager alloc] initWithPublicApiKey:@"sbpb_OWNjNGE3MTQtYzA4NC00ODdmLTlkOWItYjk1OWMzMWQ0NDUy" error:&error];
     
     [apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode completionHander:^(NSString *cardToken, NSError *error) {
         if (error) {

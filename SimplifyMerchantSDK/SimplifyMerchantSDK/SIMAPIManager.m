@@ -27,31 +27,24 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
 
 @implementation SIMAPIManager
 
-- (id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **) error{
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    request.HTTPMethod = @"POST";
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
-    
-    self.request = request;
-    return [self initWithPublicApiKey:publicApiKey error:error urlRequest:request];
-}
-
-- (id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **)error urlRequest:(NSMutableURLRequest *)request{
+- (id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **)error{
     self = [super init];
     
     if (self) {
         
-        self.isLiveMode = [self isAPIKeyLiveMode:publicApiKey error:error];
+        NSError *modeError;
+        self.isLiveMode = [self isAPIKeyLiveMode:publicApiKey error:&modeError];
         
-        if (error) {
+        if (modeError) {
+            if(error != NULL) *error = modeError;
             return nil;
         } else {
             self.publicApiKey = publicApiKey;
             NSString *apiURLString = (self.isLiveMode) ? prodAPILiveURL : prodAPISandboxURL;
             self.currentAPIURL = [NSURL URLWithString:apiURLString];
+            [self.request setURL:self.currentAPIURL];
         }
+        
         
     }
 
@@ -64,25 +57,30 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
     
     if ([apiKey hasPrefix:SIMAPIManagerPrefixLive]) {
         isLive = YES;
-        error = nil;
     } else if ([apiKey hasPrefix:SIMAPIManagerPrefixSandbox]){
         isLive = NO;
-        error = nil;
     } else {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"Could not create API Manager: Invalid API Key."};
-        *error = [NSError errorWithDomain:SIMAPIManagerErrorDomain code:SIMAPIManagerErrorCodeInvalidAPIKey userInfo:userInfo];
+        if(error != NULL) *error = [NSError errorWithDomain:SIMAPIManagerErrorDomain code:SIMAPIManagerErrorCodeInvalidAPIKey userInfo:userInfo];
     }
     
     return isLive;
     
 }
 
-
 - (void)createCardTokenWithExpirationMonth:(NSString *)expirationMonth
                                   expirationYear:(NSString *)expirationYear
                                       cardNumber:(NSString *)cardNumber
                                              cvc:(NSString *)cvc
                                 completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler {
+
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    request.HTTPMethod = @"POST";
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
+    
+    self.request = request;
 
     NSError *jsonSerializationError;
 	NSURL *url = [self.currentAPIURL URLByAppendingPathComponent:@"payment/cardToken"];
