@@ -3,3 +3,6 @@
 #import <Simplify/SIMCardType.h>
 #import <Simplify/SIMDigitVerifier.h>
 #import <Simplify/SIMAPIManager.h>
+
+#define SIMPublicAPIKeyLive @""
+#define SIMPublicAPIKeySandbox @""
