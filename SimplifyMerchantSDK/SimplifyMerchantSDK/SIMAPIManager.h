@@ -1,3 +1,5 @@
+#import "SIMCreditCardToken.h"
+
 typedef enum {
     SIMAPIManagerErrorCodeCardTokenResponseError,
     SIMAPIManagerErrorCodeInvalidAPIKey
@@ -5,7 +7,7 @@ typedef enum {
 
 @interface SIMAPIManager : NSObject
 
-typedef void (^CardTokenCompletionHandler)(NSString *cardToken, NSError *error);
+typedef void (^CardTokenCompletionHandler)(SIMCreditCardToken *cardToken, NSError *error);
 
 @property (nonatomic, readonly) BOOL isLiveMode;
 

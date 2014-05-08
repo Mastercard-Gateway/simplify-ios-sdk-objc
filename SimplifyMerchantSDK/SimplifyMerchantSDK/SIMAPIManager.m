@@ -91,7 +91,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
         
         SimplifyApiCompletionHandler apiCompletionHander = ^(NSDictionary *jsonResponse, NSError *error) {
             
-            cardTokenCompletionHandler([self cardTokenFromDictionary:jsonResponse], nil);
+            cardTokenCompletionHandler([SIMCreditCardToken cardTokenFromDictionary:jsonResponse], nil);
         };
         
         [self performRequestWithData:jsonData url:url completionHander:apiCompletionHander];
@@ -100,10 +100,6 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
         cardTokenCompletionHandler(nil, jsonSerializationError);
     }
     
-}
-
-- (NSString *)cardTokenFromDictionary:(NSDictionary *)jsonResponse {
-    return jsonResponse[@"id"];
 }
 
 - (void)performRequestWithData:(NSData *)jsonData url:(NSURL *)url completionHander:(SimplifyApiCompletionHandler)apiCompletionHandler{
