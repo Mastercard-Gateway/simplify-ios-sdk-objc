@@ -115,7 +115,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
         
         SimplifyApiCompletionHandler apiCompletionHander = ^(NSDictionary *jsonResponse, NSError *error) {
             
-            cardTokenCompletionHandler([SIMCreditCardToken cardTokenFromDictionary:jsonResponse], nil);
+            cardTokenCompletionHandler([SIMCreditCardToken cardTokenFromDictionary:jsonResponse], error);
         };
         
         [self performRequestWithData:jsonData url:url completionHander:apiCompletionHander];
