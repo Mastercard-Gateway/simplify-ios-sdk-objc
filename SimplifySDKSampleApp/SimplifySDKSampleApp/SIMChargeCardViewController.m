@@ -51,7 +51,6 @@
 }
 
 -(void)buttonSetUp {
-    [self.chargeCardButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateDisabled];
     [self buttonsEnabled];
 }
 
