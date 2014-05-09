@@ -14,7 +14,7 @@
 
 @implementation SIMAddress
 
-- (instancetype)initWithName:(NSString *)name addressLine1:(NSString *)addressLine1 addressLine2:(NSString *)addressLine2 city:(NSString *)city state:(NSString *)state zip:(NSString *)zip {
+-(instancetype)initWithName:(NSString *)name addressLine1:(NSString *)addressLine1 addressLine2:(NSString *)addressLine2 city:(NSString *)city state:(NSString *)state zip:(NSString *)zip {
     
     self = [super init];
 	if (self) {

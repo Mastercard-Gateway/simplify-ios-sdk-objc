@@ -12,9 +12,9 @@
 @property (nonatomic, readonly) NSNumber *expYear;
 @property (nonatomic, readonly) NSDate *dateCreated;
 
-- (id)initWithToken:(NSString *)token tokenId:(NSString *)tokenId name:(NSString *)name type:(NSString *)type last4:(NSNumber *)last4
+-(id)initWithToken:(NSString *)token tokenId:(NSString *)tokenId name:(NSString *)name type:(NSString *)type last4:(NSNumber *)last4
 address:(SIMAddress *)address expMonth:(NSNumber *)expMonth expYear:(NSNumber *)expYear dateCreated:(NSDate *)dateCreated;
 
-+ (SIMCreditCardToken *)cardTokenFromDictionary:(NSDictionary *)dictionary;
++(SIMCreditCardToken *)cardTokenFromDictionary:(NSDictionary *)dictionary;
 
 @end

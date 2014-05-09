@@ -20,12 +20,12 @@
 @property (nonatomic, strong, readonly) SIMAddress *address;
 @property (nonatomic, strong, readonly) SIMCardType *cardType;
 
--(BOOL) isCardChargePossible;
--(BOOL) isCardNumberValid;
--(BOOL) isExpirationDateValid;
--(BOOL) isCVCCodeValid;
--(void) updateCardNumberWithString:(NSString *)newString;
--(void) updateExpirationDateWithString:(NSString *)newString;
--(void) updateCVCNumberWithString:(NSString *)newString;
--(void) retrieveToken;
+-(BOOL)isCardChargePossible;
+-(BOOL)isCardNumberValid;
+-(BOOL)isExpirationDateValid;
+-(BOOL)isCVCCodeValid;
+-(void)updateCardNumberWithString:(NSString *)newString;
+-(void)updateExpirationDateWithString:(NSString *)newString;
+-(void)updateCVCNumberWithString:(NSString *)newString;
+-(void)retrieveToken;
 @end

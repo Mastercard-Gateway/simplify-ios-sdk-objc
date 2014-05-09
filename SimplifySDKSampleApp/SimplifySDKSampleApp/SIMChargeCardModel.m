@@ -21,7 +21,7 @@
 
 @implementation SIMChargeCardModel
 
--(instancetype) init {
+-(instancetype)init {
     if (self) {
         self.cardNumber = @"";
         self.expirationDate = @"";
@@ -76,7 +76,7 @@
     return [expirationDate compare:currentDate] == NSOrderedDescending || [expirationDate compare:currentDate] == NSOrderedSame;
 }
 
--(void) updateCardNumberWithString:(NSString *)newString {
+-(void)updateCardNumberWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
 
     if (updatedString.length <= self.cardNumberMaxLength) {
@@ -84,7 +84,7 @@
     }
 }
 
--(void) updateExpirationDateWithString:(NSString *)newString {
+-(void)updateExpirationDateWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     if (updatedString.length > 0) {
         int firstDigit = (int)([updatedString characterAtIndex:0] - '0');
@@ -107,7 +107,7 @@
 }
 
 
--(void) updateCVCNumberWithString:(NSString *)newString {
+-(void)updateCVCNumberWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     
     if (updatedString.length <= self.cvcLength) {
@@ -204,6 +204,7 @@
                                                        timeoutInterval:10.0];
     [request setHTTPMethod:@"POST"];
     NSString *postString = @"simplifyToken=";
+    
     postString = [postString stringByAppendingString:cardToken];
     
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];

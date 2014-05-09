@@ -16,7 +16,7 @@
 
 @implementation SIMCreditCardToken
 
-- (instancetype)initWithToken:(NSString *)token tokenId:(NSString *)tokenId name:(NSString *)name type:(NSString *)type last4:(NSNumber *)last4
+-(instancetype)initWithToken:(NSString *)token tokenId:(NSString *)tokenId name:(NSString *)name type:(NSString *)type last4:(NSNumber *)last4
 address:(SIMAddress *)address expMonth:(NSNumber *)expMonth expYear:(NSNumber *)expYear dateCreated:(NSDate *)dateCreated {
     
     self = [super init];
@@ -38,7 +38,7 @@ address:(SIMAddress *)address expMonth:(NSNumber *)expMonth expYear:(NSNumber *)
 	return self;
 }
 
-+ (SIMCreditCardToken *)cardTokenFromDictionary:(NSDictionary *)dictionary {
++(SIMCreditCardToken *)cardTokenFromDictionary:(NSDictionary *)dictionary {
     
 	SIMCreditCardToken *cardToken = [[SIMCreditCardToken alloc] init];
 	cardToken.token = dictionary[@"id"];

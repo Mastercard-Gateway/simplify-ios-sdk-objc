@@ -5,19 +5,19 @@
 
 @implementation SIMLuhnValidatorTests
 
-- (void)setUp
+-(void)setUp
 {
     [super setUp];
     self.testLuhnValidator = [SIMLuhnValidator new];
 }
 
-- (void)tearDown
+-(void)tearDown
 {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-- (void)testLuhnValidatorReturnsYesForValidCards
+-(void)testLuhnValidatorReturnsYesForValidCards
 {
     XCTAssertTrue([self.testLuhnValidator luhnValidateString:@"49927398716"], "valid");
     XCTAssertTrue([self.testLuhnValidator luhnValidateString:@"1234567812345670"], "valid");
@@ -26,7 +26,7 @@
     
 }
 
-- (void)testLuhnValidatorReturnsNoForInvalidCards
+-(void)testLuhnValidatorReturnsNoForInvalidCards
 {
     XCTAssertFalse([self.testLuhnValidator luhnValidateString:@"49927398717"], "invalid");
     XCTAssertFalse([self.testLuhnValidator luhnValidateString:@"1234567812345678"], "invalid");

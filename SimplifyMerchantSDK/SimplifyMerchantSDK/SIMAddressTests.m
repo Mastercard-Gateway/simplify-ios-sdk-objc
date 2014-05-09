@@ -5,15 +5,15 @@
 
 @implementation SIMAddressTests
 
-- (void)setUp {
+-(void)setUp {
 	[super setUp];
 }
 
-- (void)tearDown {
+-(void)tearDown {
 	[super tearDown];
 }
 
-- (void)testThatAddressCanBeCreated {
+-(void)testThatAddressCanBeCreated {
 	self.testSubject = [[SIMAddress alloc] initWithName:@"Sam Simple" addressLine1:@"2200 Mastercard Blvd" addressLine2:@"Area 1" city:@"O'Fallon" state:@"MO" zip:@"63368"];
     
 	XCTAssertTrue([self.testSubject.name isEqualToString:@"Sam Simple"]);
@@ -25,7 +25,7 @@
 	XCTAssertTrue([self.testSubject.country isEqualToString:@"US"]);
 }
 
-- (void)testThatAddressFieldsWithNilAreSafelyConvertedToEmptyStrings {
+-(void)testThatAddressFieldsWithNilAreSafelyConvertedToEmptyStrings {
 
     self.testSubject = [[SIMAddress alloc] initWithName:nil addressLine1:nil addressLine2:nil city:nil state:nil zip:nil];
 

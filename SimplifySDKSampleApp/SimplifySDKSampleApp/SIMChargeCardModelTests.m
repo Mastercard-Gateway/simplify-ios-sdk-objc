@@ -28,7 +28,7 @@
 }
 
 //Tests for format
--(void) testFormattedExpirationDateFormatsCorrectlyWhenStringIsOneDigitLong {
+-(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsOneDigitLong {
     NSString *expectedExpirationDate = @"2";
     
     [self.testCheckoutModel updateExpirationDateWithString:@"2"];
@@ -40,7 +40,7 @@
     XCTAssertEqualObjects(expectedExpirationDate, actualExpirationMonth, "one digit");
 }
 
--(void) testFormattedExpirationDateFormatsCorrectlyWhenStringIsTwoDigitsLong {
+-(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsTwoDigitsLong {
     NSString *expectedExpirationDate = @"2/1";
     
     [self.testCheckoutModel updateExpirationDateWithString:@"21"];
@@ -54,7 +54,7 @@
     XCTAssertEqualObjects(@"1", actualExpirationYear, "one digit");
 }
 
--(void) testFormattedExpirationDateFormatsCorrectlyWhenStringIsThreeDigitsLong {
+-(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsThreeDigitsLong {
     NSString *expectedExpirationDate = @"2/24";
     
     [self.testCheckoutModel updateExpirationDateWithString:@"224"];
@@ -68,7 +68,7 @@
     XCTAssertEqualObjects(@"24", actualExpirationYear, "two digits");
 }
 
--(void) testFormattedExpirationDateFormatsCorrectlyWhenStringIsFourDigitsLong {
+-(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsFourDigitsLong {
     NSString *expectedExpirationDate = @"12/14";
     
     [self.testCheckoutModel updateExpirationDateWithString:@"1214"];
@@ -82,7 +82,7 @@
     XCTAssertEqualObjects(@"14", actualExpirationYear, "two digits");
 }
 
--(void) testFormatttedCreditCardStringFormatsCorrectlyWith4NumbersWhenNotTypeAmex {
+-(void)testFormatttedCreditCardStringFormatsCorrectlyWith4NumbersWhenNotTypeAmex {
     NSString *expectedCreditCardString = @"1234";
     
     [self.testCheckoutModel updateCardNumberWithString:@"1234"];
@@ -92,7 +92,7 @@
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "four digits");
 }
 
--(void) testFormatttedCreditCardStringFormatsCorrectlyWith5NumbersWhenNotTypeAmex {
+-(void)testFormatttedCreditCardStringFormatsCorrectlyWith5NumbersWhenNotTypeAmex {
     NSString *expectedCreditCardString = @"1234 5";
     
     [self.testCheckoutModel updateCardNumberWithString:@"12345"];
@@ -102,7 +102,7 @@
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "five digits");
 }
 
--(void) testFormatttedCreditCardStringFormatsCorrectlyWith11NumbersWhenNotTypeAmex {
+-(void)testFormatttedCreditCardStringFormatsCorrectlyWith11NumbersWhenNotTypeAmex {
     NSString *expectedCreditCardString = @"1234 5678 901";
     
     [self.testCheckoutModel updateCardNumberWithString:@"12345678901"];
@@ -112,7 +112,7 @@
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "11 digits");
 }
 
--(void) testFormatttedCreditCardStringFormatsCorrectlyWith16NumbersWhenNotTypeAmex {
+-(void)testFormatttedCreditCardStringFormatsCorrectlyWith16NumbersWhenNotTypeAmex {
     NSString *expectedCreditCardString = @"1234 5678 9012 3456";
     
     [self.testCheckoutModel updateCardNumberWithString:@"1234567890123456"];
@@ -122,7 +122,7 @@
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "16 digits");
 }
 
--(void) testFormatttedCreditCardStringFormatsCorrectlyWith4NumbersWhenTypeAmex {
+-(void)testFormatttedCreditCardStringFormatsCorrectlyWith4NumbersWhenTypeAmex {
     NSString *expectedCreditCardString = @"3434";
     
     [self.testCheckoutModel updateCardNumberWithString:@"3434"];
@@ -132,7 +132,7 @@
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "four digits");
 }
 
--(void) testFormatttedCreditCardStringFormatsCorrectlyWith5NumbersWhenTypeAmex {
+-(void)testFormatttedCreditCardStringFormatsCorrectlyWith5NumbersWhenTypeAmex {
     NSString *expectedCreditCardString = @"3434 5";
     
     [self.testCheckoutModel updateCardNumberWithString:@"34345"];
@@ -142,7 +142,7 @@
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "five digits");
 }
 
--(void) testFormatttedCreditCardStringFormatsCorrectlyWith11NumbersWhenTypeAmex {
+-(void)testFormatttedCreditCardStringFormatsCorrectlyWith11NumbersWhenTypeAmex {
     NSString *expectedCreditCardString = @"3434 567890 1";
     
     [self.testCheckoutModel updateCardNumberWithString:@"34345678901"];

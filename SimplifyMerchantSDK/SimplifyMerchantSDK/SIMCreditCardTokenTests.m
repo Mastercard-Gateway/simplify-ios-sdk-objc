@@ -6,7 +6,7 @@
 
 @implementation SIMCardTokenTests
 
-- (void)testThatSimCardTokenCanBeCreated {
+-(void)testThatSimCardTokenCanBeCreated {
     
     id mockAddress = [OCMockObject niceMockForClass:SIMAddress.class];
     
@@ -30,7 +30,7 @@
     
 }
 
-- (void)testThatSimCardTokenCanBeCreatedWithNilValuesReturnsNilSafeValues {
+-(void)testThatSimCardTokenCanBeCreatedWithNilValuesReturnsNilSafeValues {
     
     self.testSubject = [[SIMCreditCardToken alloc] initWithToken:nil tokenId:nil name:nil type:nil last4:nil address:nil expMonth:nil expYear:nil dateCreated:nil];
     
@@ -43,7 +43,7 @@
     
 }
 
-- (void)testFromDictionary_BuildsObjectFromDictionaryCorrectly {
+-(void)testFromDictionary_BuildsObjectFromDictionaryCorrectly {
 	NSDictionary *cardDictionary = @{
                                      @"name" : @"MasterCard Customer",
                                      @"type" : @"cardType",

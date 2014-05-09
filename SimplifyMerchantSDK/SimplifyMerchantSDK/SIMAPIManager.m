@@ -31,7 +31,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
 
 @implementation SIMAPIManager
 
-- (id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **)error{
+-(id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **)error{
     self = [super init];
     
     if (self) {
@@ -72,7 +72,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
     
 }
 
-- (void)createCardTokenWithExpirationMonth:(NSString *)expirationMonth expirationYear:(NSString *)expirationYear
+-(void)createCardTokenWithExpirationMonth:(NSString *)expirationMonth expirationYear:(NSString *)expirationYear
                                 cardNumber:(NSString *)cardNumber cvc:(NSString *)cvc address:(SIMAddress *)address completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler {
 
     NSError *jsonSerializationError;
@@ -126,7 +126,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
     
 }
 
-- (void)performRequestWithData:(NSData *)jsonData url:(NSURL *)url completionHander:(SimplifyApiCompletionHandler)apiCompletionHandler{
+-(void)performRequestWithData:(NSData *)jsonData url:(NSURL *)url completionHander:(SimplifyApiCompletionHandler)apiCompletionHandler{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     request.HTTPMethod = @"POST";
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

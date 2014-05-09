@@ -14,7 +14,7 @@
 
 @implementation SIMAPIManagerTests
 
-- (void)setUp
+-(void)setUp
 {
     [super setUp];
 }
@@ -24,7 +24,7 @@
     [super tearDown];
 }
 
-- (void)testAPIManagerCanDetermineLiveMode {
+-(void)testAPIManagerCanDetermineLiveMode {
     NSString *apiKey = @"lvpb_1234";
     NSError *error;
     self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error];
@@ -37,7 +37,7 @@
     XCTAssertEqualObjects(apiURL, self.testSubject.currentAPIURL, @"");
 }
 
-- (void)testAPIManagerCanDetermineSandboxMode {
+-(void)testAPIManagerCanDetermineSandboxMode {
     NSString *apiKey = @"sbpb_1234";
     NSError *error;
     self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error];
@@ -51,7 +51,7 @@
     
 }
 
-- (void)testAPIManagerReturnsNilAndErrorWhenAPIKeyIsInvalid {
+-(void)testAPIManagerReturnsNilAndErrorWhenAPIKeyIsInvalid {
     NSString *apiKey = @"invalid1234";
     NSError *error;
     self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error];
@@ -61,7 +61,7 @@
     XCTAssertEqual(error.code, SIMAPIManagerErrorCodeInvalidAPIKey, @"");
 }
 
-- (void)testAPIManagerAcceptsNilErrorOnSuccess {
+-(void)testAPIManagerAcceptsNilErrorOnSuccess {
     NSString *apiKey = @"sbpb_1234";
     NSError *error;
     self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:nil];
@@ -70,7 +70,7 @@
     XCTAssertNil(error, @"");
 }
 
-- (void)testAPIManagerAcceptsNilErrorOnFailureAndNilObject {
+-(void)testAPIManagerAcceptsNilErrorOnFailureAndNilObject {
     NSString *apiKey = @"invalid1234";
     NSError *error;
     self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:nil];

@@ -9,7 +9,7 @@
 
 @implementation SIMCardType
 
-- (id)init {
+-(id)init {
 	if (self = [super init]) {
         self.cardTypeString = @"blank";
         self.CVCLength = 4;
