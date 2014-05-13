@@ -2,7 +2,7 @@
 
 @protocol SIMChargeCardViewControllerDelegate
 
--(void)checkoutCancelled;
+-(void)chargeCardCancelled;
 -(void)requestedCreditCardToken:(SIMCreditCardToken *)token withError:(NSError *)error;
 -(void)requestedPaymentProcess:(NSString *)paymentID withError:(NSError *)error;
 

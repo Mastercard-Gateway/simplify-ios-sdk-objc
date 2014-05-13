@@ -212,7 +212,7 @@
 				7EA88529191C74B200C9F18D /* btn-grey@2x.png */,
 				7EA8852A191C74B200C9F18D /* btn-orange.png */,
 				7EA8852B191C74B200C9F18D /* btn-orange@2x.png */,
-				7ED9EA2E191818110082C2C3 /* Checkout */,
+				7ED9EA2E191818110082C2C3 /* Charge Card */,
 				7ED9EA011917E2930082C2C3 /* SIMAppDelegate.h */,
 				7ED9EA021917E2930082C2C3 /* SIMAppDelegate.m */,
 				7ED9EA041917E2930082C2C3 /* Images.xcassets */,
@@ -251,7 +251,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7ED9EA2E191818110082C2C3 /* Checkout */ = {
+		7ED9EA2E191818110082C2C3 /* Charge Card */ = {
 			isa = PBXGroup;
 			children = (
 				7ED9EA5C191820880082C2C3 /* SIMChargeCardModelTests.m */,
@@ -260,7 +260,7 @@
 				7ED9EA58191820820082C2C3 /* SIMChargeCardViewController.h */,
 				7ED9EA59191820820082C2C3 /* SIMChargeCardViewController.m */,
 			);
-			name = Checkout;
+			name = "Charge Card";
 			path = ..;
 			sourceTree = "<group>";
 		};
