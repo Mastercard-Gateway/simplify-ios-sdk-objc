@@ -16,6 +16,18 @@
     [super tearDown];
 }
 
+-(void)testIfCardNumberHasNonDigitsThenReturnsUnknownCardType {
+    NSString *unknown = @"blank";
+    int cvcLength = 4;
+    int minCardLength = 13;
+    int maxCardLength = 19;
+    SIMCardType *testCardType  = [SIMCardType cardTypeFromCardNumberString:@"34asdad"];
+	XCTAssertEqualObjects(unknown, testCardType.cardTypeString, "unknown");
+    XCTAssertEqual(cvcLength, testCardType.CVCLength, "cvc");
+    XCTAssertEqual(minCardLength, testCardType.minCardLength, "min card length");
+    XCTAssertEqual(maxCardLength, testCardType.maxCardLength, "max card length");
+}
+
 -(void)testAmexRangeReturnsAmex {
     NSString *americanExpress = @"amex";
     int cvcLength = 4;

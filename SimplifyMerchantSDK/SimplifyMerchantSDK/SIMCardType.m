@@ -21,37 +21,45 @@
 
 +(instancetype)cardTypeFromCardNumberString:(NSString *)cardNumber {
     SIMCardType *cardType = [SIMCardType new];
+    NSString *cardNumberString = [[cardNumber componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     cardType.CVCLength = 3;
-    if ([self hasPrefixFromArray:@[@"34", @"37"] inString:cardNumber]) {
-        cardType.cardTypeString =  @"amex";
-        cardType.CVCLength = 4;
-        cardType.minCardLength = 15;
-        cardType.maxCardLength = 15;
-    } else if ([self hasPrefixFromArray:@[@"622", @"624", @"625", @"626", @"628"] inString:cardNumber]) {
-        cardType.cardTypeString =  @"china-union";
-        cardType.minCardLength = 16;
-        cardType.maxCardLength = 19;
-    } else if ([self hasPrefixFromArray:@[@"300", @"301", @"302", @"303", @"304", @"305", @"309", @"36", @"38", @"39"] inString:cardNumber]) {
-        cardType.cardTypeString =  @"dinersclub";
-        cardType.minCardLength = 14;
-        cardType.maxCardLength = 16;
-	} else if ([self hasPrefixFromArray:@[@"65", @"6011", @"644", @"645", @"646", @"647", @"648", @"649"] inString:cardNumber]) {
-        cardType.cardTypeString =  @"discover";
-        cardType.minCardLength = 16;
-        cardType.maxCardLength = 16;
-    } else if ([self hasPrefixFromArray:@[@"3528", @"3529", @"353", @"354", @"355", @"356", @"357", @"358"] inString:cardNumber]) {
-        cardType.cardTypeString =  @"jcb";
-        cardType.minCardLength = 16;
-        cardType.maxCardLength = 16;
-	} else if ([self hasPrefixFromArray:@[@"51", @"52", @"53", @"54", @"55", @"67"] inString:cardNumber]) {
-		cardType.cardTypeString =  @"mastercard";
-        cardType.minCardLength = 16;
-        cardType.maxCardLength = 16;
-	} else if ([cardNumber hasPrefix:@"4"]) {
-		cardType.cardTypeString =  @"visa";
-        cardType.minCardLength = 13;
-        cardType.maxCardLength = 19;
-    } else {
+    if ([cardNumber isEqualToString:cardNumberString]) {
+        if ([self hasPrefixFromArray:@[@"34", @"37"] inString:cardNumberString]) {
+            cardType.cardTypeString =  @"amex";
+            cardType.CVCLength = 4;
+            cardType.minCardLength = 15;
+            cardType.maxCardLength = 15;
+        } else if ([self hasPrefixFromArray:@[@"622", @"624", @"625", @"626", @"628"] inString:cardNumberString]) {
+            cardType.cardTypeString =  @"china-union";
+            cardType.minCardLength = 16;
+            cardType.maxCardLength = 19;
+        } else if ([self hasPrefixFromArray:@[@"300", @"301", @"302", @"303", @"304", @"305", @"309", @"36", @"38", @"39"] inString:cardNumberString]) {
+            cardType.cardTypeString =  @"dinersclub";
+            cardType.minCardLength = 14;
+            cardType.maxCardLength = 16;
+        } else if ([self hasPrefixFromArray:@[@"65", @"6011", @"644", @"645", @"646", @"647", @"648", @"649"] inString:cardNumberString]) {
+            cardType.cardTypeString =  @"discover";
+            cardType.minCardLength = 16;
+            cardType.maxCardLength = 16;
+        } else if ([self hasPrefixFromArray:@[@"3528", @"3529", @"353", @"354", @"355", @"356", @"357", @"358"] inString:cardNumberString]) {
+            cardType.cardTypeString =  @"jcb";
+            cardType.minCardLength = 16;
+            cardType.maxCardLength = 16;
+        } else if ([self hasPrefixFromArray:@[@"51", @"52", @"53", @"54", @"55", @"67"] inString:cardNumberString]) {
+            cardType.cardTypeString =  @"mastercard";
+            cardType.minCardLength = 16;
+            cardType.maxCardLength = 16;
+        } else if ([cardNumberString hasPrefix:@"4"]) {
+            cardType.cardTypeString =  @"visa";
+            cardType.minCardLength = 13;
+            cardType.maxCardLength = 19;
+        } else {
+            cardType.cardTypeString = @"blank";
+            cardType.CVCLength = 4;
+            cardType.minCardLength = 13;
+            cardType.maxCardLength = 19;
+        }
+    }else {
         cardType.cardTypeString = @"blank";
         cardType.CVCLength = 4;
         cardType.minCardLength = 13;
