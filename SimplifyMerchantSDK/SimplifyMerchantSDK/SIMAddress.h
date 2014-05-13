@@ -18,7 +18,7 @@
  @param addressLine2 is the second line of the address.  Should have a maximum length of 255
  @param city is the city of the card holder.  Should be min length: 2, max length: 50
  @param state is the state code (USPS code) of residence of the cardholder.  Should be only 2 characters
- @param zip is the posta code of the cardholder.  The postal code size should between 5 and 9 in length and only contain numbers. 
+ @param zip is the postal code of the cardholder.  The postal code size should between 5 and 9 in length and only contain numbers. 
  @return an instnace of SIMAddress with all of the input information
  */
 -(instancetype)initWithName:(NSString *)name addressLine1:(NSString *)addressLine1 addressLine2:(NSString *)addressLine2 city:(NSString *)city state:(NSString *)state zip:(NSString *)zip;
