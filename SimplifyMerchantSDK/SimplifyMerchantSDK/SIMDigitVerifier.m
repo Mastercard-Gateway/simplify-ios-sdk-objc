@@ -2,10 +2,10 @@
 
 @implementation SIMDigitVerifier
 
--(BOOL)isDigit:(NSString *)potentialDigit {
+-(BOOL)isDigit:(NSString *)potentialStringOfDigits {
     BOOL isDigit = NO;
     NSCharacterSet* notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-    if ([potentialDigit rangeOfCharacterFromSet:notDigits].location == NSNotFound) {
+    if ([potentialStringOfDigits rangeOfCharacterFromSet:notDigits].location == NSNotFound) {
         isDigit = YES;
     }
     return isDigit;
