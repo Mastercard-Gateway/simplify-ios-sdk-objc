@@ -202,17 +202,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		495EEEC5191B36D800AEC402 /* Models */ = {
+		495EEEC5191B36D800AEC402 /* Credit Card Token */ = {
 			isa = PBXGroup;
 			children = (
-				495EEEC6191B372900AEC402 /* SIMAddress.h */,
-				495EEEC7191B372900AEC402 /* SIMAddress.m */,
-				495EEECE191B4CE600AEC402 /* SIMAddressTests.m */,
 				495EEECA191B387200AEC402 /* SIMCreditCardToken.h */,
 				495EEECB191B387200AEC402 /* SIMCreditCardToken.m */,
 				495EEECF191B4CE600AEC402 /* SIMCreditCardTokenTests.m */,
 			);
-			name = Models;
+			name = "Credit Card Token";
 			sourceTree = "<group>";
 		};
 		49748F56191849C600738BC9 = {
@@ -250,17 +247,15 @@
 		49748F64191849C600738BC9 /* SimplifyMerchantSDK */ = {
 			isa = PBXGroup;
 			children = (
-				4977D054191A9CB800AC621F /* Card Identification */,
 				49748FA319188CCD00738BC9 /* Common */,
 				4977D055191A9D2A00AC621F /* Digit Verification */,
+				4977D054191A9CB800AC621F /* Card Identification */,
 				4977D053191A9C9000AC621F /* Luhn Validator */,
-				495EEEC5191B36D800AEC402 /* Models */,
+				7EF161BA19229EF9008F805A /* Address */,
+				495EEEC5191B36D800AEC402 /* Credit Card Token */,
+				7EF161B819229EA8008F805A /* API Manager */,
+				7EF161B919229EBB008F805A /* SDK Helper */,
 				49748F9B191872A100738BC9 /* Simplify.h */,
-				4977D07C191ABA3500AC621F /* SIMSDKHelper.h */,
-				4977D07D191ABA3500AC621F /* SIMSDKHelper.m */,
-				49748FAA191927E600738BC9 /* SIMAPIManagerTests.m */,
-				49748FA619188D2C00738BC9 /* SIMAPIManager.h */,
-				49748FA719188D2C00738BC9 /* SIMAPIManager.m */,
 				49748F65191849C600738BC9 /* Supporting Files */,
 			);
 			path = SimplifyMerchantSDK;
@@ -376,6 +371,35 @@
 				4977D049191A9C6F00AC621F /* SIMDigitVerifierTests.m */,
 			);
 			name = "Digit Verification";
+			sourceTree = "<group>";
+		};
+		7EF161B819229EA8008F805A /* API Manager */ = {
+			isa = PBXGroup;
+			children = (
+				49748FAA191927E600738BC9 /* SIMAPIManagerTests.m */,
+				49748FA619188D2C00738BC9 /* SIMAPIManager.h */,
+				49748FA719188D2C00738BC9 /* SIMAPIManager.m */,
+			);
+			name = "API Manager";
+			sourceTree = "<group>";
+		};
+		7EF161B919229EBB008F805A /* SDK Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4977D07C191ABA3500AC621F /* SIMSDKHelper.h */,
+				4977D07D191ABA3500AC621F /* SIMSDKHelper.m */,
+			);
+			name = "SDK Helper";
+			sourceTree = "<group>";
+		};
+		7EF161BA19229EF9008F805A /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				495EEEC6191B372900AEC402 /* SIMAddress.h */,
+				495EEEC7191B372900AEC402 /* SIMAddress.m */,
+				495EEECE191B4CE600AEC402 /* SIMAddressTests.m */,
+			);
+			name = Address;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
