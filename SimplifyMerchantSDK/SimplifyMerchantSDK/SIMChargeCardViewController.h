@@ -14,6 +14,8 @@
  */
 @interface SIMChargeCardViewController : UIViewController
 
+-(instancetype)initWithApiKey:(NSString *)apiKey;
+
 @property (nonatomic, weak) id <SIMChargeCardViewControllerDelegate> delegate; /**< Delegate for SIMChargeCardModelDelegate */
 
 @end

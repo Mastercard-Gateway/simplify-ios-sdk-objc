@@ -1,8 +1,9 @@
 #import "SIMAppDelegate.h"
 #import <Simplify/Simplify.h>
 
-#define SIMPublicAPIKeyLive @"lvpb_onomatopoeia"
-#define SIMPublicAPIKeySandbox @"sbpb_alliteration"
+@interface SIMAppDelegate () <SIMChargeCardViewControllerDelegate>
+
+@end
 
 @implementation SIMAppDelegate
 
@@ -11,7 +12,9 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[SIMChargeCardViewController alloc] init];
+    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5"];
+    chargeController.delegate = self;
+    self.window.rootViewController = chargeController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -41,6 +44,20 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - SIMChargeViewController Protocol
+-(void)chargeCardCancelled {
+    //User cancelled the SIMChargeViewController
+    NSLog(@"User Cancelled");
+}
+-(void)requestedCreditCardToken:(SIMCreditCardToken *)token withError:(NSError *)error {
+
+    NSLog(@"Credit Card Token requested:%@ with error:%@", token.token, error.description);
+}
+
+-(void)requestedPaymentProcess:(NSString *)paymentID withError:(NSError *)error {
+    NSLog(@"Payment processed with ID:%@ with error:%@", paymentID, error.description);
 }
 
 @end

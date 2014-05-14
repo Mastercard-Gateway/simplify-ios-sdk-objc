@@ -6,11 +6,13 @@
 #import "NSBundle+Simplify.h"
 
 @interface SIMChargeCardViewController () <SIMChargeCardModelDelegate, UITextFieldDelegate>
-@property (nonatomic, strong) SIMChargeCardModel *chargeCardModel;
+@property (strong, nonatomic) SIMChargeCardModel *chargeCardModel;
+@property (strong, nonatomic) NSString *apiKey;
+
+@property (strong, nonatomic) IBOutlet SIMButton *chargeCardButton;
 @property (strong, nonatomic) IBOutlet UITextField *cardNumberField;
 @property (strong, nonatomic) IBOutlet UITextField *expirationField;
 @property (strong, nonatomic) IBOutlet UITextField *cvcField;
-@property (strong, nonatomic) SIMButton *chargeCardButton;
 @property (strong, nonatomic) IBOutlet UIImageView *cardTypeImage;
 @property (strong, nonatomic) IBOutlet UIView *cvcCodeView;
 @property (strong, nonatomic) IBOutlet UIView *cardNumberView;
@@ -20,15 +22,23 @@
 
 @implementation SIMChargeCardViewController
 
--(void)viewDidLoad
-{
+-(instancetype)initWithApiKey:(NSString *)apiKey {
+    self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
+    if (self) {
+        self.apiKey = apiKey;
+    }
+    
+    return  self;
+}
+
+-(void)viewDidLoad {
     [super viewDidLoad];
     
     
     self.cardNumberField.delegate = self;
     self.expirationField.delegate = self;
     self.cvcField.delegate = self;
-    self.chargeCardModel = [SIMChargeCardModel new];
+    self.chargeCardModel = [[SIMChargeCardModel alloc] initWithApiKey:self.apiKey];
     self.chargeCardModel.delegate = self;
 
     [self setCardTypeImage];
@@ -160,6 +170,7 @@
     
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self clearTextFields];
+        [self.delegate requestedPaymentProcess:nil withError:error];
     });
 
 }
@@ -175,6 +186,7 @@
     
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self clearTextFields];
+        [self.delegate requestedPaymentProcess:paymentID withError:nil];
     });
 }
 

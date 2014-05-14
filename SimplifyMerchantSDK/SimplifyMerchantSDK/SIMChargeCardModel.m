@@ -13,6 +13,7 @@
 
 @interface SIMChargeCardModel ()
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;
+@property (nonatomic, strong) NSString *apiKey;
 @property (nonatomic, strong, readwrite) NSString *cardNumber;
 @property (nonatomic, strong, readwrite) NSString *expirationDate;
 @property (nonatomic, strong, readwrite) NSString *expirationMonth;
@@ -29,11 +30,14 @@
 
 @implementation SIMChargeCardModel
 
--(instancetype)init {
+-(instancetype)initWithApiKey:(NSString *)apiKey {
+    self = [super init];
+    
     if (self) {
         self.cardNumber = @"";
         self.expirationDate = @"";
         self.cvcCode = @"";
+        self.apiKey = apiKey;
     }
     return self;
 }
@@ -198,7 +202,7 @@
 -(void)retrieveToken {
     NSError *error;
     
-    SIMAPIManager *apiManager = [[SIMAPIManager alloc] initWithPublicApiKey:SIMPublicAPIKeySandbox error:&error];
+    SIMAPIManager *apiManager = [[SIMAPIManager alloc] initWithPublicApiKey:self.apiKey error:&error];
     
     [apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address completionHander:^(SIMCreditCardToken *cardToken, NSError *error) {
         if (error) {
