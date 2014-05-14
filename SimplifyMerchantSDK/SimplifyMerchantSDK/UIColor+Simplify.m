@@ -7,7 +7,7 @@
     static UIColor *validColor = nil;
     
     if (!validColor) {
-        validColor  = [UIColor colorWithRed:(250.0/255.0) green:1.0 blue:(248.0/255.0) alpha:1.0];
+        validColor  = [UIColor colorWithRed:(235.0/255.0) green:(247.0/255.0) blue:(230.0/255.0) alpha:1.0];
     }
     
     return validColor;
@@ -18,7 +18,7 @@
     static UIColor *invalidColor;
     
     if (!invalidColor) {
-        invalidColor  = [UIColor colorWithRed:(255.0/255.0) green:(248.0/255.0) blue:(248.0/255.0) alpha:1.0];
+        invalidColor  = [UIColor colorWithRed:(247.0/255.0) green:(230.0/255.0) blue:(230.0/255.0) alpha:1.0];
     }
     
     return invalidColor;

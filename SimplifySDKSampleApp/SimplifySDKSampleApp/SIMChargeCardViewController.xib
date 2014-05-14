@@ -9,6 +9,7 @@
                 <outlet property="cardNumberField" destination="4mp-r7-IAa" id="3O2-bj-OPl"/>
                 <outlet property="cardNumberView" destination="xli-Iu-iqb" id="lR6-iB-key"/>
                 <outlet property="cardTypeImage" destination="pPN-OC-lV3" id="dkE-46-4Ke"/>
+                <outlet property="chargeCardButton" destination="Y7O-Rp-Rl5" id="5ah-83-LLb"/>
                 <outlet property="cvcCodeView" destination="P7X-Fp-cdo" id="jog-Rf-uAE"/>
                 <outlet property="cvcField" destination="R1X-5S-mSK" id="Zq0-ey-cVt"/>
                 <outlet property="expirationDateView" destination="vIA-JG-qgI" id="mPC-2F-vTw"/>
@@ -21,6 +22,22 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7O-Rp-Rl5" customClass="SIMButton">
+                    <rect key="frame" x="0.0" y="206" width="320" height="58"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="58" id="E3w-6t-GyX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <state key="normal" title="Charge Card">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="retrieveToken:" destination="-1" eventType="touchUpInside" id="mG9-uK-fme"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wvh-92-4Hw">
                     <rect key="frame" x="0.0" y="60" width="320" height="121"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -46,7 +63,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P7X-Fp-cdo">
                             <rect key="frame" x="161" y="62" width="159" height="58"/>

@@ -40,12 +40,6 @@
     self.chargeCardModel = [SIMChargeCardModel new];
     self.chargeCardModel.delegate = self;
 
-    SIMButton *chargeButton = [[SIMButton alloc] initWithFrame:CGRectMake(0, 206, self.view.frame.size.width, 58)];
-    chargeButton.enabled = NO;
-    [chargeButton addTarget:self.chargeCardModel action:@selector(retrieveToken) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:chargeButton];
-    self.chargeCardButton = chargeButton;
-
     [self setCardTypeImage];
     [self buttonsEnabled];
     [self.cardNumberField becomeFirstResponder];
