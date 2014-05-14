@@ -13,7 +13,7 @@
 /**
  Obtains the UIImage from an NSString
  @param name is the file name of the image to be retrieved
- @return a UIImage
+ @return UIImage image housed in the framework bundle
  */
 +(UIImage*)imageNamed:(NSString*)name;
 

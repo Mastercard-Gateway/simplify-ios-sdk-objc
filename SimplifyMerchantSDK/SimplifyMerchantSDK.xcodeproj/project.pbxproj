@@ -29,6 +29,8 @@
 		495EEECD191B387200AEC402 /* SIMCreditCardToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEECB191B387200AEC402 /* SIMCreditCardToken.m */; };
 		495EEED0191B4CE600AEC402 /* SIMAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEECE191B4CE600AEC402 /* SIMAddressTests.m */; };
 		495EEED1191B4CE600AEC402 /* SIMCreditCardTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEECF191B4CE600AEC402 /* SIMCreditCardTokenTests.m */; };
+		495EEF781923DFE700AEC402 /* UIColor+Simplify.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF761923DFE700AEC402 /* UIColor+Simplify.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		495EEF791923DFE700AEC402 /* UIColor+Simplify.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF771923DFE700AEC402 /* UIColor+Simplify.m */; };
 		49748F63191849C600738BC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F62191849C600738BC9 /* Foundation.framework */; };
 		49748F71191849C600738BC9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F70191849C600738BC9 /* XCTest.framework */; };
 		49748F72191849C600738BC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F62191849C600738BC9 /* Foundation.framework */; };
@@ -117,6 +119,8 @@
 		495EEECB191B387200AEC402 /* SIMCreditCardToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMCreditCardToken.m; sourceTree = "<group>"; };
 		495EEECE191B4CE600AEC402 /* SIMAddressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMAddressTests.m; sourceTree = "<group>"; };
 		495EEECF191B4CE600AEC402 /* SIMCreditCardTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMCreditCardTokenTests.m; sourceTree = "<group>"; };
+		495EEF761923DFE700AEC402 /* UIColor+Simplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Simplify.h"; sourceTree = "<group>"; };
+		495EEF771923DFE700AEC402 /* UIColor+Simplify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Simplify.m"; sourceTree = "<group>"; };
 		49748F5F191849C600738BC9 /* libSimplify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimplify.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		49748F62191849C600738BC9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49748F66191849C600738BC9 /* SimplifyMerchantSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimplifyMerchantSDK-Prefix.pch"; sourceTree = "<group>"; };
@@ -313,6 +317,8 @@
 		49748FA319188CCD00738BC9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				495EEF761923DFE700AEC402 /* UIColor+Simplify.h */,
+				495EEF771923DFE700AEC402 /* UIColor+Simplify.m */,
 				49748FAD1919323600738BC9 /* NSString+Simplify.h */,
 				49748FAE1919323600738BC9 /* NSString+Simplify.m */,
 			);
@@ -416,6 +422,7 @@
 				49748FAF1919323600738BC9 /* NSString+Simplify.h in Headers */,
 				49748FA819188D2C00738BC9 /* SIMAPIManager.h in Headers */,
 				495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */,
+				495EEF781923DFE700AEC402 /* UIColor+Simplify.h in Headers */,
 				495EEECC191B387200AEC402 /* SIMCreditCardToken.h in Headers */,
 				49748F9E1918734600738BC9 /* Simplify.h in Headers */,
 			);
@@ -575,6 +582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495EEF791923DFE700AEC402 /* UIColor+Simplify.m in Sources */,
 				49748FA919188D2C00738BC9 /* SIMAPIManager.m in Sources */,
 				4977D051191A9C6F00AC621F /* SIMDigitVerifier.m in Sources */,
 				49748FB01919323600738BC9 /* NSString+Simplify.m in Sources */,

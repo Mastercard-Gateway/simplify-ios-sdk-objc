@@ -1,13 +1,15 @@
 #import <Simplify/SIMSDKHelper.h>
 #import "SIMChargeCardViewController.h"
 #import "SIMChargeCardModel.h"
+#import "SIMButton.h"
+
 
 @interface SIMChargeCardViewController () <SIMChargeCardModelDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) SIMChargeCardModel *chargeCardModel;
 @property (strong, nonatomic) IBOutlet UITextField *cardNumberField;
 @property (strong, nonatomic) IBOutlet UITextField *expirationField;
 @property (strong, nonatomic) IBOutlet UITextField *cvcField;
-@property (strong, nonatomic) IBOutlet UIButton *chargeCardButton;
+@property (strong, nonatomic) IBOutlet SIMButton *chargeCardButton;
 @property (strong, nonatomic) IBOutlet UIImageView *cardTypeImage;
 @property (strong, nonatomic) IBOutlet UIView *cvcCodeView;
 @property (strong, nonatomic) IBOutlet UIView *cardNumberView;
@@ -37,7 +39,7 @@
     [self setCardTypeImage];
     [self buttonSetUp];
     [self.cardNumberField becomeFirstResponder];
-    // Do any additional setup after loading the view.
+
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -55,31 +57,35 @@
 }
 
 -(void)buttonsEnabled {
+    
     UIColor *cardBackgroundColor = [UIColor whiteColor];
     UIColor *dateBackgroundColor = [UIColor whiteColor];
     UIColor *cvcBackgroundColor = [UIColor whiteColor];
     
+    UIColor *backgroundValid = [UIColor colorWithRed:(250.0/255.0) green:1.0 blue:(248.0/255.0) alpha:1.0];
+    UIColor *backgroundInvalid = [UIColor colorWithRed:(255.0/255.0) green:(248.0/255.0) blue:(248.0/255.0) alpha:1.0];
+    
     if (self.chargeCardModel.cardNumber.length > 0) {
         if ([self.chargeCardModel isCardNumberValid]) {
-            cardBackgroundColor = [UIColor colorWithRed:(250.0/255.0) green:1.0 blue:(248.0/255.0) alpha:1.0];
+            cardBackgroundColor = backgroundValid;
         } else {
-            cardBackgroundColor = [UIColor colorWithRed:(255.0/255.0) green:(248.0/255.0) blue:(248.0/255.0) alpha:1.0];
+            cardBackgroundColor = backgroundInvalid;
         }
     }
     
     if (self.chargeCardModel.expirationDate.length > 0) {
         if ([self.chargeCardModel isExpirationDateValid]) {
-            dateBackgroundColor = [UIColor colorWithRed:(250.0/255.0) green:1.0 blue:(248.0/255.0) alpha:1.0];
+            dateBackgroundColor = backgroundValid;
         } else {
-            dateBackgroundColor = [UIColor colorWithRed:(255.0/255.0) green:(248.0/255.0) blue:(248.0/255.0) alpha:1.0];
+            dateBackgroundColor = backgroundInvalid;
         }
     }
     
     if (self.chargeCardModel.cvcCode.length > 0) {
         if ([self.chargeCardModel isCVCCodeValid]) {
-            cvcBackgroundColor = [UIColor colorWithRed:(250.0/255.0) green:1.0 blue:(248.0/255.0) alpha:1.0];
+            cvcBackgroundColor = backgroundValid;
         } else {
-            cvcBackgroundColor = [UIColor colorWithRed:(255.0/255.0) green:(248.0/255.0) blue:(248.0/255.0) alpha:1.0];
+            cvcBackgroundColor = backgroundInvalid;
         }
     }
     
@@ -183,17 +189,5 @@
         [self clearTextFields];
     });
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

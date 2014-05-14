@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		495EEF671923BD4400AEC402 /* SIMChargeCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495EEF661923BD4400AEC402 /* SIMChargeCardViewController.xib */; };
+		495EEF731923CC8A00AEC402 /* SIMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF721923CC8A00AEC402 /* SIMButton.m */; };
+		495EEF751923D0CA00AEC402 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495EEF741923D0CA00AEC402 /* QuartzCore.framework */; };
 		49748F5519182A2E00738BC9 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F4B191829A400738BC9 /* libOCMock.a */; };
 		4977D08F191AC01300AC621F /* libSimplify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4977D088191ABFE200AC621F /* libSimplify.a */; };
 		4977D092191AC04700AC621F /* Simplify.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4977D08C191ABFE200AC621F /* Simplify.bundle */; };
@@ -78,6 +80,9 @@
 
 /* Begin PBXFileReference section */
 		495EEF661923BD4400AEC402 /* SIMChargeCardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SIMChargeCardViewController.xib; path = SimplifySDKSampleApp/SIMChargeCardViewController.xib; sourceTree = "<group>"; };
+		495EEF711923CC8A00AEC402 /* SIMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIMButton.h; path = SimplifySDKSampleApp/SIMButton.h; sourceTree = "<group>"; };
+		495EEF721923CC8A00AEC402 /* SIMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMButton.m; path = SimplifySDKSampleApp/SIMButton.m; sourceTree = "<group>"; };
+		495EEF741923D0CA00AEC402 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		49748F4B191829A400738BC9 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ocmock/libOCMock.a; sourceTree = "<group>"; };
 		49748F4D191829A400738BC9 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
 		49748F4E191829A400738BC9 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
@@ -118,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495EEF751923D0CA00AEC402 /* QuartzCore.framework in Frameworks */,
 				4977D08F191AC01300AC621F /* libSimplify.a in Frameworks */,
 				7ED9E9F51917E2930082C2C3 /* CoreGraphics.framework in Frameworks */,
 				7ED9E9F71917E2930082C2C3 /* UIKit.framework in Frameworks */,
@@ -195,6 +201,7 @@
 		7ED9E9F11917E2930082C2C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				495EEF741923D0CA00AEC402 /* QuartzCore.framework */,
 				4977D080191ABFE200AC621F /* SimplifyMerchantSDK.xcodeproj */,
 				49748F4A191829A400738BC9 /* ocmock */,
 				7ED9E9F21917E2930082C2C3 /* Foundation.framework */,
@@ -256,6 +263,8 @@
 				7ED9EA58191820820082C2C3 /* SIMChargeCardViewController.h */,
 				7ED9EA59191820820082C2C3 /* SIMChargeCardViewController.m */,
 				495EEF661923BD4400AEC402 /* SIMChargeCardViewController.xib */,
+				495EEF711923CC8A00AEC402 /* SIMButton.h */,
+				495EEF721923CC8A00AEC402 /* SIMButton.m */,
 			);
 			name = "Charge Card";
 			path = ..;
@@ -410,6 +419,7 @@
 				7ED9EA031917E2930082C2C3 /* SIMAppDelegate.m in Sources */,
 				7ED9EA5B191820820082C2C3 /* SIMChargeCardViewController.m in Sources */,
 				7ED9E9FF1917E2930082C2C3 /* main.m in Sources */,
+				495EEF731923CC8A00AEC402 /* SIMButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
