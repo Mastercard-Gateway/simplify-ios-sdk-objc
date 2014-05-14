@@ -10,7 +10,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *cardNumberField;
 @property (strong, nonatomic) IBOutlet UITextField *expirationField;
 @property (strong, nonatomic) IBOutlet UITextField *cvcField;
-@property (strong, nonatomic) IBOutlet SIMButton *chargeCardButton;
+@property (strong, nonatomic) SIMButton *chargeCardButton;
 @property (strong, nonatomic) IBOutlet UIImageView *cardTypeImage;
 @property (strong, nonatomic) IBOutlet UIView *cvcCodeView;
 @property (strong, nonatomic) IBOutlet UIView *cardNumberView;
@@ -32,13 +32,22 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     self.cardNumberField.delegate = self;
     self.expirationField.delegate = self;
     self.cvcField.delegate = self;
     self.chargeCardModel = [SIMChargeCardModel new];
     self.chargeCardModel.delegate = self;
+
+    SIMButton *chargeButton = [[SIMButton alloc] initWithFrame:CGRectMake(0, 206, self.view.frame.size.width, 58)];
+    chargeButton.enabled = NO;
+    [chargeButton addTarget:self.chargeCardModel action:@selector(retrieveToken) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:chargeButton];
+    self.chargeCardButton = chargeButton;
+
     [self setCardTypeImage];
-    [self buttonSetUp];
+    [self buttonsEnabled];
     [self.cardNumberField becomeFirstResponder];
 
 }
@@ -51,10 +60,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)buttonSetUp {
-    [self buttonsEnabled];
 }
 
 -(void)buttonsEnabled {
