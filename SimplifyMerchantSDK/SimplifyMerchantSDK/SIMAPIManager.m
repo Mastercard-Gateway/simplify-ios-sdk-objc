@@ -149,7 +149,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
             apiCompletionHandler(json, nil);
             
         } else {
-            NSString *errorMessage = [NSString stringWithFormat:@"Bad HTTP Response: %d.", httpURLResponse.statusCode];
+            NSString *errorMessage = [NSString stringWithFormat:@"Bad HTTP Response: %ld.", (long)httpURLResponse.statusCode];
             NSError *responseError = [NSError errorWithDomain:SIMAPIManagerErrorDomain code:SIMAPIManagerErrorCodeCardTokenResponseError userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
             
             apiCompletionHandler(nil, responseError);

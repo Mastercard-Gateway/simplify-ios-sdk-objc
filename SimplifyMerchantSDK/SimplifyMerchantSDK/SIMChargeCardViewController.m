@@ -1,9 +1,9 @@
-#import <Simplify/SIMSDKHelper.h>
 #import "SIMChargeCardViewController.h"
 #import "SIMChargeCardModel.h"
 #import "SIMButton.h"
-#import <Simplify/UIColor+Simplify.h>
-
+#import "UIColor+Simplify.h"
+#import "UIImage+Simplify.h"
+#import "NSBundle+Simplify.h"
 
 @interface SIMChargeCardViewController () <SIMChargeCardModelDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) SIMChargeCardModel *chargeCardModel;
@@ -20,9 +20,8 @@
 
 @implementation SIMChargeCardViewController
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:[NSBundle frameworkBundle]];
     if (self) {
         // Custom initialization
     }
@@ -139,7 +138,7 @@
 }
 
 -(void)setCardTypeImage {
-    UIImage *cardImage = [SIMSDKHelper imageNamed:self.chargeCardModel.cardTypeString];
+    UIImage *cardImage = [UIImage imageNamedFromFramework:self.chargeCardModel.cardTypeString];
     [self.cardTypeImage setImage:cardImage];
 }
 

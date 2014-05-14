@@ -180,8 +180,8 @@
 		7ED9E9F11917E2930082C2C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				495EEF741923D0CA00AEC402 /* QuartzCore.framework */,
 				4977D080191ABFE200AC621F /* SimplifyMerchantSDK.xcodeproj */,
+				495EEF741923D0CA00AEC402 /* QuartzCore.framework */,
 				49748F4A191829A400738BC9 /* ocmock */,
 				7ED9E9F21917E2930082C2C3 /* Foundation.framework */,
 				7ED9E9F41917E2930082C2C3 /* CoreGraphics.framework */,

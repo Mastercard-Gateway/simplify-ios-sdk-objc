@@ -1,4 +1,5 @@
-#import <Simplify/SIMCreditCardToken.h>
+#import <UIKit/UIKit.h>
+#import "SIMCreditCardToken.h"
 
 @protocol SIMChargeCardViewControllerDelegate
 
