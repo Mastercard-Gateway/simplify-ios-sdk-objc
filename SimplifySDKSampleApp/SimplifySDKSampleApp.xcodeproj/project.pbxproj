@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		495EEF671923BD4400AEC402 /* SIMChargeCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495EEF661923BD4400AEC402 /* SIMChargeCardViewController.xib */; };
 		49748F5519182A2E00738BC9 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F4B191829A400738BC9 /* libOCMock.a */; };
 		4977D08F191AC01300AC621F /* libSimplify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4977D088191ABFE200AC621F /* libSimplify.a */; };
 		4977D092191AC04700AC621F /* Simplify.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4977D08C191ABFE200AC621F /* Simplify.bundle */; };
@@ -25,7 +26,6 @@
 		7ED9EA0D1917E2930082C2C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F21917E2930082C2C3 /* Foundation.framework */; };
 		7ED9EA0E1917E2930082C2C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED9E9F61917E2930082C2C3 /* UIKit.framework */; };
 		7ED9EA161917E2930082C2C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA141917E2930082C2C3 /* InfoPlist.strings */; };
-		7ED9EA25191817870082C2C3 /* TokenStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA24191817870082C2C3 /* TokenStoryboard.storyboard */; };
 		7ED9EA5A191820820082C2C3 /* SIMChargeCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA57191820820082C2C3 /* SIMChargeCardModel.m */; };
 		7ED9EA5B191820820082C2C3 /* SIMChargeCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA59191820820082C2C3 /* SIMChargeCardViewController.m */; };
 		7ED9EA5D191820880082C2C3 /* SIMChargeCardModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9EA5C191820880082C2C3 /* SIMChargeCardModelTests.m */; };
@@ -77,6 +77,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		495EEF661923BD4400AEC402 /* SIMChargeCardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SIMChargeCardViewController.xib; path = SimplifySDKSampleApp/SIMChargeCardViewController.xib; sourceTree = "<group>"; };
 		49748F4B191829A400738BC9 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ocmock/libOCMock.a; sourceTree = "<group>"; };
 		49748F4D191829A400738BC9 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
 		49748F4E191829A400738BC9 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		7ED9EA0B1917E2930082C2C3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7ED9EA131917E2930082C2C3 /* SimplifySDKSampleAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimplifySDKSampleAppTests-Info.plist"; sourceTree = "<group>"; };
 		7ED9EA151917E2930082C2C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		7ED9EA24191817870082C2C3 /* TokenStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TokenStoryboard.storyboard; sourceTree = "<group>"; };
 		7ED9EA37191818F30082C2C3 /* SimplifySDKSampleAppTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SimplifySDKSampleAppTests-Prefix.pch"; sourceTree = "<group>"; };
 		7ED9EA56191820820082C2C3 /* SIMChargeCardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIMChargeCardModel.h; path = SimplifySDKSampleApp/SIMChargeCardModel.h; sourceTree = "<group>"; };
 		7ED9EA57191820820082C2C3 /* SIMChargeCardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIMChargeCardModel.m; path = SimplifySDKSampleApp/SIMChargeCardModel.m; sourceTree = "<group>"; };
@@ -210,7 +210,6 @@
 			children = (
 				7EF161BB19229F71008F805A /* Buttons */,
 				7ED9EA2E191818110082C2C3 /* Charge Card */,
-				7ED9EA24191817870082C2C3 /* TokenStoryboard.storyboard */,
 				7ED9EA011917E2930082C2C3 /* SIMAppDelegate.h */,
 				7ED9EA021917E2930082C2C3 /* SIMAppDelegate.m */,
 				7ED9EA041917E2930082C2C3 /* Images.xcassets */,
@@ -256,6 +255,7 @@
 				7ED9EA57191820820082C2C3 /* SIMChargeCardModel.m */,
 				7ED9EA58191820820082C2C3 /* SIMChargeCardViewController.h */,
 				7ED9EA59191820820082C2C3 /* SIMChargeCardViewController.m */,
+				495EEF661923BD4400AEC402 /* SIMChargeCardViewController.xib */,
 			);
 			name = "Charge Card";
 			path = ..;
@@ -384,8 +384,8 @@
 				7ED9E9FD1917E2930082C2C3 /* InfoPlist.strings in Resources */,
 				7ED9EA051917E2930082C2C3 /* Images.xcassets in Resources */,
 				7EA8852F191C74B200C9F18D /* btn-orange@2x.png in Resources */,
-				7ED9EA25191817870082C2C3 /* TokenStoryboard.storyboard in Resources */,
 				7EA8852C191C74B200C9F18D /* btn-grey.png in Resources */,
+				495EEF671923BD4400AEC402 /* SIMChargeCardViewController.xib in Resources */,
 				7EA8852D191C74B200C9F18D /* btn-grey@2x.png in Resources */,
 				4977D092191AC04700AC621F /* Simplify.bundle in Resources */,
 			);
