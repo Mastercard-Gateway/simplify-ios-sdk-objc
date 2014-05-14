@@ -31,6 +31,13 @@
 		495EEED1191B4CE600AEC402 /* SIMCreditCardTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEECF191B4CE600AEC402 /* SIMCreditCardTokenTests.m */; };
 		495EEF781923DFE700AEC402 /* UIColor+Simplify.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF761923DFE700AEC402 /* UIColor+Simplify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		495EEF791923DFE700AEC402 /* UIColor+Simplify.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF771923DFE700AEC402 /* UIColor+Simplify.m */; };
+		495EEF80192401D700AEC402 /* SIMChargeCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF7C192401D700AEC402 /* SIMChargeCardViewController.m */; };
+		495EEF81192401D700AEC402 /* SIMChargeCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF7D192401D700AEC402 /* SIMChargeCardModel.m */; };
+		495EEF83192401D700AEC402 /* SIMChargeCardModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF7F192401D700AEC402 /* SIMChargeCardModel.h */; };
+		495EEF86192401E000AEC402 /* SIMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF84192401E000AEC402 /* SIMButton.m */; };
+		495EEF87192401E000AEC402 /* SIMButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF85192401E000AEC402 /* SIMButton.h */; };
+		495EEF891924021E00AEC402 /* SIMChargeCardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF881924021E00AEC402 /* SIMChargeCardViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		495EEF8A1924023600AEC402 /* SIMChargeCardModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF7E192401D700AEC402 /* SIMChargeCardModelTests.m */; };
 		49748F63191849C600738BC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F62191849C600738BC9 /* Foundation.framework */; };
 		49748F71191849C600738BC9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F70191849C600738BC9 /* XCTest.framework */; };
 		49748F72191849C600738BC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F62191849C600738BC9 /* Foundation.framework */; };
@@ -121,6 +128,14 @@
 		495EEECF191B4CE600AEC402 /* SIMCreditCardTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMCreditCardTokenTests.m; sourceTree = "<group>"; };
 		495EEF761923DFE700AEC402 /* UIColor+Simplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Simplify.h"; sourceTree = "<group>"; };
 		495EEF771923DFE700AEC402 /* UIColor+Simplify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Simplify.m"; sourceTree = "<group>"; };
+		495EEF7B192401D700AEC402 /* SIMChargeCardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SIMChargeCardViewController.xib; sourceTree = "<group>"; };
+		495EEF7C192401D700AEC402 /* SIMChargeCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMChargeCardViewController.m; sourceTree = "<group>"; };
+		495EEF7D192401D700AEC402 /* SIMChargeCardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMChargeCardModel.m; sourceTree = "<group>"; };
+		495EEF7E192401D700AEC402 /* SIMChargeCardModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMChargeCardModelTests.m; sourceTree = "<group>"; };
+		495EEF7F192401D700AEC402 /* SIMChargeCardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMChargeCardModel.h; sourceTree = "<group>"; };
+		495EEF84192401E000AEC402 /* SIMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMButton.m; sourceTree = "<group>"; };
+		495EEF85192401E000AEC402 /* SIMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMButton.h; sourceTree = "<group>"; };
+		495EEF881924021E00AEC402 /* SIMChargeCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMChargeCardViewController.h; sourceTree = "<group>"; };
 		49748F5F191849C600738BC9 /* libSimplify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimplify.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		49748F62191849C600738BC9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49748F66191849C600738BC9 /* SimplifyMerchantSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimplifyMerchantSDK-Prefix.pch"; sourceTree = "<group>"; };
@@ -216,6 +231,21 @@
 			name = "Credit Card Token";
 			sourceTree = "<group>";
 		};
+		495EEF7A192401B600AEC402 /* ChargeView */ = {
+			isa = PBXGroup;
+			children = (
+				495EEF7B192401D700AEC402 /* SIMChargeCardViewController.xib */,
+				495EEF881924021E00AEC402 /* SIMChargeCardViewController.h */,
+				495EEF7C192401D700AEC402 /* SIMChargeCardViewController.m */,
+				495EEF7D192401D700AEC402 /* SIMChargeCardModel.m */,
+				495EEF7E192401D700AEC402 /* SIMChargeCardModelTests.m */,
+				495EEF7F192401D700AEC402 /* SIMChargeCardModel.h */,
+				495EEF84192401E000AEC402 /* SIMButton.m */,
+				495EEF85192401E000AEC402 /* SIMButton.h */,
+			);
+			name = ChargeView;
+			sourceTree = "<group>";
+		};
 		49748F56191849C600738BC9 = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +281,7 @@
 		49748F64191849C600738BC9 /* SimplifyMerchantSDK */ = {
 			isa = PBXGroup;
 			children = (
+				495EEF7A192401B600AEC402 /* ChargeView */,
 				49748FA319188CCD00738BC9 /* Common */,
 				4977D055191A9D2A00AC621F /* Digit Verification */,
 				4977D054191A9CB800AC621F /* Card Identification */,
@@ -417,11 +448,14 @@
 			files = (
 				4977D07E191ABA3500AC621F /* SIMSDKHelper.h in Headers */,
 				4977D04F191A9C6F00AC621F /* SIMLuhnValidator.h in Headers */,
+				495EEF87192401E000AEC402 /* SIMButton.h in Headers */,
 				4977D050191A9C6F00AC621F /* SIMDigitVerifier.h in Headers */,
+				495EEF83192401D700AEC402 /* SIMChargeCardModel.h in Headers */,
 				4977D04C191A9C6F00AC621F /* SIMCardType.h in Headers */,
 				49748FAF1919323600738BC9 /* NSString+Simplify.h in Headers */,
 				49748FA819188D2C00738BC9 /* SIMAPIManager.h in Headers */,
 				495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */,
+				495EEF891924021E00AEC402 /* SIMChargeCardViewController.h in Headers */,
 				495EEF781923DFE700AEC402 /* UIColor+Simplify.h in Headers */,
 				495EEECC191B387200AEC402 /* SIMCreditCardToken.h in Headers */,
 				49748F9E1918734600738BC9 /* Simplify.h in Headers */,
@@ -584,6 +618,9 @@
 			files = (
 				495EEF791923DFE700AEC402 /* UIColor+Simplify.m in Sources */,
 				49748FA919188D2C00738BC9 /* SIMAPIManager.m in Sources */,
+				495EEF81192401D700AEC402 /* SIMChargeCardModel.m in Sources */,
+				495EEF86192401E000AEC402 /* SIMButton.m in Sources */,
+				495EEF80192401D700AEC402 /* SIMChargeCardViewController.m in Sources */,
 				4977D051191A9C6F00AC621F /* SIMDigitVerifier.m in Sources */,
 				49748FB01919323600738BC9 /* NSString+Simplify.m in Sources */,
 				4977D04D191A9C6F00AC621F /* SIMCardType.m in Sources */,
@@ -598,6 +635,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495EEF8A1924023600AEC402 /* SIMChargeCardModelTests.m in Sources */,
 				4977D056191A9D6700AC621F /* SIMLuhnValidatorTests.m in Sources */,
 				4977D057191A9D6700AC621F /* SIMCardTypeTests.m in Sources */,
 				495EEED0191B4CE600AEC402 /* SIMAddressTests.m in Sources */,

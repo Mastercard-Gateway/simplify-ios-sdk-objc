@@ -1,5 +1,5 @@
 #import "SIMAppDelegate.h"
-#import "SIMChargeCardViewController.h"
+#import <Simplify/SIMChargeCardViewController.h>
 
 @implementation SIMAppDelegate
 
