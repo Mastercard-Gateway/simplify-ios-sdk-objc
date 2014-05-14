@@ -27,11 +27,11 @@
     UIColor * bottomLine;
     
     if (self.state == UIControlStateNormal) {
-        fillColor = [UIColor colorWithRed:255.0/255.0 green:102.0/255.0 blue:4.0/255.0 alpha:1.0];
-        bottomLine = [UIColor colorWithRed:207.0/255.0 green:82.0/255.0 blue:4.0/255.0 alpha:1.0];
+        fillColor = [UIColor buttonBackgroundColorEnabled];
+        bottomLine = [UIColor buttonHighlightColorEnabled];
     } else if (self.state == UIControlStateDisabled) {
-        fillColor = [UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0];
-        bottomLine = [UIColor colorWithRed:179.0/255.0 green:179.0/255.0 blue:179.0/255.0 alpha:1.0];
+        fillColor = [UIColor buttonBackgroundColorDisabled];
+        bottomLine = [UIColor buttonHighlightColorDisabled];
         
     }
 

@@ -2,6 +2,7 @@
 #import "SIMChargeCardViewController.h"
 #import "SIMChargeCardModel.h"
 #import "SIMButton.h"
+#import <Simplify/UIColor+Simplify.h>
 
 
 @interface SIMChargeCardViewController () <SIMChargeCardModelDelegate, UITextFieldDelegate>
@@ -62,30 +63,27 @@
     UIColor *dateBackgroundColor = [UIColor whiteColor];
     UIColor *cvcBackgroundColor = [UIColor whiteColor];
     
-    UIColor *backgroundValid = [UIColor colorWithRed:(250.0/255.0) green:1.0 blue:(248.0/255.0) alpha:1.0];
-    UIColor *backgroundInvalid = [UIColor colorWithRed:(255.0/255.0) green:(248.0/255.0) blue:(248.0/255.0) alpha:1.0];
-    
     if (self.chargeCardModel.cardNumber.length > 0) {
         if ([self.chargeCardModel isCardNumberValid]) {
-            cardBackgroundColor = backgroundValid;
+            cardBackgroundColor = [UIColor fieldBackgroundColorValid];
         } else {
-            cardBackgroundColor = backgroundInvalid;
+            cardBackgroundColor = [UIColor fieldBackgroundColorInvalid];
         }
     }
     
     if (self.chargeCardModel.expirationDate.length > 0) {
         if ([self.chargeCardModel isExpirationDateValid]) {
-            dateBackgroundColor = backgroundValid;
+            dateBackgroundColor = [UIColor fieldBackgroundColorValid];
         } else {
-            dateBackgroundColor = backgroundInvalid;
+            dateBackgroundColor = [UIColor fieldBackgroundColorInvalid];
         }
     }
     
     if (self.chargeCardModel.cvcCode.length > 0) {
         if ([self.chargeCardModel isCVCCodeValid]) {
-            cvcBackgroundColor = backgroundValid;
+            cvcBackgroundColor = [UIColor fieldBackgroundColorValid];
         } else {
-            cvcBackgroundColor = backgroundInvalid;
+            cvcBackgroundColor = [UIColor fieldBackgroundColorInvalid];
         }
     }
     

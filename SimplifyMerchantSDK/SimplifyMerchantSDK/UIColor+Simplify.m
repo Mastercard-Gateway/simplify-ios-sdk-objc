@@ -6,7 +6,7 @@
     
     static UIColor *validColor = nil;
     
-    if (validColor) {
+    if (!validColor) {
         validColor  = [UIColor colorWithRed:(250.0/255.0) green:1.0 blue:(248.0/255.0) alpha:1.0];
     }
     
@@ -15,9 +15,9 @@
 
 +(UIColor *)fieldBackgroundColorInvalid {
     
-    static UIColor *invalidColor = nil;
+    static UIColor *invalidColor;
     
-    if (invalidColor) {
+    if (!invalidColor) {
         invalidColor  = [UIColor colorWithRed:(255.0/255.0) green:(248.0/255.0) blue:(248.0/255.0) alpha:1.0];
     }
     
@@ -29,7 +29,7 @@
     
     static UIColor *buttonEnableFillColor;
     
-    if (buttonEnableFillColor) {
+    if (!buttonEnableFillColor) {
         buttonEnableFillColor  = [UIColor colorWithRed:255.0/255.0 green:102.0/255.0 blue:4.0/255.0 alpha:1.0];
     }
     
@@ -40,7 +40,7 @@
     
     static UIColor *buttonEnableStrokeColor;
     
-    if (buttonEnableStrokeColor) {
+    if (!buttonEnableStrokeColor) {
         buttonEnableStrokeColor  = [UIColor colorWithRed:207.0/255.0 green:82.0/255.0 blue:4.0/255.0 alpha:1.0];
     }
     
@@ -51,7 +51,7 @@
     
     static UIColor *buttonDisableFillColor;
     
-    if (buttonDisableFillColor) {
+    if (!buttonDisableFillColor) {
         buttonDisableFillColor  = [UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0];
     }
     
@@ -62,7 +62,7 @@
     
     static UIColor *buttonDisableStrokeColor;
     
-    if (buttonDisableStrokeColor) {
+    if (!buttonDisableStrokeColor) {
         buttonDisableStrokeColor  = [UIColor colorWithRed:179.0/255.0 green:179.0/255.0 blue:179.0/255.0 alpha:1.0];
     }
     
