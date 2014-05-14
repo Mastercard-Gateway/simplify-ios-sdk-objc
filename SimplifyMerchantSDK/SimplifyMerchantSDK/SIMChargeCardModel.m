@@ -1,7 +1,15 @@
 #import "SIMChargeCardModel.h"
-#import <Simplify/SIMDigitVerifier.h>
-#import <Simplify/SIMAPIManager.h>
-#import <Simplify/SIMLuhnValidator.h>
+#import "SIMDigitVerifier.h"
+#import "SIMAPIManager.h"
+#import "SIMLuhnValidator.h"
+
+#ifndef SIMPublicAPIKeyLive
+#define SIMPublicAPIKeyLive @""
+#endif
+
+#ifndef SIMPublicAPIKeySandbox
+#define SIMPublicAPIKeySandbox @"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5"
+#endif
 
 @interface SIMChargeCardModel ()
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;
@@ -189,7 +197,8 @@
 
 -(void)retrieveToken {
     NSError *error;
-    SIMAPIManager *apiManager = [[SIMAPIManager alloc] initWithPublicApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" error:&error];
+    
+    SIMAPIManager *apiManager = [[SIMAPIManager alloc] initWithPublicApiKey:SIMPublicAPIKeySandbox error:&error];
     
     [apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address completionHander:^(SIMCreditCardToken *cardToken, NSError *error) {
         if (error) {

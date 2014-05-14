@@ -1,5 +1,5 @@
 #import "SIMButton.h"
-#import <Simplify/UIColor+Simplify.h>
+#import "UIColor+Simplify.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation SIMButton

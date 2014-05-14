@@ -242,9 +242,9 @@
 				495EEF7B192401D700AEC402 /* SIMChargeCardViewController.xib */,
 				495EEF881924021E00AEC402 /* SIMChargeCardViewController.h */,
 				495EEF7C192401D700AEC402 /* SIMChargeCardViewController.m */,
+				495EEF7F192401D700AEC402 /* SIMChargeCardModel.h */,
 				495EEF7D192401D700AEC402 /* SIMChargeCardModel.m */,
 				495EEF7E192401D700AEC402 /* SIMChargeCardModelTests.m */,
-				495EEF7F192401D700AEC402 /* SIMChargeCardModel.h */,
 				495EEF84192401E000AEC402 /* SIMButton.m */,
 				495EEF85192401E000AEC402 /* SIMButton.h */,
 			);

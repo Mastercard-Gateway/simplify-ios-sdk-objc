@@ -20,14 +20,6 @@
 
 @implementation SIMChargeCardViewController
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:[NSBundle frameworkBundle]];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 -(void)viewDidLoad
 {
     [super viewDidLoad];

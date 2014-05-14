@@ -1,5 +1,5 @@
-#import <Simplify/SIMCardType.h>
-#import <Simplify/SIMAddress.h>
+#import "SIMCardType.h"
+#import "SIMAddress.h"
 @protocol SIMChargeCardModelDelegate
 
 -(void)paymentFailedWithError:(NSError *)error;

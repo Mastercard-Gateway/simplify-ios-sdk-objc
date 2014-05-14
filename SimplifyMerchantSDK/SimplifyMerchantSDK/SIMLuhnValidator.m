@@ -8,10 +8,11 @@
         
         int oddSum = 0;
         int evenSum = 0;
+        int initialValue = (int)cardNumberString.length - 1;
         
         BOOL isOdd = YES;
         
-        for (int i = cardNumberString.length - 1; i >= 0; i--) {
+        for (int i = initialValue; i >= 0; i--) {
         
             int digit = (int)([cardNumberString characterAtIndex:i] - '0');
             
