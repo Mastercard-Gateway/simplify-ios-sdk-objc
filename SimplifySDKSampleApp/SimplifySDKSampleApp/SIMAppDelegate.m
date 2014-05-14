@@ -1,5 +1,6 @@
 #import "SIMAppDelegate.h"
 #import <Simplify/Simplify.h>
+
 #define SIMPublicAPIKeyLive @"lvpb_onomatopoeia"
 #define SIMPublicAPIKeySandbox @"sbpb_alliteration"
 

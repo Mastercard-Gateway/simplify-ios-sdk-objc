@@ -16,6 +16,9 @@
 
   http://www.simplify.com/payments-web/docs/sdk/ios
 
+  You can install the Simplify Documenation by copying the supplied docset into:
+
+  ~/Library/Developer/Shared/Documentation/DocSets/
 
   Using the SDK
   --------------
@@ -37,9 +40,8 @@
   Documentation
   -------------
 
-  API documentation is available in the doc directory in HTML.  For more
-  detailed information on the API with examples visit the online
-  documentation at https://www.simplify.com/commerce/docs/sdk/php.
+  API documentation is available by utilizing Doxygen to generate a docset from the 
+  supplied Doxyfile.
 
   Support
   -------
