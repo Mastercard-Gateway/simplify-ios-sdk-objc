@@ -19,10 +19,10 @@
 
 -(void)testInitWithCartInitializesChargeCardModelProperly
 {
-    XCTAssertEqualObjects(self.testChargeCardModel.cardNumber, @"", "no card number!");
-    XCTAssertEqualObjects(self.testChargeCardModel.expirationDate, @"", "no expiration!");
-    XCTAssertEqualObjects(self.testChargeCardModel.formattedCardNumber, @"", "no card number!");
-    XCTAssertEqualObjects(self.testChargeCardModel.formattedExpirationDate, @"", "no expiration!");
+    XCTAssertEqualObjects(self.testChargeCardModel.cardNumber, @"", "no card number");
+    XCTAssertEqualObjects(self.testChargeCardModel.expirationDate, @"", "no expiration");
+    XCTAssertEqualObjects(self.testChargeCardModel.formattedCardNumber, @"", "no formatted card number");
+    XCTAssertEqualObjects(self.testChargeCardModel.formattedExpirationDate, @"", "no formatted expiration");
     XCTAssertEqualObjects(self.testChargeCardModel.cvcCode, @"", "no cvc code");
     XCTAssertEqualObjects(self.testChargeCardModel.cardTypeString, @"blank", "blank type");
 }
@@ -155,7 +155,7 @@
 //Tests for isRetrivalPossible, isExpirationDateValid, and isCardNumberValid
 -(void)testIsCardChargePossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigits {
     [self.testChargeCardModel updateCardNumberWithString:@"5105 1051 0510 5100"];
-    [self.testChargeCardModel updateExpirationDateWithString:@"123"];
+    [self.testChargeCardModel updateExpirationDateWithString:@"1223"];
     [self.testChargeCardModel updateCVCNumberWithString:@"123"];
 
     XCTAssertTrue([self.testChargeCardModel isExpirationDateValid], "should be a valid expiration date");
