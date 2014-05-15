@@ -2,9 +2,19 @@
 #import "SIMAddress.h"
 #import "SIMCreditCardToken.h"
 
+/**
+ Protocol for communicating success or failure of the token generation.
+ */
 @protocol SIMChargeCardModelDelegate
 
+/**
+ Token failure Callback. If token generation fails, this will be called back and an error will be provided with a localizedDescription and code.
+ */
 -(void)tokenFailedWithError:(NSError *)error;
+
+/**
+ Token success Callback. If token generation succeeds, this will be called back and the fully hydrated credit card token.
+ */
 -(void)tokenProcessed:(SIMCreditCardToken *)token;
 
 @end

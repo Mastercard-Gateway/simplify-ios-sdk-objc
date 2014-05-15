@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SIMChargeCardViewController">
             <connections>
+                <outlet property="cancelButton" destination="EeH-2R-Bz5" id="qAm-7D-6Mo"/>
                 <outlet property="cardNumberField" destination="4mp-r7-IAa" id="3O2-bj-OPl"/>
                 <outlet property="cardNumberView" destination="xli-Iu-iqb" id="lR6-iB-key"/>
                 <outlet property="cardTypeImage" destination="pPN-OC-lV3" id="dkE-46-4Ke"/>
@@ -23,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7O-Rp-Rl5" customClass="SIMButton">
-                    <rect key="frame" x="0.0" y="206" width="320" height="58"/>
+                    <rect key="frame" x="0.0" y="255" width="320" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -36,6 +37,22 @@
                     </state>
                     <connections>
                         <action selector="retrieveToken:" destination="-1" eventType="touchUpInside" id="mG9-uK-fme"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EeH-2R-Bz5">
+                    <rect key="frame" x="0.0" y="190" width="320" height="58"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="58" id="fr1-a3-Poc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelTokenRequest:" destination="-1" eventType="touchUpInside" id="Jew-O9-esD"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wvh-92-4Hw">

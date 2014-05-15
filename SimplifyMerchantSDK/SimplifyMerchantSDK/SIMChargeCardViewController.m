@@ -9,6 +9,7 @@
 @property (strong, nonatomic) SIMChargeCardModel *chargeCardModel;
 @property (strong, nonatomic) NSString *apiKey;
 
+@property (strong, nonatomic) IBOutlet SIMButton *cancelButton;
 @property (strong, nonatomic) IBOutlet SIMButton *chargeCardButton;
 @property (strong, nonatomic) IBOutlet UITextField *cardNumberField;
 @property (strong, nonatomic) IBOutlet UITextField *expirationField;
@@ -142,6 +143,10 @@
 -(void)setCardTypeImage {
     UIImage *cardImage = [UIImage imageNamedFromFramework:self.chargeCardModel.cardTypeString];
     [self.cardTypeImage setImage:cardImage];
+}
+- (IBAction)cancelTokenRequest:(id)sender {
+    [self clearTextFields];
+    [self.delegate chargeCardCancelled];
 }
 
 -(IBAction)retrieveToken:(id)sender {

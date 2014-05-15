@@ -17,8 +17,6 @@ static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
 
 @interface SIMAPIManager () <NSURLSessionDelegate>
 
-typedef void (^PrinterBlock)(NSString*);
-
 typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError *error);
 
 @property (nonatomic) BOOL isLiveMode;

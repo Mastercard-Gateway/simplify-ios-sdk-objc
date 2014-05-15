@@ -245,8 +245,8 @@
 				495EEF7F192401D700AEC402 /* SIMChargeCardModel.h */,
 				495EEF7D192401D700AEC402 /* SIMChargeCardModel.m */,
 				495EEF7E192401D700AEC402 /* SIMChargeCardModelTests.m */,
-				495EEF84192401E000AEC402 /* SIMButton.m */,
 				495EEF85192401E000AEC402 /* SIMButton.h */,
+				495EEF84192401E000AEC402 /* SIMButton.m */,
 			);
 			name = ChargeView;
 			sourceTree = "<group>";
