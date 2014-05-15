@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="bottom" id="qYQ-FB-cAc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ixo-2F-htG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kO-Lh-PQP" customClass="SIMButton">
@@ -50,15 +50,15 @@
                         <viewControllerLayoutGuide type="bottom" id="FLD-q1-Syg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uFQ-mr-7Dh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D7T-8z-63a">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D7T-8z-63a">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOC-Ea-XuX" customClass="SIMButton">
-                                        <rect key="frame" x="0.0" y="294" width="320" height="58"/>
+                                        <rect key="frame" x="0.0" y="293" width="320" height="58"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -166,9 +166,6 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="BOC-Ea-XuX" secondAttribute="bottom" constant="216" id="5gB-u2-LxD"/>
-                                </constraints>
                                 <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                                 <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                             </view>
@@ -176,9 +173,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="fJ9-9E-BAc" id="W4F-27-iLc"/>
                         <outlet property="cardNumberField" destination="Vx6-84-b2K" id="oZ7-Eg-Vdv"/>
+                        <outlet property="cardNumberView" destination="J8a-cY-PtK" id="c0I-4F-BzN"/>
+                        <outlet property="cardTypeImage" destination="VTt-Dh-5QA" id="iDl-7u-yhU"/>
                         <outlet property="chargeCardButton" destination="BOC-Ea-XuX" id="HNY-Vl-FrY"/>
+                        <outlet property="cvcCodeView" destination="e5J-EC-7GM" id="bpm-57-s02"/>
                         <outlet property="cvcField" destination="f78-CE-GKA" id="jVg-5b-PAq"/>
+                        <outlet property="expirationDateView" destination="iar-ZN-dkn" id="CiO-4T-63K"/>
                         <outlet property="expirationField" destination="e92-V2-v8e" id="uSU-Dj-78O"/>
                     </connections>
                 </viewController>
@@ -193,6 +195,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>
