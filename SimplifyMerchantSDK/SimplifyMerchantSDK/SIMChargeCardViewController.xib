@@ -13,8 +13,11 @@
                 <outlet property="chargeCardButton" destination="Y7O-Rp-Rl5" id="5ah-83-LLb"/>
                 <outlet property="cvcCodeView" destination="P7X-Fp-cdo" id="jog-Rf-uAE"/>
                 <outlet property="cvcField" destination="R1X-5S-mSK" id="Zq0-ey-cVt"/>
+                <outlet property="cvcLabel" destination="gSc-x0-nor" id="y0c-Ny-gpA"/>
+                <outlet property="expLabel" destination="3kk-Jh-a3l" id="mm1-xU-YFf"/>
                 <outlet property="expirationDateView" destination="vIA-JG-qgI" id="mPC-2F-vTw"/>
                 <outlet property="expirationField" destination="h1S-BC-nB4" id="Xjz-6M-JSv"/>
+                <outlet property="headerView" destination="jAH-q3-iQQ" id="S4b-Ay-XHn"/>
                 <outlet property="view" destination="iN0-l3-epB" id="7pA-pt-KzA"/>
             </connections>
         </placeholder>

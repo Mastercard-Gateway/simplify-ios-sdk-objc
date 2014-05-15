@@ -8,7 +8,11 @@
 @interface SIMChargeCardViewController () <SIMChargeCardModelDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) SIMChargeCardModel *chargeCardModel;
 @property (strong, nonatomic) NSString *apiKey;
+@property (strong, nonatomic) IBOutlet UILabel *cvcLabel;
 
+@property (strong, nonatomic) IBOutlet UILabel *expLabel;
+@property (strong, nonatomic) UIColor *primaryColor;
+@property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 @property (strong, nonatomic) IBOutlet SIMButton *chargeCardButton;
 @property (strong, nonatomic) IBOutlet UITextField *cardNumberField;
@@ -24,9 +28,14 @@
 @implementation SIMChargeCardViewController
 
 -(instancetype)initWithApiKey:(NSString *)apiKey {
+    return [self initWithApiKey:apiKey primaryColor:nil];
+}
+
+-(instancetype)initWithApiKey:(NSString *)apiKey primaryColor:(UIColor *)primaryColor {
     self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
     if (self) {
         self.apiKey = apiKey;
+        self.primaryColor = primaryColor ? primaryColor : [UIColor buttonBackgroundColorEnabled];
     }
     
     return  self;
@@ -93,6 +102,9 @@
     self.cvcCodeView.backgroundColor = cvcBackgroundColor;
     BOOL isEnabled = [self.chargeCardModel isCardChargePossible];
     [self.chargeCardButton setEnabled:isEnabled];
+    self.chargeCardButton.primaryColor = self.primaryColor;
+    self.cvcLabel.textColor = self.primaryColor;
+    self.expLabel.textColor = self.primaryColor;
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

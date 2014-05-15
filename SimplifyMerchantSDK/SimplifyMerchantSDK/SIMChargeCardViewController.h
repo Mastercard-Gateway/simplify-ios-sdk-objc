@@ -30,6 +30,7 @@
 @interface SIMChargeCardViewController : UIViewController
 
 -(instancetype)initWithApiKey:(NSString *)apiKey;
+-(instancetype)initWithApiKey:(NSString *)apiKey primaryColor:(UIColor *)primaryColor;
 
 @property (nonatomic, weak) id <SIMChargeCardViewControllerDelegate> delegate; /**< Delegate for SIMChargeCardModelDelegate */
 

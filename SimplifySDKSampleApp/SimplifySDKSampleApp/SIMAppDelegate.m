@@ -1,5 +1,6 @@
 #import "SIMAppDelegate.h"
 #import <Simplify/Simplify.h>
+#import <Simplify/UIColor+Simplify.h>
 
 @interface SIMAppDelegate () <SIMChargeCardViewControllerDelegate>
 
@@ -12,8 +13,10 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5"];
+
+    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" primaryColor:[UIColor redColor]];
     chargeController.delegate = self;
+
     self.window.rootViewController = chargeController;
     [self.window makeKeyAndVisible];
     return YES;

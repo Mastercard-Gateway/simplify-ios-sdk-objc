@@ -69,5 +69,16 @@
     return buttonDisableStrokeColor;
 }
 
++ (UIColor *)darkerColorThanColor:(UIColor *)originalColor {
+    CGFloat hue, saturation, brightness, alpha;
+    
+    UIColor *accentColor;
+    
+    if ([originalColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha]) {
+        accentColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness * 0.75 alpha:alpha];
+    }
+    
+    return accentColor;
+}
 
 @end
