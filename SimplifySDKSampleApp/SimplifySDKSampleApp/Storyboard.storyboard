@@ -69,6 +69,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="retrieveToken:" destination="z61-jn-sst" eventType="touchUpInside" id="eDC-Ld-eTj"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lAB-dK-M1q">
                                         <rect key="frame" x="0.0" y="60" width="320" height="121"/>
@@ -160,6 +163,9 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="cancelTokenRequest:" destination="z61-jn-sst" eventType="touchUpInside" id="gzV-v4-FTR"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -177,7 +183,7 @@
                         <outlet property="cardNumberField" destination="Vx6-84-b2K" id="oZ7-Eg-Vdv"/>
                         <outlet property="cardNumberView" destination="J8a-cY-PtK" id="c0I-4F-BzN"/>
                         <outlet property="cardTypeImage" destination="VTt-Dh-5QA" id="iDl-7u-yhU"/>
-                        <outlet property="chargeCardButton" destination="BOC-Ea-XuX" id="HNY-Vl-FrY"/>
+                        <outlet property="chargeCardButton" destination="BOC-Ea-XuX" id="Y2L-gQ-Tzh"/>
                         <outlet property="cvcCodeView" destination="e5J-EC-7GM" id="bpm-57-s02"/>
                         <outlet property="cvcField" destination="f78-CE-GKA" id="jVg-5b-PAq"/>
                         <outlet property="expirationDateView" destination="iar-ZN-dkn" id="CiO-4T-63K"/>
@@ -186,7 +192,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4z8-Ag-oFi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1136" y="124"/>
+            <point key="canvasLocation" x="956" y="124"/>
         </scene>
     </scenes>
     <resources>

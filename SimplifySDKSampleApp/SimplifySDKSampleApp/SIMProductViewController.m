@@ -7,7 +7,7 @@
 //
 
 #import "SIMProductViewController.h"
-
+#import <Simplify/SIMChargeCardViewController.h>
 @interface SIMProductViewController ()
 
 @end
@@ -42,6 +42,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
+    
+    //    SIMChargeCardViewController *chargeController =
+    
+    SIMChargeCardViewController *chargeController = [segue destinationViewController];
+    chargeController =[[SIMChargeCardViewController alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5"];
     // Pass the selected object to the new view controller.
 }
 
