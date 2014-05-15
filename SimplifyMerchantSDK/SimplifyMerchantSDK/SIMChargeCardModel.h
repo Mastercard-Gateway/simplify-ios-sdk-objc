@@ -1,9 +1,11 @@
 #import "SIMCardType.h"
 #import "SIMAddress.h"
+#import "SIMCreditCardToken.h"
+
 @protocol SIMChargeCardModelDelegate
 
--(void)paymentFailedWithError:(NSError *)error;
--(void)paymentProcessedWithPaymentID:(NSString *)paymentID;
+-(void)tokenFailedWithError:(NSError *)error;
+-(void)tokenProcessed:(SIMCreditCardToken *)token;
 
 @end
 

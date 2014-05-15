@@ -31,7 +31,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
 
 @implementation SIMAPIManager
 
--(id)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **)error{
+-(instancetype)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **)error{
     self = [super init];
     
     if (self) {

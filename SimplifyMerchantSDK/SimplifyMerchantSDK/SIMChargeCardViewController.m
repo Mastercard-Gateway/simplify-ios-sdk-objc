@@ -160,34 +160,21 @@
 }
 
 #pragma mark SIMRetrieveTokenModelDelegate methods
--(void)paymentFailedWithError:(NSError *)error {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error processing payment"
-                                                    message:error.localizedDescription
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+- (void)tokenFailedWithError:(NSError *)error {
     
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self clearTextFields];
-        [self.delegate requestedPaymentProcess:nil withError:error];
+        [self.delegate creditCardTokenFailedWithError:error];
     });
 
 }
 
--(void)paymentProcessedWithPaymentID:(NSString *)paymentID {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                    message:@"Payment Processed Successfully"
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    
-    [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
-    
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        [self clearTextFields];
-        [self.delegate requestedPaymentProcess:paymentID withError:nil];
-    });
+-(void)tokenProcessed:(SIMCreditCardToken *)token {
+
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self clearTextFields];
+            [self.delegate creditCardTokenProcessed:token];
+        });
 }
 
 @end

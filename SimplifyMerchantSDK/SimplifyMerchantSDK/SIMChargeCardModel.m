@@ -3,14 +3,6 @@
 #import "SIMAPIManager.h"
 #import "SIMLuhnValidator.h"
 
-#ifndef SIMPublicAPIKeyLive
-#define SIMPublicAPIKeyLive @""
-#endif
-
-#ifndef SIMPublicAPIKeySandbox
-#define SIMPublicAPIKeySandbox @"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5"
-#endif
-
 @interface SIMChargeCardModel ()
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;
 @property (nonatomic, strong) NSString *apiKey;
@@ -207,34 +199,11 @@
     [apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address completionHander:^(SIMCreditCardToken *cardToken, NSError *error) {
         if (error) {
             NSLog(@"error:%@", error);
-            [self.delegate paymentFailedWithError:error];
+            [self.delegate tokenFailedWithError:error];
         } else {
-            NSLog(@"token: %@", cardToken.token);
-            [self makePaymentWithToken:cardToken.token];
+            [self.delegate tokenProcessed:cardToken];
         }
     }];
-}
-
--(void)makePaymentWithToken:(NSString *)cardToken {
-
-    NSURL *url= [NSURL URLWithString:@"https://Your_server/charge.rb"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:10.0];
-    [request setHTTPMethod:@"POST"];
-    NSString *postString = @"simplifyToken=";
-    
-    postString = [postString stringByAppendingString:cardToken];
-    
-    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-    //Process Request
-//    if (error) {
-//        NSLog(@"error:%@", error);
-//        [self.delegate processPaymentWithError:error];
-//    } else {
-        [self.delegate paymentProcessedWithPaymentID:nil];
-//}
-
 }
 
 @end
