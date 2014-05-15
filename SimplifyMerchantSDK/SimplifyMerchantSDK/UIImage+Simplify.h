@@ -9,5 +9,6 @@
  */
 +(UIImage*)imageNamedFromFramework:(NSString*)name;
 
++(UIImage *)boxblurImage:(UIImage *)originalImage withBlur:(CGFloat)blur;
 
 @end

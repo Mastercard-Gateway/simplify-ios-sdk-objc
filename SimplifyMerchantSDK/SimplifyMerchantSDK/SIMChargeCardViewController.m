@@ -176,6 +176,11 @@
     [self buttonsEnabled];
 }
 
+- (void) dismissKeyboard {
+    [self.cardNumberField resignFirstResponder];
+    [self.expirationField resignFirstResponder];
+    [self.cvcField resignFirstResponder];
+}
 #pragma mark SIMRetrieveTokenModelDelegate methods
 - (void)tokenFailedWithError:(NSError *)error {
     
@@ -190,7 +195,22 @@
 
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self clearTextFields];
+            [self dismissKeyboard];
+            
             [self.delegate creditCardTokenProcessed:token];
+            CGRect rect;
+            rect=CGRectMake(0, 0, 320, 480);
+            UIGraphicsBeginImageContext(rect.size);
+            
+            CGContextRef context=UIGraphicsGetCurrentContext();
+            [self.view.layer renderInContext:context];
+            
+            UIImage *image=UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            UIImage *blurredImage = [UIImage boxblurImage:image withBlur:1.0];
+            UIImageView *blurredView = [[UIImageView alloc] initWithImage:blurredImage];
+            [self.view addSubview:blurredView];
+
         });
 }
 

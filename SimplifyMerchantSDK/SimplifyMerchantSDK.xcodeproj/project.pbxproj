@@ -83,6 +83,7 @@
 		4977D077191AB96900AC621F /* mastercard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D044191A9C6F00AC621F /* mastercard@2x.png */; };
 		4977D078191AB96900AC621F /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D045191A9C6F00AC621F /* visa.png */; };
 		4977D079191AB96900AC621F /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D046191A9C6F00AC621F /* visa@2x.png */; };
+		49C499321925645F00402775 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C499311925645F00402775 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +193,7 @@
 		4977D049191A9C6F00AC621F /* SIMDigitVerifierTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMDigitVerifierTests.m; sourceTree = "<group>"; };
 		4977D05D191AB89C00AC621F /* Simplify.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Simplify.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		4977D05E191AB89C00AC621F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		49C499311925645F00402775 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C499321925645F00402775 /* Accelerate.framework in Frameworks */,
 				4977D05F191AB89C00AC621F /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +277,7 @@
 		49748F61191849C600738BC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49C499311925645F00402775 /* Accelerate.framework */,
 				49748F8819184A3F00738BC9 /* ocmock */,
 				49748F62191849C600738BC9 /* Foundation.framework */,
 				49748F70191849C600738BC9 /* XCTest.framework */,

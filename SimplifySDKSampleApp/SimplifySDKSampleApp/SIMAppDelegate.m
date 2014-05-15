@@ -1,6 +1,5 @@
 #import "SIMAppDelegate.h"
 #import <Simplify/Simplify.h>
-#import <Simplify/UIColor+Simplify.h>
 
 @interface SIMAppDelegate () <SIMChargeCardViewControllerDelegate>
 
@@ -32,7 +31,7 @@
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error processing token" message:error.localizedDescription delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
-    [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+    [alert show];
 
     NSLog(@"Credit Card Token Failed with error:%@", error.localizedDescription);
 }
@@ -62,7 +61,8 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         
-        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+//        [alert show];
+//        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
     }
 
 }
