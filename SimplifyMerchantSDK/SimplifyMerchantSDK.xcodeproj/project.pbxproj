@@ -83,6 +83,9 @@
 		4977D077191AB96900AC621F /* mastercard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D044191A9C6F00AC621F /* mastercard@2x.png */; };
 		4977D078191AB96900AC621F /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D045191A9C6F00AC621F /* visa.png */; };
 		4977D079191AB96900AC621F /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D046191A9C6F00AC621F /* visa@2x.png */; };
+		49C499321925645F00402775 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C499311925645F00402775 /* Accelerate.framework */; };
+		49C499391925C2E700402775 /* SIMResponseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49C499371925C2E700402775 /* SIMResponseViewController.h */; };
+		49C4993A1925C2E800402775 /* SIMResponseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C499381925C2E700402775 /* SIMResponseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +195,9 @@
 		4977D049191A9C6F00AC621F /* SIMDigitVerifierTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMDigitVerifierTests.m; sourceTree = "<group>"; };
 		4977D05D191AB89C00AC621F /* Simplify.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Simplify.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		4977D05E191AB89C00AC621F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		49C499311925645F00402775 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		49C499371925C2E700402775 /* SIMResponseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMResponseViewController.h; sourceTree = "<group>"; };
+		49C499381925C2E700402775 /* SIMResponseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMResponseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C499321925645F00402775 /* Accelerate.framework in Frameworks */,
 				4977D05F191AB89C00AC621F /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,6 +246,8 @@
 		495EEF7A192401B600AEC402 /* ChargeView */ = {
 			isa = PBXGroup;
 			children = (
+				49C499371925C2E700402775 /* SIMResponseViewController.h */,
+				49C499381925C2E700402775 /* SIMResponseViewController.m */,
 				495EEF7B192401D700AEC402 /* SIMChargeCardViewController.xib */,
 				495EEF881924021E00AEC402 /* SIMChargeCardViewController.h */,
 				495EEF7C192401D700AEC402 /* SIMChargeCardViewController.m */,
@@ -274,6 +283,7 @@
 		49748F61191849C600738BC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49C499311925645F00402775 /* Accelerate.framework */,
 				49748F8819184A3F00738BC9 /* ocmock */,
 				49748F62191849C600738BC9 /* Foundation.framework */,
 				49748F70191849C600738BC9 /* XCTest.framework */,
@@ -454,6 +464,7 @@
 				49748FAF1919323600738BC9 /* NSString+Simplify.h in Headers */,
 				49748FA819188D2C00738BC9 /* SIMAPIManager.h in Headers */,
 				495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */,
+				49C499391925C2E700402775 /* SIMResponseViewController.h in Headers */,
 				495EEF891924021E00AEC402 /* SIMChargeCardViewController.h in Headers */,
 				495EEF911924049700AEC402 /* NSBundle+Simplify.h in Headers */,
 				495EEF781923DFE700AEC402 /* UIColor+Simplify.h in Headers */,
@@ -624,6 +635,7 @@
 				495EEF80192401D700AEC402 /* SIMChargeCardViewController.m in Sources */,
 				4977D051191A9C6F00AC621F /* SIMDigitVerifier.m in Sources */,
 				49748FB01919323600738BC9 /* NSString+Simplify.m in Sources */,
+				49C4993A1925C2E800402775 /* SIMResponseViewController.m in Sources */,
 				495EEF921924049700AEC402 /* NSBundle+Simplify.m in Sources */,
 				495EEF96192406FF00AEC402 /* UIImage+Simplify.m in Sources */,
 				4977D04D191A9C6F00AC621F /* SIMCardType.m in Sources */,

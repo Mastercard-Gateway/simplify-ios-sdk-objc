@@ -1,4 +1,5 @@
 #import "UIColor+Simplify.h"
+#import <Accelerate/Accelerate.h>
 
 @implementation UIColor (Simplify)
 

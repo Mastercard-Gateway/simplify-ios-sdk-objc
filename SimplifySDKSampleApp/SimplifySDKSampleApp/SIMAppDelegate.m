@@ -1,6 +1,5 @@
 #import "SIMAppDelegate.h"
 #import <Simplify/Simplify.h>
-#import <Simplify/UIColor+Simplify.h>
 
 #import "SIMProductViewController.h"
 

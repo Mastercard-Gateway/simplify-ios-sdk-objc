@@ -4,6 +4,7 @@
 #import "UIColor+Simplify.h"
 #import "UIImage+Simplify.h"
 #import "NSBundle+Simplify.h"
+#import "SIMResponseViewController.h"
 
 @interface SIMChargeCardViewController () <SIMChargeCardModelDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) SIMChargeCardModel *chargeCardModel;
@@ -176,12 +177,25 @@
     [self buttonsEnabled];
 }
 
+- (void) dismissKeyboard {
+    [self.cardNumberField resignFirstResponder];
+    [self.expirationField resignFirstResponder];
+    [self.cvcField resignFirstResponder];
+}
+
 #pragma mark SIMRetrieveTokenModelDelegate methods
 - (void)tokenFailedWithError:(NSError *)error {
     
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self clearTextFields];
         [self.delegate creditCardTokenFailedWithError:error];
+        
+        UIImageView *blurredView = [UIImage blurImage:self.view.layer];
+        
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor success:NO];
+        
+        [self presentViewController:viewController animated:YES completion:nil];
+        
     });
 
 }
@@ -190,7 +204,15 @@
 
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self clearTextFields];
+            [self dismissKeyboard];
+            
             [self.delegate creditCardTokenProcessed:token];
+            
+            UIImageView *blurredView = [UIImage blurImage:self.view.layer];
+            
+            SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor success:YES];
+            [self presentViewController:viewController animated:YES completion:nil];
+
         });
 }
 

@@ -1,11 +1,3 @@
-//
-//  SIMProductViewController.m
-//  SimplifySDKSampleApp
-//
-//  Created by Neem Serra on 5/15/14.
-//  Copyright (c) 2014 MasterCard. All rights reserved.
-//
-
 #import "SIMProductViewController.h"
 #import <Simplify/SIMChargeCardViewController.h>
 @interface SIMProductViewController ()<SIMChargeCardViewControllerDelegate>
@@ -48,14 +40,13 @@
 #pragma mark - SIMChargeViewController Protocol
 -(void)chargeCardCancelled {
     //User cancelled the SIMChargeViewController
+    
+    [self.chargeController dismissViewControllerAnimated:YES completion:nil];
+    
     NSLog(@"User Cancelled");
 }
 
 -(void)creditCardTokenFailedWithError:(NSError *)error {
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error processing token" message:error.localizedDescription delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    
-    [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
     
     NSLog(@"Credit Card Token Failed with error:%@", error.localizedDescription);
 }
@@ -79,13 +70,6 @@
         NSLog(@"error:%@", error);
     } else {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                        message:@"Payment Processed Successfully"
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        
-        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
     }
     
 }
