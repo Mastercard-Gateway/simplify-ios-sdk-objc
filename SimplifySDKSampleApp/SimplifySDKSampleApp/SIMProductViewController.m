@@ -36,21 +36,14 @@
 }
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    
-    //    SIMChargeCardViewController *chargeController =
-    
-    SIMChargeCardViewController *chargeController = [segue destinationViewController];
-    chargeController = [[SIMChargeCardViewController alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5"];
+- (IBAction)buyKitten:(id)sender {
+    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5"];
     chargeController.delegate = self;
     self.chargeController = chargeController;
-    // Pass the selected object to the new view controller.
+    
+    [self presentViewController:self.chargeController animated:YES completion:nil];
+    
 }
-
 
 #pragma mark - SIMChargeViewController Protocol
 -(void)chargeCardCancelled {

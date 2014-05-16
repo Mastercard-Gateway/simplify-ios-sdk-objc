@@ -32,7 +32,7 @@
 }
 
 -(instancetype)initWithApiKey:(NSString *)apiKey primaryColor:(UIColor *)primaryColor {
-    //self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
+    self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
     if (self) {
         self.apiKey = apiKey;
         self.primaryColor = primaryColor ? primaryColor : [UIColor buttonBackgroundColorEnabled];
