@@ -1,7 +1,12 @@
 #import "SIMProductViewController.h"
 #import <Simplify/SIMChargeCardViewController.h>
+#import <Simplify/SIMButton.h>
+
+
 @interface SIMProductViewController ()<SIMChargeCardViewControllerDelegate>
 @property (nonatomic, strong) SIMChargeCardViewController *chargeController;
+@property (strong, nonatomic) IBOutlet SIMButton *buyButton;
+@property (strong, nonatomic) UIColor *primaryColor;
 @end
 
 @implementation SIMProductViewController
@@ -18,18 +23,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.primaryColor = [UIColor colorWithRed:42.0/255.0 green:48.0/255.0 blue:145.0/255.0 alpha:1.0];
+    self.buyButton.primaryColor = self.primaryColor;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Navigation
-- (IBAction)buyKitten:(id)sender {
-    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5"];
+- (IBAction)buyCupcake:(id)sender {
+    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" primaryColor:self.primaryColor];
     chargeController.delegate = self;
     self.chargeController = chargeController;
     
