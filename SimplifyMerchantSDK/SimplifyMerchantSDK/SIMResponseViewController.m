@@ -1,4 +1,5 @@
 #import "SIMResponseViewController.h"
+#import <UIColor+Simplify.h>
 
 @interface SIMResponseViewController ()
 
@@ -16,9 +17,9 @@
     self = [super init];
     if (self) {
         self.backgroundView = backgroundView;
-        self.primaryColor = primaryColor;
-        self.titleMessage = titleMessage;
-        self.descriptionMessage = descriptionMessage;
+        self.primaryColor = primaryColor ? primaryColor : [UIColor buttonBackgroundColorEnabled];
+        self.titleMessage = titleMessage ? titleMessage : @"Status Unknown";
+        self.descriptionMessage = descriptionMessage ? descriptionMessage : @"Please try again.";
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
     
