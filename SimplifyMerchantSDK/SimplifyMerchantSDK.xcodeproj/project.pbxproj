@@ -41,7 +41,7 @@
 		495EEF8E192403B000AEC402 /* SIMChargeCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495EEF7B192401D700AEC402 /* SIMChargeCardViewController.xib */; };
 		495EEF911924049700AEC402 /* NSBundle+Simplify.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF8F1924049700AEC402 /* NSBundle+Simplify.h */; };
 		495EEF921924049700AEC402 /* NSBundle+Simplify.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF901924049700AEC402 /* NSBundle+Simplify.m */; };
-		495EEF95192406FF00AEC402 /* UIImage+Simplify.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF93192406FF00AEC402 /* UIImage+Simplify.h */; };
+		495EEF95192406FF00AEC402 /* UIImage+Simplify.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF93192406FF00AEC402 /* UIImage+Simplify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		495EEF96192406FF00AEC402 /* UIImage+Simplify.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF94192406FF00AEC402 /* UIImage+Simplify.m */; };
 		49748F63191849C600738BC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F62191849C600738BC9 /* Foundation.framework */; };
 		49748F71191849C600738BC9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F70191849C600738BC9 /* XCTest.framework */; };
@@ -84,7 +84,7 @@
 		4977D078191AB96900AC621F /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D045191A9C6F00AC621F /* visa.png */; };
 		4977D079191AB96900AC621F /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D046191A9C6F00AC621F /* visa@2x.png */; };
 		49C499321925645F00402775 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C499311925645F00402775 /* Accelerate.framework */; };
-		49C499391925C2E700402775 /* SIMResponseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49C499371925C2E700402775 /* SIMResponseViewController.h */; };
+		49C499391925C2E700402775 /* SIMResponseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49C499371925C2E700402775 /* SIMResponseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49C4993A1925C2E800402775 /* SIMResponseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C499381925C2E700402775 /* SIMResponseViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -455,7 +455,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				495EEF95192406FF00AEC402 /* UIImage+Simplify.h in Headers */,
 				4977D04F191A9C6F00AC621F /* SIMLuhnValidator.h in Headers */,
 				4977D050191A9C6F00AC621F /* SIMDigitVerifier.h in Headers */,
 				495EEF83192401D700AEC402 /* SIMChargeCardModel.h in Headers */,
@@ -466,6 +465,7 @@
 				495EEF87192401E000AEC402 /* SIMButton.h in Headers */,
 				49C499391925C2E700402775 /* SIMResponseViewController.h in Headers */,
 				495EEF891924021E00AEC402 /* SIMChargeCardViewController.h in Headers */,
+				495EEF95192406FF00AEC402 /* UIImage+Simplify.h in Headers */,
 				495EEF911924049700AEC402 /* NSBundle+Simplify.h in Headers */,
 				495EEF781923DFE700AEC402 /* UIColor+Simplify.h in Headers */,
 				495EEECC191B387200AEC402 /* SIMCreditCardToken.h in Headers */,

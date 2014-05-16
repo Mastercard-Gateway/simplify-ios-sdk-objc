@@ -2,7 +2,8 @@
 #import <Simplify/SIMChargeCardViewController.h>
 #import <Simplify/SIMButton.h>
 #import <Simplify/UIColor+Simplify.h>
-
+#import <Simplify/UIImage+Simplify.h>
+#import <Simplify/SIMResponseViewController.h>
 
 @interface SIMProductViewController ()<SIMChargeCardViewControllerDelegate>
 @property (nonatomic, strong) SIMChargeCardViewController *chargeController;
@@ -78,8 +79,15 @@
     
     if (error) {
         NSLog(@"error:%@", error);
+        UIImageView *blurredView = [UIImage blurImage:self.view.layer];
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Failure." description:@"There was a problem with the payment.\nPlease try again."];
+        [self presentViewController:viewController animated:YES completion:nil];
+
     } else {
         
+        UIImageView *blurredView = [UIImage blurImage:self.view.layer];
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Success!" description:@"You purchased a cupcake."];
+        [self presentViewController:viewController animated:YES completion:nil];
     }
     
 }
