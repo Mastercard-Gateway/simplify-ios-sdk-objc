@@ -35,7 +35,7 @@
 		495EEF81192401D700AEC402 /* SIMChargeCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF7D192401D700AEC402 /* SIMChargeCardModel.m */; };
 		495EEF83192401D700AEC402 /* SIMChargeCardModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF7F192401D700AEC402 /* SIMChargeCardModel.h */; };
 		495EEF86192401E000AEC402 /* SIMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF84192401E000AEC402 /* SIMButton.m */; };
-		495EEF87192401E000AEC402 /* SIMButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF85192401E000AEC402 /* SIMButton.h */; };
+		495EEF87192401E000AEC402 /* SIMButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF85192401E000AEC402 /* SIMButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		495EEF891924021E00AEC402 /* SIMChargeCardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF881924021E00AEC402 /* SIMChargeCardViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		495EEF8A1924023600AEC402 /* SIMChargeCardModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF7E192401D700AEC402 /* SIMChargeCardModelTests.m */; };
 		495EEF8E192403B000AEC402 /* SIMChargeCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495EEF7B192401D700AEC402 /* SIMChargeCardViewController.xib */; };
