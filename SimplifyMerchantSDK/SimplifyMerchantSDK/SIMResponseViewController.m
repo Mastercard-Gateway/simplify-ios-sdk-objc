@@ -3,6 +3,8 @@
 @interface SIMResponseViewController ()
 
 @property (nonatomic) UIImageView *backgroundView;
+@property (nonatomic) NSString *titleMessage;
+@property (nonatomic) NSString *descriptionMessage;
 @property (nonatomic) UIColor *primaryColor;
 @property (nonatomic) BOOL didSucceed;
 
@@ -10,12 +12,13 @@
 
 @implementation SIMResponseViewController
 
--(instancetype)initWithBackground:(UIImageView *)backgroundView primaryColor:(UIColor *)primaryColor success:(BOOL)didSucceed {
+-(instancetype)initWithBackground:(UIImageView *)backgroundView primaryColor:(UIColor *)primaryColor title:(NSString *)titleMessage description:(NSString *)descriptionMessage {
     self = [super init];
     if (self) {
         self.backgroundView = backgroundView;
         self.primaryColor = primaryColor;
-        self.didSucceed = didSucceed;
+        self.titleMessage = titleMessage;
+        self.descriptionMessage = descriptionMessage;
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
     
@@ -32,15 +35,16 @@
     titleLabel.textColor = self.primaryColor;
     titleLabel.font = [UIFont boldSystemFontOfSize:28.0];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = self.didSucceed ? @"Success!" : @"Failure.";
+    [titleLabel setAdjustsFontSizeToFitWidth:YES];
+    titleLabel.text = self.titleMessage;
     [self.view addSubview:titleLabel];
 
     UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, 132)];
     descriptionLabel.textColor = [UIColor blackColor];
-    descriptionLabel.numberOfLines = 3;
+    descriptionLabel.numberOfLines = 10;
     descriptionLabel.textAlignment = NSTextAlignmentCenter;
     descriptionLabel.font = [UIFont boldSystemFontOfSize:20.0];
-    descriptionLabel.text = self.didSucceed ? @"You successfully generated a token!" : @"There was a problem with the token generation.\nPlease try again.";
+    descriptionLabel.text = self.descriptionMessage;
     [self.view addSubview:descriptionLabel];
 
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSelf)];

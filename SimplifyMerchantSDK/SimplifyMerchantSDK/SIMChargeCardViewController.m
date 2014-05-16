@@ -192,7 +192,7 @@
         
         UIImageView *blurredView = [UIImage blurImage:self.view.layer];
         
-        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor success:NO];
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Failure." description:@"There was a problem with the payment.\nPlease try again."];
         
         [self presentViewController:viewController animated:YES completion:nil];
         
@@ -209,8 +209,7 @@
             [self.delegate creditCardTokenProcessed:token];
             
             UIImageView *blurredView = [UIImage blurImage:self.view.layer];
-            
-            SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor success:YES];
+            SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Success!" description:@"You purchased a cupcake."];
             [self presentViewController:viewController animated:YES completion:nil];
 
         });
