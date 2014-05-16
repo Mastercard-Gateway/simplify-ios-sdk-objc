@@ -173,11 +173,11 @@
 				7EF162401926AECA008F805A /* cupcake.jpg */,
 				7ED9EA011917E2930082C2C3 /* SIMAppDelegate.h */,
 				7ED9EA021917E2930082C2C3 /* SIMAppDelegate.m */,
+				7EF162331925598B008F805A /* SIMProductViewController.h */,
+				7EF162341925598B008F805A /* SIMProductViewController.m */,
 				7EF1622F1925555A008F805A /* Storyboard.storyboard */,
 				7ED9EA041917E2930082C2C3 /* Images.xcassets */,
 				7ED9E9F91917E2930082C2C3 /* Supporting Files */,
-				7EF162331925598B008F805A /* SIMProductViewController.h */,
-				7EF162341925598B008F805A /* SIMProductViewController.m */,
 			);
 			path = SimplifySDKSampleApp;
 			sourceTree = "<group>";
