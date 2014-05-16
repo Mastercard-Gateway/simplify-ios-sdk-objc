@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kO-Lh-PQP" customClass="SIMButton">
-                                <rect key="frame" x="0.0" y="235" width="320" height="58"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kO-Lh-PQP" customClass="SIMButton">
+                                <rect key="frame" x="0.0" y="510" width="320" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -29,12 +29,15 @@
                                     <action selector="buyKitten:" destination="pa4-IN-g5Q" eventType="touchUpInside" id="UNs-7A-skY"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cats-kittens_00379052.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Tzj-c0-465">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="235"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="IMG_9035.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MZE-2r-Hgt">
+                                <rect key="frame" x="-31" y="0.0" width="382" height="510"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qYQ-FB-cAc" firstAttribute="top" secondItem="6kO-Lh-PQP" secondAttribute="bottom" id="nKl-3G-uFt"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0PP-Ng-FbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -43,7 +46,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cats-kittens_00379052.jpg" width="1920" height="1200"/>
+        <image name="IMG_9035.jpg" width="2448" height="3264"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

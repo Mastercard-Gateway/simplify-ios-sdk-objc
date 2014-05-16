@@ -18,7 +18,7 @@
 		7ED9EA051917E2930082C2C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA041917E2930082C2C3 /* Images.xcassets */; };
 		7EF162301925555A008F805A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EF1622F1925555A008F805A /* Storyboard.storyboard */; };
 		7EF162351925598B008F805A /* SIMProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF162341925598B008F805A /* SIMProductViewController.m */; };
-		7EF16239192561EB008F805A /* cats-kittens_00379052.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EF16238192561EB008F805A /* cats-kittens_00379052.jpg */; };
+		7EF1623D19269F64008F805A /* IMG_9035.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EF1623C19269F64008F805A /* IMG_9035.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +84,7 @@
 		7EF1622F1925555A008F805A /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		7EF162331925598B008F805A /* SIMProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMProductViewController.h; sourceTree = "<group>"; };
 		7EF162341925598B008F805A /* SIMProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMProductViewController.m; sourceTree = "<group>"; };
-		7EF16238192561EB008F805A /* cats-kittens_00379052.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cats-kittens_00379052.jpg"; sourceTree = "<group>"; };
+		7EF1623C19269F64008F805A /* IMG_9035.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_9035.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +173,7 @@
 				7ED9EA011917E2930082C2C3 /* SIMAppDelegate.h */,
 				7ED9EA021917E2930082C2C3 /* SIMAppDelegate.m */,
 				7EF1622F1925555A008F805A /* Storyboard.storyboard */,
-				7EF16238192561EB008F805A /* cats-kittens_00379052.jpg */,
+				7EF1623C19269F64008F805A /* IMG_9035.jpg */,
 				7ED9EA041917E2930082C2C3 /* Images.xcassets */,
 				7ED9E9F91917E2930082C2C3 /* Supporting Files */,
 				7EF162331925598B008F805A /* SIMProductViewController.h */,
@@ -277,11 +277,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EF16239192561EB008F805A /* cats-kittens_00379052.jpg in Resources */,
 				7ED9E9FD1917E2930082C2C3 /* InfoPlist.strings in Resources */,
 				7EF162301925555A008F805A /* Storyboard.storyboard in Resources */,
 				7ED9EA051917E2930082C2C3 /* Images.xcassets in Resources */,
 				4977D092191AC04700AC621F /* Simplify.bundle in Resources */,
+				7EF1623D19269F64008F805A /* IMG_9035.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
