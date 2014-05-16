@@ -14,6 +14,7 @@
 {
     self.storyboard = [self.window.rootViewController storyboard];
     SIMProductViewController *productController = [self.storyboard instantiateInitialViewController];
+
     self.window.rootViewController = productController;
 
     [self.window makeKeyAndVisible];

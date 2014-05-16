@@ -129,6 +129,8 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
     request.HTTPMethod = @"POST";
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request addValue:@"" forHTTPHeaderField:@"User-Agent"];
+    
     request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
     
     self.request = request;

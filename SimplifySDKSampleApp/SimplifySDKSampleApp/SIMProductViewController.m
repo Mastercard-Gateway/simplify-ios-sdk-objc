@@ -1,6 +1,7 @@
 #import "SIMProductViewController.h"
 #import <Simplify/SIMChargeCardViewController.h>
 #import <Simplify/SIMButton.h>
+#import <Simplify/UIColor+Simplify.h>
 
 
 @interface SIMProductViewController ()<SIMChargeCardViewControllerDelegate>
@@ -23,8 +24,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     self.primaryColor = [UIColor colorWithRed:42.0/255.0 green:48.0/255.0 blue:145.0/255.0 alpha:1.0];
     self.buyButton.primaryColor = self.primaryColor;
+
+//    self.buyButton.primaryColor = [UIColor buttonBackgroundColorEnabled];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,6 +39,7 @@
 #pragma mark - Navigation
 - (IBAction)buyCupcake:(id)sender {
     SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" primaryColor:self.primaryColor];
+
     chargeController.delegate = self;
     self.chargeController = chargeController;
     
