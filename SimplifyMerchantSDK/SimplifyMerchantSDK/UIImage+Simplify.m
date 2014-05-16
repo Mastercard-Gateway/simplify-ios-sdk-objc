@@ -9,6 +9,21 @@
     return [UIImage imageWithContentsOfFile:fileName];
 }
 
++(UIImageView *)blurImage:(CALayer *)layer {
+
+    CGRect rect = layer.frame;
+    UIGraphicsBeginImageContext(rect.size);
+
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [layer renderInContext:context];
+    
+    UIImage *image=UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImage *blurredImage = [UIImage boxblurImage:image withBlur:1.0];
+    return [[UIImageView alloc] initWithImage:blurredImage];
+    
+}
+
 +(UIImage *)boxblurImage:(UIImage *)originalImage withBlur:(CGFloat)blur {
 
     if (blur < 0.f || blur > 1.f) {

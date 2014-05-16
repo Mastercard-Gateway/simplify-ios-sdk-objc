@@ -4,6 +4,7 @@
 #import "UIColor+Simplify.h"
 #import "UIImage+Simplify.h"
 #import "NSBundle+Simplify.h"
+#import "SIMResponseViewController.h"
 
 @interface SIMChargeCardViewController () <SIMChargeCardModelDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) SIMChargeCardModel *chargeCardModel;
@@ -181,12 +182,20 @@
     [self.expirationField resignFirstResponder];
     [self.cvcField resignFirstResponder];
 }
+
 #pragma mark SIMRetrieveTokenModelDelegate methods
 - (void)tokenFailedWithError:(NSError *)error {
     
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self clearTextFields];
         [self.delegate creditCardTokenFailedWithError:error];
+        
+        UIImageView *blurredView = [UIImage blurImage:self.view.layer];
+        
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor success:NO];
+        
+        [self presentViewController:viewController animated:YES completion:nil];
+        
     });
 
 }
@@ -198,18 +207,11 @@
             [self dismissKeyboard];
             
             [self.delegate creditCardTokenProcessed:token];
-            CGRect rect;
-            rect=CGRectMake(0, 0, 320, 480);
-            UIGraphicsBeginImageContext(rect.size);
             
-            CGContextRef context=UIGraphicsGetCurrentContext();
-            [self.view.layer renderInContext:context];
+            UIImageView *blurredView = [UIImage blurImage:self.view.layer];
             
-            UIImage *image=UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            UIImage *blurredImage = [UIImage boxblurImage:image withBlur:1.0];
-            UIImageView *blurredView = [[UIImageView alloc] initWithImage:blurredImage];
-            [self.view addSubview:blurredView];
+            SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor success:YES];
+            [self presentViewController:viewController animated:YES completion:nil];
 
         });
 }
