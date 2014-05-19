@@ -1,6 +1,7 @@
 #import "SIMCardType.h"
 #import "SIMAddress.h"
 #import "SIMCreditCardToken.h"
+#import "SIMAPIManager.h"
 
 /**
  Protocol for communicating success or failure of the token generation.

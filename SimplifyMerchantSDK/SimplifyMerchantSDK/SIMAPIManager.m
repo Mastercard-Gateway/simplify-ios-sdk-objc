@@ -30,25 +30,24 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
 
 @implementation SIMAPIManager
 
--(instancetype)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **)error{
+-(instancetype)initWithApiKey:(NSString *)apiKey error:(NSError **)error{
     self = [super init];
     
     if (self) {
         
         NSError *modeError;
-        self.isLiveMode = [self isAPIKeyLiveMode:publicApiKey error:&modeError];
+        self.isLiveMode = [self isAPIKeyLiveMode:apiKey error:&modeError];
         
         if (modeError) {
             if(error != NULL) *error = modeError;
             return nil;
         } else {
-            self.publicApiKey = publicApiKey;
+            self.publicApiKey = apiKey;
             NSString *apiURLString = (self.isLiveMode) ? prodAPILiveURL : prodAPISandboxURL;
             self.currentAPIURL = [NSURL URLWithString:apiURLString];
             [self.request setURL:self.currentAPIURL];
         }
-        
-        
+                
     }
 
     return self;

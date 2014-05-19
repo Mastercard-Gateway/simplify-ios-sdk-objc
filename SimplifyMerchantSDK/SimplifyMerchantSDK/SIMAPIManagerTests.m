@@ -28,7 +28,7 @@
 -(void)testAPIManagerCanDetermineLiveModeFromProvidedApiKey {
     NSString *apiKey = @"lvpb_1234";
     NSError *error;
-    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error];
+    self.testSubject = [[SIMAPIManager alloc] initWithApiKey:apiKey error:&error];
 
     NSURL *apiURL = [NSURL URLWithString:@"https://api.simplify.com/v1/api"];
     
@@ -41,7 +41,7 @@
 -(void)testAPIManagerCanDetermineSandboxModeFromProvidedApiKey {
     NSString *apiKey = @"sbpb_1234";
     NSError *error;
-    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error];
+    self.testSubject = [[SIMAPIManager alloc] initWithApiKey:apiKey error:&error];
 
     NSURL *apiURL = [NSURL URLWithString:@"https://sandbox.simplify.com/v1/api"];
 
@@ -55,7 +55,7 @@
 -(void)testAPIManagerReturnsNilAndErrorWhenAPIKeyIsInvalid {
     NSString *apiKey = @"invalid1234";
     NSError *error;
-    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error];
+    self.testSubject = [[SIMAPIManager alloc] initWithApiKey:apiKey error:&error];
     
     XCTAssertNil(self.testSubject, @"");
     XCTAssertNotNil(error, @"");
@@ -65,7 +65,7 @@
 -(void)testAPIManagerAcceptsNilErrorOnSuccess {
     NSString *apiKey = @"sbpb_1234";
     NSError *error;
-    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:nil];
+    self.testSubject = [[SIMAPIManager alloc] initWithApiKey:apiKey error:nil];
     
     XCTAssertNotNil(self.testSubject, @"");
     XCTAssertNil(error, @"");
@@ -74,7 +74,7 @@
 -(void)testAPIManagerAcceptsNilErrorOnFailureAndNilObject {
     NSString *apiKey = @"invalid1234";
     NSError *error;
-    self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:nil];
+    self.testSubject = [[SIMAPIManager alloc] initWithApiKey:apiKey error:nil];
     
     XCTAssertNil(self.testSubject, @"");
     XCTAssertNil(error, @"");

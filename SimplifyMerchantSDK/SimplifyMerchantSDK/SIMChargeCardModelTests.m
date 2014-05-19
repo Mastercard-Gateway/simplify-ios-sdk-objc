@@ -1,7 +1,7 @@
 #import "SIMChargeCardModel.h"
 
 @interface SIMChargeCardModelTests : XCTestCase
-@property (nonatomic, strong) SIMChargeCardModel *testChargeCardModel;
+@property (nonatomic, strong) SIMChargeCardModel *testSubject;
 @end
 
 @implementation SIMChargeCardModelTests
@@ -9,9 +9,8 @@
 -(void)setUp
 {
     [super setUp];
-    NSError *error;
     
-    self.testChargeCardModel = [[SIMChargeCardModel alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" error:&error];
+    self.testSubject = [[SIMChargeCardModel alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" error:nil];
 }
 
 -(void)tearDown
@@ -19,24 +18,52 @@
     [super tearDown];
 }
 
+-(void)testChargeCardModelReturnsNilAndErrorWhenAPIKeyIsInvalid {
+    NSString *apiKey = @"invalid1234";
+    NSError *error;
+    self.testSubject = [[SIMChargeCardModel alloc] initWithApiKey:apiKey error:&error];
+    
+    XCTAssertNil(self.testSubject, @"");
+    XCTAssertNotNil(error, @"");
+    XCTAssertEqual(error.code, SIMAPIManagerErrorCodeInvalidAPIKey, @"");
+}
+
+-(void)testAPIManagerAcceptsNilErrorOnSuccess {
+    NSString *apiKey = @"sbpb_1234";
+    NSError *error;
+    self.testSubject = [[SIMChargeCardModel alloc] initWithApiKey:apiKey error:nil];
+    
+    XCTAssertNotNil(self.testSubject, @"");
+    XCTAssertNil(error, @"");
+}
+
+-(void)testAPIManagerAcceptsNilErrorOnFailureAndNilObject {
+    NSString *apiKey = @"invalid1234";
+    NSError *error;
+    self.testSubject = [[SIMChargeCardModel alloc] initWithApiKey:apiKey error:nil];
+    
+    XCTAssertNil(self.testSubject, @"");
+    XCTAssertNil(error, @"");
+}
+
 -(void)testInitWithCartInitializesChargeCardModelProperly
 {
-    XCTAssertEqualObjects(self.testChargeCardModel.cardNumber, @"", "no card number");
-    XCTAssertEqualObjects(self.testChargeCardModel.expirationDate, @"", "no expiration");
-    XCTAssertEqualObjects(self.testChargeCardModel.formattedCardNumber, @"", "no formatted card number");
-    XCTAssertEqualObjects(self.testChargeCardModel.formattedExpirationDate, @"", "no formatted expiration");
-    XCTAssertEqualObjects(self.testChargeCardModel.cvcCode, @"", "no cvc code");
-    XCTAssertEqualObjects(self.testChargeCardModel.cardTypeString, @"blank", "blank type");
+    XCTAssertEqualObjects(self.testSubject.cardNumber, @"", "no card number");
+    XCTAssertEqualObjects(self.testSubject.expirationDate, @"", "no expiration");
+    XCTAssertEqualObjects(self.testSubject.formattedCardNumber, @"", "no formatted card number");
+    XCTAssertEqualObjects(self.testSubject.formattedExpirationDate, @"", "no formatted expiration");
+    XCTAssertEqualObjects(self.testSubject.cvcCode, @"", "no cvc code");
+    XCTAssertEqualObjects(self.testSubject.cardTypeString, @"blank", "blank type");
 }
 
 //Tests for format
 -(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsOneDigitLong {
     NSString *expectedExpirationDate = @"2";
     
-    [self.testChargeCardModel updateExpirationDateWithString:@"2"];
+    [self.testSubject updateExpirationDateWithString:@"2"];
     
-    NSString *actualExpirationDate = self.testChargeCardModel.formattedExpirationDate;
-    NSString *actualExpirationMonth = self.testChargeCardModel.expirationMonth;
+    NSString *actualExpirationDate = self.testSubject.formattedExpirationDate;
+    NSString *actualExpirationMonth = self.testSubject.expirationMonth;
     
     XCTAssertEqualObjects(expectedExpirationDate, actualExpirationDate, "one digit");
     XCTAssertEqualObjects(expectedExpirationDate, actualExpirationMonth, "one digit");
@@ -45,11 +72,11 @@
 -(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsTwoDigitsLong {
     NSString *expectedExpirationDate = @"2/1";
     
-    [self.testChargeCardModel updateExpirationDateWithString:@"21"];
+    [self.testSubject updateExpirationDateWithString:@"21"];
     
-    NSString *actualExpirationDate = self.testChargeCardModel.formattedExpirationDate;
-    NSString *actualExpirationMonth = self.testChargeCardModel.expirationMonth;
-    NSString *actualExpirationYear = self.testChargeCardModel.expirationYear;
+    NSString *actualExpirationDate = self.testSubject.formattedExpirationDate;
+    NSString *actualExpirationMonth = self.testSubject.expirationMonth;
+    NSString *actualExpirationYear = self.testSubject.expirationYear;
     
     XCTAssertEqualObjects(expectedExpirationDate, actualExpirationDate, "two digits");
     XCTAssertEqualObjects(@"2", actualExpirationMonth, "one digit");
@@ -59,11 +86,11 @@
 -(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsThreeDigitsLong {
     NSString *expectedExpirationDate = @"2/24";
     
-    [self.testChargeCardModel updateExpirationDateWithString:@"224"];
+    [self.testSubject updateExpirationDateWithString:@"224"];
     
-    NSString *actualExpirationDate = self.testChargeCardModel.formattedExpirationDate;
-    NSString *actualExpirationMonth = self.testChargeCardModel.expirationMonth;
-    NSString *actualExpirationYear = self.testChargeCardModel.expirationYear;
+    NSString *actualExpirationDate = self.testSubject.formattedExpirationDate;
+    NSString *actualExpirationMonth = self.testSubject.expirationMonth;
+    NSString *actualExpirationYear = self.testSubject.expirationYear;
     
     XCTAssertEqualObjects(expectedExpirationDate, actualExpirationDate, "three digits");
     XCTAssertEqualObjects(@"2", actualExpirationMonth, "one digit");
@@ -73,11 +100,11 @@
 -(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsFourDigitsLong {
     NSString *expectedExpirationDate = @"12/14";
     
-    [self.testChargeCardModel updateExpirationDateWithString:@"1214"];
+    [self.testSubject updateExpirationDateWithString:@"1214"];
     
-    NSString *actualExpirationDate = self.testChargeCardModel.formattedExpirationDate;
-    NSString *actualExpirationMonth = self.testChargeCardModel.expirationMonth;
-    NSString *actualExpirationYear = self.testChargeCardModel.expirationYear;
+    NSString *actualExpirationDate = self.testSubject.formattedExpirationDate;
+    NSString *actualExpirationMonth = self.testSubject.expirationMonth;
+    NSString *actualExpirationYear = self.testSubject.expirationYear;
     
     XCTAssertEqualObjects(expectedExpirationDate, actualExpirationDate, "four digits");
     XCTAssertEqualObjects(@"12", actualExpirationMonth, "two digits");
@@ -87,9 +114,9 @@
 -(void)testFormatttedCreditCardStringFormatsCorrectlyWith4NumbersWhenNotTypeAmex {
     NSString *expectedCreditCardString = @"1234";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"1234"];
+    [self.testSubject updateCardNumberWithString:@"1234"];
     
-    NSString *actualCreditCardString = self.testChargeCardModel.formattedCardNumber;
+    NSString *actualCreditCardString = self.testSubject.formattedCardNumber;
     
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "four digits");
 }
@@ -97,9 +124,9 @@
 -(void)testFormatttedCreditCardStringFormatsCorrectlyWith5NumbersWhenNotTypeAmex {
     NSString *expectedCreditCardString = @"1234 5";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"12345"];
+    [self.testSubject updateCardNumberWithString:@"12345"];
     
-    NSString *actualCreditCardString = self.testChargeCardModel.formattedCardNumber;
+    NSString *actualCreditCardString = self.testSubject.formattedCardNumber;
     
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "five digits");
 }
@@ -107,9 +134,9 @@
 -(void)testFormatttedCreditCardStringFormatsCorrectlyWith11NumbersWhenNotTypeAmex {
     NSString *expectedCreditCardString = @"1234 5678 901";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"12345678901"];
+    [self.testSubject updateCardNumberWithString:@"12345678901"];
     
-    NSString *actualCreditCardString = self.testChargeCardModel.formattedCardNumber;
+    NSString *actualCreditCardString = self.testSubject.formattedCardNumber;
     
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "11 digits");
 }
@@ -117,9 +144,9 @@
 -(void)testFormatttedCreditCardStringFormatsCorrectlyWith16NumbersWhenNotTypeAmex {
     NSString *expectedCreditCardString = @"1234 5678 9012 3456";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"1234567890123456"];
+    [self.testSubject updateCardNumberWithString:@"1234567890123456"];
     
-    NSString *actualCreditCardString = self.testChargeCardModel.formattedCardNumber;
+    NSString *actualCreditCardString = self.testSubject.formattedCardNumber;
     
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "16 digits");
 }
@@ -127,9 +154,9 @@
 -(void)testFormatttedCreditCardStringFormatsCorrectlyWith4NumbersWhenTypeAmex {
     NSString *expectedCreditCardString = @"3434";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"3434"];
+    [self.testSubject updateCardNumberWithString:@"3434"];
     
-    NSString *actualCreditCardString = self.testChargeCardModel.formattedCardNumber;
+    NSString *actualCreditCardString = self.testSubject.formattedCardNumber;
     
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "four digits");
 }
@@ -137,9 +164,9 @@
 -(void)testFormatttedCreditCardStringFormatsCorrectlyWith5NumbersWhenTypeAmex {
     NSString *expectedCreditCardString = @"3434 5";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"34345"];
+    [self.testSubject updateCardNumberWithString:@"34345"];
     
-    NSString *actualCreditCardString = self.testChargeCardModel.formattedCardNumber;
+    NSString *actualCreditCardString = self.testSubject.formattedCardNumber;
     
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "five digits");
 }
@@ -147,253 +174,253 @@
 -(void)testFormatttedCreditCardStringFormatsCorrectlyWith11NumbersWhenTypeAmex {
     NSString *expectedCreditCardString = @"3434 567890 1";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"34345678901"];
+    [self.testSubject updateCardNumberWithString:@"34345678901"];
     
-    NSString *actualCreditCardString = self.testChargeCardModel.formattedCardNumber;
+    NSString *actualCreditCardString = self.testSubject.formattedCardNumber;
     
     XCTAssertEqualObjects(expectedCreditCardString, actualCreditCardString, "11 digits");
 }
 
 //Tests for isRetrivalPossible, isExpirationDateValid, and isCardNumberValid
 -(void)testIsCardChargePossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigits {
-    [self.testChargeCardModel updateCardNumberWithString:@"5105 1051 0510 5100"];
-    [self.testChargeCardModel updateExpirationDateWithString:@"1223"];
-    [self.testChargeCardModel updateCVCNumberWithString:@"123"];
+    [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
+    [self.testSubject updateExpirationDateWithString:@"1223"];
+    [self.testSubject updateCVCNumberWithString:@"123"];
 
-    XCTAssertTrue([self.testChargeCardModel isExpirationDateValid], "should be a valid expiration date");
-    XCTAssertTrue([self.testChargeCardModel isCardNumberValid], "should be a valid card");
-    XCTAssertTrue([self.testChargeCardModel isCVCCodeValid], "should be a correct number of digits");
-    XCTAssertTrue([self.testChargeCardModel isCardChargePossible], "should be yes");
+    XCTAssertTrue([self.testSubject isExpirationDateValid], "should be a valid expiration date");
+    XCTAssertTrue([self.testSubject isCardNumberValid], "should be a valid card");
+    XCTAssertTrue([self.testSubject isCVCCodeValid], "should be a correct number of digits");
+    XCTAssertTrue([self.testSubject isCardChargePossible], "should be yes");
 }
 
 -(void)testIsCardChargePossibleReturnsYesWhenCardTypeBlankAndCVCLengthIs3 {
-    [self.testChargeCardModel updateCardNumberWithString:@"6709507858655272"];
-    [self.testChargeCardModel updateExpirationDateWithString:@"123"];
-    [self.testChargeCardModel updateCVCNumberWithString:@"123"];
+    [self.testSubject updateCardNumberWithString:@"6709507858655272"];
+    [self.testSubject updateExpirationDateWithString:@"123"];
+    [self.testSubject updateCVCNumberWithString:@"123"];
     
-    XCTAssertTrue([self.testChargeCardModel isExpirationDateValid], "should be a valid expiration date");
-    XCTAssertTrue([self.testChargeCardModel isCardNumberValid], "should be a valid card");
-    XCTAssertTrue([self.testChargeCardModel isCVCCodeValid], "should be a correct number of digits");
-    XCTAssertTrue([self.testChargeCardModel isCardChargePossible], "should be yes");
+    XCTAssertTrue([self.testSubject isExpirationDateValid], "should be a valid expiration date");
+    XCTAssertTrue([self.testSubject isCardNumberValid], "should be a valid card");
+    XCTAssertTrue([self.testSubject isCVCCodeValid], "should be a correct number of digits");
+    XCTAssertTrue([self.testSubject isCardChargePossible], "should be yes");
 }
 
 -(void)testIsCardChargePossibleReturnsNoWhenCardNumberIsLessThanMinimumNumberOfDigitsPerCardType {
-    [self.testChargeCardModel updateCardNumberWithString:@"412345678901"];
-    [self.testChargeCardModel updateExpirationDateWithString:@"123"];
-    XCTAssertFalse([self.testChargeCardModel isCardNumberValid], "should not be a valid card");
-    XCTAssertFalse([self.testChargeCardModel isCardChargePossible], "should be no, less than minumum for visa");
+    [self.testSubject updateCardNumberWithString:@"412345678901"];
+    [self.testSubject updateExpirationDateWithString:@"123"];
+    XCTAssertFalse([self.testSubject isCardNumberValid], "should not be a valid card");
+    XCTAssertFalse([self.testSubject isCardChargePossible], "should be no, less than minumum for visa");
 }
 
 -(void)testIsCardChargePossibleReturnsNoWhenCardNumberIsMoreThanMaximumNumberOfDigitsPerCardType {
-    [self.testChargeCardModel updateCardNumberWithString:@"34123456789013"];
-    [self.testChargeCardModel updateExpirationDateWithString:@"123"];
-    XCTAssertFalse([self.testChargeCardModel isCardNumberValid], "should not be a valid card");
-    XCTAssertFalse([self.testChargeCardModel isCardChargePossible], "should be no, more than max for amex");
+    [self.testSubject updateCardNumberWithString:@"34123456789013"];
+    [self.testSubject updateExpirationDateWithString:@"123"];
+    XCTAssertFalse([self.testSubject isCardNumberValid], "should not be a valid card");
+    XCTAssertFalse([self.testSubject isCardChargePossible], "should be no, more than max for amex");
 }
 
 -(void)testIsCardChargePossibleReturnsNoWhenCardNumberIsNotLuhnValidated {
-    [self.testChargeCardModel updateCardNumberWithString:@"5105 1051 0510 5102"];
-    [self.testChargeCardModel updateExpirationDateWithString:@"123"];
-    XCTAssertFalse([self.testChargeCardModel isCardNumberValid], "should not be a valid card");
-    XCTAssertFalse([self.testChargeCardModel isCardChargePossible], "should be no, more than max for amex");
+    [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5102"];
+    [self.testSubject updateExpirationDateWithString:@"123"];
+    XCTAssertFalse([self.testSubject isCardNumberValid], "should not be a valid card");
+    XCTAssertFalse([self.testSubject isCardChargePossible], "should be no, more than max for amex");
 }
 
 -(void)testIsCardChargePossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigitsButNoCVCCode {
-    [self.testChargeCardModel updateCardNumberWithString:@"5105 1051 0510 5100"];
-    [self.testChargeCardModel updateExpirationDateWithString:@"123"];
-    XCTAssertTrue([self.testChargeCardModel isExpirationDateValid], "should be yes");
-    XCTAssertTrue([self.testChargeCardModel isCardNumberValid], "should be a valid card");
-    XCTAssertTrue([self.testChargeCardModel isCVCCodeValid], "should be valid with no code");
-    XCTAssertTrue([self.testChargeCardModel isCardChargePossible], "should be yes");
+    [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
+    [self.testSubject updateExpirationDateWithString:@"123"];
+    XCTAssertTrue([self.testSubject isExpirationDateValid], "should be yes");
+    XCTAssertTrue([self.testSubject isCardNumberValid], "should be a valid card");
+    XCTAssertTrue([self.testSubject isCVCCodeValid], "should be valid with no code");
+    XCTAssertTrue([self.testSubject isCardChargePossible], "should be yes");
 }
 
 -(void)testIsCardChargePossibleReturnsNoWhenExpirationDateIsLessThanThreeDigits {
-    [self.testChargeCardModel updateCardNumberWithString:@"5105 1051 0510 5100"];
-    [self.testChargeCardModel updateExpirationDateWithString:@"12"];
-    XCTAssertFalse([self.testChargeCardModel isExpirationDateValid], "should be no");
-    XCTAssertFalse([self.testChargeCardModel isCardChargePossible], "should be no");
+    [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
+    [self.testSubject updateExpirationDateWithString:@"12"];
+    XCTAssertFalse([self.testSubject isExpirationDateValid], "should be no");
+    XCTAssertFalse([self.testSubject isCardChargePossible], "should be no");
 }
 
 -(void)testIsCardChargePossibleReturnsNoWhenExpirationDateIsExpired {
-    [self.testChargeCardModel updateCardNumberWithString:@"5105 1051 0510 5100"];
-    [self.testChargeCardModel updateExpirationDateWithString:@"4/14"];
-    XCTAssertFalse([self.testChargeCardModel isExpirationDateValid], "should be no");
-    XCTAssertFalse([self.testChargeCardModel isCardChargePossible], "should be no");
+    [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
+    [self.testSubject updateExpirationDateWithString:@"4/14"];
+    XCTAssertFalse([self.testSubject isExpirationDateValid], "should be no");
+    XCTAssertFalse([self.testSubject isCardChargePossible], "should be no");
 }
 
 -(void)testIsCardChargePossibleReturnsNoWhenCVCCodeIsNotLongEnough {
-    [self.testChargeCardModel updateCardNumberWithString:@"5105 1051 0510 5100"];
-    [self.testChargeCardModel updateCVCNumberWithString:@"12"];
-    XCTAssertFalse([self.testChargeCardModel isCVCCodeValid], "should be no");
-    XCTAssertFalse([self.testChargeCardModel isCardChargePossible], "should be no");
+    [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
+    [self.testSubject updateCVCNumberWithString:@"12"];
+    XCTAssertFalse([self.testSubject isCVCCodeValid], "should be no");
+    XCTAssertFalse([self.testSubject isCardChargePossible], "should be no");
 }
 
 //Tests for updating charge amount, card number, expiration date, and CVC code
 -(void)testUpdateCardNumberWithStringCorrectlyRemovesSpaces {
     NSString *expectedStringWithNoSpaces = @"123434563456";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"1234 3456 3456"];
+    [self.testSubject updateCardNumberWithString:@"1234 3456 3456"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.cardNumber, "no spaces");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cardNumber, "no spaces");
 }
 
 -(void)testUpdateCardNumberWithStringDoesNotAddNonDigits {
     NSString *expectedStringWithNoSpaces = @"123434563456";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"1234 a3456s 3456s"];
+    [self.testSubject updateCardNumberWithString:@"1234 a3456s 3456s"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.cardNumber, "no non-digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cardNumber, "no non-digits");
 }
 
 -(void)testUpdateCardNumberWithStringDoesNotUpdateCardNumberIfOver19Digits {
-    [self.testChargeCardModel updateCardNumberWithString:@"1234 3456 3456 3456"];
+    [self.testSubject updateCardNumberWithString:@"1234 3456 3456 3456"];
     NSString *expectedStringWithNoSpaces = @"1234345634563456";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"1234 3456 3456 3456 1234"];
+    [self.testSubject updateCardNumberWithString:@"1234 3456 3456 3456 1234"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.cardNumber, "no spaces");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cardNumber, "no spaces");
 }
 
 -(void)testUpdateCardNumberWithStringDoesNotUpdateCardNumberIfDinersAndOver14Digits {
-    [self.testChargeCardModel updateCardNumberWithString:@"3004 3456 3456 34"];
+    [self.testSubject updateCardNumberWithString:@"3004 3456 3456 34"];
     NSString *expectedStringWithNoSpaces = @"30043456345634";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"3004 3456 3456 3456 1234"];
+    [self.testSubject updateCardNumberWithString:@"3004 3456 3456 3456 1234"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.cardNumber, "no spaces");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cardNumber, "no spaces");
 }
 
 -(void)testUpdateCardNumberWithStringDoesNotUpdateCardNumberIfAmexAndOver15Digits {
-    [self.testChargeCardModel updateCardNumberWithString:@"34234 3456 3456 3456"];
+    [self.testSubject updateCardNumberWithString:@"34234 3456 3456 3456"];
     NSString *expectedStringWithNoSpaces = @"34234345634563456";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"341234 3456 3456 3456 1234"];
+    [self.testSubject updateCardNumberWithString:@"341234 3456 3456 3456 1234"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.cardNumber, "no spaces");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cardNumber, "no spaces");
 }
 
 -(void)testUpdateCardNumberWithStringDoesNotUpdateCardNumberIfMasterCardAndOver16Digits {
-    [self.testChargeCardModel updateCardNumberWithString:@"3528 3456 3456 3456"];
+    [self.testSubject updateCardNumberWithString:@"3528 3456 3456 3456"];
     NSString *expectedStringWithNoSpaces = @"3528345634563456";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"35289 3456 3456 3456 1234"];
+    [self.testSubject updateCardNumberWithString:@"35289 3456 3456 3456 1234"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.cardNumber, "no spaces");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cardNumber, "no spaces");
 }
 
 -(void)testUpdateCardNumberWithStringDoesNotUpdateCardNumberIfJCBAndOver16Digits {
-    [self.testChargeCardModel updateCardNumberWithString:@"5134 3456 3456 3456"];
+    [self.testSubject updateCardNumberWithString:@"5134 3456 3456 3456"];
     NSString *expectedStringWithNoSpaces = @"5134345634563456";
     
-    [self.testChargeCardModel updateCardNumberWithString:@"351234 3456 3456 3456 1234"];
+    [self.testSubject updateCardNumberWithString:@"351234 3456 3456 3456 1234"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.cardNumber, "no spaces");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cardNumber, "no spaces");
 }
 
 -(void)testUpdateExpirationDateWithStringCorrectlyRemovesSlashes {
     NSString *expectedStringWithNoSpaces = @"24";
     
-    [self.testChargeCardModel updateExpirationDateWithString:@"24"];
+    [self.testSubject updateExpirationDateWithString:@"24"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.expirationDate, "no spaces");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.expirationDate, "no spaces");
 }
 
 -(void)testUpdateExpirationDateWithStringDoesNotAddNonDigits {
     NSString *expectedStringWithNoSpaces = @"24";
     
-    [self.testChargeCardModel updateExpirationDateWithString:@"2a4"];
+    [self.testSubject updateExpirationDateWithString:@"2a4"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.expirationDate, "only digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.expirationDate, "only digits");
 }
 
 -(void)testUpdateExpirationDateWithStringDoesNotAllow00ForMonth {
     NSString *expectedStringWithNoDoubleZero = @"024";
     
-    [self.testChargeCardModel updateExpirationDateWithString:@"024"];
-    [self.testChargeCardModel updateExpirationDateWithString:@"0024"];
+    [self.testSubject updateExpirationDateWithString:@"024"];
+    [self.testSubject updateExpirationDateWithString:@"0024"];
     
-    XCTAssertEqualObjects(expectedStringWithNoDoubleZero, self.testChargeCardModel.expirationDate, "no double zero for month");
+    XCTAssertEqualObjects(expectedStringWithNoDoubleZero, self.testSubject.expirationDate, "no double zero for month");
 }
 
 -(void)testUpdateExpirationDateWithStringDoesNotUpdateExpirationDateIfOver4Digits {
-    [self.testChargeCardModel updateExpirationDateWithString:@"1234"];
+    [self.testSubject updateExpirationDateWithString:@"1234"];
     NSString *expectedStringWithNoSpaces = @"1234";
     
-    [self.testChargeCardModel updateExpirationDateWithString:@"12345"];
+    [self.testSubject updateExpirationDateWithString:@"12345"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.expirationDate, "four digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.expirationDate, "four digits");
 }
 
 -(void)testUpdateExpirationDateWithStringIsNot4DigitsLongIfMonthDoesNotStartWith0or1 {
-    [self.testChargeCardModel updateExpirationDateWithString:@"234"];
+    [self.testSubject updateExpirationDateWithString:@"234"];
     NSString *expectedStringWithNoSpaces = @"234";
     
-    [self.testChargeCardModel updateExpirationDateWithString:@"2345"];
+    [self.testSubject updateExpirationDateWithString:@"2345"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.expirationDate, "four digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.expirationDate, "four digits");
 }
 
 -(void)testUpdateExpirationDateWithStringIfStringIsEmpty {
-    [self.testChargeCardModel updateExpirationDateWithString:@""];
+    [self.testSubject updateExpirationDateWithString:@""];
     NSString *expectedStringWithNoSpaces = @"";
     
-    [self.testChargeCardModel updateExpirationDateWithString:@""];
+    [self.testSubject updateExpirationDateWithString:@""];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.expirationDate, "no digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.expirationDate, "no digits");
 }
 
 -(void)testUpdateExpirationDateWithStringDoesNotUpdateExpirationDateIfMonthMoreThan12 {
-    [self.testChargeCardModel updateExpirationDateWithString:@"1234"];
+    [self.testSubject updateExpirationDateWithString:@"1234"];
     NSString *expectedStringWithNoSpaces = @"1234";
     
-    [self.testChargeCardModel updateExpirationDateWithString:@"1345"];
+    [self.testSubject updateExpirationDateWithString:@"1345"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.expirationDate, "four digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.expirationDate, "four digits");
 }
 
 -(void)testUpdateExpirationDateWithStringDoesUpdateExpirationDateIfMonthStartsWithZero {
-    [self.testChargeCardModel updateExpirationDateWithString:@"0234"];
+    [self.testSubject updateExpirationDateWithString:@"0234"];
     NSString *expectedStringWithNoSpaces = @"0234";
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.expirationDate, "four digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.expirationDate, "four digits");
 }
 
 -(void)testUpdateCVCNumberWithStringDoesNotUpdateCVCCodeIfOverFourDigitsIfCardTypeBlank {
-    [self.testChargeCardModel updateCardNumberWithString:@"1"];
-    [self.testChargeCardModel updateCVCNumberWithString:@"1234"];
+    [self.testSubject updateCardNumberWithString:@"1"];
+    [self.testSubject updateCVCNumberWithString:@"1234"];
     NSString *expectedStringWithNoSpaces = @"1234";
     
-    [self.testChargeCardModel updateCVCNumberWithString:@"12345"];
+    [self.testSubject updateCVCNumberWithString:@"12345"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.cvcCode, "four digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cvcCode, "four digits");
 }
 
 -(void)testUpdateCVCNumberWithStringDoesNotUpdateCVCCodeIfOverFourDigitsIfCardTypeAmex {
-    [self.testChargeCardModel updateCardNumberWithString:@"341234"];
-    [self.testChargeCardModel updateCVCNumberWithString:@"1234"];
+    [self.testSubject updateCardNumberWithString:@"341234"];
+    [self.testSubject updateCVCNumberWithString:@"1234"];
     NSString *expectedStringWithNoSpaces = @"1234";
     
-    [self.testChargeCardModel updateCVCNumberWithString:@"12345"];
+    [self.testSubject updateCVCNumberWithString:@"12345"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.cvcCode, "four digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cvcCode, "four digits");
 }
 
 -(void)testUpdateCVCNumberWithStringDoesNotUpdateCVCCodeIfOverThreeDigitsIfCardTypeNotBlankOrAmex {
-    [self.testChargeCardModel updateCardNumberWithString:@"41234"];
-    [self.testChargeCardModel updateCVCNumberWithString:@"123"];
+    [self.testSubject updateCardNumberWithString:@"41234"];
+    [self.testSubject updateCVCNumberWithString:@"123"];
     NSString *expectedStringWithNoSpaces = @"123";
     
-    [self.testChargeCardModel updateCVCNumberWithString:@"12345"];
+    [self.testSubject updateCVCNumberWithString:@"12345"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.cvcCode, "three digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cvcCode, "three digits");
 }
 
 -(void)testUpdateCVCNumberWithStringDoesNotAddNonDigits {
     NSString *expectedStringWithNoSpaces = @"1234";
     
-    [self.testChargeCardModel updateCVCNumberWithString:@"12sf34"];
+    [self.testSubject updateCVCNumberWithString:@"12sf34"];
     
-    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testChargeCardModel.cvcCode, "four digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cvcCode, "four digits");
 }
 
 

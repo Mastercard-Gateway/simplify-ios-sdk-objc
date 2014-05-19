@@ -28,7 +28,7 @@ typedef void (^CardTokenCompletionHandler)(SIMCreditCardToken *cardToken, NSErro
  @param publicApiKey is the public API key from the Simplify Commerce account
  @param error is the mode error if the API key was invalid
  */
--(instancetype)initWithPublicApiKey:(NSString *)publicApiKey error:(NSError **) error;
+-(instancetype)initWithApiKey:(NSString *)apiKey error:(NSError **) error;
 
 /**
  Creates a token from credit card details and a completion handler

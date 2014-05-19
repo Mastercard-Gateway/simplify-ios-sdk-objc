@@ -1,6 +1,5 @@
 #import "SIMChargeCardModel.h"
 #import "SIMDigitVerifier.h"
-#import "SIMAPIManager.h"
 #import "SIMLuhnValidator.h"
 
 @interface SIMChargeCardModel ()
@@ -25,9 +24,15 @@
 
 -(instancetype)initWithApiKey:(NSString *)apiKey error:(NSError **)error{
     
-    self.apiManager = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:error];
+    NSError *apiError;
+    self.apiManager = [[SIMAPIManager alloc] initWithApiKey:apiKey error:&apiError];
     
-    return error ? [self initWithApiKey:apiKey apiManager:self.apiManager] : nil;
+    if (apiError) {
+        if(error != NULL) *error = apiError;
+        return nil;
+    } else {
+        return [self initWithApiKey:apiKey apiManager:self.apiManager];
+    }
 }
 
 -(instancetype)initWithApiKey:(NSString *)apiKey apiManager:(SIMAPIManager *)apiManager{
