@@ -64,7 +64,7 @@
 -(void)updateCardNumberWithString:(NSString *)newString;
 
 /**
- * Updates the expiration date if a month is properly formatted and it is all digits.  Expiration dates can be 3 or 4 digits based on the month.  Invalid months (ex. 15) are not accepted.
+ * Updates the expiration date it is all digits and has a valid month.  Invalid months (ex. 15) are not accepted.  Format: MYY for 3 digits or MMYY for 4 digits.
  */
 -(void)updateExpirationDateWithString:(NSString *)newString;
 
