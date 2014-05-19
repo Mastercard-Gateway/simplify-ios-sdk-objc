@@ -5,6 +5,7 @@
 
 @interface SIMChargeCardModel ()
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;
+@property (nonatomic, strong) SIMAPIManager *apiManager;
 @property (nonatomic, strong) NSString *apiKey;
 @property (nonatomic, strong, readwrite) NSString *cardNumber;
 @property (nonatomic, strong, readwrite) NSString *expirationDate;
@@ -22,7 +23,14 @@
 
 @implementation SIMChargeCardModel
 
--(instancetype)initWithApiKey:(NSString *)apiKey {
+-(instancetype)initWithApiKey:(NSString *)apiKey error:(NSError **)error{
+    
+    self.apiManager = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:error];
+    
+    return error ? [self initWithApiKey:apiKey apiManager:self.apiManager] : nil;
+}
+
+-(instancetype)initWithApiKey:(NSString *)apiKey apiManager:(SIMAPIManager *)apiManager{
     self = [super init];
     
     if (self) {
@@ -30,9 +38,11 @@
         self.expirationDate = @"";
         self.cvcCode = @"";
         self.apiKey = apiKey;
+        self.apiManager = apiManager;
     }
     return self;
 }
+
 
 -(BOOL)isCardChargePossible {
     if ([self isCardNumberValid] && [self isExpirationDateValid] && [self isCVCCodeValid]) {
@@ -192,11 +202,8 @@
 }
 
 -(void)retrieveToken {
-    NSError *error;
     
-    SIMAPIManager *apiManager = [[SIMAPIManager alloc] initWithPublicApiKey:self.apiKey error:&error];
-    
-    [apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address completionHander:^(SIMCreditCardToken *cardToken, NSError *error) {
+    [self.apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address completionHander:^(SIMCreditCardToken *cardToken, NSError *error) {
         if (error) {
             NSLog(@"error:%@", error);
             [self.delegate tokenFailedWithError:error];

@@ -60,6 +60,7 @@
     
     postString = [postString stringByAppendingString:token.token];
     
+    NSLog(@"postString:%@", postString);
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSError *error;
@@ -75,7 +76,7 @@
     } else {
         
         UIImageView *blurredView = [UIImage blurImage:self.view.layer];
-        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Success!" description:@"You purchased a cupcake."];
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Success!" description:@"You purchased a cupcake!"];
         [self presentViewController:viewController animated:YES completion:nil];
     }
     

@@ -40,7 +40,7 @@
     titleLabel.text = self.titleMessage;
     [self.view addSubview:titleLabel];
 
-    UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, 132)];
+    UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, 400)];
     descriptionLabel.textColor = [UIColor blackColor];
     descriptionLabel.numberOfLines = 10;
     descriptionLabel.textAlignment = NSTextAlignmentCenter;

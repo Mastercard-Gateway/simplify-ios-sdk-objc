@@ -9,7 +9,9 @@
 -(void)setUp
 {
     [super setUp];
-    self.testChargeCardModel = [[SIMChargeCardModel alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5"];
+    NSError *error;
+    
+    self.testChargeCardModel = [[SIMChargeCardModel alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" error:&error];
 }
 
 -(void)tearDown

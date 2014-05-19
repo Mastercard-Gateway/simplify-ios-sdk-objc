@@ -10,6 +10,7 @@
 @property (strong, nonatomic) SIMChargeCardModel *chargeCardModel;
 @property (strong, nonatomic) NSString *apiKey;
 @property (strong, nonatomic) IBOutlet UILabel *cvcLabel;
+@property (strong, nonatomic) NSError *modelError;
 
 @property (strong, nonatomic) IBOutlet UILabel *expLabel;
 @property (strong, nonatomic) UIColor *primaryColor;
@@ -49,13 +50,29 @@
     self.cardNumberField.delegate = self;
     self.expirationField.delegate = self;
     self.cvcField.delegate = self;
-    self.chargeCardModel = [[SIMChargeCardModel alloc] initWithApiKey:self.apiKey];
-    self.chargeCardModel.delegate = self;
 
-    [self setCardTypeImage];
-    [self buttonsEnabled];
-    [self.cardNumberField becomeFirstResponder];
+    NSError *error;
+    self.chargeCardModel = [[SIMChargeCardModel alloc] initWithApiKey:self.apiKey error:&error];
+    
+    if (error) {
+        self.modelError = error;
+    } else {
+        self.chargeCardModel.delegate = self;
 
+        [self setCardTypeImage];
+        [self buttonsEnabled];
+        [self.cardNumberField becomeFirstResponder];
+    }
+
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    if (self.modelError) {
+        UIImageView *blurredView = [UIImage blurImage:self.view.layer];
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Failure." description:@"\n\nThere was a problem with your API Key.\n\nPlease double-check your API Key and try again."];
+        [self presentViewController:viewController animated:NO completion:nil];
+
+    }
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
