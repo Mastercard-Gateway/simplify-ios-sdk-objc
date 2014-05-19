@@ -3,6 +3,7 @@
 #import "SIMLuhnValidator.h"
 
 @interface SIMChargeCardModel ()
+
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;
 @property (nonatomic, strong) SIMAPIManager *apiManager;
 @property (nonatomic, strong) NSString *apiKey;
@@ -208,14 +209,16 @@
 
 -(void)retrieveToken {
     
-    [self.apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address completionHander:^(SIMCreditCardToken *cardToken, NSError *error) {
+    CardTokenCompletionHandler completionHandler = ^(SIMCreditCardToken *cardToken, NSError *error) {
         if (error) {
             NSLog(@"error:%@", error);
             [self.delegate tokenFailedWithError:error];
         } else {
             [self.delegate tokenProcessed:cardToken];
         }
-    }];
+    };
+    
+    [self.apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address completionHander:completionHandler];
 }
 
 @end

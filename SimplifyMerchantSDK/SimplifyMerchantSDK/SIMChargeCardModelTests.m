@@ -1,7 +1,17 @@
 #import "SIMChargeCardModel.h"
+#import <OCMock/OCMock.h>
+
+@interface SIMChargeCardModel (Test)
+
+-(instancetype)initWithApiKey:(NSString *)apiKey apiManager:(SIMAPIManager *)apiManager;
+
+@property (nonatomic) NSURL *currentAPIURL;
+
+@end
 
 @interface SIMChargeCardModelTests : XCTestCase
 @property (nonatomic, strong) SIMChargeCardModel *testSubject;
+@property (nonatomic) id mockApiManager;
 @end
 
 @implementation SIMChargeCardModelTests
@@ -10,7 +20,9 @@
 {
     [super setUp];
     
-    self.testSubject = [[SIMChargeCardModel alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" error:nil];
+    self.mockApiManager = [OCMockObject mockForClass:SIMAPIManager.class];
+    self.testSubject = [[SIMChargeCardModel alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" apiManager:self.mockApiManager];
+    
 }
 
 -(void)tearDown
@@ -423,5 +435,14 @@
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cvcCode, "four digits");
 }
 
+-(void)testRetrieveTokenWithCallsApiManager {
+    
+    [[self.mockApiManager expect] createCardTokenWithExpirationMonth:OCMOCK_ANY expirationYear:OCMOCK_ANY cardNumber:OCMOCK_ANY cvc:OCMOCK_ANY address:OCMOCK_ANY completionHander:OCMOCK_ANY];
+    
+    [self.testSubject retrieveToken];
+    
+    [self.mockApiManager verify];
+    
+}
 
 @end
