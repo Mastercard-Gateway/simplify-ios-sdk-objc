@@ -96,9 +96,9 @@
 }
 
 -(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsThreeDigitsLong {
-    NSString *expectedExpirationDate = @"2/24";
+    NSString *expectedExpirationDate = @"2/55";
     
-    [self.testSubject updateExpirationDateWithString:@"224"];
+    [self.testSubject updateExpirationDateWithString:@"255"];
     
     NSString *actualExpirationDate = self.testSubject.formattedExpirationDate;
     NSString *actualExpirationMonth = self.testSubject.expirationMonth;
@@ -106,13 +106,13 @@
     
     XCTAssertEqualObjects(expectedExpirationDate, actualExpirationDate, "three digits");
     XCTAssertEqualObjects(@"2", actualExpirationMonth, "one digit");
-    XCTAssertEqualObjects(@"24", actualExpirationYear, "two digits");
+    XCTAssertEqualObjects(@"55", actualExpirationYear, "two digits");
 }
 
 -(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsFourDigitsLong {
-    NSString *expectedExpirationDate = @"12/14";
+    NSString *expectedExpirationDate = @"12/54";
     
-    [self.testSubject updateExpirationDateWithString:@"1214"];
+    [self.testSubject updateExpirationDateWithString:@"1254"];
     
     NSString *actualExpirationDate = self.testSubject.formattedExpirationDate;
     NSString *actualExpirationMonth = self.testSubject.expirationMonth;
@@ -120,7 +120,7 @@
     
     XCTAssertEqualObjects(expectedExpirationDate, actualExpirationDate, "four digits");
     XCTAssertEqualObjects(@"12", actualExpirationMonth, "two digits");
-    XCTAssertEqualObjects(@"14", actualExpirationYear, "two digits");
+    XCTAssertEqualObjects(@"54", actualExpirationYear, "two digits");
 }
 
 -(void)testFormatttedCreditCardStringFormatsCorrectlyWith4NumbersWhenNotTypeAmex {
@@ -196,7 +196,7 @@
 //Tests for isRetrivalPossible, isExpirationDateValid, and isCardNumberValid
 -(void)testIsCardChargePossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigits {
     [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
-    [self.testSubject updateExpirationDateWithString:@"1223"];
+    [self.testSubject updateExpirationDateWithString:@"1273"];
     [self.testSubject updateCVCNumberWithString:@"123"];
 
     XCTAssertTrue([self.testSubject isExpirationDateValid], "should be a valid expiration date");
@@ -207,7 +207,7 @@
 
 -(void)testIsCardChargePossibleReturnsYesWhenCardTypeBlankAndCVCLengthIs3 {
     [self.testSubject updateCardNumberWithString:@"6709507858655272"];
-    [self.testSubject updateExpirationDateWithString:@"123"];
+    [self.testSubject updateExpirationDateWithString:@"173"];
     [self.testSubject updateCVCNumberWithString:@"123"];
     
     XCTAssertTrue([self.testSubject isExpirationDateValid], "should be a valid expiration date");
@@ -218,28 +218,28 @@
 
 -(void)testIsCardChargePossibleReturnsNoWhenCardNumberIsLessThanMinimumNumberOfDigitsPerCardType {
     [self.testSubject updateCardNumberWithString:@"412345678901"];
-    [self.testSubject updateExpirationDateWithString:@"123"];
+    [self.testSubject updateExpirationDateWithString:@"173"];
     XCTAssertFalse([self.testSubject isCardNumberValid], "should not be a valid card");
     XCTAssertFalse([self.testSubject isCardChargePossible], "should be no, less than minumum for visa");
 }
 
 -(void)testIsCardChargePossibleReturnsNoWhenCardNumberIsMoreThanMaximumNumberOfDigitsPerCardType {
     [self.testSubject updateCardNumberWithString:@"34123456789013"];
-    [self.testSubject updateExpirationDateWithString:@"123"];
+    [self.testSubject updateExpirationDateWithString:@"173"];
     XCTAssertFalse([self.testSubject isCardNumberValid], "should not be a valid card");
     XCTAssertFalse([self.testSubject isCardChargePossible], "should be no, more than max for amex");
 }
 
 -(void)testIsCardChargePossibleReturnsNoWhenCardNumberIsNotLuhnValidated {
     [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5102"];
-    [self.testSubject updateExpirationDateWithString:@"123"];
+    [self.testSubject updateExpirationDateWithString:@"173"];
     XCTAssertFalse([self.testSubject isCardNumberValid], "should not be a valid card");
     XCTAssertFalse([self.testSubject isCardChargePossible], "should be no, more than max for amex");
 }
 
 -(void)testIsCardChargePossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigitsButNoCVCCode {
     [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
-    [self.testSubject updateExpirationDateWithString:@"123"];
+    [self.testSubject updateExpirationDateWithString:@"173"];
     XCTAssertTrue([self.testSubject isExpirationDateValid], "should be yes");
     XCTAssertTrue([self.testSubject isCardNumberValid], "should be a valid card");
     XCTAssertTrue([self.testSubject isCVCCodeValid], "should be valid with no code");
