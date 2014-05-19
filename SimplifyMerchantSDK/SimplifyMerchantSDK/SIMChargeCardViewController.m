@@ -70,7 +70,7 @@
     if (self.modelError) {
         UIImageView *blurredView = [UIImage blurImage:self.view.layer];
         SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Failure." description:@"\n\nThere was a problem with your API Key.\n\nPlease double-check your API Key and try again."];
-        [self presentViewController:viewController animated:NO completion:nil];
+        [self presentViewController:viewController animated:YES completion:nil];
 
     }
 }
