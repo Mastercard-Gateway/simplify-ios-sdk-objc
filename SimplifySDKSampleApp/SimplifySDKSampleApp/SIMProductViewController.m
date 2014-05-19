@@ -39,7 +39,7 @@
 
 #pragma mark - SIMChargeViewController Protocol
 -(void)chargeCardCancelled {
-    //User cancelled the SIMChargeViewController
+    //User cancelled the SIMChargeCardViewController
     
     [self.chargeController dismissViewControllerAnimated:YES completion:nil];
     
