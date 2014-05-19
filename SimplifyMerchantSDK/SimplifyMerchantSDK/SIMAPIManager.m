@@ -1,5 +1,6 @@
 #import "SIMAPIManager.h"
 #import "NSString+Simplify.h"
+#import "NSBundle+Simplify.h"
 
 typedef enum {
     SIMAPIManagerModeLive,
@@ -10,7 +11,7 @@ typedef enum {
 #define SIMAPIManagerPrefixLive @"lvpb_"
 #define SIMAPIManagerPrefixSandbox @"sbpb_"
 
-#define SIMAPIManagerErrorDomain @"com.mastercard.simplify.errordomain"
+#define SIMAPIManagerErrorDomain @"com.simplify.errordomain"
 
 static NSString *prodAPILiveURL = @"https://api.simplify.com/v1/api";
 static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
@@ -129,6 +130,12 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
     request.HTTPMethod = @"POST";
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    NSString *currentVersion = [[[NSBundle frameworkBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSString *userAgent = [NSString stringWithFormat:@"iOS-SDK/%@", currentVersion];
+    [request addValue:userAgent forHTTPHeaderField:@"User-Agent"];
+    
+    NSLog(@"version:%@", [request valueForHTTPHeaderField:@"User-Agent"]);
     
     request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
     

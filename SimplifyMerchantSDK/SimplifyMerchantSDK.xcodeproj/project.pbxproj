@@ -198,6 +198,7 @@
 		49C499311925645F00402775 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		49C499371925C2E700402775 /* SIMResponseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMResponseViewController.h; sourceTree = "<group>"; };
 		49C499381925C2E700402775 /* SIMResponseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMResponseViewController.m; sourceTree = "<group>"; };
+		49C499481929B70400402775 /* SimplifyMerchantSDK-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SimplifyMerchantSDK-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				49748F66191849C600738BC9 /* SimplifyMerchantSDK-Prefix.pch */,
+				49C499481929B70400402775 /* SimplifyMerchantSDK-Info.plist */,
 				49748F7A191849C600738BC9 /* SimplifyMerchantSDKTests-Info.plist */,
 				49748F9219184D3700738BC9 /* SimplifyMerchantSDKTests-Prefix.pch */,
 				49748F7B191849C600738BC9 /* InfoPlist.strings */,
@@ -763,6 +765,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(PROJECT_DIR)/../vendor/ocmock",
 				);
+				INFOPLIST_FILE = "SimplifyMerchantSDK/SimplifyMerchantSDK-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../vendor/ocmock",
@@ -788,6 +791,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(PROJECT_DIR)/../vendor/ocmock",
 				);
+				INFOPLIST_FILE = "SimplifyMerchantSDK/SimplifyMerchantSDK-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../vendor/ocmock",
@@ -885,6 +889,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				INFOPLIST_FILE = "SimplifyMerchantSDK/SimplifyMerchantSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = NO;
@@ -900,6 +905,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "SimplifyMerchantSDK/SimplifyMerchantSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = NO;
