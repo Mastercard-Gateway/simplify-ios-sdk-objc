@@ -152,7 +152,7 @@
 		49748F6F191849C600738BC9 /* SimplifyMerchantSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimplifyMerchantSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49748F70191849C600738BC9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		49748F73191849C600738BC9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		49748F7A191849C600738BC9 /* SimplifyMerchantSDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimplifyMerchantSDKTests-Info.plist"; sourceTree = "<group>"; };
+		49748F7A191849C600738BC9 /* SimplifyMerchantSDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SimplifyMerchantSDKTests-Info.plist"; path = "SimplifyMerchantSDKTests/SimplifyMerchantSDKTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		49748F7C191849C600738BC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49748F8919184A3F00738BC9 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
 		49748F8B19184A3F00738BC9 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 		49748F8E19184A3F00738BC9 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
 		49748F8F19184A3F00738BC9 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		49748F9019184A3F00738BC9 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
-		49748F9219184D3700738BC9 /* SimplifyMerchantSDKTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SimplifyMerchantSDKTests-Prefix.pch"; sourceTree = "<group>"; };
+		49748F9219184D3700738BC9 /* SimplifyMerchantSDKTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SimplifyMerchantSDKTests-Prefix.pch"; path = "SimplifyMerchantSDKTests/SimplifyMerchantSDKTests-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		49748F9B191872A100738BC9 /* Simplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simplify.h; sourceTree = "<group>"; };
 		49748FA619188D2C00738BC9 /* SIMAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMAPIManager.h; sourceTree = "<group>"; };
 		49748FA719188D2C00738BC9 /* SIMAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMAPIManager.m; sourceTree = "<group>"; };
@@ -264,7 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				49748F64191849C600738BC9 /* SimplifyMerchantSDK */,
-				49748F78191849C600738BC9 /* SimplifyMerchantSDKTests */,
 				49748F61191849C600738BC9 /* Frameworks */,
 				49748F60191849C600738BC9 /* Products */,
 			);
@@ -314,21 +313,6 @@
 			isa = PBXGroup;
 			children = (
 				49748F66191849C600738BC9 /* SimplifyMerchantSDK-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		49748F78191849C600738BC9 /* SimplifyMerchantSDKTests */ = {
-			isa = PBXGroup;
-			children = (
-				49748F79191849C600738BC9 /* Supporting Files */,
-			);
-			path = SimplifyMerchantSDKTests;
-			sourceTree = "<group>";
-		};
-		49748F79191849C600738BC9 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
 				49748F7A191849C600738BC9 /* SimplifyMerchantSDKTests-Info.plist */,
 				49748F9219184D3700738BC9 /* SimplifyMerchantSDKTests-Prefix.pch */,
 				49748F7B191849C600738BC9 /* InfoPlist.strings */,
@@ -693,7 +677,8 @@
 				49748F7C191849C600738BC9 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
+			path = SimplifyMerchantSDKTests;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXVariantGroup section */
 

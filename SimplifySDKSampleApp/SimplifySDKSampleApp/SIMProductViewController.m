@@ -1,7 +1,6 @@
 #import "SIMProductViewController.h"
 #import <Simplify/SIMChargeCardViewController.h>
 #import <Simplify/SIMButton.h>
-#import <Simplify/UIColor+Simplify.h>
 #import <Simplify/UIImage+Simplify.h>
 #import <Simplify/SIMResponseViewController.h>
 
@@ -13,15 +12,6 @@
 
 @implementation SIMProductViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -29,7 +19,6 @@
     self.primaryColor = [UIColor colorWithRed:42.0/255.0 green:48.0/255.0 blue:145.0/255.0 alpha:1.0];
     self.buyButton.primaryColor = self.primaryColor;
 
-//    self.buyButton.primaryColor = [UIColor buttonBackgroundColorEnabled];
 }
 
 - (void)didReceiveMemoryWarning
