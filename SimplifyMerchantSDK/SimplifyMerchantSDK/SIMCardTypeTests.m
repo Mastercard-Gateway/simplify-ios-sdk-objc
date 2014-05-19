@@ -63,33 +63,33 @@
 }
 
 -(void)testDinersClubRangeReturnsDinersClub{
-    NSString *dinersClub = @"dinersclub";
+    NSString *dinersClub = @"diners";
     int cvcLength = 3;
     int minCardLength = 14;
     int maxCardLength = 16;
 	SIMCardType *testCardType  = [SIMCardType cardTypeFromCardNumberString:@"300"];
-	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "diners");
     XCTAssertEqual(cvcLength, testCardType.CVCLength, "cvc");
     XCTAssertEqual(minCardLength, testCardType.minCardLength, "min card length");
     XCTAssertEqual(maxCardLength, testCardType.maxCardLength, "max card length");
 	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"301"];
-	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "diners");
 	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"302"];
-	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "diners");
 	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"303"];
-	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "diners");
 	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"304"];
-	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "diners");
 	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"305"];
-	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "diners");
     testCardType  = [SIMCardType cardTypeFromCardNumberString:@"309"];
-	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "diners");
 	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"36"];
-	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "diners");
 	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"38"];
-	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "diners");
 	testCardType  = [SIMCardType cardTypeFromCardNumberString:@"39"];
-	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "dinersClub");
+	XCTAssertEqualObjects(dinersClub, testCardType.cardTypeString, "diners");
 }
 
 -(void)testDiscoverCardRangeReturnsDiscover {

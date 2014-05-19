@@ -4,17 +4,19 @@
 
 -(BOOL)luhnValidateString:(NSString *)cardNumberString {
     SIMDigitVerifier *digitVerifier = [SIMDigitVerifier new];
-    if ([digitVerifier isDigit:cardNumberString]) {
+    NSString *cardNumberStringWithoutSpaces = [cardNumberString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"cardstring %@", cardNumberStringWithoutSpaces);
+    if ([digitVerifier isDigit:cardNumberStringWithoutSpaces]) {
         
         int oddSum = 0;
         int evenSum = 0;
-        int initialValue = (int)cardNumberString.length - 1;
+        int initialValue = (int)cardNumberStringWithoutSpaces.length - 1;
         
         BOOL isOdd = YES;
         
         for (int i = initialValue; i >= 0; i--) {
         
-            int digit = (int)([cardNumberString characterAtIndex:i] - '0');
+            int digit = (int)([cardNumberStringWithoutSpaces characterAtIndex:i] - '0');
             
             if (isOdd) {
                 oddSum += digit;

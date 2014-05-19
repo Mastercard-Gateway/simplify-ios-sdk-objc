@@ -34,7 +34,7 @@
             cardType.minCardLength = 16;
             cardType.maxCardLength = 19;
         } else if ([self hasPrefixFromArray:@[@"300", @"301", @"302", @"303", @"304", @"305", @"309", @"36", @"38", @"39"] inString:cardNumberString]) {
-            cardType.cardTypeString =  @"dinersclub";
+            cardType.cardTypeString =  @"diners";
             cardType.minCardLength = 14;
             cardType.maxCardLength = 16;
         } else if ([self hasPrefixFromArray:@[@"65", @"6011", @"644", @"645", @"646", @"647", @"648", @"649"] inString:cardNumberString]) {
