@@ -28,7 +28,7 @@
 
 #pragma mark - Navigation
 - (IBAction)buyCupcake:(id)sender {
-    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithApiKey:@"pb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" primaryColor:self.primaryColor];
+    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" primaryColor:self.primaryColor];
 
     chargeController.delegate = self;
     self.chargeController = chargeController;

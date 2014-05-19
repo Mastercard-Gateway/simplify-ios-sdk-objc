@@ -198,7 +198,7 @@
     [self.cvcField resignFirstResponder];
 }
 
-#pragma mark SIMRetrieveTokenModelDelegate methods
+#pragma mark SIMChargeCardModelDelegate callback methods
 - (void)tokenFailedWithError:(NSError *)error {
     
     dispatch_sync(dispatch_get_main_queue(), ^{
