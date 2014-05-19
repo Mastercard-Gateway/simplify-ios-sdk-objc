@@ -16,7 +16,7 @@ typedef enum {
 
 static NSString *prodAPILiveURL = @"https://api.simplify.com/v1/api";
 static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
-static NSString *endpointCardToken = @"payment/cardTok";
+static NSString *endpointCardToken = @"payment/cardToken";
 
 @interface SIMAPIManager ()
 
