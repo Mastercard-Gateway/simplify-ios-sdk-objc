@@ -49,6 +49,9 @@
 -(void)creditCardTokenFailedWithError:(NSError *)error {
     
     NSLog(@"Credit Card Token Failed with error:%@", error.localizedDescription);
+    UIImageView *blurredView = [UIImage blurImage:self.view.layer];
+    SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Failure." description:@"There was a problem with the payment.\nPlease try again."];
+    [self presentViewController:viewController animated:YES completion:nil];
 }
 
 -(void)creditCardTokenProcessed:(SIMCreditCardToken *)token {
