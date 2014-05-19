@@ -1,6 +1,14 @@
 #import <UIKit/UIKit.h>
 #import "NSBundle+Simplify.h"
 
+#define SIMBundleErrorDomain [NSString stringWithFormat:@"%@.errordomain", [[NSBundle frameworkBundle] bundleIdentifier]]
+
+typedef enum {
+    SIMBundleErrorCodeNoPathFoundError,
+    SIMBundleErrorCodeNibNotFound
+
+} SIMBundleErrorCode;
+
 @implementation NSBundle (Simplify)
 
 +(NSBundle *)frameworkBundle {
@@ -33,7 +41,13 @@
         }
     }
     
-    NSLog(@"No path found for: %@ (.%@)", name, extension);
+    NSString *errorDescription = [NSString stringWithFormat:@"No path found for: %@ (.%@)", name, extension];
+    NSDictionary *userInfo = @{NSLocalizedDescriptionKey: errorDescription};
+
+    NSError *error = [NSError errorWithDomain:SIMBundleErrorDomain code:SIMBundleErrorCodeNoPathFoundError userInfo:userInfo];
+
+    NSLog(@"%@%@", SIMBundleErrorDomain, error);
+
     return nil;
 }
 
@@ -42,7 +56,7 @@
     NSBundle * mainBundle = [NSBundle mainBundle];
 
     if ([mainBundle pathForResource:name ofType:@"nib"]) {
-        NSLog(@"Loaded Nib named: '%@' from mainBundle", name);
+
         return [mainBundle loadNibNamed:name owner:owner options:options];
     }
     
@@ -50,12 +64,18 @@
     for (NSString * bundlePath in [mainBundle pathsForResourcesOfType:@"bundle" inDirectory:nil]) {
         bundle = [NSBundle bundleWithPath:bundlePath];
         if ([bundle pathForResource:name ofType:@"nib"]) {
-            NSLog(@"Loaded Nib named: '%@' from bundle: '%@' ", name, bundle.bundleIdentifier);
+
             return [bundle loadNibNamed:name owner:owner options:options];
         }
     }
+
+    NSString *errorDescription = [NSString stringWithFormat:@"Couldn't load Nib named: %@", name];
+    NSDictionary *userInfo = @{NSLocalizedDescriptionKey: errorDescription};
     
-    NSLog(@"Couldn't load Nib named: %@", name);
+    NSError *error = [NSError errorWithDomain:SIMBundleErrorDomain code:SIMBundleErrorCodeNoPathFoundError userInfo:userInfo];
+    
+    NSLog(@"%@%@", SIMBundleErrorDomain, error);
+
     return nil;
 }
 

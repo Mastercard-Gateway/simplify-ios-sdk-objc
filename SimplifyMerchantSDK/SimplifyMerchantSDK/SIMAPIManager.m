@@ -10,11 +10,13 @@ typedef enum {
 
 #define SIMAPIManagerPrefixLive @"lvpb_"
 #define SIMAPIManagerPrefixSandbox @"sbpb_"
+#define SIMAPIManagerErrorDescription @"Simplify SDK Error - "
 
 #define SIMAPIManagerErrorDomain [NSString stringWithFormat:@"%@.errordomain", [[NSBundle frameworkBundle] bundleIdentifier]]
 
 static NSString *prodAPILiveURL = @"https://api.simplify.com/v1/api";
 static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
+static NSString *endpointCardToken = @"payment/cardTok";
 
 @interface SIMAPIManager ()
 
@@ -63,7 +65,10 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
         isLive = NO;
     } else {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"Could not create API Manager: Invalid API Key."};
-        if(error != NULL) *error = [NSError errorWithDomain:SIMAPIManagerErrorDomain code:SIMAPIManagerErrorCodeInvalidAPIKey userInfo:userInfo];
+        if(error != NULL) {
+            *error = [NSError errorWithDomain:SIMAPIManagerErrorDomain code:SIMAPIManagerErrorCodeInvalidAPIKey userInfo:userInfo];
+            NSLog(@"%@%@", SIMAPIManagerErrorDescription, *error);
+        }
     }
     
     return isLive;
@@ -74,7 +79,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
                                 cardNumber:(NSString *)cardNumber cvc:(NSString *)cvc address:(SIMAddress *)address completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler {
 
     NSError *jsonSerializationError;
-	NSURL *url = [self.currentAPIURL URLByAppendingPathComponent:@"payment/cardToken"];
+	NSURL *url = [self.currentAPIURL URLByAppendingPathComponent:endpointCardToken];
     
     NSString *safeCardNumber = cardNumber ? cardNumber : @"";
     NSString *safeExpMonth = expirationMonth ? expirationMonth : @"";
@@ -154,6 +159,8 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
         } else {
             NSString *errorMessage = [NSString stringWithFormat:@"Bad HTTP Response: %ld.", (long)httpURLResponse.statusCode];
             NSError *responseError = [NSError errorWithDomain:SIMAPIManagerErrorDomain code:SIMAPIManagerErrorCodeCardTokenResponseError userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
+            
+            NSLog(@"%@%@", SIMAPIManagerErrorDescription, responseError);
             
             apiCompletionHandler(nil, responseError);
         }

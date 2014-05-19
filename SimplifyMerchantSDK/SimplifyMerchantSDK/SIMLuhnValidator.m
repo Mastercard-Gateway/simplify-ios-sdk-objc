@@ -5,7 +5,7 @@
 -(BOOL)luhnValidateString:(NSString *)cardNumberString {
     SIMDigitVerifier *digitVerifier = [SIMDigitVerifier new];
     NSString *cardNumberStringWithoutSpaces = [cardNumberString stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"cardstring %@", cardNumberStringWithoutSpaces);
+
     if ([digitVerifier isDigit:cardNumberStringWithoutSpaces]) {
         
         int oddSum = 0;

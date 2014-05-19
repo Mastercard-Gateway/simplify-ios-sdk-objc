@@ -60,7 +60,6 @@
     
     postString = [postString stringByAppendingString:token.token];
     
-    NSLog(@"postString:%@", postString);
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSError *error;

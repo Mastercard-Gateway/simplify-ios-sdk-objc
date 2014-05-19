@@ -211,7 +211,6 @@
     
     CardTokenCompletionHandler completionHandler = ^(SIMCreditCardToken *cardToken, NSError *error) {
         if (error) {
-            NSLog(@"error:%@", error);
             [self.delegate tokenFailedWithError:error];
         } else {
             [self.delegate tokenProcessed:cardToken];
