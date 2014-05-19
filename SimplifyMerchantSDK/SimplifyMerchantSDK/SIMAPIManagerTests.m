@@ -1,5 +1,6 @@
 #import "SIMAPIManager.h"
 
+//Expose internals for testing
 @interface SIMAPIManager (Test)
 
 @property (nonatomic) NSURL *currentAPIURL;
@@ -24,7 +25,7 @@
     [super tearDown];
 }
 
--(void)testAPIManagerCanDetermineLiveMode {
+-(void)testAPIManagerCanDetermineLiveModeFromProvidedApiKey {
     NSString *apiKey = @"lvpb_1234";
     NSError *error;
     self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error];
@@ -37,7 +38,7 @@
     XCTAssertEqualObjects(apiURL, self.testSubject.currentAPIURL, @"");
 }
 
--(void)testAPIManagerCanDetermineSandboxMode {
+-(void)testAPIManagerCanDetermineSandboxModeFromProvidedApiKey {
     NSString *apiKey = @"sbpb_1234";
     NSError *error;
     self.testSubject = [[SIMAPIManager alloc] initWithPublicApiKey:apiKey error:&error];

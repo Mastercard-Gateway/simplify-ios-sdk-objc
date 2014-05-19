@@ -21,7 +21,7 @@ typedef enum {
  */
 typedef void (^CardTokenCompletionHandler)(SIMCreditCardToken *cardToken, NSError *error);
 
-@property (nonatomic, readonly) BOOL isLiveMode;  /**< No if in sandbox mode */
+@property (nonatomic, readonly) BOOL isLiveMode;  /**< No if in sandbox mode, determined by publicApiKey */
 
 /**
  Creates an instance of the SIMAPIManager class
