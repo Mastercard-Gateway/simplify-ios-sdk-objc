@@ -1,6 +1,7 @@
 #import "SIMAPIManager.h"
 #import "NSString+Simplify.h"
 #import "NSBundle+Simplify.h"
+#import <UIKit/UIKit.h>
 
 typedef enum {
     SIMAPIManagerModeLive,
@@ -146,6 +147,8 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
     self.request.HTTPBody = jsonData;
     [self.request setURL:url];
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     [NSURLConnection sendAsynchronousRequest:self.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
@@ -164,6 +167,9 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
             
             apiCompletionHandler(nil, responseError);
         }
+        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
     }];
 }
 

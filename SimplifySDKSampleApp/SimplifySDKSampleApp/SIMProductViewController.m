@@ -2,6 +2,7 @@
 #import <Simplify/SIMChargeCardViewController.h>
 #import <Simplify/SIMButton.h>
 #import <Simplify/UIImage+Simplify.h>
+#import <Simplify/UIColor+Simplify.h>
 #import <Simplify/SIMResponseViewController.h>
 
 @interface SIMProductViewController ()<SIMChargeCardViewControllerDelegate>
@@ -47,11 +48,14 @@
 }
 
 -(void)creditCardTokenFailedWithError:(NSError *)error {
-    
+
+    //There was a problem generating the token
+
     NSLog(@"Credit Card Token Failed with error:%@", error.localizedDescription);
 }
 
 -(void)creditCardTokenProcessed:(SIMCreditCardToken *)token {
+    //Token was generated successfully, now you must use it
     
     NSURL *url= [NSURL URLWithString:@"https://Your_server/charge.rb"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];

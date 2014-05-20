@@ -5,8 +5,8 @@
   What is it?
   ------------
 
-  An iOS Framework and Bundle to the Simplify Commerce payments platform.   If you have
-  not already got an account sign up at https://www.simplify.com/commerce.
+  An iOS Framework and Bundle to the Simplify Commerce payments platform.   If you do not
+  have an account sign up at https://www.simplify.com/commerce.
 
 
   Installation
