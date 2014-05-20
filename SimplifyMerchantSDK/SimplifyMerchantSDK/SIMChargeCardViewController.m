@@ -174,7 +174,10 @@
 }
 - (IBAction)cancelTokenRequest:(id)sender {
     [self clearTextFields];
-    [self.delegate chargeCardCancelled];
+
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.delegate chargeCardCancelled];
+    }];
 }
 
 -(IBAction)retrieveToken:(id)sender {
