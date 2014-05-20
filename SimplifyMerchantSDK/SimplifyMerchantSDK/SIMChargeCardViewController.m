@@ -8,7 +8,7 @@
 
 @interface SIMChargeCardViewController () <SIMChargeCardModelDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) SIMChargeCardModel *chargeCardModel;
-@property (strong, nonatomic) NSString *apiKey;
+@property (strong, nonatomic) NSString *publicKey;
 @property (strong, nonatomic) IBOutlet UILabel *cvcLabel;
 @property (strong, nonatomic) NSError *modelError;
 
@@ -29,14 +29,14 @@
 
 @implementation SIMChargeCardViewController
 
--(instancetype)initWithApiKey:(NSString *)apiKey {
-    return [self initWithApiKey:apiKey primaryColor:nil];
+-(instancetype)initWithPublicKey:(NSString *)publicKey {
+    return [self initWithPublicKey:publicKey primaryColor:nil];
 }
 
--(instancetype)initWithApiKey:(NSString *)apiKey primaryColor:(UIColor *)primaryColor {
+-(instancetype)initWithPublicKey:(NSString *)publicKey primaryColor:(UIColor *)primaryColor {
     self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
     if (self) {
-        self.apiKey = apiKey;
+        self.publicKey = publicKey;
         self.primaryColor = primaryColor ? primaryColor : [UIColor buttonBackgroundColorEnabled];
     }
     
@@ -52,7 +52,7 @@
     self.cvcField.delegate = self;
 
     NSError *error;
-    self.chargeCardModel = [[SIMChargeCardModel alloc] initWithApiKey:self.apiKey error:&error];
+    self.chargeCardModel = [[SIMChargeCardModel alloc] initWithPublicKey:self.publicKey error:&error];
     
     if (error) {
         self.modelError = error;
@@ -69,7 +69,7 @@
 -(void)viewDidAppear:(BOOL)animated {
     if (self.modelError) {
         UIImageView *blurredView = [UIImage blurImage:self.view.layer];
-        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Failure." description:@"\n\nThere was a problem with your API Key.\n\nPlease double-check your API Key and try again."];
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Failure." description:@"\n\nThere was a problem with your Public Key.\n\nPlease double-check your Public Key and try again."];
         [self presentViewController:viewController animated:YES completion:nil];
 
     }

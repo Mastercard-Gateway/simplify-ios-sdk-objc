@@ -51,9 +51,9 @@
 		49748F7D191849C600738BC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49748F7B191849C600738BC9 /* InfoPlist.strings */; };
 		49748F9D1918733B00738BC9 /* Simplify.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49748F9B191872A100738BC9 /* Simplify.h */; };
 		49748F9E1918734600738BC9 /* Simplify.h in Headers */ = {isa = PBXBuildFile; fileRef = 49748F9B191872A100738BC9 /* Simplify.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49748FA819188D2C00738BC9 /* SIMAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 49748FA619188D2C00738BC9 /* SIMAPIManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49748FA919188D2C00738BC9 /* SIMAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49748FA719188D2C00738BC9 /* SIMAPIManager.m */; };
-		49748FAB191927E600738BC9 /* SIMAPIManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49748FAA191927E600738BC9 /* SIMAPIManagerTests.m */; };
+		49748FA819188D2C00738BC9 /* SIMSimplify.h in Headers */ = {isa = PBXBuildFile; fileRef = 49748FA619188D2C00738BC9 /* SIMSimplify.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49748FA919188D2C00738BC9 /* SIMSimplify.m in Sources */ = {isa = PBXBuildFile; fileRef = 49748FA719188D2C00738BC9 /* SIMSimplify.m */; };
+		49748FAB191927E600738BC9 /* SIMSimplifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49748FAA191927E600738BC9 /* SIMSimplifyTests.m */; };
 		49748FAC19192A8900738BC9 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49748F8919184A3F00738BC9 /* libOCMock.a */; };
 		49748FAF1919323600738BC9 /* NSString+Simplify.h in Headers */ = {isa = PBXBuildFile; fileRef = 49748FAD1919323600738BC9 /* NSString+Simplify.h */; };
 		49748FB01919323600738BC9 /* NSString+Simplify.m in Sources */ = {isa = PBXBuildFile; fileRef = 49748FAE1919323600738BC9 /* NSString+Simplify.m */; };
@@ -163,9 +163,9 @@
 		49748F9019184A3F00738BC9 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		49748F9219184D3700738BC9 /* SimplifyMerchantSDKTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SimplifyMerchantSDKTests-Prefix.pch"; path = "SimplifyMerchantSDKTests/SimplifyMerchantSDKTests-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		49748F9B191872A100738BC9 /* Simplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simplify.h; sourceTree = "<group>"; };
-		49748FA619188D2C00738BC9 /* SIMAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMAPIManager.h; sourceTree = "<group>"; };
-		49748FA719188D2C00738BC9 /* SIMAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMAPIManager.m; sourceTree = "<group>"; };
-		49748FAA191927E600738BC9 /* SIMAPIManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMAPIManagerTests.m; sourceTree = "<group>"; };
+		49748FA619188D2C00738BC9 /* SIMSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMSimplify.h; sourceTree = "<group>"; };
+		49748FA719188D2C00738BC9 /* SIMSimplify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMSimplify.m; sourceTree = "<group>"; };
+		49748FAA191927E600738BC9 /* SIMSimplifyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMSimplifyTests.m; sourceTree = "<group>"; };
 		49748FAD1919323600738BC9 /* NSString+Simplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Simplify.h"; sourceTree = "<group>"; };
 		49748FAE1919323600738BC9 /* NSString+Simplify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Simplify.m"; sourceTree = "<group>"; };
 		4977D030191A9C6F00AC621F /* SIMLuhnValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMLuhnValidator.m; sourceTree = "<group>"; };
@@ -303,7 +303,7 @@
 				4977D053191A9C9000AC621F /* Luhn Validator */,
 				7EF161BA19229EF9008F805A /* Address */,
 				495EEEC5191B36D800AEC402 /* Credit Card Token */,
-				7EF161B819229EA8008F805A /* API Manager */,
+				7EF161B819229EA8008F805A /* Simplify */,
 				49748F9B191872A100738BC9 /* Simplify.h */,
 				49748F65191849C600738BC9 /* Supporting Files */,
 			);
@@ -414,14 +414,14 @@
 			name = "Digit Verification";
 			sourceTree = "<group>";
 		};
-		7EF161B819229EA8008F805A /* API Manager */ = {
+		7EF161B819229EA8008F805A /* Simplify */ = {
 			isa = PBXGroup;
 			children = (
-				49748FAA191927E600738BC9 /* SIMAPIManagerTests.m */,
-				49748FA619188D2C00738BC9 /* SIMAPIManager.h */,
-				49748FA719188D2C00738BC9 /* SIMAPIManager.m */,
+				49748FAA191927E600738BC9 /* SIMSimplifyTests.m */,
+				49748FA619188D2C00738BC9 /* SIMSimplify.h */,
+				49748FA719188D2C00738BC9 /* SIMSimplify.m */,
 			);
-			name = "API Manager";
+			name = Simplify;
 			sourceTree = "<group>";
 		};
 		7EF161BA19229EF9008F805A /* Address */ = {
@@ -446,7 +446,7 @@
 				495EEF83192401D700AEC402 /* SIMChargeCardModel.h in Headers */,
 				4977D04C191A9C6F00AC621F /* SIMCardType.h in Headers */,
 				49748FAF1919323600738BC9 /* NSString+Simplify.h in Headers */,
-				49748FA819188D2C00738BC9 /* SIMAPIManager.h in Headers */,
+				49748FA819188D2C00738BC9 /* SIMSimplify.h in Headers */,
 				495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */,
 				495EEF87192401E000AEC402 /* SIMButton.h in Headers */,
 				49C499391925C2E700402775 /* SIMResponseViewController.h in Headers */,
@@ -615,7 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				495EEF791923DFE700AEC402 /* UIColor+Simplify.m in Sources */,
-				49748FA919188D2C00738BC9 /* SIMAPIManager.m in Sources */,
+				49748FA919188D2C00738BC9 /* SIMSimplify.m in Sources */,
 				495EEF81192401D700AEC402 /* SIMChargeCardModel.m in Sources */,
 				495EEF86192401E000AEC402 /* SIMButton.m in Sources */,
 				495EEF80192401D700AEC402 /* SIMChargeCardViewController.m in Sources */,
@@ -641,7 +641,7 @@
 				495EEED0191B4CE600AEC402 /* SIMAddressTests.m in Sources */,
 				495EEED1191B4CE600AEC402 /* SIMCreditCardTokenTests.m in Sources */,
 				4977D058191A9D6700AC621F /* SIMDigitVerifierTests.m in Sources */,
-				49748FAB191927E600738BC9 /* SIMAPIManagerTests.m in Sources */,
+				49748FAB191927E600738BC9 /* SIMSimplifyTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

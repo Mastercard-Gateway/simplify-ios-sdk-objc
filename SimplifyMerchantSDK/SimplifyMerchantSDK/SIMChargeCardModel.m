@@ -5,8 +5,8 @@
 @interface SIMChargeCardModel ()
 
 @property (nonatomic, strong) SIMDigitVerifier *digitVerifier;
-@property (nonatomic, strong) SIMAPIManager *apiManager;
-@property (nonatomic, strong) NSString *apiKey;
+@property (nonatomic, strong) SIMSimplify *simplify;
+@property (nonatomic, strong) NSString *publicKey;
 @property (nonatomic, strong, readwrite) NSString *cardNumber;
 @property (nonatomic, strong, readwrite) NSString *expirationDate;
 @property (nonatomic, strong, readwrite) NSString *expirationMonth;
@@ -23,28 +23,28 @@
 
 @implementation SIMChargeCardModel
 
--(instancetype)initWithApiKey:(NSString *)apiKey error:(NSError **)error{
+-(instancetype)initWithPublicKey:(NSString *)publicKey error:(NSError **)error{
     
     NSError *apiError;
-    self.apiManager = [[SIMAPIManager alloc] initWithApiKey:apiKey error:&apiError];
+    self.simplify = [[SIMSimplify alloc] initWithPublicKey:publicKey error:&apiError];
     
     if (apiError) {
         if(error != NULL) *error = apiError;
         return nil;
     } else {
-        return [self initWithApiKey:apiKey apiManager:self.apiManager];
+        return [self initWithPublicKey:publicKey simplify:self.simplify];
     }
 }
 
--(instancetype)initWithApiKey:(NSString *)apiKey apiManager:(SIMAPIManager *)apiManager{
+-(instancetype)initWithPublicKey:(NSString *)publicKey simplify:(SIMSimplify *)simplify{
     self = [super init];
     
     if (self) {
         self.cardNumber = @"";
         self.expirationDate = @"";
         self.cvcCode = @"";
-        self.apiKey = apiKey;
-        self.apiManager = apiManager;
+        self.publicKey = publicKey;
+        self.simplify = simplify;
     }
     return self;
 }
@@ -217,7 +217,7 @@
         }
     };
     
-    [self.apiManager createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address completionHander:completionHandler];
+    [self.simplify createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address completionHander:completionHandler];
 }
 
 @end

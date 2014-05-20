@@ -3,7 +3,7 @@
 
 @interface SIMChargeCardModel (Test)
 
--(instancetype)initWithApiKey:(NSString *)apiKey apiManager:(SIMAPIManager *)apiManager;
+-(instancetype)initWithPublicKey:(NSString *)publicKey simplify:(SIMSimplify *)simplify;
 
 @property (nonatomic) NSURL *currentAPIURL;
 
@@ -11,7 +11,7 @@
 
 @interface SIMChargeCardModelTests : XCTestCase
 @property (nonatomic, strong) SIMChargeCardModel *testSubject;
-@property (nonatomic) id mockApiManager;
+@property (nonatomic) id mockSimplify;
 @end
 
 @implementation SIMChargeCardModelTests
@@ -20,8 +20,8 @@
 {
     [super setUp];
     
-    self.mockApiManager = [OCMockObject mockForClass:SIMAPIManager.class];
-    self.testSubject = [[SIMChargeCardModel alloc] initWithApiKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" apiManager:self.mockApiManager];
+    self.mockSimplify = [OCMockObject mockForClass:SIMSimplify.class];
+    self.testSubject = [[SIMChargeCardModel alloc] initWithPublicKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" simplify:self.mockSimplify];
     
 }
 
@@ -30,29 +30,29 @@
     [super tearDown];
 }
 
--(void)testChargeCardModelReturnsNilAndErrorWhenAPIKeyIsInvalid {
-    NSString *apiKey = @"invalid1234";
+-(void)testChargeCardModelReturnsNilAndErrorWhenPublicKeyIsInvalid {
+    NSString *publicKey = @"invalid1234";
     NSError *error;
-    self.testSubject = [[SIMChargeCardModel alloc] initWithApiKey:apiKey error:&error];
+    self.testSubject = [[SIMChargeCardModel alloc] initWithPublicKey:publicKey error:&error];
     
     XCTAssertNil(self.testSubject, @"");
     XCTAssertNotNil(error, @"");
-    XCTAssertEqual(error.code, SIMAPIManagerErrorCodeInvalidAPIKey, @"");
+    XCTAssertEqual(error.code, SIMSimplifyErrorCodeInvalidPublicKey, @"");
 }
 
--(void)testAPIManagerAcceptsNilErrorOnSuccess {
-    NSString *apiKey = @"sbpb_1234";
+-(void)testSimplifyAcceptsNilErrorOnSuccess {
+    NSString *publicKey = @"sbpb_1234";
     NSError *error;
-    self.testSubject = [[SIMChargeCardModel alloc] initWithApiKey:apiKey error:nil];
+    self.testSubject = [[SIMChargeCardModel alloc] initWithPublicKey:publicKey error:nil];
     
     XCTAssertNotNil(self.testSubject, @"");
     XCTAssertNil(error, @"");
 }
 
--(void)testAPIManagerAcceptsNilErrorOnFailureAndNilObject {
-    NSString *apiKey = @"invalid1234";
+-(void)testSimplifyAcceptsNilErrorOnFailureAndNilObject {
+    NSString *publicKey = @"invalid1234";
     NSError *error;
-    self.testSubject = [[SIMChargeCardModel alloc] initWithApiKey:apiKey error:nil];
+    self.testSubject = [[SIMChargeCardModel alloc] initWithPublicKey:publicKey error:nil];
     
     XCTAssertNil(self.testSubject, @"");
     XCTAssertNil(error, @"");
@@ -435,13 +435,13 @@
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cvcCode, "four digits");
 }
 
--(void)testRetrieveTokenWithCallsApiManager {
+-(void)testRetrieveTokenWithCallsSimplify {
     
-    [[self.mockApiManager expect] createCardTokenWithExpirationMonth:OCMOCK_ANY expirationYear:OCMOCK_ANY cardNumber:OCMOCK_ANY cvc:OCMOCK_ANY address:OCMOCK_ANY completionHander:OCMOCK_ANY];
+    [[self.mockSimplify expect] createCardTokenWithExpirationMonth:OCMOCK_ANY expirationYear:OCMOCK_ANY cardNumber:OCMOCK_ANY cvc:OCMOCK_ANY address:OCMOCK_ANY completionHander:OCMOCK_ANY];
     
     [self.testSubject retrieveToken];
     
-    [self.mockApiManager verify];
+    [self.mockSimplify verify];
     
 }
 

@@ -1,7 +1,7 @@
 #import "SIMCardType.h"
 #import "SIMAddress.h"
 #import "SIMCreditCardToken.h"
-#import "SIMAPIManager.h"
+#import "SIMSimplify.h"
 
 /**
  Protocol for communicating success or failure of the token generation.
@@ -36,7 +36,7 @@
 @property (nonatomic, strong, readonly) SIMAddress *address; /**< SIMAddress with all address details of the card holder */
 @property (nonatomic, strong, readonly) SIMCardType *cardType; /**< card type, including validations of CVC code length and card number length */
 
--(instancetype)initWithApiKey:(NSString *)apiKey error:(NSError **)error;
+-(instancetype)initWithPublicKey:(NSString *)publicKey error:(NSError **)error;
 
 /**
  * Method that determines if card number, expiration date, and CVC code are all valid

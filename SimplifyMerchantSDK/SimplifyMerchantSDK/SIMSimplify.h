@@ -2,17 +2,17 @@
 #import "SIMCreditCardToken.h"
 
 /**
- Enum for the error code if it is a card toke response error or a invalid API key error
+ Enum for the error code if it is a card toke response error or a invalid public key error
  */
 typedef enum {
-    SIMAPIManagerErrorCodeCardTokenResponseError,
-    SIMAPIManagerErrorCodeInvalidAPIKey
-} SIMAPIManagerErrorCode;
+    SIMSimplifyErrorCodeCardTokenResponseError,
+    SIMSimplifyErrorCodeInvalidPublicKey
+} SIMSimplifyErrorCode;
 
 /**
- Class that manages the API keys and the card token generation
+ Class that manages the public key and the card token generation
  */
-@interface SIMAPIManager : NSObject
+@interface SIMSimplify : NSObject
 
 /**
  Block that handles what to do with a card token and all errors
@@ -21,14 +21,14 @@ typedef enum {
  */
 typedef void (^CardTokenCompletionHandler)(SIMCreditCardToken *cardToken, NSError *error);
 
-@property (nonatomic, readonly) BOOL isLiveMode;  /**< No if in sandbox mode, determined by publicApiKey */
+@property (nonatomic, readonly) BOOL isLiveMode;  /**< No if in sandbox mode, determined by publicKey */
 
 /**
- Creates an instance of the SIMAPIManager class
- @param publicApiKey is the public API key from the Simplify Commerce account
- @param error is the mode error if the API key was invalid
+ Creates an instance of the SIMSimplify class
+ @param publicKey is the public key from the Simplify Commerce account
+ @param error is the mode error if the public key was invalid
  */
--(instancetype)initWithApiKey:(NSString *)apiKey error:(NSError **) error;
+-(instancetype)initWithPublicKey:(NSString *)publicKey error:(NSError **) error;
 
 /**
  Creates a token from credit card details and a completion handler

@@ -1,51 +1,51 @@
-#import "SIMAPIManager.h"
+#import "SIMSimplify.h"
 #import "NSString+Simplify.h"
 #import "NSBundle+Simplify.h"
 #import <UIKit/UIKit.h>
 
 typedef enum {
-    SIMAPIManagerModeLive,
-    SIMAPIManagerModeSandbox,
-    SIMAPIManagerModeInvalid,
-}SIMAPIManagerMode;
+    SIMSimplifyModeLive,
+    SIMSimplifyModeSandbox,
+    SIMSimplifyModeInvalid,
+}SIMSimplifyMode;
 
-#define SIMAPIManagerPrefixLive @"lvpb_"
-#define SIMAPIManagerPrefixSandbox @"sbpb_"
-#define SIMAPIManagerErrorDescription @"Simplify SDK Error - "
+#define SIMSimplifyPrefixLive @"lvpb_"
+#define SIMSimplifyPrefixSandbox @"sbpb_"
+#define SIMSimplifyErrorDescription @"Simplify SDK Error - "
 
-#define SIMAPIManagerErrorDomain [NSString stringWithFormat:@"%@.errordomain", [[NSBundle frameworkBundle] bundleIdentifier]]
+#define SIMSimplifyErrorDomain [NSString stringWithFormat:@"%@.errordomain", [[NSBundle frameworkBundle] bundleIdentifier]]
 
 static NSString *prodAPILiveURL = @"https://api.simplify.com/v1/api";
 static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
 static NSString *endpointCardToken = @"payment/cardToken";
 
-@interface SIMAPIManager ()
+@interface SIMSimplify ()
 
 typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError *error);
 
 @property (nonatomic) BOOL isLiveMode;
 
-@property (nonatomic) NSString *publicApiKey;
+@property (nonatomic) NSString *publicKey;
 @property (nonatomic) NSMutableURLRequest *request;
 @property (nonatomic) NSURL *currentAPIURL;
 
 @end
 
-@implementation SIMAPIManager
+@implementation SIMSimplify
 
--(instancetype)initWithApiKey:(NSString *)apiKey error:(NSError **)error{
+-(instancetype)initWithPublicKey:(NSString *)publicKey error:(NSError **)error{
     self = [super init];
     
     if (self) {
         
         NSError *modeError;
-        self.isLiveMode = [self isAPIKeyLiveMode:apiKey error:&modeError];
+        self.isLiveMode = [self isPublicKeyLiveMode:publicKey error:&modeError];
         
         if (modeError) {
             if(error != NULL) *error = modeError;
             return nil;
         } else {
-            self.publicApiKey = apiKey;
+            self.publicKey = publicKey;
             NSString *apiURLString = (self.isLiveMode) ? prodAPILiveURL : prodAPISandboxURL;
             self.currentAPIURL = [NSURL URLWithString:apiURLString];
             [self.request setURL:self.currentAPIURL];
@@ -56,19 +56,19 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
     return self;
 }
 
--(BOOL)isAPIKeyLiveMode:(NSString *)apiKey error:(NSError **) error{
+-(BOOL)isPublicKeyLiveMode:(NSString *)publicKey error:(NSError **) error{
 
     BOOL isLive;
     
-    if ([apiKey hasPrefix:SIMAPIManagerPrefixLive]) {
+    if ([publicKey hasPrefix:SIMSimplifyPrefixLive]) {
         isLive = YES;
-    } else if ([apiKey hasPrefix:SIMAPIManagerPrefixSandbox]){
+    } else if ([publicKey hasPrefix:SIMSimplifyPrefixSandbox]){
         isLive = NO;
     } else {
-        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"Could not create API Manager: Invalid API Key."};
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"Could not create Simplify: Invalid Public Key."};
         if(error != NULL) {
-            *error = [NSError errorWithDomain:SIMAPIManagerErrorDomain code:SIMAPIManagerErrorCodeInvalidAPIKey userInfo:userInfo];
-            NSLog(@"%@%@", SIMAPIManagerErrorDescription, *error);
+            *error = [NSError errorWithDomain:SIMSimplifyErrorDomain code:SIMSimplifyErrorCodeInvalidPublicKey userInfo:userInfo];
+            NSLog(@"%@%@", SIMSimplifyErrorDescription, *error);
         }
     }
     
@@ -111,7 +111,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
         cardData[@"addressCountry"] = address.country;
 	}
     
-    NSDictionary *tokenData = @{@"key": [NSString urlEncodedString:self.publicApiKey], @"card":cardData};
+    NSDictionary *tokenData = @{@"key": [NSString urlEncodedString:self.publicKey], @"card":cardData};
     
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:tokenData options:0 error:&jsonSerializationError];
     
@@ -161,9 +161,9 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
             
         } else {
             NSString *errorMessage = [NSString stringWithFormat:@"Bad HTTP Response: %ld.", (long)httpURLResponse.statusCode];
-            NSError *responseError = [NSError errorWithDomain:SIMAPIManagerErrorDomain code:SIMAPIManagerErrorCodeCardTokenResponseError userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
+            NSError *responseError = [NSError errorWithDomain:SIMSimplifyErrorDomain code:SIMSimplifyErrorCodeCardTokenResponseError userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
             
-            NSLog(@"%@%@", SIMAPIManagerErrorDescription, responseError);
+            NSLog(@"%@%@", SIMSimplifyErrorDescription, responseError);
             
             apiCompletionHandler(nil, responseError);
         }
