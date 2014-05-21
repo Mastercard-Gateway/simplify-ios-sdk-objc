@@ -16,18 +16,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cupcake.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MZE-2r-Hgt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cupcake.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MZE-2r-Hgt">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" hint="Cupcake product" label="Cupcake">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="568" id="fJA-ai-yg6"/>
+                                    <constraint firstAttribute="width" constant="320" id="oml-Ds-qUc"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="vle-uo-y28"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kO-Lh-PQP" customClass="SIMButton">
                                 <rect key="frame" x="0.0" y="510" width="320" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" hint="Click to purchase cupcake" label="Buy cupcake"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="AKr-r5-egM"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Buy Cupcake">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,6 +48,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="MZE-2r-Hgt" secondAttribute="centerX" id="9Tb-kj-PyG"/>
+                            <constraint firstAttribute="centerY" secondItem="MZE-2r-Hgt" secondAttribute="centerY" id="gIh-M0-u8D"/>
                             <constraint firstItem="qYQ-FB-cAc" firstAttribute="top" secondItem="6kO-Lh-PQP" secondAttribute="bottom" id="nKl-3G-uFt"/>
                         </constraints>
                     </view>
