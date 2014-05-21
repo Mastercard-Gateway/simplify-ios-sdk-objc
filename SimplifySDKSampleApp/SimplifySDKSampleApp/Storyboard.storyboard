@@ -49,7 +49,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cupcake.jpg" width="1836" height="3264"/>
+        <image name="cupcake.jpg" width="640" height="1138"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
