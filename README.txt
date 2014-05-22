@@ -16,10 +16,6 @@
 
   http://www.simplify.com/payments-web/docs/sdk/ios
 
-  You can install the Simplify Documenation by copying the supplied docset into:
-
-  ~/Library/Developer/Shared/Documentation/DocSets/
-
   Using the SDK
   --------------
 
@@ -28,9 +24,8 @@
   Version
   -------
 
-  This is version 1.0.0 of the SDK.  See CHANGES.txt for a list 
-  of changes. For an up-to-date version check at 
-  https://www.simplify.com/commerce/docs/sdk/ios.
+  This is version 1.0.0 of the SDK.  See CHANGES.txt for a list of updates to the SDK.
+  For an up-to-date version check at https://www.simplify.com/commerce/docs/sdk/ios.
 
   Licensing
   ---------
@@ -40,8 +35,7 @@
   Documentation
   -------------
 
-  API documentation is available by utilizing Doxygen to generate a docset from the 
-  supplied Doxyfile.
+  API documentation is available in the docs.zip archive included with this Framework. 
 
   Support
   -------
