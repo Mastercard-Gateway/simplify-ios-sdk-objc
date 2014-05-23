@@ -33,7 +33,7 @@
 		495EEF791923DFE700AEC402 /* UIColor+Simplify.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF771923DFE700AEC402 /* UIColor+Simplify.m */; };
 		495EEF80192401D700AEC402 /* SIMChargeCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF7C192401D700AEC402 /* SIMChargeCardViewController.m */; };
 		495EEF81192401D700AEC402 /* SIMChargeCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF7D192401D700AEC402 /* SIMChargeCardModel.m */; };
-		495EEF83192401D700AEC402 /* SIMChargeCardModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF7F192401D700AEC402 /* SIMChargeCardModel.h */; };
+		495EEF83192401D700AEC402 /* SIMChargeCardModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF7F192401D700AEC402 /* SIMChargeCardModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		495EEF86192401E000AEC402 /* SIMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEF84192401E000AEC402 /* SIMButton.m */; };
 		495EEF87192401E000AEC402 /* SIMButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF85192401E000AEC402 /* SIMButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		495EEF891924021E00AEC402 /* SIMChargeCardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEF881924021E00AEC402 /* SIMChargeCardViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -443,7 +443,6 @@
 			files = (
 				4977D04F191A9C6F00AC621F /* SIMLuhnValidator.h in Headers */,
 				4977D050191A9C6F00AC621F /* SIMDigitVerifier.h in Headers */,
-				495EEF83192401D700AEC402 /* SIMChargeCardModel.h in Headers */,
 				4977D04C191A9C6F00AC621F /* SIMCardType.h in Headers */,
 				49748FAF1919323600738BC9 /* NSString+Simplify.h in Headers */,
 				49748FA819188D2C00738BC9 /* SIMSimplify.h in Headers */,
@@ -452,6 +451,7 @@
 				49C499391925C2E700402775 /* SIMResponseViewController.h in Headers */,
 				495EEF891924021E00AEC402 /* SIMChargeCardViewController.h in Headers */,
 				495EEF95192406FF00AEC402 /* UIImage+Simplify.h in Headers */,
+				495EEF83192401D700AEC402 /* SIMChargeCardModel.h in Headers */,
 				495EEF911924049700AEC402 /* NSBundle+Simplify.h in Headers */,
 				495EEF781923DFE700AEC402 /* UIColor+Simplify.h in Headers */,
 				495EEECC191B387200AEC402 /* SIMCreditCardToken.h in Headers */,
