@@ -70,7 +70,8 @@
 
 //Tests for format
 -(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsOneDigitLong {
-    NSString *expectedExpirationDate = @"2";
+    NSString *expectedExpirationDate = @"2M/YY";
+    NSString *expectedExpirationMonth = @"2";
     
     [self.testSubject updateExpirationDateWithString:@"2"];
     
@@ -78,35 +79,35 @@
     NSString *actualExpirationMonth = self.testSubject.expirationMonth;
     
     XCTAssertEqualObjects(expectedExpirationDate, actualExpirationDate, "one digit");
-    XCTAssertEqualObjects(expectedExpirationDate, actualExpirationMonth, "one digit");
+    XCTAssertEqualObjects(expectedExpirationMonth, actualExpirationMonth, "one digit");
 }
 
 -(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsTwoDigitsLong {
-    NSString *expectedExpirationDate = @"2/1";
+    NSString *expectedExpirationDate = @"12/YY";
     
-    [self.testSubject updateExpirationDateWithString:@"21"];
+    [self.testSubject updateExpirationDateWithString:@"12"];
     
     NSString *actualExpirationDate = self.testSubject.formattedExpirationDate;
     NSString *actualExpirationMonth = self.testSubject.expirationMonth;
     NSString *actualExpirationYear = self.testSubject.expirationYear;
     
     XCTAssertEqualObjects(expectedExpirationDate, actualExpirationDate, "two digits");
-    XCTAssertEqualObjects(@"2", actualExpirationMonth, "one digit");
-    XCTAssertEqualObjects(@"1", actualExpirationYear, "one digit");
+    XCTAssertEqualObjects(@"12", actualExpirationMonth, "two digits");
+    XCTAssertEqualObjects(@"", actualExpirationYear, "no digit");
 }
 
 -(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsThreeDigitsLong {
-    NSString *expectedExpirationDate = @"2/55";
+    NSString *expectedExpirationDate = @"12/5Y";
     
-    [self.testSubject updateExpirationDateWithString:@"255"];
+    [self.testSubject updateExpirationDateWithString:@"125"];
     
     NSString *actualExpirationDate = self.testSubject.formattedExpirationDate;
     NSString *actualExpirationMonth = self.testSubject.expirationMonth;
     NSString *actualExpirationYear = self.testSubject.expirationYear;
     
     XCTAssertEqualObjects(expectedExpirationDate, actualExpirationDate, "three digits");
-    XCTAssertEqualObjects(@"2", actualExpirationMonth, "one digit");
-    XCTAssertEqualObjects(@"55", actualExpirationYear, "two digits");
+    XCTAssertEqualObjects(@"12", actualExpirationMonth, "two digits");
+    XCTAssertEqualObjects(@"5", actualExpirationYear, "one digit");
 }
 
 -(void)testFormattedExpirationDateFormatsCorrectlyWhenStringIsFourDigitsLong {
@@ -207,7 +208,7 @@
 
 -(void)testIsCardChargePossibleReturnsYesWhenCardTypeBlankAndCVCLengthIs3 {
     [self.testSubject updateCardNumberWithString:@"6709507858655272"];
-    [self.testSubject updateExpirationDateWithString:@"173"];
+    [self.testSubject updateExpirationDateWithString:@"0173"];
     [self.testSubject updateCVCNumberWithString:@"123"];
     
     XCTAssertTrue([self.testSubject isExpirationDateValid], "should be a valid expiration date");
@@ -239,7 +240,7 @@
 
 -(void)testIsCardChargePossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigitsButNoCVCCode {
     [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
-    [self.testSubject updateExpirationDateWithString:@"173"];
+    [self.testSubject updateExpirationDateWithString:@"1273"];
     XCTAssertTrue([self.testSubject isExpirationDateValid], "should be yes");
     XCTAssertTrue([self.testSubject isCardNumberValid], "should be a valid card");
     XCTAssertTrue([self.testSubject isCVCCodeValid], "should be valid with no code");

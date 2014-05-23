@@ -66,7 +66,7 @@
 }
 
 -(BOOL)isExpirationDateValid {
-    if ((self.expirationDate.length > 2) && [self expirationDateInFuture] && [self isExpirationMonthValid]) {
+    if ((self.expirationDate.length == 4) && [self expirationDateInFuture] && [self isExpirationMonthValid]) {
         return YES;
     }
     return NO;
@@ -163,25 +163,33 @@
 }
 
 -(NSString *)formattedExpirationDate {
-    if (self.expirationDate.length > 1) {
+    if (self.expirationDate.length == 1) {
+        return [NSString stringWithFormat:@"%@M/YY",self.expirationMonth];
+    }
+    else if (self.expirationDate.length == 2) {
+        return [NSString stringWithFormat:@"%@/YY",self.expirationMonth];
+    }
+    else if (self.expirationDate.length == 3) {
+        return [NSString stringWithFormat:@"%@/%@Y",self.expirationMonth, self.expirationYear];
+    }
+    else if (self.expirationDate.length == 4) {
         return [NSString stringWithFormat:@"%@/%@",self.expirationMonth, self.expirationYear];
     }
     return self.expirationDate;
 }
 
 -(NSString *)expirationMonth {
-    if (self.expirationDate.length  > 0 && self.expirationDate.length <= 3) {
+    if (self.expirationDate.length  == 1) {
         return [self.expirationDate substringToIndex:1];
-    } else if (self.expirationDate.length > 3){
+    } else if (self.expirationDate.length > 1){
         return [self.expirationDate substringToIndex:2];
     }
     return @"";
 }
 
 -(NSString *)expirationYear {
-    if (self.expirationDate.length  > 0 && self.expirationDate.length <= 3) {
-        return [self.expirationDate substringFromIndex:1];
-    } else if (self.expirationDate.length > 3){
+
+    if (self.expirationDate.length > 2){
         return [self.expirationDate substringFromIndex:2];
     }
     return @"";
