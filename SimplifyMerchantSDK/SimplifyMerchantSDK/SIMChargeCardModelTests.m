@@ -436,6 +436,30 @@
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cvcCode, "four digits");
 }
 
+-(void)testDeleteCharacterInExpirationFormatsCorrectly {
+    [self.testSubject updateExpirationDateWithString:@"0234"];
+    [self.testSubject deleteCharacterInExpiration];
+    NSString *expectedStringWithNoSpaces = @"023";
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.expirationDate, "three digits");
+}
+
+-(void)testDeleteCharacterInExpirationFormatsCorrectlyWithOneDigit {
+    [self.testSubject updateExpirationDateWithString:@"0"];
+    [self.testSubject deleteCharacterInExpiration];
+    NSString *expectedStringWithNoSpaces = @"";
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.expirationDate, "no digits");
+}
+
+-(void)testDeleteCharacterInExpirationFormatsCorrectlyWithNoDigits {
+    [self.testSubject updateExpirationDateWithString:@""];
+    [self.testSubject deleteCharacterInExpiration];
+    NSString *expectedStringWithNoSpaces = @"";
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.expirationDate, "no digits");
+}
+
 -(void)testRetrieveTokenWithCallsSimplify {
     
     [[self.mockSimplify expect] createCardTokenWithExpirationMonth:OCMOCK_ANY expirationYear:OCMOCK_ANY cardNumber:OCMOCK_ANY cvc:OCMOCK_ANY address:OCMOCK_ANY completionHander:OCMOCK_ANY];

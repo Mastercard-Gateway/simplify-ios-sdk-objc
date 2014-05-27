@@ -73,7 +73,11 @@
  */
 -(void)updateCVCNumberWithString:(NSString *)newString;
 
+/**
+ * Deletes a character in the expiration date while maintaining formatting
+ */
 -(void)deleteCharacterInExpiration;
+
 /**
  * Input your public key here to be able to retrieve a credit card token
  */

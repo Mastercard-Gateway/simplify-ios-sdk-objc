@@ -142,8 +142,10 @@
 }
 
 -(void)deleteCharacterInExpiration {
-    self.expirationDate = [self.expirationDate substringToIndex:self.expirationDate.length -1];
-    [self updateExpirationDateWithString:self.expirationDate];
+    if (self.expirationDate.length > 0) {
+        NSString *newExpirationDate = [self.expirationDate substringToIndex:self.expirationDate.length -1];
+        [self updateExpirationDateWithString:newExpirationDate];
+    }
 }
 
 -(NSString *)formattedCardNumber {
