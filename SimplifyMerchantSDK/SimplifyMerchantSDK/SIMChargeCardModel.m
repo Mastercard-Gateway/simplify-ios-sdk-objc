@@ -126,6 +126,8 @@
                 self.expirationDate = updatedString;
             } else if ((secondDigit == 1) && (thirdDigit < 3)) {
                 self.expirationDate = updatedString;
+            } else if (updatedString.length == 4){
+                self.expirationDate = updatedString;
             }
         }
     } else {
