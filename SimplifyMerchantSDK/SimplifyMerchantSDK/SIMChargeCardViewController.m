@@ -139,7 +139,11 @@
     }
     
     else if (textField == self.expirationField) {
+        if (string.length == 0) {
+            [self.chargeCardModel deleteCharacterInExpiration];
+        } else {
         [self.chargeCardModel updateExpirationDateWithString:newString];
+        }
         self.expirationField.text = self.chargeCardModel.formattedExpirationDate;
     }
     

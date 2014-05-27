@@ -73,6 +73,7 @@
  */
 -(void)updateCVCNumberWithString:(NSString *)newString;
 
+-(void)deleteCharacterInExpiration;
 /**
  * Input your public key here to be able to retrieve a credit card token
  */

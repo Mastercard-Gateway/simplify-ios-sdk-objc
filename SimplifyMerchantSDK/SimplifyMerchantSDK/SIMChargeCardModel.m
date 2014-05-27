@@ -141,6 +141,11 @@
     }
 }
 
+-(void)deleteCharacterInExpiration {
+    self.expirationDate = [self.expirationDate substringToIndex:self.expirationDate.length -1];
+    [self updateExpirationDateWithString:self.expirationDate];
+}
+
 -(NSString *)formattedCardNumber {
     NSMutableString *formattedString =[NSMutableString stringWithString:self.cardNumber];
     if (![self.cardTypeString isEqual: @"amex"]) {
