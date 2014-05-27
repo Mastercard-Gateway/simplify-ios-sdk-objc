@@ -50,7 +50,10 @@
     self.cardNumberField.delegate = self;
     self.expirationField.delegate = self;
     self.cvcField.delegate = self;
-
+    
+    self.cardNumberField.tintColor = self.primaryColor;
+    self.expirationField.tintColor = self.primaryColor;
+    self.cvcField.tintColor = self.primaryColor;
     NSError *error;
     self.chargeCardModel = [[SIMChargeCardModel alloc] initWithPublicKey:self.publicKey error:&error];
     
