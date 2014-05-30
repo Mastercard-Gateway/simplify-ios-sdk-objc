@@ -79,6 +79,11 @@
 -(void)deleteCharacterInExpiration;
 
 /**
+ * Deletes a character in the card number while maintaining formatting
+ */
+-(void)deleteCharacterInCardNumber;
+
+/**
  * Input your public key here to be able to retrieve a credit card token
  */
 -(void)retrieveToken;

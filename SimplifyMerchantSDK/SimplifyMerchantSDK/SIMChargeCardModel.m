@@ -148,6 +148,13 @@
     }
 }
 
+-(void)deleteCharacterInCardNumber {
+    if (self.cardNumber.length > 0) {
+        NSString *newCardNumber = [self.cardNumber substringToIndex:self.cardNumber.length -1];
+        [self updateCardNumberWithString:newCardNumber];
+    }
+}
+
 -(NSString *)formattedCardNumber {
     NSMutableString *formattedString =[NSMutableString stringWithString:self.cardNumber];
     if (![self.cardTypeString isEqual: @"amex"]) {

@@ -131,7 +131,11 @@
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     
     if (textField == self.cardNumberField) {
-        [self.chargeCardModel updateCardNumberWithString:newString];
+        if (string.length == 0) {
+            [self.chargeCardModel deleteCharacterInCardNumber];
+        } else {
+            [self.chargeCardModel updateCardNumberWithString:newString];
+        }
         self.cardNumberField.text = self.chargeCardModel.formattedCardNumber;
         [self setCardTypeImage];
     }
@@ -145,7 +149,7 @@
         if (string.length == 0) {
             [self.chargeCardModel deleteCharacterInExpiration];
         } else {
-        [self.chargeCardModel updateExpirationDateWithString:newString];
+            [self.chargeCardModel updateExpirationDateWithString:newString];
         }
         self.expirationField.text = self.chargeCardModel.formattedExpirationDate;
     }
