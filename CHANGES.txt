@@ -1,0 +1,4 @@
+
+v1.2.0, 2014.06.05 -- Updated expiration validation and display.
+v1.1.0, 2014.05.30 -- Added 64-bit support.
+v1.0.0, 2014.05.28 -- Initial release.
