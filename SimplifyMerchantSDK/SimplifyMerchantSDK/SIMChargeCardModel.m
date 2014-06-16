@@ -89,7 +89,7 @@
 }
 
 -(BOOL)isZipCodeValid {
-    if (self.zipCode.length == 0  || self.zipCode.length == 5) {
+    if (self.zipCode.length == 0  || self.zipCode.length == 5 || self.zipCode.length == 9) {
         return YES;
     }
     return NO;
@@ -153,7 +153,7 @@
 -(void)updateZipCodeWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     
-    if (updatedString.length <= 5) {
+    if (updatedString.length <= 9) {
         self.zipCode = updatedString;
     }
 }
