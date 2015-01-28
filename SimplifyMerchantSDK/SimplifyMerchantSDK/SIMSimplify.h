@@ -1,5 +1,6 @@
 #import "SIMAddress.h"
 #import "SIMCreditCardToken.h"
+#import <PassKit/PassKit.h>
 
 /**
  Enum for the error code if it is a card toke response error or a invalid public key error
@@ -41,4 +42,12 @@ typedef void (^CardTokenCompletionHandler)(SIMCreditCardToken *cardToken, NSErro
  */
 -(void)createCardTokenWithExpirationMonth:(NSString *)expirationMonth expirationYear:(NSString *)expirationYear
         cardNumber:(NSString *)cardNumber cvc:(NSString *)cvc address:(SIMAddress *)address completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler;
+
+/**
+ Creates a token from a PKPayment and a completion handler
+ @param payment is PKPayment returned from PKPaymentAuthorizationViewController
+ @param completionHandler is a block that is executed after the create token call is made. It can deal with an error or deal with a token if it has one.
+ */
+-(void)createCardTokenWithPayment:(PKPayment *)payment completionHandler:(CardTokenCompletionHandler)cardTokenCompletionHandler;
+
 @end

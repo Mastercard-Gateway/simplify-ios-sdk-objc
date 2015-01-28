@@ -2,6 +2,7 @@
 #import "NSString+Simplify.h"
 #import "NSBundle+Simplify.h"
 #import <UIKit/UIKit.h>
+#import "SIMTokenProcessor.h"
 
 typedef enum {
     SIMSimplifyModeLive,
@@ -15,6 +16,8 @@ typedef enum {
 
 #define SIMSimplifyErrorDomain [NSString stringWithFormat:@"%@.errordomain", [[NSBundle frameworkBundle] bundleIdentifier]]
 
+//static NSString *prodAPILiveURL = @"https://10.157.193.78:25017/v1/api";
+//static NSString *prodAPISandboxURL = @"https://10.157.193.75:25017/v1/api";
 static NSString *prodAPILiveURL = @"https://api.simplify.com/v1/api";
 static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
 static NSString *endpointCardToken = @"payment/cardToken";
@@ -128,6 +131,24 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
         cardTokenCompletionHandler(nil, jsonSerializationError);
     }
     
+}
+
+-(void)createCardTokenWithPayment:(PKPayment *)payment completionHandler:(CardTokenCompletionHandler)cardTokenCompletionHandler {
+    NSError *jsonSerializationError;
+    NSURL *url = [self.currentAPIURL URLByAppendingPathComponent:endpointCardToken];
+    NSData* jsonData = [SIMTokenProcessor formatDataForRequestWithKey:self.publicKey withPayment:payment error:jsonSerializationError];
+    if (!jsonSerializationError) {
+        
+        SimplifyApiCompletionHandler apiCompletionHander = ^(NSDictionary *jsonResponse, NSError *error) {
+            
+            cardTokenCompletionHandler([SIMCreditCardToken cardTokenFromDictionary:jsonResponse], error);
+        };
+        
+        [self performRequestWithData:jsonData url:url completionHander:apiCompletionHander];
+        
+    } else {
+        cardTokenCompletionHandler(nil, jsonSerializationError);
+    }
 }
 
 -(void)performRequestWithData:(NSData *)jsonData url:(NSURL *)url completionHander:(SimplifyApiCompletionHandler)apiCompletionHandler{

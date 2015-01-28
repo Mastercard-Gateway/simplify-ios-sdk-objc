@@ -23,6 +23,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2C335FDB1A769D6700868847 /* SIMTokenProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7F2E971A716A98006A4E80 /* SIMTokenProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C7F2E961A716A71006A4E80 /* SIMTokenProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7F2E951A716A71006A4E80 /* SIMTokenProcessor.m */; };
 		495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEEC6191B372900AEC402 /* SIMAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		495EEEC9191B372900AEC402 /* SIMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEEC7191B372900AEC402 /* SIMAddress.m */; };
@@ -466,6 +467,7 @@
 				495EEF95192406FF00AEC402 /* UIImage+Simplify.h in Headers */,
 				495EEF83192401D700AEC402 /* SIMChargeCardModel.h in Headers */,
 				495EEF911924049700AEC402 /* NSBundle+Simplify.h in Headers */,
+				2C335FDB1A769D6700868847 /* SIMTokenProcessor.h in Headers */,
 				495EEF781923DFE700AEC402 /* UIColor+Simplify.h in Headers */,
 				495EEECC191B387200AEC402 /* SIMCreditCardToken.h in Headers */,
 				49748F9E1918734600738BC9 /* Simplify.h in Headers */,

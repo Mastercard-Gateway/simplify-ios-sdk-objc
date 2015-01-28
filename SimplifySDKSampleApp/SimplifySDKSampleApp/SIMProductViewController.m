@@ -1,10 +1,12 @@
 #import "SIMProductViewController.h"
 #import <PassKit/PassKit.h>
+#import <Simplify/SIMSimplify.h>
 #import <Simplify/SIMChargeCardViewController.h>
 #import <Simplify/SIMButton.h>
 #import <Simplify/UIImage+Simplify.h>
 #import <Simplify/UIColor+Simplify.h>
 #import <Simplify/SIMResponseViewController.h>
+#import <Simplify/SIMTokenProcessor.h>
 
 //1. Sign up to be a SIMChargeViewControllerDelegate so that you get the callback that gives you a token
 @interface SIMProductViewController ()<SIMChargeCardViewControllerDelegate, PKPaymentAuthorizationViewControllerDelegate>
@@ -43,8 +45,10 @@
         paymentRequest.countryCode = @"US";
         paymentRequest.currencyCode = @"USD";
         paymentRequest.merchantIdentifier = @"merchant.com.simplify.sdk.apple-pay";
-        paymentRequest.merchantCapabilities = PKMerchantCapability3DS;
+        paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV;
         paymentRequest.paymentSummaryItems = @[cupcake];
+        paymentRequest.requiredBillingAddressFields = PKAddressFieldAll;
+        paymentRequest.applicationData = [@"Test" dataUsingEncoding:NSUTF8StringEncoding];
         paymentRequest.requiredShippingAddressFields = PKAddressFieldPostalAddress;
         PKPaymentAuthorizationViewController *vc = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:paymentRequest];
         vc.delegate = self;
@@ -56,7 +60,7 @@
     } else {
 
         //2. Create a SIMChargeViewController with your public api key
-        SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"sbpb_N2ZkOGIwZWYtYTg3My00OTE1LWI3ZjgtMzZhMzZhZTAyYTY5" primaryColor:self.primaryColor];
+        SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"sbpb_MzlkMDE3ZjgtMGQyZS00MThlLWI5NmUtMzFlMjUwYmQyOWU1" primaryColor:self.primaryColor];
         
         //3. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
         chargeController.delegate = self;
@@ -121,10 +125,12 @@
 
 -(void) paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus))completion {
 
-//    SIMTokenProcessor *tokenProcessor = [[SIMTokenProcessor alloc] init];
-    
-    
-    completion(PKPaymentAuthorizationStatusSuccess);
+    SIMSimplify* simplify = [[SIMSimplify alloc] initWithPublicKey:@"lvpb_MGRlZTAwMDktYmFkYy00M2ZmLTkwZTctNjRlMmYxYzc2NTUz" error:nil];
+    [simplify createCardTokenWithPayment:payment completionHandler:^(SIMCreditCardToken *cardToken, NSError *error)
+    {
+        NSLog(@"Card Token: %@", cardToken);
+        [controller dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 -(void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller {

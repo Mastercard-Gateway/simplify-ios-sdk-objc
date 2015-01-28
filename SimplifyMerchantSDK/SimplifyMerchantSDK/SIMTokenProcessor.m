@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SIMTokenProcessor.h"
+#import <AddressBook/ABPerson.h>
 
 @interface SIMTokenProcessor()
 
@@ -15,13 +16,28 @@
 
 @implementation SIMTokenProcessor
 
--(void) convertToSimplifyToken:(PKPayment *)payment withKey:(NSString *)publicKey completiion:(void (^)(SIMCreditCardToken *))response
+
++(NSData *) formatDataForRequestWithKey:(NSString *)publicKey withPayment:(PKPayment *)payment error:(NSError *)error
 {
-    NSURL *url = [NSURL URLWithString:@"<!#SimplifySandBoxAPI>"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
-    [request setHTTPMethod:@"POST"];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:publicKey forKey:@"key"];
+    ABRecordRef ref = [payment billingAddress];
+    
+    
+    
+    NSString *cardHolderName = [[NSString alloc] initWithFormat:@"%@ %@", (__bridge NSString *)(ABRecordCopyValue(ref, kABPersonFirstNameProperty)), (__bridge NSString *)ABRecordCopyValue(ref, kABPersonLastNameProperty)];
+    NSObject *paymentTokenData = [NSJSONSerialization JSONObjectWithData:[[payment token] paymentData] options:kNilOptions error:&error];
+    
+    NSDictionary *dict = @{
+                           @"key" : publicKey,
+                           @"card" : @{
+                                   @"cardEntryMode" : @"APPLE_PAY_IN_APP",
+                                   @"applePayData" : @{ @"paymentToken" : paymentTokenData},
+                                   @"name" : cardHolderName
+                                   }
+                           };
+    
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    return jsonData;
 }
 
 @end
