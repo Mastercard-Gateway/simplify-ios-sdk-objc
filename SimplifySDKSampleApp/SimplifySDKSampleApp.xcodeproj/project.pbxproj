@@ -60,7 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2C335FD61A76917A00868847 /* SDKSampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SDKSampleApp.entitlements; sourceTree = "<group>"; };
+		2CD3F7E51A793E5300A4DD48 /* SDKDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SDKDemo.entitlements; sourceTree = "<group>"; };
 		495EEF741923D0CA00AEC402 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		49748F4B191829A400738BC9 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ocmock/libOCMock.a; sourceTree = "<group>"; };
 		49748F4D191829A400738BC9 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
@@ -70,7 +70,7 @@
 		49748F51191829A400738BC9 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		49748F52191829A400738BC9 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		4977D080191ABFE200AC621F /* SimplifyMerchantSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SimplifyMerchantSDK.xcodeproj; path = ../SimplifyMerchantSDK/SimplifyMerchantSDK.xcodeproj; sourceTree = "<group>"; };
-		7ED9E9EF1917E2930082C2C3 /* SDKSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ED9E9EF1917E2930082C2C3 /* SDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED9E9F21917E2930082C2C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7ED9E9F41917E2930082C2C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7ED9E9F61917E2930082C2C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -149,7 +149,7 @@
 		7ED9E9F01917E2930082C2C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7ED9E9EF1917E2930082C2C3 /* SDKSampleApp.app */,
+				7ED9E9EF1917E2930082C2C3 /* SDKDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,7 +171,7 @@
 		7ED9E9F81917E2930082C2C3 /* SimplifySDKSampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				2C335FD61A76917A00868847 /* SDKSampleApp.entitlements */,
+				2CD3F7E51A793E5300A4DD48 /* SDKDemo.entitlements */,
 				7EF162401926AECA008F805A /* cupcake.jpg */,
 				7ED9EA011917E2930082C2C3 /* SIMAppDelegate.h */,
 				7ED9EA021917E2930082C2C3 /* SIMAppDelegate.m */,
@@ -214,7 +214,7 @@
 			);
 			name = SimplifySDKSampleApp;
 			productName = SimplifyiOSSDK;
-			productReference = 7ED9E9EF1917E2930082C2C3 /* SDKSampleApp.app */;
+			productReference = 7ED9E9EF1917E2930082C2C3 /* SDKDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -414,7 +414,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = SimplifySDKSampleApp/SDKSampleApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SimplifySDKSampleApp/SDKDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Stewart Boling (P88X43T6TE)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stewart Boling (P88X43T6TE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -430,8 +430,8 @@
 					"$(",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = SDKSampleApp;
-				PROVISIONING_PROFILE = "7f8700a7-b52f-44ca-b805-8e59d74294dd";
+				PRODUCT_NAME = SDKDemo;
+				PROVISIONING_PROFILE = "97b629a7-7bab-488e-9efd-cf1b725978f7";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -442,7 +442,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = SimplifySDKSampleApp/SDKSampleApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SimplifySDKSampleApp/SDKDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Stewart Boling (P88X43T6TE)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stewart Boling (P88X43T6TE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -458,8 +458,8 @@
 					"$(",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = SDKSampleApp;
-				PROVISIONING_PROFILE = "7f8700a7-b52f-44ca-b805-8e59d74294dd";
+				PRODUCT_NAME = SDKDemo;
+				PROVISIONING_PROFILE = "97b629a7-7bab-488e-9efd-cf1b725978f7";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

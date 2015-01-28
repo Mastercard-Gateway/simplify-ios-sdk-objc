@@ -44,11 +44,10 @@
         paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
         paymentRequest.countryCode = @"US";
         paymentRequest.currencyCode = @"USD";
-        paymentRequest.merchantIdentifier = @"merchant.com.simplify.sdk.apple-pay";
+        paymentRequest.merchantIdentifier = @"merchant.com.simplify.sdk.demo";
         paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV;
         paymentRequest.paymentSummaryItems = @[cupcake];
         paymentRequest.requiredBillingAddressFields = PKAddressFieldAll;
-        paymentRequest.applicationData = [@"Test" dataUsingEncoding:NSUTF8StringEncoding];
         paymentRequest.requiredShippingAddressFields = PKAddressFieldPostalAddress;
         PKPaymentAuthorizationViewController *vc = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:paymentRequest];
         vc.delegate = self;
@@ -125,7 +124,7 @@
 
 -(void) paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus))completion {
 
-    SIMSimplify* simplify = [[SIMSimplify alloc] initWithPublicKey:@"lvpb_MGRlZTAwMDktYmFkYy00M2ZmLTkwZTctNjRlMmYxYzc2NTUz" error:nil];
+    SIMSimplify* simplify = [[SIMSimplify alloc] initWithPublicKey:@"lvpb_M2QzZmRkMjQtMWQzNS00YmFlLTg3ZjgtMjQ2ZWFiN2M2MTk2" error:nil];
     [simplify createCardTokenWithPayment:payment completionHandler:^(SIMCreditCardToken *cardToken, NSError *error)
     {
         NSLog(@"Card Token: %@", cardToken);

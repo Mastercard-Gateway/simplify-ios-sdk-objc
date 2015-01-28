@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.in-app-payments</key>
 	<array>
-		<string>merchant.com.simplify.sdk.apple-pay</string>
+		<string>merchant.com.simplify.sdk.demo</string>
 	</array>
 </dict>
 </plist>
