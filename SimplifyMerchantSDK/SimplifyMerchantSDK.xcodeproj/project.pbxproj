@@ -25,8 +25,7 @@
 /* Begin PBXBuildFile section */
 		2C335FDB1A769D6700868847 /* SIMTokenProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7F2E971A716A98006A4E80 /* SIMTokenProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C7F2E961A716A71006A4E80 /* SIMTokenProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7F2E951A716A71006A4E80 /* SIMTokenProcessor.m */; };
-		2CE1466F1A815FA0002B5439 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA5DB151A7BDA3D0097CAA1 /* images.xcassets */; };
-		2CE146701A815FE1002B5439 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA5DB151A7BDA3D0097CAA1 /* images.xcassets */; };
+		2CE146721A81797B002B5439 /* framework.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CE146711A81790F002B5439 /* framework.xcassets */; };
 		495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEEC6191B372900AEC402 /* SIMAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		495EEEC9191B372900AEC402 /* SIMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEEC7191B372900AEC402 /* SIMAddress.m */; };
 		495EEECC191B387200AEC402 /* SIMCreditCardToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEECA191B387200AEC402 /* SIMCreditCardToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -116,7 +115,7 @@
 /* Begin PBXFileReference section */
 		2C7F2E951A716A71006A4E80 /* SIMTokenProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMTokenProcessor.m; sourceTree = "<group>"; };
 		2C7F2E971A716A98006A4E80 /* SIMTokenProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIMTokenProcessor.h; sourceTree = "<group>"; };
-		2CA5DB151A7BDA3D0097CAA1 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = images.xcassets; path = ../images.xcassets; sourceTree = "<group>"; };
+		2CE146711A81790F002B5439 /* framework.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = framework.xcassets; sourceTree = "<group>"; };
 		495EEEC6191B372900AEC402 /* SIMAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMAddress.h; sourceTree = "<group>"; };
 		495EEEC7191B372900AEC402 /* SIMAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMAddress.m; sourceTree = "<group>"; };
 		495EEECA191B387200AEC402 /* SIMCreditCardToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMCreditCardToken.h; sourceTree = "<group>"; };
@@ -280,7 +279,7 @@
 		49748F64191849C600738BC9 /* SimplifyMerchantSDK */ = {
 			isa = PBXGroup;
 			children = (
-				2CA5DB151A7BDA3D0097CAA1 /* images.xcassets */,
+				2CE146711A81790F002B5439 /* framework.xcassets */,
 				2C7F2E941A716A22006A4E80 /* PKTokenProcessor */,
 				495EEF7A192401B600AEC402 /* ChargeView */,
 				49748FA319188CCD00738BC9 /* Common */,
@@ -521,7 +520,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CE146701A815FE1002B5439 /* images.xcassets in Resources */,
 				49748F7D191849C600738BC9 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,7 +528,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CE1466F1A815FA0002B5439 /* images.xcassets in Resources */,
+				2CE146721A81797B002B5439 /* framework.xcassets in Resources */,
 				495EEF8E192403B000AEC402 /* SIMChargeCardViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -58,7 +58,7 @@
         paymentRequest.requiredShippingAddressFields = PKAddressFieldPostalAddress;
 
         //2. Create a SIMChargeViewController with your public api key
-        SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"sbpb_MzlkMDE3ZjgtMGQyZS00MThlLWI5NmUtMzFlMjUwYmQyOWU1" paymentRequest:paymentRequest primaryColor:self.primaryColor];
+        SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_M2QzZmRkMjQtMWQzNS00YmFlLTg3ZjgtMjQ2ZWFiN2M2MTk2" paymentRequest:paymentRequest primaryColor:self.primaryColor];
     
 //        SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"sbpb_MzlkMDE3ZjgtMGQyZS00MThlLWI5NmUtMzFlMjUwYmQyOWU1" primaryColor:self.primaryColor];
         //3. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
