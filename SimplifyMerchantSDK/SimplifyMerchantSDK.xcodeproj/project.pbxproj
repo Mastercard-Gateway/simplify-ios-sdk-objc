@@ -25,6 +25,8 @@
 /* Begin PBXBuildFile section */
 		2C335FDB1A769D6700868847 /* SIMTokenProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7F2E971A716A98006A4E80 /* SIMTokenProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C7F2E961A716A71006A4E80 /* SIMTokenProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7F2E951A716A71006A4E80 /* SIMTokenProcessor.m */; };
+		2CE1466F1A815FA0002B5439 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA5DB151A7BDA3D0097CAA1 /* images.xcassets */; };
+		2CE146701A815FE1002B5439 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA5DB151A7BDA3D0097CAA1 /* images.xcassets */; };
 		495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEEC6191B372900AEC402 /* SIMAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		495EEEC9191B372900AEC402 /* SIMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEEC7191B372900AEC402 /* SIMAddress.m */; };
 		495EEECC191B387200AEC402 /* SIMCreditCardToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEECA191B387200AEC402 /* SIMCreditCardToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -69,22 +71,6 @@
 		4977D057191A9D6700AC621F /* SIMCardTypeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4977D034191A9C6F00AC621F /* SIMCardTypeTests.m */; };
 		4977D058191A9D6700AC621F /* SIMDigitVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4977D049191A9C6F00AC621F /* SIMDigitVerifierTests.m */; };
 		4977D05F191AB89C00AC621F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4977D05E191AB89C00AC621F /* CoreFoundation.framework */; };
-		4977D06A191AB96900AC621F /* amex.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D037191A9C6F00AC621F /* amex.png */; };
-		4977D06B191AB96900AC621F /* amex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D038191A9C6F00AC621F /* amex@2x.png */; };
-		4977D06C191AB96900AC621F /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D039191A9C6F00AC621F /* blank.png */; };
-		4977D06D191AB96900AC621F /* blank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D03A191A9C6F00AC621F /* blank@2x.png */; };
-		4977D06E191AB96900AC621F /* china-union.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D03B191A9C6F00AC621F /* china-union.png */; };
-		4977D06F191AB96900AC621F /* china-union@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D03C191A9C6F00AC621F /* china-union@2x.png */; };
-		4977D070191AB96900AC621F /* diners.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D03D191A9C6F00AC621F /* diners.png */; };
-		4977D071191AB96900AC621F /* diners@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D03E191A9C6F00AC621F /* diners@2x.png */; };
-		4977D072191AB96900AC621F /* discover.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D03F191A9C6F00AC621F /* discover.png */; };
-		4977D073191AB96900AC621F /* discover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D040191A9C6F00AC621F /* discover@2x.png */; };
-		4977D074191AB96900AC621F /* jcb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D041191A9C6F00AC621F /* jcb.png */; };
-		4977D075191AB96900AC621F /* jcb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D042191A9C6F00AC621F /* jcb@2x.png */; };
-		4977D076191AB96900AC621F /* mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D043191A9C6F00AC621F /* mastercard.png */; };
-		4977D077191AB96900AC621F /* mastercard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D044191A9C6F00AC621F /* mastercard@2x.png */; };
-		4977D078191AB96900AC621F /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D045191A9C6F00AC621F /* visa.png */; };
-		4977D079191AB96900AC621F /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4977D046191A9C6F00AC621F /* visa@2x.png */; };
 		49C499321925645F00402775 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C499311925645F00402775 /* Accelerate.framework */; };
 		49C499391925C2E700402775 /* SIMResponseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49C499371925C2E700402775 /* SIMResponseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49C4993A1925C2E800402775 /* SIMResponseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C499381925C2E700402775 /* SIMResponseViewController.m */; };
@@ -130,6 +116,7 @@
 /* Begin PBXFileReference section */
 		2C7F2E951A716A71006A4E80 /* SIMTokenProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMTokenProcessor.m; sourceTree = "<group>"; };
 		2C7F2E971A716A98006A4E80 /* SIMTokenProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIMTokenProcessor.h; sourceTree = "<group>"; };
+		2CA5DB151A7BDA3D0097CAA1 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = images.xcassets; path = ../images.xcassets; sourceTree = "<group>"; };
 		495EEEC6191B372900AEC402 /* SIMAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMAddress.h; sourceTree = "<group>"; };
 		495EEEC7191B372900AEC402 /* SIMAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMAddress.m; sourceTree = "<group>"; };
 		495EEECA191B387200AEC402 /* SIMCreditCardToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMCreditCardToken.h; sourceTree = "<group>"; };
@@ -178,22 +165,6 @@
 		4977D033191A9C6F00AC621F /* SIMCardType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMCardType.m; sourceTree = "<group>"; };
 		4977D034191A9C6F00AC621F /* SIMCardTypeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMCardTypeTests.m; sourceTree = "<group>"; };
 		4977D035191A9C6F00AC621F /* SIMLuhnValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMLuhnValidator.h; sourceTree = "<group>"; };
-		4977D037191A9C6F00AC621F /* amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amex.png; sourceTree = "<group>"; };
-		4977D038191A9C6F00AC621F /* amex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "amex@2x.png"; sourceTree = "<group>"; };
-		4977D039191A9C6F00AC621F /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
-		4977D03A191A9C6F00AC621F /* blank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank@2x.png"; sourceTree = "<group>"; };
-		4977D03B191A9C6F00AC621F /* china-union.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "china-union.png"; sourceTree = "<group>"; };
-		4977D03C191A9C6F00AC621F /* china-union@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "china-union@2x.png"; sourceTree = "<group>"; };
-		4977D03D191A9C6F00AC621F /* diners.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diners.png; sourceTree = "<group>"; };
-		4977D03E191A9C6F00AC621F /* diners@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diners@2x.png"; sourceTree = "<group>"; };
-		4977D03F191A9C6F00AC621F /* discover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discover.png; sourceTree = "<group>"; };
-		4977D040191A9C6F00AC621F /* discover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "discover@2x.png"; sourceTree = "<group>"; };
-		4977D041191A9C6F00AC621F /* jcb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jcb.png; sourceTree = "<group>"; };
-		4977D042191A9C6F00AC621F /* jcb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jcb@2x.png"; sourceTree = "<group>"; };
-		4977D043191A9C6F00AC621F /* mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mastercard.png; sourceTree = "<group>"; };
-		4977D044191A9C6F00AC621F /* mastercard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mastercard@2x.png"; sourceTree = "<group>"; };
-		4977D045191A9C6F00AC621F /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visa.png; sourceTree = "<group>"; };
-		4977D046191A9C6F00AC621F /* visa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa@2x.png"; sourceTree = "<group>"; };
 		4977D047191A9C6F00AC621F /* SIMDigitVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMDigitVerifier.h; sourceTree = "<group>"; };
 		4977D048191A9C6F00AC621F /* SIMDigitVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMDigitVerifier.m; sourceTree = "<group>"; };
 		4977D049191A9C6F00AC621F /* SIMDigitVerifierTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMDigitVerifierTests.m; sourceTree = "<group>"; };
@@ -309,6 +280,7 @@
 		49748F64191849C600738BC9 /* SimplifyMerchantSDK */ = {
 			isa = PBXGroup;
 			children = (
+				2CA5DB151A7BDA3D0097CAA1 /* images.xcassets */,
 				2C7F2E941A716A22006A4E80 /* PKTokenProcessor */,
 				495EEF7A192401B600AEC402 /* ChargeView */,
 				49748FA319188CCD00738BC9 /* Common */,
@@ -377,22 +349,6 @@
 		4977D036191A9C6F00AC621F /* CardIcons */ = {
 			isa = PBXGroup;
 			children = (
-				4977D037191A9C6F00AC621F /* amex.png */,
-				4977D038191A9C6F00AC621F /* amex@2x.png */,
-				4977D039191A9C6F00AC621F /* blank.png */,
-				4977D03A191A9C6F00AC621F /* blank@2x.png */,
-				4977D03B191A9C6F00AC621F /* china-union.png */,
-				4977D03C191A9C6F00AC621F /* china-union@2x.png */,
-				4977D03D191A9C6F00AC621F /* diners.png */,
-				4977D03E191A9C6F00AC621F /* diners@2x.png */,
-				4977D03F191A9C6F00AC621F /* discover.png */,
-				4977D040191A9C6F00AC621F /* discover@2x.png */,
-				4977D041191A9C6F00AC621F /* jcb.png */,
-				4977D042191A9C6F00AC621F /* jcb@2x.png */,
-				4977D043191A9C6F00AC621F /* mastercard.png */,
-				4977D044191A9C6F00AC621F /* mastercard@2x.png */,
-				4977D045191A9C6F00AC621F /* visa.png */,
-				4977D046191A9C6F00AC621F /* visa@2x.png */,
 			);
 			path = CardIcons;
 			sourceTree = "<group>";
@@ -565,6 +521,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CE146701A815FE1002B5439 /* images.xcassets in Resources */,
 				49748F7D191849C600738BC9 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,23 +530,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CE1466F1A815FA0002B5439 /* images.xcassets in Resources */,
 				495EEF8E192403B000AEC402 /* SIMChargeCardViewController.xib in Resources */,
-				4977D06A191AB96900AC621F /* amex.png in Resources */,
-				4977D06B191AB96900AC621F /* amex@2x.png in Resources */,
-				4977D06C191AB96900AC621F /* blank.png in Resources */,
-				4977D06D191AB96900AC621F /* blank@2x.png in Resources */,
-				4977D06E191AB96900AC621F /* china-union.png in Resources */,
-				4977D06F191AB96900AC621F /* china-union@2x.png in Resources */,
-				4977D070191AB96900AC621F /* diners.png in Resources */,
-				4977D071191AB96900AC621F /* diners@2x.png in Resources */,
-				4977D072191AB96900AC621F /* discover.png in Resources */,
-				4977D073191AB96900AC621F /* discover@2x.png in Resources */,
-				4977D074191AB96900AC621F /* jcb.png in Resources */,
-				4977D075191AB96900AC621F /* jcb@2x.png in Resources */,
-				4977D076191AB96900AC621F /* mastercard.png in Resources */,
-				4977D077191AB96900AC621F /* mastercard@2x.png in Resources */,
-				4977D078191AB96900AC621F /* visa.png in Resources */,
-				4977D079191AB96900AC621F /* visa@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

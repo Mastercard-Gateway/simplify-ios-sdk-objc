@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import <PassKit/PassKit.h>
 #import "SIMCreditCardToken.h"
 
 /**
@@ -33,6 +34,8 @@
 
 -(instancetype)initWithPublicKey:(NSString *)publicKey;
 -(instancetype)initWithPublicKey:(NSString *)publicKey primaryColor:(UIColor *)primaryColor;
+-(instancetype)initWithPublicKey:(NSString *)publicKey paymentRequest:(PKPaymentRequest *)paymentRequest;
+-(instancetype)initWithPublicKey:(NSString *)publicKey paymentRequest:(PKPaymentRequest *)paymentRequest primaryColor:(UIColor *)primaryColor;
 
 @property (nonatomic, weak) id <SIMChargeCardViewControllerDelegate> delegate; /**< Delegate for SIMChargeCardModelDelegate */
 

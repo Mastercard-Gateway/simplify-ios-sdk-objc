@@ -36,6 +36,8 @@
 @property (nonatomic, strong, readonly) NSString *cardTypeString; /**< String with the card type.  Example "mastercard" */
 @property (nonatomic, strong, readonly) SIMAddress *address; /**< SIMAddress with all address details of the card holder */
 @property (nonatomic, strong, readonly) SIMCardType *cardType; /**< card type, including validations of CVC code length and card number length */
+@property (nonatomic) BOOL isZipRequired;
+@property (nonatomic) BOOL isCVCRequired;
 
 -(instancetype)initWithPublicKey:(NSString *)publicKey error:(NSError **)error;
 

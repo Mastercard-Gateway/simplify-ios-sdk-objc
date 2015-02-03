@@ -82,6 +82,9 @@
 }
 
 -(BOOL)isCVCCodeValid {
+    if (self.isCVCRequired && self.cvcCode.length == 0) {
+        return NO;
+    }
     if (self.cvcCode.length == self.cvcLength || self.cvcCode.length == 0  || (self.cvcCode.length == 3 && [self.cardType.cardTypeString  isEqual: @"blank"])) {
         return YES;
     }
@@ -89,6 +92,9 @@
 }
 
 -(BOOL)isZipCodeValid {
+    if (self.isZipRequired && self.zipCode.length == 0) {
+        return NO;
+    }
     if (self.zipCode.length == 0  || self.zipCode.length == 5 || self.zipCode.length == 9) {
         return YES;
     }

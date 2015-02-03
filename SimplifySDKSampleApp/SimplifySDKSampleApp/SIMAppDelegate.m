@@ -18,6 +18,7 @@
     self.window.rootViewController = productController;
 
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

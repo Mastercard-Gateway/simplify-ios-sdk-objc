@@ -9,9 +9,11 @@
 #import <Simplify/SIMTokenProcessor.h>
 
 //1. Sign up to be a SIMChargeViewControllerDelegate so that you get the callback that gives you a token
-@interface SIMProductViewController ()<SIMChargeCardViewControllerDelegate, PKPaymentAuthorizationViewControllerDelegate>
+@interface SIMProductViewController ()<SIMChargeCardViewControllerDelegate>
 @property (nonatomic, strong) SIMChargeCardViewController *chargeController;
 @property (strong, nonatomic) IBOutlet SIMButton *buyButton;
+@property (strong, nonatomic) IBOutlet UIView *productView;
+@property (strong, nonatomic) IBOutlet UIView *buyButtonView;
 @property (strong, nonatomic) UIColor *primaryColor;
 @end
 
@@ -20,10 +22,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.primaryColor = [UIColor colorWithRed:42.0/255.0 green:48.0/255.0 blue:145.0/255.0 alpha:1.0];
+    self.primaryColor = [UIColor colorWithRed:241.0/255.0 green:100.0/255.0 blue:33.0/255.0 alpha:1.0];
     self.buyButton.primaryColor = self.primaryColor;
-
+    [[self.buyButton layer] setCornerRadius:8.0];
+    [[self.productView layer] setCornerRadius:8.0];
+    [[self.buyButtonView layer] setCornerRadius:8.0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -31,43 +34,39 @@
     [super didReceiveMemoryWarning];
 }
 
+- (BOOL) prefersStatusBarHidden
+{
+    return YES;
+}
+
 #pragma mark - Navigation
 - (IBAction)buyCupcake:(id)sender {
     
-    if ([PKPaymentAuthorizationViewController canMakePaymentsUsingNetworks:@[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa]]) {
-        
         PKPaymentSummaryItem *cupcake = [[PKPaymentSummaryItem alloc] init];
-        cupcake.label = @"Cupcake";
-        cupcake.amount = [[NSDecimalNumber alloc] initWithString:@"1.00"];
+        cupcake.label = @"mPOS Buttons";
+        cupcake.amount = [[NSDecimalNumber alloc] initWithString:@"10.00"];
         
         PKPaymentRequest* paymentRequest = [[PKPaymentRequest alloc] init];
         paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
         paymentRequest.countryCode = @"US";
         paymentRequest.currencyCode = @"USD";
         paymentRequest.merchantIdentifier = @"merchant.com.simplify.sdk.demo";
+//        paymentRequest.merchantIdentifier = @"merchant.com.simplify.stage.apple-pay";
         paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV;
         paymentRequest.paymentSummaryItems = @[cupcake];
         paymentRequest.requiredBillingAddressFields = PKAddressFieldAll;
         paymentRequest.requiredShippingAddressFields = PKAddressFieldPostalAddress;
-        PKPaymentAuthorizationViewController *vc = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:paymentRequest];
-        vc.delegate = self;
-        
-        [self presentViewController:vc animated:YES completion:nil];
-        
-        
-        
-    } else {
 
         //2. Create a SIMChargeViewController with your public api key
-        SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"sbpb_MzlkMDE3ZjgtMGQyZS00MThlLWI5NmUtMzFlMjUwYmQyOWU1" primaryColor:self.primaryColor];
-        
+        SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"sbpb_MzlkMDE3ZjgtMGQyZS00MThlLWI5NmUtMzFlMjUwYmQyOWU1" paymentRequest:paymentRequest primaryColor:self.primaryColor];
+    
+//        SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"sbpb_MzlkMDE3ZjgtMGQyZS00MThlLWI5NmUtMzFlMjUwYmQyOWU1" primaryColor:self.primaryColor];
         //3. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
         chargeController.delegate = self;
         self.chargeController = chargeController;
 
         //4. Add SIMChargeViewController to your view hierarchy
         [self presentViewController:self.chargeController animated:YES completion:nil];
-    }
     
 }
 
@@ -120,20 +119,6 @@
         [self presentViewController:viewController animated:YES completion:nil];
     }
     
-}
-
--(void) paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus))completion {
-
-    SIMSimplify* simplify = [[SIMSimplify alloc] initWithPublicKey:@"lvpb_M2QzZmRkMjQtMWQzNS00YmFlLTg3ZjgtMjQ2ZWFiN2M2MTk2" error:nil];
-    [simplify createCardTokenWithPayment:payment completionHandler:^(SIMCreditCardToken *cardToken, NSError *error)
-    {
-        NSLog(@"Card Token: %@", cardToken);
-        [controller dismissViewControllerAnimated:YES completion:nil];
-    }];
-}
-
--(void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller {
-    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
