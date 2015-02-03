@@ -223,7 +223,8 @@
 }
 
 -(void)setCardTypeImage {
-    UIImage *cardImage = [UIImage imageNamed:self.chargeCardModel.cardTypeString];
+    
+    UIImage *cardImage = [UIImage imageNamed:self.chargeCardModel.cardTypeString inBundle:[NSBundle frameworkBundle] compatibleWithTraitCollection:nil];
     [self.cardTypeImage setImage:cardImage];
 }
 - (IBAction)cancelTokenRequest:(id)sender {
