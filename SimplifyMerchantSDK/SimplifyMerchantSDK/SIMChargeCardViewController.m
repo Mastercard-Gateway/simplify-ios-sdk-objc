@@ -116,6 +116,11 @@
     if (self.chargeCardModel.cardNumber.length > 0) {
         if ([self.chargeCardModel isCardNumberValid]) {
             cardBackgroundColor = [UIColor fieldBackgroundColorValid];
+            
+            if (![self.chargeCardModel isExpirationDateValid]) {
+                [self.expirationField becomeFirstResponder];
+            }
+            
         } else {
             cardBackgroundColor = [UIColor fieldBackgroundColorInvalid];
         }
@@ -124,6 +129,11 @@
     if (self.chargeCardModel.expirationDate.length > 0) {
         if ([self.chargeCardModel isExpirationDateValid]) {
             dateBackgroundColor = [UIColor fieldBackgroundColorValid];
+
+            if (![self.chargeCardModel isCVCCodeValid]) {
+                [self.cvcCodeView becomeFirstResponder];
+            }
+            
         } else {
             dateBackgroundColor = [UIColor fieldBackgroundColorInvalid];
         }
@@ -132,6 +142,11 @@
     if (self.chargeCardModel.cvcCode.length > 0) {
         if ([self.chargeCardModel isCVCCodeValid]) {
             cvcBackgroundColor = [UIColor fieldBackgroundColorValid];
+
+            if (![self.chargeCardModel isZipCodeValid]) {
+                [self.zipField becomeFirstResponder];
+            }
+            
         } else {
             cvcBackgroundColor = [UIColor fieldBackgroundColorInvalid];
         }

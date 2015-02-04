@@ -130,7 +130,7 @@
                                         <constraint firstAttribute="width" constant="25" id="9XU-fg-Oev"/>
                                     </constraints>
                                 </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ZIP" minimumFontSize="20" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rZI-jC-JMa">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ZIP" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="rZI-jC-JMa">
                                     <rect key="frame" x="41" y="3" width="145" height="40"/>
                                     <accessibility key="accessibilityConfiguration" hint="Enter CVC code for card.  Optional" label="CVC code"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
