@@ -32,9 +32,12 @@
 @property (nonatomic, strong, readonly) NSString *formattedCardNumber; /**< Credit card number with proper spacing based on type of card, digits and spaces only */
 @property (nonatomic, strong, readonly) NSString *formattedExpirationDate; /**< Expiration date string formatted as MM/YY, digits and slash only */
 @property (nonatomic, strong, readonly) NSString *cvcCode; /**< 3-4 digit CVC code, digits only */
+@property (nonatomic, strong, readonly) NSString *zipCode; /**< 5 digit zip code, digits only */
 @property (nonatomic, strong, readonly) NSString *cardTypeString; /**< String with the card type.  Example "mastercard" */
 @property (nonatomic, strong, readonly) SIMAddress *address; /**< SIMAddress with all address details of the card holder */
 @property (nonatomic, strong, readonly) SIMCardType *cardType; /**< card type, including validations of CVC code length and card number length */
+@property (nonatomic) BOOL isZipRequired;
+@property (nonatomic) BOOL isCVCRequired;
 
 -(instancetype)initWithPublicKey:(NSString *)publicKey error:(NSError **)error;
 
@@ -49,7 +52,7 @@
 -(BOOL)isCardNumberValid;
 
 /**
- * Determinds if the expiration date is an actual date and if it is in the future
+ * Determines if the expiration date is an actual date and if it is in the future
  */
 -(BOOL)isExpirationDateValid;
 
@@ -57,6 +60,11 @@
  * Determines if the CVC code is long enough for the type of card.  If the card type is "blank", 3 or 4 are acceptible lengths
  */
 -(BOOL)isCVCCodeValid;
+
+/**
+ * Determines if the zip code is five digits long
+ */
+-(BOOL)isZipCodeValid;
 
 /**
  * Updates the model's card number by removing all non-digits.  Will not update the length if it is longer than the card type's maximum card number length
@@ -72,6 +80,21 @@
  * Updates the CVC number if the string is all digits and the length is not more than the card type's prescribed CVC length
  */
 -(void)updateCVCNumberWithString:(NSString *)newString;
+
+/**
+ * Updates the zip code if the string is all digits and the length is not more than 5
+ */
+-(void)updateZipCodeWithString:(NSString *)newString;
+
+/**
+ * Deletes a character in the expiration date while maintaining formatting
+ */
+-(void)deleteCharacterInExpiration;
+
+/**
+ * Deletes a character in the card number while maintaining formatting
+ */
+-(void)deleteCharacterInCardNumber;
 
 /**
  * Input your public key here to be able to retrieve a credit card token

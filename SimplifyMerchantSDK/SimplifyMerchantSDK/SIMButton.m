@@ -45,11 +45,12 @@
 
     CGContextSaveGState(context);
     CGContextSetFillColorWithColor(context, fillColor.CGColor);
-    CGContextAddRect(context, rect);
+    UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:30];
+    CGContextAddPath(context, roundedRect.CGPath);
     CGContextFillPath(context);
-    CGContextSetFillColorWithColor(context, bottomLine.CGColor);
-    CGFloat lineWidth = 2.0;
-    CGContextFillRect(context, CGRectMake(0, rect.size.height - lineWidth, rect.size.width, lineWidth));
+//    CGContextSetFillColorWithColor(context, bottomLine.CGColor);
+//    CGFloat lineWidth = 2.0;
+//    CGContextFillRect(context, CGRectMake(0, rect.size.height - lineWidth, rect.size.width, lineWidth));
     CGContextRestoreGState(context);
 
 }

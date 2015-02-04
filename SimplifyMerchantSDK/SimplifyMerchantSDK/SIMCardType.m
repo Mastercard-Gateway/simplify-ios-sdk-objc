@@ -54,13 +54,13 @@
             cardType.minCardLength = 13;
             cardType.maxCardLength = 19;
         } else {
-            cardType.cardTypeString = @"blank";
+            cardType.cardTypeString = @"cardNumberInput";
             cardType.CVCLength = 4;
             cardType.minCardLength = 13;
             cardType.maxCardLength = 19;
         }
     }else {
-        cardType.cardTypeString = @"blank";
+        cardType.cardTypeString = @"cardNumberInput";
         cardType.CVCLength = 4;
         cardType.minCardLength = 13;
         cardType.maxCardLength = 19;

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pa4-IN-g5Q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pa4-IN-g5Q">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment version="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Product View Controller-->
@@ -13,61 +16,104 @@
                         <viewControllerLayoutGuide type="bottom" id="qYQ-FB-cAc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ixo-2F-htG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cupcake.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MZE-2r-Hgt">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" hint="Cupcake product" label="Cupcake">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBE-ey-Zkd">
+                                <rect key="frame" x="16" y="507" width="568" height="73"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kO-Lh-PQP" customClass="SIMButton">
+                                        <rect key="frame" x="8" y="8" width="552" height="57"/>
+                                        <color key="backgroundColor" red="1" green="0.32306186520000002" blue="0.10753513050000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Click to purchase cupcake" label="Buy cupcake"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="57" id="CIM-zr-d8t"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Pay Now">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buyCupcake:" destination="pa4-IN-g5Q" eventType="touchUpInside" id="vzs-cY-VF6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="568" id="fJA-ai-yg6"/>
-                                    <constraint firstAttribute="width" constant="320" id="oml-Ds-qUc"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="vle-uo-y28"/>
+                                    <constraint firstItem="6kO-Lh-PQP" firstAttribute="leading" secondItem="XBE-ey-Zkd" secondAttribute="leading" constant="8" id="VEc-He-ud6"/>
+                                    <constraint firstItem="6kO-Lh-PQP" firstAttribute="top" secondItem="XBE-ey-Zkd" secondAttribute="top" constant="8" id="fER-eX-xoF"/>
+                                    <constraint firstAttribute="trailing" secondItem="6kO-Lh-PQP" secondAttribute="trailing" constant="8" id="ks1-8g-lYu"/>
+                                    <constraint firstAttribute="bottom" secondItem="6kO-Lh-PQP" secondAttribute="bottom" constant="8" id="o0f-lH-tnJ"/>
                                 </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kO-Lh-PQP" customClass="SIMButton">
-                                <rect key="frame" x="0.0" y="510" width="320" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" hint="Click to purchase cupcake" label="Buy cupcake"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mj7-Vq-vAH">
+                                <rect key="frame" x="16" y="65" width="568" height="396"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5-pack of buttons with the app icons." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ee-p3-hqJ">
+                                        <rect key="frame" x="8" y="361" width="209" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="9ML-FA-nzo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="buttons" translatesAutoresizingMaskIntoConstraints="NO" id="ZFk-dI-ZHr">
+                                        <rect key="frame" x="168" y="0.0" width="240" height="324"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ZFk-dI-ZHr" secondAttribute="height" multiplier="20:27" id="CAw-dB-GB8"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simplify mPOS Buttons" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsN-is-0Hk">
+                                        <rect key="frame" x="8" y="332" width="187" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="4do-2A-hPg"/>
+                                            <constraint firstAttribute="width" constant="187" id="EBY-d7-6bq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="AKr-r5-egM"/>
+                                    <constraint firstItem="fsN-is-0Hk" firstAttribute="top" secondItem="ZFk-dI-ZHr" secondAttribute="bottom" constant="8" symbolic="YES" id="HL6-3c-8C6"/>
+                                    <constraint firstItem="9ee-p3-hqJ" firstAttribute="leading" secondItem="Mj7-Vq-vAH" secondAttribute="leadingMargin" id="Qy7-hi-uP7"/>
+                                    <constraint firstAttribute="bottom" secondItem="9ee-p3-hqJ" secondAttribute="bottom" constant="20" id="Vzm-89-Yda"/>
+                                    <constraint firstItem="9ee-p3-hqJ" firstAttribute="top" secondItem="fsN-is-0Hk" secondAttribute="bottom" constant="8" symbolic="YES" id="chd-zD-yqZ"/>
+                                    <constraint firstAttribute="centerX" secondItem="ZFk-dI-ZHr" secondAttribute="centerX" constant="-4" id="dxB-tW-vxb"/>
+                                    <constraint firstItem="ZFk-dI-ZHr" firstAttribute="top" secondItem="Mj7-Vq-vAH" secondAttribute="top" id="gfL-Ba-tLV"/>
+                                    <constraint firstItem="9ee-p3-hqJ" firstAttribute="leading" secondItem="fsN-is-0Hk" secondAttribute="leading" id="gwi-RS-GDL"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Buy Cupcake">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="buyCupcake:" destination="pa4-IN-g5Q" eventType="touchUpInside" id="c1n-kO-q8K"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="MZE-2r-Hgt" secondAttribute="centerX" id="9Tb-kj-PyG"/>
-                            <constraint firstAttribute="centerY" secondItem="MZE-2r-Hgt" secondAttribute="centerY" id="gIh-M0-u8D"/>
-                            <constraint firstItem="qYQ-FB-cAc" firstAttribute="top" secondItem="6kO-Lh-PQP" secondAttribute="bottom" id="nKl-3G-uFt"/>
+                            <constraint firstItem="qYQ-FB-cAc" firstAttribute="top" secondItem="XBE-ey-Zkd" secondAttribute="bottom" constant="20" id="5PS-AP-qlt"/>
+                            <constraint firstItem="Mj7-Vq-vAH" firstAttribute="leading" secondItem="Ixo-2F-htG" secondAttribute="leading" constant="16" id="B5b-UP-hdE"/>
+                            <constraint firstAttribute="trailing" secondItem="Mj7-Vq-vAH" secondAttribute="trailing" constant="16" id="Gm9-3Q-pd4"/>
+                            <constraint firstItem="XBE-ey-Zkd" firstAttribute="top" secondItem="Mj7-Vq-vAH" secondAttribute="bottom" constant="46" id="Klg-D9-6J6"/>
+                            <constraint firstItem="Mj7-Vq-vAH" firstAttribute="top" secondItem="xvp-VB-yBF" secondAttribute="bottom" constant="45" id="PUq-DH-cOF"/>
+                            <constraint firstItem="XBE-ey-Zkd" firstAttribute="trailing" secondItem="Ixo-2F-htG" secondAttribute="trailingMargin" id="iWI-Fd-ylV"/>
+                            <constraint firstItem="XBE-ey-Zkd" firstAttribute="leading" secondItem="Ixo-2F-htG" secondAttribute="leadingMargin" id="uVl-9T-sPv"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="97h-nC-LF9"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="buyButton" destination="6kO-Lh-PQP" id="AFu-60-dtl"/>
+                        <outlet property="buyButtonView" destination="XBE-ey-Zkd" id="mzy-jx-bMK"/>
+                        <outlet property="productView" destination="Mj7-Vq-vAH" id="BVr-cd-1qy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0PP-Ng-FbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="417" y="124"/>
+            <point key="canvasLocation" x="1614" y="-590"/>
         </scene>
     </scenes>
     <resources>
-        <image name="cupcake.jpg" width="640" height="1138"/>
+        <image name="buttons" width="540" height="730"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

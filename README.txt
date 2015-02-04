@@ -24,7 +24,7 @@
   Version
   -------
 
-  This is version 1.0.0 of the SDK.  See CHANGES.txt for a list of updates to the SDK.
+  This is version 1.3.0 of the SDK.  See CHANGES.txt for a list of updates to the SDK.
   For an up-to-date version check at https://www.simplify.com/commerce/docs/sdk/ios.
 
   Licensing

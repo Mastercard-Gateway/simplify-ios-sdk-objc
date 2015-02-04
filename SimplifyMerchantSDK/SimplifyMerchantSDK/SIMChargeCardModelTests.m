@@ -65,6 +65,7 @@
     XCTAssertEqualObjects(self.testSubject.formattedCardNumber, @"", "no formatted card number");
     XCTAssertEqualObjects(self.testSubject.formattedExpirationDate, @"", "no formatted expiration");
     XCTAssertEqualObjects(self.testSubject.cvcCode, @"", "no cvc code");
+    XCTAssertEqualObjects(self.testSubject.zipCode, @"", "no zip code");
     XCTAssertEqualObjects(self.testSubject.cardTypeString, @"blank", "blank type");
 }
 
@@ -199,10 +200,37 @@
     [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
     [self.testSubject updateExpirationDateWithString:@"1273"];
     [self.testSubject updateCVCNumberWithString:@"123"];
+    [self.testSubject updateZipCodeWithString:@"12345"];
 
     XCTAssertTrue([self.testSubject isExpirationDateValid], "should be a valid expiration date");
     XCTAssertTrue([self.testSubject isCardNumberValid], "should be a valid card");
     XCTAssertTrue([self.testSubject isCVCCodeValid], "should be a correct number of digits");
+    XCTAssertTrue([self.testSubject isZipCodeValid], "should be a correct number of digits");
+    XCTAssertTrue([self.testSubject isCardChargePossible], "should be yes");
+}
+
+-(void)testIsCardChargePossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigitsZipCode9 {
+    [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
+    [self.testSubject updateExpirationDateWithString:@"1273"];
+    [self.testSubject updateCVCNumberWithString:@"123"];
+    [self.testSubject updateZipCodeWithString:@"123456789"];
+    
+    XCTAssertTrue([self.testSubject isExpirationDateValid], "should be a valid expiration date");
+    XCTAssertTrue([self.testSubject isCardNumberValid], "should be a valid card");
+    XCTAssertTrue([self.testSubject isCVCCodeValid], "should be a correct number of digits");
+    XCTAssertTrue([self.testSubject isZipCodeValid], "should be a correct number of digits");
+    XCTAssertTrue([self.testSubject isCardChargePossible], "should be yes");
+}
+
+-(void)testIsCardChargePossibleReturnsYesWhenAllFieldsHaveCorrectNumberOfDigitsExceptNoZipCode {
+    [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
+    [self.testSubject updateExpirationDateWithString:@"1273"];
+    [self.testSubject updateCVCNumberWithString:@"123"];
+    
+    XCTAssertTrue([self.testSubject isExpirationDateValid], "should be a valid expiration date");
+    XCTAssertTrue([self.testSubject isCardNumberValid], "should be a valid card");
+    XCTAssertTrue([self.testSubject isCVCCodeValid], "should be a correct number of digits");
+    XCTAssertTrue([self.testSubject isZipCodeValid], "no digits");
     XCTAssertTrue([self.testSubject isCardChargePossible], "should be yes");
 }
 
@@ -263,8 +291,25 @@
 
 -(void)testIsCardChargePossibleReturnsNoWhenCVCCodeIsNotLongEnough {
     [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
+    [self.testSubject updateExpirationDateWithString:@"4/94"];
     [self.testSubject updateCVCNumberWithString:@"12"];
     XCTAssertFalse([self.testSubject isCVCCodeValid], "should be no");
+    XCTAssertFalse([self.testSubject isCardChargePossible], "should be no");
+}
+
+-(void)testIsCardChargePossibleReturnsNoWhenZipCodeIsNotLongEnough {
+    [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
+    [self.testSubject updateExpirationDateWithString:@"4/94"];
+    [self.testSubject updateZipCodeWithString:@"12"];
+    XCTAssertFalse([self.testSubject isZipCodeValid], "should be no");
+    XCTAssertFalse([self.testSubject isCardChargePossible], "should be no");
+}
+
+-(void)testIsCardChargePossibleReturnsNoWhenZipCodeIsLongerThanFiveButShorterThanNine {
+    [self.testSubject updateCardNumberWithString:@"5105 1051 0510 5100"];
+    [self.testSubject updateExpirationDateWithString:@"4/94"];
+    [self.testSubject updateZipCodeWithString:@"123456"];
+    XCTAssertFalse([self.testSubject isZipCodeValid], "should be no");
     XCTAssertFalse([self.testSubject isCardChargePossible], "should be no");
 }
 
@@ -434,6 +479,92 @@
     [self.testSubject updateCVCNumberWithString:@"12sf34"];
     
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cvcCode, "four digits");
+}
+
+-(void)testUpdateZipCodeWithStringUpdatesZipCode {
+    NSString *expectedStringWithNoSpaces = @"1234";
+    
+    [self.testSubject updateZipCodeWithString:@"1234"];
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.zipCode, "four digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.address.zip, "four digits");
+}
+
+-(void)testUpdateZipCodeWithStringUpdatesZipCodeIfLongerThanFiveDigits {
+    NSString *expectedStringWithNoSpaces = @"123456";
+    
+    [self.testSubject updateZipCodeWithString:@"123456"];
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.zipCode, "six digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.address.zip, "six digits");
+}
+
+-(void)testUpdateZipCodeWithStringDoesNotUpdateZipCodeIfMoreThan9Digits {
+    [self.testSubject updateZipCodeWithString:@"123456789"];
+    NSString *expectedStringWithNoSpaces = @"123456789";
+    
+    [self.testSubject updateZipCodeWithString:@"1234567890"];
+
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.zipCode, "nine digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.address.zip, "nine digits");
+}
+
+-(void)testUpdateZipCodeWithStringDoesNotAddNonDigits {
+    NSString *expectedStringWithNoSpaces = @"1234";
+    
+    [self.testSubject updateZipCodeWithString:@"12sf34"];
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.zipCode, "four digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.address.zip, "four digits");
+}
+
+
+-(void)testDeleteCharacterInExpirationFormatsCorrectly {
+    [self.testSubject updateExpirationDateWithString:@"0234"];
+    [self.testSubject deleteCharacterInExpiration];
+    NSString *expectedStringWithNoSpaces = @"023";
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.expirationDate, "three digits");
+}
+
+-(void)testDeleteCharacterInExpirationFormatsCorrectlyWithOneDigit {
+    [self.testSubject updateExpirationDateWithString:@"0"];
+    [self.testSubject deleteCharacterInExpiration];
+    NSString *expectedStringWithNoSpaces = @"";
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.expirationDate, "no digits");
+}
+
+-(void)testDeleteCharacterInExpirationFormatsCorrectlyWithNoDigits {
+    [self.testSubject updateExpirationDateWithString:@""];
+    [self.testSubject deleteCharacterInExpiration];
+    NSString *expectedStringWithNoSpaces = @"";
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.expirationDate, "no digits");
+}
+
+-(void)testDeleteCharacterInCardNumberFormatsCorrectly {
+    [self.testSubject updateCardNumberWithString:@"0234"];
+    [self.testSubject deleteCharacterInCardNumber];
+    NSString *expectedStringWithNoSpaces = @"023";
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cardNumber, "three digits");
+}
+
+-(void)testDeleteCharacterInCardNumberFormatsCorrectlyWithOneDigit {
+    [self.testSubject updateCardNumberWithString:@"0"];
+    [self.testSubject deleteCharacterInCardNumber];
+    NSString *expectedStringWithNoSpaces = @"";
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cardNumber, "no digits");
+}
+
+-(void)testDeleteCharacterInCardNumberFormatsCorrectlyWithNoDigits {
+    [self.testSubject updateCardNumberWithString:@""];
+    [self.testSubject deleteCharacterInCardNumber];
+    NSString *expectedStringWithNoSpaces = @"";
+    
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cardNumber, "no digits");
 }
 
 -(void)testRetrieveTokenWithCallsSimplify {

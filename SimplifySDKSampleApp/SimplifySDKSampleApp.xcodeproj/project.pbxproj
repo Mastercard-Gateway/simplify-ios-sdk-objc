@@ -60,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2CD3F7E51A793E5300A4DD48 /* SDKDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SDKDemo.entitlements; sourceTree = "<group>"; };
 		495EEF741923D0CA00AEC402 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		49748F4B191829A400738BC9 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ocmock/libOCMock.a; sourceTree = "<group>"; };
 		49748F4D191829A400738BC9 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
@@ -69,7 +70,7 @@
 		49748F51191829A400738BC9 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		49748F52191829A400738BC9 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		4977D080191ABFE200AC621F /* SimplifyMerchantSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SimplifyMerchantSDK.xcodeproj; path = ../SimplifyMerchantSDK/SimplifyMerchantSDK.xcodeproj; sourceTree = "<group>"; };
-		7ED9E9EF1917E2930082C2C3 /* SimplifySDKSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplifySDKSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ED9E9EF1917E2930082C2C3 /* SDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED9E9F21917E2930082C2C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7ED9E9F41917E2930082C2C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7ED9E9F61917E2930082C2C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -148,7 +149,7 @@
 		7ED9E9F01917E2930082C2C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7ED9E9EF1917E2930082C2C3 /* SimplifySDKSampleApp.app */,
+				7ED9E9EF1917E2930082C2C3 /* SDKDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,6 +171,7 @@
 		7ED9E9F81917E2930082C2C3 /* SimplifySDKSampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				2CD3F7E51A793E5300A4DD48 /* SDKDemo.entitlements */,
 				7EF162401926AECA008F805A /* cupcake.jpg */,
 				7ED9EA011917E2930082C2C3 /* SIMAppDelegate.h */,
 				7ED9EA021917E2930082C2C3 /* SIMAppDelegate.m */,
@@ -212,7 +214,7 @@
 			);
 			name = SimplifySDKSampleApp;
 			productName = SimplifyiOSSDK;
-			productReference = 7ED9E9EF1917E2930082C2C3 /* SimplifySDKSampleApp.app */;
+			productReference = 7ED9E9EF1917E2930082C2C3 /* SDKDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -224,6 +226,16 @@
 				CLASSPREFIX = SIM;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = MasterCard;
+				TargetAttributes = {
+					7ED9E9EE1917E2930082C2C3 = {
+						DevelopmentTeam = QJJJ72YP26;
+						SystemCapabilities = {
+							com.apple.OMC = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = 7ED9E9EA1917E2930082C2C3 /* Build configuration list for PBXProject "SimplifySDKSampleApp" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -402,6 +414,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = SimplifySDKSampleApp/SDKDemo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimplifySDKSampleApp/SimplifySDKSampleApp-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -410,12 +425,14 @@
 					"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers",
 				);
 				INFOPLIST_FILE = "SimplifySDKSampleApp/SimplifySDKSampleApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = SimplifySDKSampleApp;
+				PRODUCT_NAME = SDKDemo;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -426,6 +443,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = SimplifySDKSampleApp/SDKDemo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimplifySDKSampleApp/SimplifySDKSampleApp-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -434,12 +454,14 @@
 					"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers",
 				);
 				INFOPLIST_FILE = "SimplifySDKSampleApp/SimplifySDKSampleApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = SimplifySDKSampleApp;
+				PRODUCT_NAME = SDKDemo;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

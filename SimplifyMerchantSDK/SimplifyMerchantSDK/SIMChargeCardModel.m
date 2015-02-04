@@ -14,6 +14,7 @@
 @property (nonatomic, strong, readwrite) NSString *formattedCardNumber;
 @property (nonatomic, strong, readwrite) NSString *formattedExpirationDate;
 @property (nonatomic, strong, readwrite) NSString *cvcCode;
+@property (nonatomic, strong, readwrite) NSString *zipCode;
 @property (nonatomic, strong, readwrite) NSString *cardTypeString;
 @property (nonatomic, strong, readwrite) SIMAddress *address;
 @property (nonatomic, readwrite) int cvcLength;
@@ -43,6 +44,7 @@
         self.cardNumber = @"";
         self.expirationDate = @"";
         self.cvcCode = @"";
+        self.zipCode = @"";
         self.publicKey = publicKey;
         self.simplify = simplify;
     }
@@ -51,7 +53,7 @@
 
 
 -(BOOL)isCardChargePossible {
-    if ([self isCardNumberValid] && [self isExpirationDateValid] && [self isCVCCodeValid]) {
+    if ([self isCardNumberValid] && [self isExpirationDateValid] && [self isCVCCodeValid] && [self isZipCodeValid]) {
         return YES;
     }
     return NO;
@@ -80,7 +82,20 @@
 }
 
 -(BOOL)isCVCCodeValid {
+    if (self.isCVCRequired && self.cvcCode.length == 0) {
+        return NO;
+    }
     if (self.cvcCode.length == self.cvcLength || self.cvcCode.length == 0  || (self.cvcCode.length == 3 && [self.cardType.cardTypeString  isEqual: @"blank"])) {
+        return YES;
+    }
+    return NO;
+}
+
+-(BOOL)isZipCodeValid {
+    if (self.isZipRequired && self.zipCode.length == 0) {
+        return NO;
+    }
+    if (self.zipCode.length == 0  || self.zipCode.length == 5 || self.zipCode.length == 9) {
         return YES;
     }
     return NO;
@@ -141,6 +156,29 @@
     
     if (updatedString.length <= self.cvcLength) {
         self.cvcCode = updatedString;
+    }
+}
+
+-(void)updateZipCodeWithString:(NSString *)newString {
+    NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
+    
+    if (updatedString.length <= 9) {
+        self.zipCode = updatedString;
+        self.address = [[SIMAddress alloc] initWithName:nil addressLine1:nil addressLine2:nil city:nil state:nil zip:self.zipCode];
+    }
+}
+
+-(void)deleteCharacterInExpiration {
+    if (self.expirationDate.length > 0) {
+        NSString *newExpirationDate = [self.expirationDate substringToIndex:self.expirationDate.length -1];
+        [self updateExpirationDateWithString:newExpirationDate];
+    }
+}
+
+-(void)deleteCharacterInCardNumber {
+    if (self.cardNumber.length > 0) {
+        NSString *newCardNumber = [self.cardNumber substringToIndex:self.cardNumber.length -1];
+        [self updateCardNumberWithString:newCardNumber];
     }
 }
 
