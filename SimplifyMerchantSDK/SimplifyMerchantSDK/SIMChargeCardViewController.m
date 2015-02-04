@@ -9,10 +9,7 @@
 @interface SIMChargeCardViewController () <SIMChargeCardModelDelegate, UITextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate>
 @property (strong, nonatomic) SIMChargeCardModel *chargeCardModel;
 @property (strong, nonatomic) NSString *publicKey;
-@property (strong, nonatomic) IBOutlet UILabel *cvcLabel;
 @property (strong, nonatomic) NSError *modelError;
-
-@property (strong, nonatomic) IBOutlet UILabel *expLabel;
 @property (strong, nonatomic) UIColor *primaryColor;
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
@@ -162,8 +159,6 @@
     BOOL isEnabled = [self.chargeCardModel isCardChargePossible];
     [self.chargeCardButton setEnabled:isEnabled];
     self.chargeCardButton.primaryColor = self.primaryColor;
-    self.cvcLabel.textColor = self.primaryColor;
-    self.expLabel.textColor = self.primaryColor;
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

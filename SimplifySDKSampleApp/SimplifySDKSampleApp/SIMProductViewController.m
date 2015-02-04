@@ -105,6 +105,7 @@
     NSError *error;
     
     //Process Request on your own server
+    //See https://github.com/simplifycom/simplify-php-server for a sample implementation.
     
     if (error) {
         NSLog(@"error:%@", error);
@@ -115,7 +116,7 @@
     } else {
         
         UIImageView *blurredView = [UIImage blurImage:self.view.layer];
-        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Success!" description:@"You purchased a cupcake!"];
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Success!" description:@"You purchased a pack of buttons!"];
         [self presentViewController:viewController animated:YES completion:nil];
     }
     
