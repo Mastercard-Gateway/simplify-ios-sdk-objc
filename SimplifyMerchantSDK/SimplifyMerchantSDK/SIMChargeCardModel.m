@@ -68,7 +68,7 @@
 }
 
 -(BOOL)isExpirationDateValid {
-    if ((self.expirationMonth.length == 2) && (self.expirationYear.length == 2) && [self expirationDateInFuture] && [self isExpirationMonthValid]) {
+    if ((self.expirationDate.length == 4) && [self expirationDateInFuture] && [self isExpirationMonthValid]) {
         return YES;
     }
     return NO;
@@ -109,7 +109,7 @@
         expirationMonthInt = 01;
         expirationYearInt += 1;
     }
-
+    
     NSString *dateString = [NSString stringWithFormat:@"%d-20%d", expirationMonthInt, expirationYearInt];
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     dateFormatter.dateFormat = @"MM-yyyy";
@@ -119,7 +119,7 @@
 
 -(void)updateCardNumberWithString:(NSString *)newString {
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
-
+    
     if (updatedString.length <= self.cardNumberMaxLength) {
         self.cardNumber = updatedString;
     }
@@ -129,19 +129,16 @@
     NSString *updatedString = [[newString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     if (updatedString.length > 0) {
         int firstDigit = (int)([updatedString characterAtIndex:0] - '0');
-
-    
+        
+        
         if (updatedString.length <= 3) {
             self.expirationDate = updatedString;
-        
-        } else if ((firstDigit <= 1) && (updatedString.length >= 4)) {
+            
+        } else if ((firstDigit <= 1) && (updatedString.length == 4)) {
             int secondDigit = (int)([updatedString characterAtIndex:1] - '0');
-            int thirdDigit = (int)([updatedString characterAtIndex:2] - '0');
-            if ((secondDigit == 0)  && (thirdDigit > 0)) {
+            if ((firstDigit == 0)  && (secondDigit > 0)) {
                 self.expirationDate = updatedString;
-            } else if ((secondDigit == 1) && (thirdDigit < 3)) {
-                self.expirationDate = updatedString;
-            } else if (updatedString.length == 4){
+            } else if ((firstDigit == 1) && (secondDigit < 3)) {
                 self.expirationDate = updatedString;
             }
         }
@@ -186,7 +183,7 @@
     NSMutableString *formattedString =[NSMutableString stringWithString:self.cardNumber];
     if (![self.cardTypeString isEqual: @"amex"]) {
         int index=4;
-    
+        
         while (index < formattedString.length && formattedString.length < 23) {
             [formattedString insertString:@" " atIndex:index];
             index +=5;
@@ -205,39 +202,33 @@
 
 -(NSString *)formattedExpirationDate {
     if (self.expirationDate.length == 1) {
-        return [NSString stringWithFormat:@"0%@/YY",self.expirationMonth];
+        return [NSString stringWithFormat:@"%@M/YY",self.expirationMonth];
     }
     else if (self.expirationDate.length == 2) {
-        return [NSString stringWithFormat:@"%@/%@Y",self.expirationMonth, self.expirationYear];
+        return [NSString stringWithFormat:@"%@/YY",self.expirationMonth];
     }
     else if (self.expirationDate.length == 3) {
         return [NSString stringWithFormat:@"%@/%@Y",self.expirationMonth, self.expirationYear];
     }
-    else if (self.expirationDate.length == 4 || self.expirationDate.length == 5) {
+    else if (self.expirationDate.length == 4) {
         return [NSString stringWithFormat:@"%@/%@",self.expirationMonth, self.expirationYear];
     }
-
     return self.expirationDate;
 }
 
 -(NSString *)expirationMonth {
     if (self.expirationDate.length  == 1) {
         return [self.expirationDate substringToIndex:1];
-    } else if (self.expirationDate.length > 1 && self.expirationDate.length < 5){
+    } else if (self.expirationDate.length > 1){
         return [self.expirationDate substringToIndex:2];
-    } else if (self.expirationDate.length == 5) {
-        NSString *expirationMonthThreeDigits = [self.expirationDate substringToIndex:3];
-        return [expirationMonthThreeDigits substringFromIndex:1];
     }
     return @"";
 }
 
 -(NSString *)expirationYear {
-
-    if (self.expirationDate.length > 2 && self.expirationDate.length < 5){
+    
+    if (self.expirationDate.length > 2){
         return [self.expirationDate substringFromIndex:2];
-    } else if (self.expirationDate.length == 5) {
-        return [self.expirationDate substringFromIndex:3];
     }
     return @"";
 }
