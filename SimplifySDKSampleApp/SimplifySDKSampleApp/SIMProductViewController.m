@@ -42,30 +42,29 @@
 #pragma mark - Navigation
 - (IBAction)buyCupcake:(id)sender {
     
-        PKPaymentSummaryItem *cupcake = [[PKPaymentSummaryItem alloc] init];
-        cupcake.label = @"mPOS Buttons";
-        cupcake.amount = [[NSDecimalNumber alloc] initWithString:@"10.00"];
+        PKPaymentSummaryItem *mposButtons = [[PKPaymentSummaryItem alloc] init];
+        mposButtons.label = @"mPOS Buttons";
+        mposButtons.amount = [[NSDecimalNumber alloc] initWithString:@"10.00"];
         
         PKPaymentRequest* paymentRequest = [[PKPaymentRequest alloc] init];
         paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
         paymentRequest.countryCode = @"US";
         paymentRequest.currencyCode = @"USD";
-        paymentRequest.merchantIdentifier = @"merchant.com.simplify.sdk.demo";
-//        paymentRequest.merchantIdentifier = @"merchant.com.simplify.stage.apple-pay";
+        //SDKDemo.entitlements needs to be updated to use the new merchant id
+        paymentRequest.merchantIdentifier = @"<#Your merchant id#>";
         paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV;
-        paymentRequest.paymentSummaryItems = @[cupcake];
+        paymentRequest.paymentSummaryItems = @[mposButtons];
         paymentRequest.requiredBillingAddressFields = PKAddressFieldAll;
         paymentRequest.requiredShippingAddressFields = PKAddressFieldPostalAddress;
 
-        //2. Create a SIMChargeViewController with your public api key
-        SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_M2QzZmRkMjQtMWQzNS00YmFlLTg3ZjgtMjQ2ZWFiN2M2MTk2" paymentRequest:paymentRequest primaryColor:self.primaryColor];
+        //Create a SIMChargeViewController with your public api key
+        SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_<#INSERT_YOUR_PUBLIC_KEY_HERE#>" paymentRequest:paymentRequest primaryColor:self.primaryColor];
     
-//        SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"sbpb_MzlkMDE3ZjgtMGQyZS00MThlLWI5NmUtMzFlMjUwYmQyOWU1" primaryColor:self.primaryColor];
-        //3. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
+        //Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
         chargeController.delegate = self;
         self.chargeController = chargeController;
 
-        //4. Add SIMChargeViewController to your view hierarchy
+        //Add SIMChargeViewController to your view hierarchy
         [self presentViewController:self.chargeController animated:YES completion:nil];
     
 }

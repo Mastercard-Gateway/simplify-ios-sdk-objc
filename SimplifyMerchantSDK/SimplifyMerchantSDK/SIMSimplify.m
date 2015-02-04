@@ -16,8 +16,6 @@ typedef enum {
 
 #define SIMSimplifyErrorDomain [NSString stringWithFormat:@"%@.errordomain", [[NSBundle frameworkBundle] bundleIdentifier]]
 
-//static NSString *prodAPILiveURL = @"https://10.157.193.78:25017/v1/api";
-//static NSString *prodAPISandboxURL = @"https://10.157.193.75:25017/v1/api";
 static NSString *prodAPILiveURL = @"https://api.simplify.com/v1/api";
 static NSString *prodAPISandboxURL = @"https://sandbox.simplify.com/v1/api";
 static NSString *endpointCardToken = @"payment/cardToken";

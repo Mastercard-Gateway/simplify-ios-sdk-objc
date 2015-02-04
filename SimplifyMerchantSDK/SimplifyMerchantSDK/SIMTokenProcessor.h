@@ -1,6 +1,4 @@
-#import <PassKit/PassKit.h>
-#import "SIMCreditCardToken.h"
-#import "SIMSimplify.h"
+#import <PassKit/PassKit.h> 
 
 @interface SIMTokenProcessor : NSObject
 

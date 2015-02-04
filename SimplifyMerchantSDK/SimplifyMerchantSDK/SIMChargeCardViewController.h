@@ -34,7 +34,15 @@
 
 -(instancetype)initWithPublicKey:(NSString *)publicKey;
 -(instancetype)initWithPublicKey:(NSString *)publicKey primaryColor:(UIColor *)primaryColor;
+/**
+ See Apple's documentation at: https://developer.apple.com/library/ios/ApplePay_Guide/CreateRequest.html
+ for more infromation on creating a PKPaymentRequest
+ */
 -(instancetype)initWithPublicKey:(NSString *)publicKey paymentRequest:(PKPaymentRequest *)paymentRequest;
+/**
+ See Apple's documentation at: https://developer.apple.com/library/ios/ApplePay_Guide/CreateRequest.html
+ for more infromation on creating a PKPaymentRequest
+ */
 -(instancetype)initWithPublicKey:(NSString *)publicKey paymentRequest:(PKPaymentRequest *)paymentRequest primaryColor:(UIColor *)primaryColor;
 
 @property (nonatomic, weak) id <SIMChargeCardViewControllerDelegate> delegate; /**< Delegate for SIMChargeCardModelDelegate */
