@@ -22,9 +22,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBE-ey-Zkd">
                                 <rect key="frame" x="16" y="507" width="568" height="73"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kO-Lh-PQP" customClass="SIMButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kO-Lh-PQP">
                                         <rect key="frame" x="8" y="8" width="552" height="57"/>
-                                        <color key="backgroundColor" red="1" green="0.32306186520000002" blue="0.10753513050000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.94509803921568625" green="0.396078431372549" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <accessibility key="accessibilityConfiguration" hint="Click to purchase cupcake" label="Buy cupcake"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="57" id="CIM-zr-d8t"/>
@@ -35,6 +35,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="4.0"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="buySimplifyButton:" destination="pa4-IN-g5Q" eventType="touchUpInside" id="9F0-3U-mwN"/>
                                         </connections>
@@ -47,6 +50,9 @@
                                     <constraint firstAttribute="trailing" secondItem="6kO-Lh-PQP" secondAttribute="trailing" constant="8" id="ks1-8g-lYu"/>
                                     <constraint firstAttribute="bottom" secondItem="6kO-Lh-PQP" secondAttribute="bottom" constant="8" id="o0f-lH-tnJ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8.0"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mj7-Vq-vAH">
                                 <rect key="frame" x="16" y="65" width="568" height="396"/>
@@ -72,21 +78,41 @@
                                             <constraint firstAttribute="height" constant="21" id="4do-2A-hPg"/>
                                             <constraint firstAttribute="width" constant="187" id="EBY-d7-6bq"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="price" translatesAutoresizingMaskIntoConstraints="NO" id="IRK-Wy-4cq" userLabel="priceButton">
+                                        <rect key="frame" x="335" y="300" width="73" height="73"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VpK-81-Tkh">
+                                        <rect key="frame" x="350" y="300" width="42" height="73"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="z7p-Aj-6bA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.94509803921568625" green="0.396078431372549" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="IRK-Wy-4cq" firstAttribute="trailing" secondItem="ZFk-dI-ZHr" secondAttribute="trailing" id="8s3-Ep-TOt"/>
+                                    <constraint firstItem="IRK-Wy-4cq" firstAttribute="top" secondItem="VpK-81-Tkh" secondAttribute="top" id="E4F-4N-BSa"/>
                                     <constraint firstItem="fsN-is-0Hk" firstAttribute="top" secondItem="ZFk-dI-ZHr" secondAttribute="bottom" constant="8" symbolic="YES" id="HL6-3c-8C6"/>
+                                    <constraint firstItem="IRK-Wy-4cq" firstAttribute="centerX" secondItem="VpK-81-Tkh" secondAttribute="centerX" constant="0.5" id="Pm3-P1-5eZ"/>
                                     <constraint firstItem="9ee-p3-hqJ" firstAttribute="leading" secondItem="Mj7-Vq-vAH" secondAttribute="leadingMargin" id="Qy7-hi-uP7"/>
                                     <constraint firstAttribute="bottom" secondItem="9ee-p3-hqJ" secondAttribute="bottom" constant="20" id="Vzm-89-Yda"/>
                                     <constraint firstItem="9ee-p3-hqJ" firstAttribute="top" secondItem="fsN-is-0Hk" secondAttribute="bottom" constant="8" symbolic="YES" id="chd-zD-yqZ"/>
                                     <constraint firstAttribute="centerX" secondItem="ZFk-dI-ZHr" secondAttribute="centerX" constant="-4" id="dxB-tW-vxb"/>
                                     <constraint firstItem="ZFk-dI-ZHr" firstAttribute="top" secondItem="Mj7-Vq-vAH" secondAttribute="top" id="gfL-Ba-tLV"/>
                                     <constraint firstItem="9ee-p3-hqJ" firstAttribute="leading" secondItem="fsN-is-0Hk" secondAttribute="leading" id="gwi-RS-GDL"/>
+                                    <constraint firstItem="IRK-Wy-4cq" firstAttribute="centerY" secondItem="VpK-81-Tkh" secondAttribute="centerY" id="iL8-lK-g29"/>
+                                    <constraint firstAttribute="bottom" secondItem="IRK-Wy-4cq" secondAttribute="bottom" constant="23" id="ltO-d3-vgO"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8.0"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -104,16 +130,15 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="buyButton" destination="6kO-Lh-PQP" id="AFu-60-dtl"/>
-                        <outlet property="buyButtonView" destination="XBE-ey-Zkd" id="mzy-jx-bMK"/>
-                        <outlet property="productView" destination="Mj7-Vq-vAH" id="BVr-cd-1qy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0PP-Ng-FbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1614" y="-590"/>
+            <point key="canvasLocation" x="1614" y="-602"/>
         </scene>
     </scenes>
     <resources>
         <image name="buttons" width="540" height="730"/>
+        <image name="price" width="73" height="73"/>
     </resources>
 </document>

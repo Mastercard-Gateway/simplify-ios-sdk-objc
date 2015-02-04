@@ -2,7 +2,6 @@
 #import <PassKit/PassKit.h>
 #import <Simplify/SIMSimplify.h>
 #import <Simplify/SIMChargeCardViewController.h>
-#import <Simplify/SIMButton.h>
 #import <Simplify/UIImage+Simplify.h>
 #import <Simplify/UIColor+Simplify.h>
 #import <Simplify/SIMResponseViewController.h>
@@ -11,9 +10,7 @@
 //1. Sign up to be a SIMChargeViewControllerDelegate so that you get the callback that gives you a token
 @interface SIMProductViewController ()<SIMChargeCardViewControllerDelegate>
 @property (nonatomic, strong) SIMChargeCardViewController *chargeController;
-@property (strong, nonatomic) IBOutlet SIMButton *buyButton;
-@property (strong, nonatomic) IBOutlet UIView *productView;
-@property (strong, nonatomic) IBOutlet UIView *buyButtonView;
+@property (strong, nonatomic) IBOutlet UIButton *buyButton;
 @property (strong, nonatomic) UIColor *primaryColor;
 @end
 
@@ -23,10 +20,7 @@
 {
     [super viewDidLoad];
     self.primaryColor = [UIColor colorWithRed:241.0/255.0 green:100.0/255.0 blue:33.0/255.0 alpha:1.0];
-    self.buyButton.primaryColor = self.primaryColor;
-    [[self.buyButton layer] setCornerRadius:8.0];
-    [[self.productView layer] setCornerRadius:8.0];
-    [[self.buyButtonView layer] setCornerRadius:8.0];
+    [self.buyButton setBackgroundColor:self.primaryColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,9 +44,9 @@
         paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
         paymentRequest.countryCode = @"US";
         paymentRequest.currencyCode = @"USD";
-
+    
         //2. SDKDemo.entitlements needs to be updated to use the new merchant id
-        paymentRequest.merchantIdentifier = @"<#Your merchant id#>";
+        paymentRequest.merchantIdentifier = @"merchant.com.simplify.sdk.demo";
         paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV | PKMerchantCapability3DS;
         paymentRequest.paymentSummaryItems = @[mposButtons];
         paymentRequest.requiredBillingAddressFields = PKAddressFieldAll;

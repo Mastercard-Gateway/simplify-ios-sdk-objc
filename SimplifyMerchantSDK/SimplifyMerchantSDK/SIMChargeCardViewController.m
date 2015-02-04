@@ -1,6 +1,5 @@
 #import "SIMChargeCardViewController.h"
 #import "SIMChargeCardModel.h"
-#import "SIMButton.h"
 #import "UIColor+Simplify.h"
 #import "UIImage+Simplify.h"
 #import "NSBundle+Simplify.h"
@@ -13,7 +12,7 @@
 @property (strong, nonatomic) UIColor *primaryColor;
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
-@property (strong, nonatomic) IBOutlet SIMButton *chargeCardButton;
+@property (strong, nonatomic) IBOutlet UIButton *chargeCardButton;
 @property (strong, nonatomic) IBOutlet UITextField *cardNumberField;
 @property (strong, nonatomic) IBOutlet UITextField *expirationField;
 @property (strong, nonatomic) IBOutlet UITextField *cvcField;
@@ -59,8 +58,6 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
  
-    
-    
     self.cardNumberField.delegate = self;
     self.expirationField.delegate = self;
     self.cvcField.delegate = self;
@@ -85,8 +82,6 @@
         [self buttonsEnabled];
         [self.cardNumberField becomeFirstResponder];
     }
-    
-    [[self.chargeCardButton layer] setCornerRadius:8.0];
     
     //Remove the Apple Pay button if there is no PKPaymentRequest or if the device is not capable of doing Apple Pay
     if (!self.paymentRequest || ![PKPaymentAuthorizationViewController canMakePayments]) {
@@ -158,7 +153,12 @@
     self.zipCodeView.backgroundColor = zipBackgroundColor;
     BOOL isEnabled = [self.chargeCardModel isCardChargePossible];
     [self.chargeCardButton setEnabled:isEnabled];
-    self.chargeCardButton.primaryColor = self.primaryColor;
+    
+    if (isEnabled) {
+        [self.chargeCardButton setBackgroundColor:self.primaryColor ? self.primaryColor : [UIColor buttonBackgroundColorEnabled]];
+    } else {
+        [self.chargeCardButton setBackgroundColor:[UIColor buttonBackgroundColorDisabled]];
+    }
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
