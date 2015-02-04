@@ -18,7 +18,6 @@
 		7ED9EA051917E2930082C2C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9EA041917E2930082C2C3 /* Images.xcassets */; };
 		7EF162301925555A008F805A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EF1622F1925555A008F805A /* Storyboard.storyboard */; };
 		7EF162351925598B008F805A /* SIMProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF162341925598B008F805A /* SIMProductViewController.m */; };
-		7EF162411926AECA008F805A /* cupcake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EF162401926AECA008F805A /* cupcake.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +84,6 @@
 		7EF1622F1925555A008F805A /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		7EF162331925598B008F805A /* SIMProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMProductViewController.h; sourceTree = "<group>"; };
 		7EF162341925598B008F805A /* SIMProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMProductViewController.m; sourceTree = "<group>"; };
-		7EF162401926AECA008F805A /* cupcake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cupcake.jpg; path = ../cupcake.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				2CD3F7E51A793E5300A4DD48 /* SDKDemo.entitlements */,
-				7EF162401926AECA008F805A /* cupcake.jpg */,
 				7ED9EA011917E2930082C2C3 /* SIMAppDelegate.h */,
 				7ED9EA021917E2930082C2C3 /* SIMAppDelegate.m */,
 				7EF162331925598B008F805A /* SIMProductViewController.h */,
@@ -293,7 +290,6 @@
 				7EF162301925555A008F805A /* Storyboard.storyboard in Resources */,
 				7ED9EA051917E2930082C2C3 /* Images.xcassets in Resources */,
 				4977D092191AC04700AC621F /* Simplify.bundle in Resources */,
-				7EF162411926AECA008F805A /* cupcake.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

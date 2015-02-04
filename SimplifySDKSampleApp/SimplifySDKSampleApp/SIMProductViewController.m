@@ -40,7 +40,7 @@
 }
 
 #pragma mark - Navigation
-- (IBAction)buyCupcake:(id)sender {
+- (IBAction)buySimplifyButton:(id)sender {
     
         PKPaymentSummaryItem *mposButtons = [[PKPaymentSummaryItem alloc] init];
         mposButtons.label = @"mPOS Buttons";
@@ -50,21 +50,22 @@
         paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
         paymentRequest.countryCode = @"US";
         paymentRequest.currencyCode = @"USD";
-        //SDKDemo.entitlements needs to be updated to use the new merchant id
+
+        //2. SDKDemo.entitlements needs to be updated to use the new merchant id
         paymentRequest.merchantIdentifier = @"<#Your merchant id#>";
         paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV;
         paymentRequest.paymentSummaryItems = @[mposButtons];
         paymentRequest.requiredBillingAddressFields = PKAddressFieldAll;
         paymentRequest.requiredShippingAddressFields = PKAddressFieldPostalAddress;
 
-        //Create a SIMChargeViewController with your public api key
+        //3. Create a SIMChargeViewController with your public api key
         SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_<#INSERT_YOUR_PUBLIC_KEY_HERE#>" paymentRequest:paymentRequest primaryColor:self.primaryColor];
     
-        //Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
+        //4. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
         chargeController.delegate = self;
         self.chargeController = chargeController;
 
-        //Add SIMChargeViewController to your view hierarchy
+        //5. Add SIMChargeViewController to your view hierarchy
         [self presentViewController:self.chargeController animated:YES completion:nil];
     
 }
@@ -88,7 +89,7 @@
     [self presentViewController:viewController animated:YES completion:nil];
 }
 
-//5. This method will be called on your class whenever the user presses the Charge Card button and tokenization succeeds
+//6. This method will be called on your class whenever the user presses the Charge Card button and tokenization succeeds
 -(void)creditCardTokenProcessed:(SIMCreditCardToken *)token {
     //Token was generated successfully, now you must use it
     
