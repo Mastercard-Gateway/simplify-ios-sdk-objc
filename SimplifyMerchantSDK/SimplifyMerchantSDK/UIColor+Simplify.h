@@ -8,6 +8,9 @@
 + (UIColor *)buttonHighlightColorDisabled;
 + (UIColor *)fieldBackgroundColorValid;
 + (UIColor *)fieldBackgroundColorInvalid;
++ (UIColor *)viewBackgroundColorValid;
++ (UIColor *)viewBackgroundColorInvalid;
+
 
 + (UIColor *)darkerColorThanColor:(UIColor *)originalColor;
 

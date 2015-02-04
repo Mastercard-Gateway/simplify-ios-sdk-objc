@@ -3,29 +3,6 @@
 
 @implementation UIColor (Simplify)
 
-+(UIColor *)fieldBackgroundColorValid {
-    
-    static UIColor *validColor = nil;
-    
-    if (!validColor) {
-        validColor  = [UIColor colorWithRed:(235.0/255.0) green:(247.0/255.0) blue:(230.0/255.0) alpha:1.0];
-    }
-    
-    return validColor;
-}
-
-+(UIColor *)fieldBackgroundColorInvalid {
-    
-    static UIColor *invalidColor;
-    
-    if (!invalidColor) {
-        invalidColor  = [UIColor colorWithRed:(247.0/255.0) green:(230.0/255.0) blue:(230.0/255.0) alpha:1.0];
-    }
-    
-    return invalidColor;
-    
-}
-
 + (UIColor *)buttonBackgroundColorEnabled{
     
     static UIColor *buttonEnableFillColor;
@@ -68,6 +45,52 @@
     }
     
     return buttonDisableStrokeColor;
+}
+
++(UIColor *)fieldBackgroundColorValid {
+    
+    static UIColor *validColor = nil;
+    
+    if (!validColor) {
+        validColor  = [UIColor colorWithRed:(235.0/255.0) green:(247.0/255.0) blue:(230.0/255.0) alpha:1.0];
+    }
+    
+    return validColor;
+}
+
++(UIColor *)fieldBackgroundColorInvalid {
+    
+    static UIColor *invalidColor;
+    
+    if (!invalidColor) {
+        invalidColor  = [UIColor colorWithRed:(247.0/255.0) green:(230.0/255.0) blue:(230.0/255.0) alpha:1.0];
+    }
+    
+    return invalidColor;
+    
+}
+
++(UIColor *)viewBackgroundColorValid {
+    
+    static UIColor *validColor = nil;
+    
+    if (!validColor) {
+        validColor  = [UIColor colorWithRed:(235.0/255.0) green:(247.0/255.0) blue:(230.0/255.0) alpha:1.0];
+    }
+    
+    return validColor;
+}
+
++(UIColor *)viewBackgroundColorInvalid {
+    
+    static UIColor *invalidColor;
+    
+    if (!invalidColor) {
+        invalidColor  = [UIColor colorWithRed:(247.0/255.0) green:(230.0/255.0) blue:(230.0/255.0) alpha:1.0];
+    }
+    
+    return invalidColor;
+    
 }
 
 + (UIColor *)darkerColorThanColor:(UIColor *)originalColor {

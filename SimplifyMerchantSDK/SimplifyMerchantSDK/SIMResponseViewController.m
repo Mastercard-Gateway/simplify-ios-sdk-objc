@@ -1,4 +1,5 @@
 #import "SIMResponseViewController.h"
+#import "NSBundle+Simplify.h"
 #import <UIColor+Simplify.h>
 
 @interface SIMResponseViewController ()
@@ -9,12 +10,15 @@
 @property (nonatomic) UIColor *primaryColor;
 @property (nonatomic) BOOL didSucceed;
 
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
+
 @end
 
 @implementation SIMResponseViewController
 
 -(instancetype)initWithBackground:(UIImageView *)backgroundView primaryColor:(UIColor *)primaryColor title:(NSString *)titleMessage description:(NSString *)descriptionMessage {
-    self = [super init];
+    self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
     if (self) {
         self.backgroundView = backgroundView;
         self.primaryColor = primaryColor ? primaryColor : [UIColor buttonBackgroundColorEnabled];
@@ -30,23 +34,12 @@
 {
     [super viewDidLoad];
     
-    [self.view addSubview:self.backgroundView];
+    if (self.backgroundView) {
+        [self.view addSubview:self.backgroundView];
+    }
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 44)];
-    titleLabel.textColor = self.primaryColor;
-    titleLabel.font = [UIFont boldSystemFontOfSize:28.0];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    [titleLabel setAdjustsFontSizeToFitWidth:YES];
-    titleLabel.text = self.titleMessage;
-    [self.view addSubview:titleLabel];
-
-    UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, 400)];
-    descriptionLabel.textColor = [UIColor blackColor];
-    descriptionLabel.numberOfLines = 10;
-    descriptionLabel.textAlignment = NSTextAlignmentCenter;
-    descriptionLabel.font = [UIFont boldSystemFontOfSize:20.0];
-    descriptionLabel.text = self.descriptionMessage;
-    [self.view addSubview:descriptionLabel];
+    self.titleLabel.text = self.titleMessage;
+    self.descriptionLabel.text = self.descriptionMessage;
 
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSelf)];
     [self.view addGestureRecognizer:tapGestureRecognizer];

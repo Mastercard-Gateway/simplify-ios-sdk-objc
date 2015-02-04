@@ -76,10 +76,8 @@
 -(void)creditCardTokenFailedWithError:(NSError *)error {
 
     //There was a problem generating the token
-
-    NSLog(@"Credit Card Token Failed with error:%@", error.localizedDescription);
-    UIImageView *blurredView = [UIImage blurImage:self.view.layer];
-    SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Failure." description:@"There was a problem with the payment.\nPlease try again."];
+    NSLog(@"error:%@", error);
+    SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Failure." description:@"There was a problem with the payment.\nPlease try again."];
     [self presentViewController:viewController animated:YES completion:nil];
 }
 
@@ -103,14 +101,11 @@
     
     if (error) {
         NSLog(@"error:%@", error);
-        UIImageView *blurredView = [UIImage blurImage:self.view.layer];
-        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Failure." description:@"There was a problem with the payment.\nPlease try again."];
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Failure." description:@"There was a problem with the payment.\nPlease try again."];
         [self presentViewController:viewController animated:YES completion:nil];
 
     } else {
-        
-        UIImageView *blurredView = [UIImage blurImage:self.view.layer];
-        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Success!" description:@"You purchased a pack of buttons!"];
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Success!" description:@"You purchased a pack of buttons!"];
         [self presentViewController:viewController animated:YES completion:nil];
     }
     

@@ -53,8 +53,6 @@
     return  self;
 }
 
-
-
 -(void)viewDidLoad {
     [super viewDidLoad];
  
@@ -93,8 +91,8 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     if (self.modelError) {
-        UIImageView *blurredView = [UIImage blurImage:self.view.layer];
-        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:blurredView primaryColor:self.primaryColor title:@"Failure." description:@"\n\nThere was a problem with your Public Key.\n\nPlease double-check your Public Key and try again."];
+
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Failure." description:@"\n\nThere was a problem with your Public Key.\n\nPlease double-check your Public Key and try again."];
         [self presentViewController:viewController animated:YES completion:nil];
         
     }
@@ -222,6 +220,7 @@
     UIImage *cardImage = [UIImage imageNamed:self.chargeCardModel.cardTypeString inBundle:[NSBundle frameworkBundle] compatibleWithTraitCollection:nil];
     [self.cardTypeImage setImage:cardImage];
 }
+
 - (IBAction)cancelTokenRequest:(id)sender {
     [self clearTextFields];
 
