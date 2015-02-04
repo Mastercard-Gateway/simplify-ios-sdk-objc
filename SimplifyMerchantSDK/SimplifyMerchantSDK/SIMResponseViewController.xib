@@ -64,6 +64,6 @@
     </objects>
     <resources>
         <image name="approvedIconWhite" width="68" height="68"/>
-        <image name="closeIconWhite" width="46" height="32"/>
+        <image name="closeIconWhite" width="19" height="20"/>
     </resources>
 </document>
