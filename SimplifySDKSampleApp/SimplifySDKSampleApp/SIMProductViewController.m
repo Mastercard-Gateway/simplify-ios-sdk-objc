@@ -53,7 +53,7 @@
 
         //2. SDKDemo.entitlements needs to be updated to use the new merchant id
         paymentRequest.merchantIdentifier = @"<#Your merchant id#>";
-        paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV;
+        paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV | PKMerchantCapability3DS;
         paymentRequest.paymentSummaryItems = @[mposButtons];
         paymentRequest.requiredBillingAddressFields = PKAddressFieldAll;
         paymentRequest.requiredShippingAddressFields = PKAddressFieldPostalAddress;
