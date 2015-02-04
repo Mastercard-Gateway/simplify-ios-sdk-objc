@@ -289,7 +289,6 @@
 #pragma mark PKPaymentAuthorizationViewControllerDelegate
 -(void) paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus))completion {
     
-    NSString *debug = [[NSString alloc] initWithData:payment.token.paymentData encoding:NSUTF8StringEncoding];
     SIMSimplify* simplify = [[SIMSimplify alloc] initWithPublicKey:self.publicKey error:nil];
     [simplify createCardTokenWithPayment:payment completionHandler:^(SIMCreditCardToken *cardToken, NSError *error)
      {
