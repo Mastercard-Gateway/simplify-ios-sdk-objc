@@ -487,6 +487,7 @@
     [self.testSubject updateZipCodeWithString:@"1234"];
     
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.zipCode, "four digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.address.zip, "four digits");
 }
 
 -(void)testUpdateZipCodeWithStringUpdatesZipCodeIfLongerThanFiveDigits {
@@ -495,6 +496,7 @@
     [self.testSubject updateZipCodeWithString:@"123456"];
     
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.zipCode, "six digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.address.zip, "six digits");
 }
 
 -(void)testUpdateZipCodeWithStringDoesNotUpdateZipCodeIfMoreThan9Digits {
@@ -502,8 +504,9 @@
     NSString *expectedStringWithNoSpaces = @"123456789";
     
     [self.testSubject updateZipCodeWithString:@"1234567890"];
-    
+
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.zipCode, "nine digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.address.zip, "nine digits");
 }
 
 -(void)testUpdateZipCodeWithStringDoesNotAddNonDigits {
@@ -512,6 +515,7 @@
     [self.testSubject updateZipCodeWithString:@"12sf34"];
     
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.zipCode, "four digits");
+    XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.address.zip, "four digits");
 }
 
 

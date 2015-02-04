@@ -161,6 +161,7 @@
     
     if (updatedString.length <= 9) {
         self.zipCode = updatedString;
+        self.address = [[SIMAddress alloc] initWithName:nil addressLine1:nil addressLine2:nil city:nil state:nil zip:self.zipCode];
     }
 }
 
