@@ -48,6 +48,7 @@
         self.publicKey = publicKey;
         self.primaryColor = primaryColor ? primaryColor : [UIColor buttonBackgroundColorEnabled];
         self.paymentRequest = paymentRequest;
+        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
     
     return  self;
