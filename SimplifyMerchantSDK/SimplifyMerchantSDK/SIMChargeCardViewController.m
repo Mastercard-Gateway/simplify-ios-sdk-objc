@@ -148,46 +148,38 @@
     
     UIColor *fieldBackgroundColor = [UIColor whiteColor];
     
-    if (self.chargeCardModel.cardNumber.length > 0) {
-        if ([self.chargeCardModel isCardNumberValid]) {
-            fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
-            
-        } else {
-            fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
-        }
+    if ([self.chargeCardModel isCardNumberValid]) {
+        fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
         
-        self.cardNumberView.backgroundColor = fieldBackgroundColor;
-        
+    } else {
+        fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
     }
     
-    if (self.chargeCardModel.expirationDate.length > 0) {
-        if ([self.chargeCardModel isExpirationDateValid]) {
-            fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
-        } else {
-            fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
-        }
-        self.expirationDateView.backgroundColor = fieldBackgroundColor;
+    self.cardNumberView.backgroundColor = fieldBackgroundColor;
+    
+    if ([self.chargeCardModel isExpirationDateValid]) {
+        fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
+    } else {
+        fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
+    }
+    self.expirationDateView.backgroundColor = fieldBackgroundColor;
 
-    }
     
-    if (self.chargeCardModel.cvcCode.length > 0) {
-        if ([self.chargeCardModel isCVCCodeValid]) {
-            fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
-        } else {
-            fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
-        }
-        self.cvcCodeView.backgroundColor = fieldBackgroundColor;
+    if ([self.chargeCardModel isCVCCodeValid]) {
+        fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
+    } else {
+        fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
+    }
+    self.cvcCodeView.backgroundColor = fieldBackgroundColor;
 
-    }
     
-    if (self.chargeCardModel.zipCode.length > 0) {
-        if ([self.chargeCardModel isZipCodeValid]) {
-            fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
-        } else {
-            fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
-        }
-        self.zipCodeView.backgroundColor = fieldBackgroundColor;
+    if ([self.chargeCardModel isZipCodeValid]) {
+        fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
+    } else {
+        fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
     }
+    self.zipCodeView.backgroundColor = fieldBackgroundColor;
+
     
     BOOL isEnabled = [self.chargeCardModel isCardChargePossible];
     [self.submitPaymentButton setEnabled:isEnabled];
