@@ -3,6 +3,7 @@
 #import "UIColor+Simplify.h"
 #import "UIImage+Simplify.h"
 #import "NSBundle+Simplify.h"
+#import "NSString+Simplify.h"
 #import "SIMResponseViewController.h"
 
 @interface SIMChargeCardViewController () <SIMChargeCardModelDelegate, UITextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate>
@@ -25,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UIView *cardEntryView;
 @property (strong, nonatomic) IBOutlet UIView *zipCodeView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *cardEntryViewTopConstraint;
+@property (strong, nonatomic) IBOutlet UILabel *headerTitle;
 
 @end
 
@@ -56,7 +58,7 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
- 
+    
     self.cardNumberField.delegate = self;
     self.expirationField.delegate = self;
     self.cvcField.delegate = self;
@@ -88,7 +90,7 @@
     [super viewWillAppear:animated];
     
     //Remove the Apple Pay button if there is no PKPaymentRequest or if the device is not capable of doing Apple Pay
-    if (![self.chargeCardModel isApplePayAvailable]) {
+    if ([self.chargeCardModel isApplePayAvailable]) {
         
         self.applePayViewHolder.hidden = YES;
         [self.applePayViewHolder removeFromSuperview];
@@ -103,6 +105,8 @@
         
         [self.view addConstraint:self.cardEntryViewTopConstraint];
     }
+    
+    [self changeTitle:self.amount];
 
 }
 
@@ -114,8 +118,22 @@
 
         SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Failure." description:@"\n\nThere was a problem with your Public Key.\n\nPlease double-check your Public Key and try again."];
         [self presentViewController:viewController animated:YES completion:nil];
-        
     }
+    
+}
+
+- (void)changeTitle:(NSDecimalNumber *)amount {
+    if (amount) {
+        self.headerTitle.text = [NSString stringWithFormat:@"Charge $%@", [NSString amountStringFromNumber:amount]];
+    } else {
+        self.headerTitle.text = @"Charge Card";
+    }
+}
+
+-(void)setAmount:(NSDecimalNumber *)amount {
+    _amount = amount;
+    
+    [self changeTitle:amount];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {

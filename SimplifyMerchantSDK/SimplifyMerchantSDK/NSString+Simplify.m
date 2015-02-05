@@ -16,4 +16,16 @@
 }
 
 
++(NSString *)amountStringFromNumber:(NSDecimalNumber *)amount {
+    
+    NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
+    [numberFormatter setMinimumFractionDigits:2];
+    [numberFormatter setMaximumFractionDigits:2];
+    [numberFormatter setMinimumIntegerDigits:1];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+
+    return [numberFormatter stringFromNumber:amount];
+}
+
+
 @end

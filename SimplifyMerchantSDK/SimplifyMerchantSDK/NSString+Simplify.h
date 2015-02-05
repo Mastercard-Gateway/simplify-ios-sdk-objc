@@ -14,4 +14,6 @@
  */
 +(NSString *)urlEncodedString:(NSString *)urlString usingEncoding:(NSStringEncoding)encoding;
 
++(NSString *)amountStringFromNumber:(NSDecimalNumber *)amount;
+
 @end
