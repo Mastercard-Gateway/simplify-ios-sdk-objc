@@ -20,6 +20,7 @@
                 <outlet property="cvcField" destination="R1X-5S-mSK" id="Zq0-ey-cVt"/>
                 <outlet property="expirationDateView" destination="vIA-JG-qgI" id="mPC-2F-vTw"/>
                 <outlet property="expirationField" destination="h1S-BC-nB4" id="Xjz-6M-JSv"/>
+                <outlet property="headerTitle" destination="hz7-cC-AWu" id="pTB-Jx-DTf"/>
                 <outlet property="headerView" destination="jAH-q3-iQQ" id="S4b-Ay-XHn"/>
                 <outlet property="submitPaymentButton" destination="Y7O-Rp-Rl5" id="F3q-Ua-oJL"/>
                 <outlet property="view" destination="iN0-l3-epB" id="7pA-pt-KzA"/>

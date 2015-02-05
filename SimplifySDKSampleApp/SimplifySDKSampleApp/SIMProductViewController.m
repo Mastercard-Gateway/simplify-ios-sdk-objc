@@ -57,6 +57,7 @@
     
         //4. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
         chargeController.delegate = self;
+        chargeController.amount = mposButtons.amount;
         self.chargeController = chargeController;
 
         //5. Add SIMChargeViewController to your view hierarchy
