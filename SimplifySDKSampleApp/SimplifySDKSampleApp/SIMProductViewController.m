@@ -81,6 +81,8 @@
     //There was a problem generating the token
     NSLog(@"error:%@", error);
     SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Failure." description:@"There was a problem with the payment.\nPlease try again."];
+    viewController.isPaymentSuccessful = NO;
+    
     [self presentViewController:viewController animated:YES completion:nil];
 }
 
@@ -105,10 +107,12 @@
     if (error) {
         NSLog(@"error:%@", error);
         SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Failure." description:@"There was a problem with the payment.\nPlease try again."];
+        viewController.isPaymentSuccessful = NO;
         [self presentViewController:viewController animated:YES completion:nil];
 
     } else {
         SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Success!" description:@"You purchased a pack of buttons!"];
+        viewController.isPaymentSuccessful = YES;
         [self presentViewController:viewController animated:YES completion:nil];
     }
     

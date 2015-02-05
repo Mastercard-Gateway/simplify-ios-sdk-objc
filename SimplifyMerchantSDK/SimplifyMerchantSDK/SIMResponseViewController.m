@@ -8,7 +8,7 @@
 @property (nonatomic) NSString *titleMessage;
 @property (nonatomic) NSString *descriptionMessage;
 @property (nonatomic) UIColor *primaryColor;
-@property (nonatomic) BOOL didSucceed;
+@property (strong, nonatomic) IBOutlet UIImageView *successIndicatorImageView;
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
@@ -46,6 +46,16 @@
     
 }
 
+-(void)setIsPaymentSuccessful:(BOOL)isPaymentSuccessful {
+    _isPaymentSuccessful = isPaymentSuccessful;
+    
+    UIImage *approvedIcon = [UIImage imageNamed:@"approvedIconWhite" inBundle:[NSBundle frameworkBundle] compatibleWithTraitCollection:nil];
+    UIImage *declinedIcon = [UIImage imageNamed:@"declinedIconGrey" inBundle:[NSBundle frameworkBundle] compatibleWithTraitCollection:nil];
+    
+    self.view.backgroundColor = _isPaymentSuccessful ? [UIColor viewBackgroundColorValid] : [UIColor viewBackgroundColorInvalid];
+    self.successIndicatorImageView.image = _isPaymentSuccessful ?  approvedIcon : declinedIcon;
+    
+}
 
 - (void)dismissSelf {
     [self dismissViewControllerAnimated:YES completion:nil];

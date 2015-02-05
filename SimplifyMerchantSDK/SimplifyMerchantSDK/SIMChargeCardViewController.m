@@ -117,6 +117,8 @@
     if (self.modelError) {
 
         SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Failure." description:@"\n\nThere was a problem with your Public Key.\n\nPlease double-check your Public Key and try again."];
+        
+        viewController.isPaymentSuccessful = NO;
         [self presentViewController:viewController animated:YES completion:nil];
     }
     
