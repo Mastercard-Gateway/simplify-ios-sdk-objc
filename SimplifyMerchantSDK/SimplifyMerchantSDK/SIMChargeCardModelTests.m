@@ -577,4 +577,60 @@
     
 }
 
+-(void)testIsApplePayAvailableIsTrueWhenRequestIsPresentAndDeviceCanMakePayments {
+    
+    id mockPaymentRequest  = [OCMockObject mockForClass:PKPaymentRequest.class];
+    self.testSubject.paymentRequest = mockPaymentRequest;
+    id mockPKPaymentAuthorizationViewController = [OCMockObject mockForClass:PKPaymentAuthorizationViewController.class];
+    
+    [[[mockPKPaymentAuthorizationViewController stub] andReturnValue:OCMOCK_VALUE(YES)] canMakePayments];
+    
+    BOOL canMakePayments = [self.testSubject isApplePayAvailable];
+    
+    XCTAssertTrue(canMakePayments);
+
+}
+
+-(void)testIsApplePayAvailableIsFalseWhenRequestIsNotPresentAndDeviceCanMakePayments {
+    
+    self.testSubject.paymentRequest = nil;
+    id mockPKPaymentAuthorizationViewController = [OCMockObject mockForClass:PKPaymentAuthorizationViewController.class];
+    
+    [[[mockPKPaymentAuthorizationViewController stub] andReturnValue:OCMOCK_VALUE(YES)] canMakePayments];
+    
+    BOOL canMakePayments = [self.testSubject isApplePayAvailable];
+    
+    XCTAssertFalse(canMakePayments);
+    
+}
+
+-(void)testIsApplePayAvailableIsFalseWhenRequestIsPresentAndDeviceCannotMakePayments {
+    
+    id mockPaymentRequest  = [OCMockObject mockForClass:PKPaymentRequest.class];
+    self.testSubject.paymentRequest = mockPaymentRequest;
+    id mockPKPaymentAuthorizationViewController = [OCMockObject mockForClass:PKPaymentAuthorizationViewController.class];
+
+    
+    [[[mockPKPaymentAuthorizationViewController stub] andReturnValue:OCMOCK_VALUE(NO)] canMakePayments];
+    
+    BOOL canMakePayments = [self.testSubject isApplePayAvailable];
+    
+    XCTAssertFalse(canMakePayments);
+    
+}
+
+-(void)testIsApplePayAvailableIsFalseWhenRequestIsNotPresentAndDeviceCannotMakePayments {
+    
+    self.testSubject.paymentRequest = nil;
+    id mockPKPaymentAuthorizationViewController = [OCMockObject mockForClass:PKPaymentAuthorizationViewController.class];
+    
+    [[[mockPKPaymentAuthorizationViewController stub] andReturnValue:OCMOCK_VALUE(NO)] canMakePayments];
+    
+    BOOL canMakePayments = [self.testSubject isApplePayAvailable];
+    
+    XCTAssertFalse(canMakePayments);
+    
+}
+
+
 @end

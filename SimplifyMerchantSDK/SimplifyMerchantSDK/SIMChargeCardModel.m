@@ -101,6 +101,11 @@
     return NO;
 }
 
+-(BOOL)isApplePayAvailable {
+    
+    return (self.paymentRequest && [PKPaymentAuthorizationViewController canMakePayments]);
+}
+
 -(BOOL)expirationDateInFuture {
     NSDate *currentDate = [NSDate date];
     int expirationMonthInt = [self.expirationMonth intValue] + 1;

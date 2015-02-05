@@ -2,6 +2,7 @@
 #import "SIMAddress.h"
 #import "SIMCreditCardToken.h"
 #import "SIMSimplify.h"
+#import <PassKit/PassKit.h>
 
 /**
  Protocol for communicating success or failure of the token generation.
@@ -36,6 +37,8 @@
 @property (nonatomic, strong, readonly) NSString *cardTypeString; /**< String with the card type.  Example "mastercard" */
 @property (nonatomic, strong, readonly) SIMAddress *address; /**< SIMAddress with all address details of the card holder */
 @property (nonatomic, strong, readonly) SIMCardType *cardType; /**< card type, including validations of CVC code length and card number length */
+@property (nonatomic, strong) PKPaymentRequest *paymentRequest; /**< user-created PKPaymentRequest for Apple Pay */
+
 @property (nonatomic) BOOL isZipRequired;
 @property (nonatomic) BOOL isCVCRequired;
 
@@ -65,6 +68,11 @@
  * Determines if the zip code is five digits long
  */
 -(BOOL)isZipCodeValid;
+
+/**
+ * Method that determines if it is possible to make an Apple Pay payment
+ */
+-(BOOL)isApplePayAvailable;
 
 /**
  * Updates the model's card number by removing all non-digits.  Will not update the length if it is longer than the card type's maximum card number length
