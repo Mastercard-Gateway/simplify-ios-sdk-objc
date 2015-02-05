@@ -146,39 +146,13 @@
 
 -(void)displayPaymentValidity {
     
-    UIColor *fieldBackgroundColor = [UIColor whiteColor];
+    self.cardNumberView.backgroundColor = [self.chargeCardModel isCardNumberValid] ? [UIColor fieldBackgroundColorValid] : [UIColor fieldBackgroundColorInvalid];
     
-    if ([self.chargeCardModel isCardNumberValid]) {
-        fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
-        
-    } else {
-        fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
-    }
-    
-    self.cardNumberView.backgroundColor = fieldBackgroundColor;
-    
-    if ([self.chargeCardModel isExpirationDateValid]) {
-        fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
-    } else {
-        fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
-    }
-    self.expirationDateView.backgroundColor = fieldBackgroundColor;
+    self.expirationDateView.backgroundColor = [self.chargeCardModel isExpirationDateValid] ? [UIColor fieldBackgroundColorValid] : [UIColor fieldBackgroundColorInvalid];
 
-    
-    if ([self.chargeCardModel isCVCCodeValid]) {
-        fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
-    } else {
-        fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
-    }
-    self.cvcCodeView.backgroundColor = fieldBackgroundColor;
+    self.cvcCodeView.backgroundColor = [self.chargeCardModel isCVCCodeValid] ? [UIColor fieldBackgroundColorValid] : [UIColor fieldBackgroundColorInvalid];
 
-    
-    if ([self.chargeCardModel isZipCodeValid]) {
-        fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
-    } else {
-        fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
-    }
-    self.zipCodeView.backgroundColor = fieldBackgroundColor;
+    self.zipCodeView.backgroundColor = [self.chargeCardModel isZipCodeValid] ? [UIColor fieldBackgroundColorValid] : [UIColor fieldBackgroundColorInvalid];
 
     
     BOOL isEnabled = [self.chargeCardModel isCardChargePossible];

@@ -156,7 +156,7 @@
                                     <rect key="frame" x="41" y="3" width="140" height="40"/>
                                     <accessibility key="accessibilityConfiguration" hint="Expiration date in digits, first two digits are month, last two digits are year" label="Expiration date"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
                                 </textField>
                             </subviews>
@@ -169,7 +169,7 @@
                                 <constraint firstItem="h1S-BC-nB4" firstAttribute="centerY" secondItem="vIA-JG-qgI" secondAttribute="centerY" id="cja-ou-xUS"/>
                                 <constraint firstAttribute="height" constant="46" id="jQ7-NN-jqj"/>
                                 <constraint firstItem="h1S-BC-nB4" firstAttribute="top" secondItem="vIA-JG-qgI" secondAttribute="top" constant="3" id="nxH-k6-25l"/>
-                                <constraint firstAttribute="trailing" secondItem="h1S-BC-nB4" secondAttribute="trailing" constant="18" id="ogI-t1-dSO"/>
+                                <constraint firstAttribute="trailing" secondItem="h1S-BC-nB4" secondAttribute="trailing" priority="900" constant="18" id="ogI-t1-dSO"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYT-Qv-Otu">
