@@ -24,7 +24,7 @@
 @property (strong, nonatomic) IBOutlet UIView *applePayViewHolder;
 @property (strong, nonatomic) IBOutlet UIView *cardEntryView;
 @property (strong, nonatomic) IBOutlet UIView *zipCodeView;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *applePayViewHolderHeightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *cardEntryViewTopConstraint;
 
 @end
 
@@ -82,24 +82,32 @@
         [self.cardNumberField becomeFirstResponder];
     }
     
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     //Remove the Apple Pay button if there is no PKPaymentRequest or if the device is not capable of doing Apple Pay
     if (![self.chargeCardModel isApplePayAvailable]) {
-
+        
         self.applePayViewHolder.hidden = YES;
-        self.applePayViewHolderHeightConstraint = [NSLayoutConstraint constraintWithItem:self.applePayViewHolder
-                                                                     attribute:NSLayoutAttributeHeight
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:nil
-                                                                     attribute:NSLayoutAttributeNotAnAttribute
-                                                                    multiplier:1.0
-                                                                      constant:0.0];
-
-        [self.applePayViewHolder addConstraint:self.applePayViewHolderHeightConstraint];
+        self.cardEntryViewTopConstraint = [NSLayoutConstraint constraintWithItem:self.cardEntryView
+                                                                       attribute:NSLayoutAttributeTop
+                                                                       relatedBy:NSLayoutRelationEqual
+                                                                          toItem:self.headerView
+                                                                       attribute:NSLayoutAttributeBottom
+                                                                      multiplier:1.0
+                                                                        constant:0.0];
+        
+        [self.view addConstraint:self.cardEntryViewTopConstraint];
     }
 
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+
     if (self.modelError) {
 
         SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Failure." description:@"\n\nThere was a problem with your Public Key.\n\nPlease double-check your Public Key and try again."];
