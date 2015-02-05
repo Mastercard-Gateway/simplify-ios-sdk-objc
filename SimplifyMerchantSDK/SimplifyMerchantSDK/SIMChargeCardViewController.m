@@ -91,6 +91,8 @@
     if (![self.chargeCardModel isApplePayAvailable]) {
         
         self.applePayViewHolder.hidden = YES;
+        [self.applePayViewHolder removeFromSuperview];
+        [self.view removeConstraint:self.cardEntryViewTopConstraint];
         self.cardEntryViewTopConstraint = [NSLayoutConstraint constraintWithItem:self.cardEntryView
                                                                        attribute:NSLayoutAttributeTop
                                                                        relatedBy:NSLayoutRelationEqual
