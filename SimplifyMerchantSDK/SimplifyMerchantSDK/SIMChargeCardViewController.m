@@ -71,8 +71,8 @@
     
     NSError *error;
     self.chargeCardModel = [[SIMChargeCardModel alloc] initWithPublicKey:self.publicKey error:&error];
-    self.chargeCardModel.isZipRequired = YES;
-    self.chargeCardModel.isCVCRequired = YES;
+    self.chargeCardModel.isZipRequired = self.isZipRequired;
+    self.chargeCardModel.isCVCRequired = self.isCVCRequired;
     
     if (error) {
         self.modelError = error;
@@ -80,7 +80,7 @@
         self.chargeCardModel.delegate = self;
 
         [self setCardTypeImage];
-        [self buttonEnabled];
+        [self displayPaymentValidity];
         [self.cardNumberField becomeFirstResponder];
     }
     
@@ -144,64 +144,51 @@
     [super didReceiveMemoryWarning];
 }
 
--(void)buttonEnabled {
+-(void)displayPaymentValidity {
     
-    UIColor *cardBackgroundColor = [UIColor whiteColor];
-    UIColor *dateBackgroundColor = [UIColor whiteColor];
-    UIColor *cvcBackgroundColor = [UIColor whiteColor];
-    UIColor *zipBackgroundColor = [UIColor whiteColor];
+    UIColor *fieldBackgroundColor = [UIColor whiteColor];
     
     if (self.chargeCardModel.cardNumber.length > 0) {
         if ([self.chargeCardModel isCardNumberValid]) {
-            cardBackgroundColor = [UIColor fieldBackgroundColorValid];
-            
-//            if (![self.chargeCardModel isExpirationDateValid]) {
-//                [self.expirationField becomeFirstResponder];
-//            }
+            fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
             
         } else {
-            cardBackgroundColor = [UIColor fieldBackgroundColorInvalid];
+            fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
         }
+        
+        self.cardNumberView.backgroundColor = fieldBackgroundColor;
+        
     }
     
     if (self.chargeCardModel.expirationDate.length > 0) {
         if ([self.chargeCardModel isExpirationDateValid]) {
-            dateBackgroundColor = [UIColor fieldBackgroundColorValid];
-
-//            if (![self.chargeCardModel isCVCCodeValid]) {
-//                [self.cvcCodeView becomeFirstResponder];
-//            }
-            
+            fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
         } else {
-            dateBackgroundColor = [UIColor fieldBackgroundColorInvalid];
+            fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
         }
+        self.expirationDateView.backgroundColor = fieldBackgroundColor;
+
     }
     
     if (self.chargeCardModel.cvcCode.length > 0) {
         if ([self.chargeCardModel isCVCCodeValid]) {
-            cvcBackgroundColor = [UIColor fieldBackgroundColorValid];
-
-//            if (![self.chargeCardModel isZipCodeValid]) {
-//                [self.zipField becomeFirstResponder];
-//            }
-            
+            fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
         } else {
-            cvcBackgroundColor = [UIColor fieldBackgroundColorInvalid];
+            fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
         }
+        self.cvcCodeView.backgroundColor = fieldBackgroundColor;
+
     }
     
     if (self.chargeCardModel.zipCode.length > 0) {
         if ([self.chargeCardModel isZipCodeValid]) {
-            zipBackgroundColor = [UIColor fieldBackgroundColorValid];
+            fieldBackgroundColor = [UIColor fieldBackgroundColorValid];
         } else {
-            zipBackgroundColor = [UIColor fieldBackgroundColorInvalid];
+            fieldBackgroundColor = [UIColor fieldBackgroundColorInvalid];
         }
+        self.zipCodeView.backgroundColor = fieldBackgroundColor;
     }
     
-    self.cardNumberView.backgroundColor = cardBackgroundColor;
-    self.expirationDateView.backgroundColor = dateBackgroundColor;
-    self.cvcCodeView.backgroundColor = cvcBackgroundColor;
-    self.zipCodeView.backgroundColor = zipBackgroundColor;
     BOOL isEnabled = [self.chargeCardModel isCardChargePossible];
     [self.submitPaymentButton setEnabled:isEnabled];
     
@@ -215,35 +202,56 @@
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSUInteger fieldLength = string.length;
     
     if (textField == self.cardNumberField) {
-        if (string.length == 0) {
-            [self.chargeCardModel deleteCharacterInCardNumber];
-        } else {
+
+        if (fieldLength) {
             [self.chargeCardModel updateCardNumberWithString:newString];
+
+            if ([self.chargeCardModel isCardNumberValid]) {
+                [self.expirationField becomeFirstResponder];
+            }
+            
+        } else {
+            [self.chargeCardModel deleteCharacterInCardNumber];
         }
+        
         self.cardNumberField.text = self.chargeCardModel.formattedCardNumber;
         [self setCardTypeImage];
-    }
-    
-    else if (textField == self.cvcField) {
+        
+    } else if (textField == self.expirationField) {
+        
+        if (fieldLength) {
+            [self.chargeCardModel updateExpirationDateWithString:newString];
+        } else {
+            [self.chargeCardModel deleteCharacterInExpiration];
+        }
+
+        self.expirationField.text = self.chargeCardModel.formattedExpirationDate;
+        
+        if ([self.chargeCardModel isExpirationDateValid]) {
+            [self.cvcField becomeFirstResponder];
+        }
+        
+
+    } else if (textField == self.cvcField) {
+
         [self.chargeCardModel updateCVCNumberWithString:newString];
         self.cvcField.text = self.chargeCardModel.cvcCode;
-    }
-    
-    else if (textField == self.expirationField) {
-        if (string.length == 0) {
-            [self.chargeCardModel deleteCharacterInExpiration];
-        } else {
-            [self.chargeCardModel updateExpirationDateWithString:newString];
+        
+        if ([self.chargeCardModel isCVCCodeValid]) {
+            [self.zipField becomeFirstResponder];
         }
-        self.expirationField.text = self.chargeCardModel.formattedExpirationDate;
+        
+        
     } else if (textField == self.zipField) {
+
         [self.chargeCardModel updateZipCodeWithString:newString];
         self.zipField.text = self.chargeCardModel.zipCode;
     }
     
-    [self buttonEnabled];
+    [self displayPaymentValidity];
 
     return NO;
 }
@@ -263,7 +271,7 @@
         [self.chargeCardModel updateExpirationDateWithString:@""];
     }
     
-    [self buttonEnabled];
+    [self displayPaymentValidity];
     
     return YES;
 }
@@ -302,7 +310,7 @@
     self.cvcField.text = self.chargeCardModel.cvcCode;
     self.expirationField.text = self.chargeCardModel.formattedExpirationDate;
     [self setCardTypeImage];
-    [self buttonEnabled];
+    [self displayPaymentValidity];
 }
 
 - (void) dismissKeyboard {
