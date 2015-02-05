@@ -12,7 +12,7 @@
 @property (strong, nonatomic) UIColor *primaryColor;
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
-@property (strong, nonatomic) IBOutlet UIButton *chargeCardButton;
+@property (strong, nonatomic) IBOutlet UIButton *submitPaymentButton;
 @property (strong, nonatomic) IBOutlet UITextField *cardNumberField;
 @property (strong, nonatomic) IBOutlet UITextField *expirationField;
 @property (strong, nonatomic) IBOutlet UITextField *cvcField;
@@ -24,7 +24,7 @@
 @property (strong, nonatomic) IBOutlet UIView *applePayViewHolder;
 @property (strong, nonatomic) IBOutlet UIView *cardEntryView;
 @property (strong, nonatomic) IBOutlet UIView *zipCodeView;
-@property (strong, nonatomic) PKPaymentRequest *paymentRequest;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *applePayViewHolderHeightConstraint;
 
 @end
 
@@ -47,7 +47,7 @@
     if (self) {
         self.publicKey = publicKey;
         self.primaryColor = primaryColor ? primaryColor : [UIColor buttonBackgroundColorEnabled];
-        self.paymentRequest = paymentRequest;
+        self.chargeCardModel.paymentRequest = paymentRequest;
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
     
@@ -83,9 +83,18 @@
     }
     
     //Remove the Apple Pay button if there is no PKPaymentRequest or if the device is not capable of doing Apple Pay
-    if (!self.paymentRequest || ![PKPaymentAuthorizationViewController canMakePayments]) {
+    if (![self.chargeCardModel isApplePayAvailable]) {
+
         self.applePayViewHolder.hidden = YES;
-        [self.applePayViewHolder removeFromSuperview];
+        self.applePayViewHolderHeightConstraint = [NSLayoutConstraint constraintWithItem:self.applePayViewHolder
+                                                                     attribute:NSLayoutAttributeHeight
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:nil
+                                                                     attribute:NSLayoutAttributeNotAnAttribute
+                                                                    multiplier:1.0
+                                                                      constant:0.0];
+
+        [self.applePayViewHolder addConstraint:self.applePayViewHolderHeightConstraint];
     }
 
 }
@@ -166,12 +175,12 @@
     self.cvcCodeView.backgroundColor = cvcBackgroundColor;
     self.zipCodeView.backgroundColor = zipBackgroundColor;
     BOOL isEnabled = [self.chargeCardModel isCardChargePossible];
-    [self.chargeCardButton setEnabled:isEnabled];
+    [self.submitPaymentButton setEnabled:isEnabled];
     
     if (isEnabled) {
-        [self.chargeCardButton setBackgroundColor:self.primaryColor ? self.primaryColor : [UIColor buttonBackgroundColorEnabled]];
+        [self.submitPaymentButton setBackgroundColor:self.primaryColor ? self.primaryColor : [UIColor buttonBackgroundColorEnabled]];
     } else {
-        [self.chargeCardButton setBackgroundColor:[UIColor buttonBackgroundColorDisabled]];
+        [self.submitPaymentButton setBackgroundColor:[UIColor buttonBackgroundColorDisabled]];
     }
 }
 
@@ -250,8 +259,8 @@
 }
 
 -(IBAction)retriveApplePayToken:(id)sender {
-    if (self.paymentRequest) {
-        PKPaymentAuthorizationViewController *pavc = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:self.paymentRequest];
+    if (self.chargeCardModel.paymentRequest) {
+        PKPaymentAuthorizationViewController *pavc = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:self.chargeCardModel.paymentRequest];
         pavc.delegate = self;
         [self presentViewController:pavc animated:YES completion:nil];
     }
