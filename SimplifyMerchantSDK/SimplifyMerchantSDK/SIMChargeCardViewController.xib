@@ -71,6 +71,9 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDo-bu-4n8">
                             <rect key="frame" x="0.0" y="115" width="284" height="1"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="b76-dN-m28"/>
+                            </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83D-Z8-lqT">
                             <rect key="frame" x="292" y="104" width="16" height="21"/>
@@ -81,7 +84,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ro-kV-bIh">
                             <rect key="frame" x="139" y="41" width="322" height="46"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="5ro-kV-bIh" secondAttribute="height" multiplier="7:1" id="8Sg-Kj-zRt"/>
+                                <constraint firstAttribute="width" secondItem="5ro-kV-bIh" secondAttribute="height" multiplier="7:1" priority="900" id="8Sg-Kj-zRt"/>
                             </constraints>
                             <state key="normal" backgroundImage="applePayButton">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -96,19 +99,27 @@
                         <constraint firstAttribute="bottom" secondItem="UDo-bu-4n8" secondAttribute="bottom" constant="12" id="1d1-bY-7e9"/>
                         <constraint firstItem="5ro-kV-bIh" firstAttribute="top" secondItem="8cc-cH-HyZ" secondAttribute="top" constant="41" id="7vA-2N-H3M"/>
                         <constraint firstAttribute="centerX" secondItem="83D-Z8-lqT" secondAttribute="centerX" id="A4N-oS-pCY"/>
+                        <constraint firstAttribute="trailing" secondItem="5ro-kV-bIh" secondAttribute="trailing" constant="139" id="Bi1-z5-8qv"/>
                         <constraint firstItem="UDo-bu-4n8" firstAttribute="leading" secondItem="8cc-cH-HyZ" secondAttribute="leading" id="D9Z-YJ-hRK"/>
                         <constraint firstItem="UDo-bu-4n8" firstAttribute="top" secondItem="LyX-nJ-Fkd" secondAttribute="top" id="DjL-kP-fl7"/>
                         <constraint firstAttribute="bottom" secondItem="83D-Z8-lqT" secondAttribute="bottom" constant="3" id="Fn3-OV-uNG"/>
                         <constraint firstItem="UDo-bu-4n8" firstAttribute="top" secondItem="5ro-kV-bIh" secondAttribute="bottom" constant="28" id="Ng4-E0-7qY"/>
-                        <constraint firstItem="UDo-bu-4n8" firstAttribute="bottom" secondItem="LyX-nJ-Fkd" secondAttribute="bottom" id="SeS-Ap-3Fs"/>
+                        <constraint firstItem="UDo-bu-4n8" firstAttribute="bottom" secondItem="LyX-nJ-Fkd" secondAttribute="bottom" priority="750" id="SeS-Ap-3Fs"/>
                         <constraint firstItem="LyX-nJ-Fkd" firstAttribute="leading" secondItem="83D-Z8-lqT" secondAttribute="trailing" constant="8" symbolic="YES" id="X4N-ja-fac"/>
                         <constraint firstItem="83D-Z8-lqT" firstAttribute="top" secondItem="5ro-kV-bIh" secondAttribute="bottom" constant="17" id="ccH-BQ-tFi"/>
                         <constraint firstAttribute="centerX" secondItem="5ro-kV-bIh" secondAttribute="centerX" id="fZF-Sg-jRN"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5ro-kV-bIh" secondAttribute="trailing" constant="20" id="kk2-xu-Oi3"/>
                         <constraint firstItem="83D-Z8-lqT" firstAttribute="top" secondItem="5ro-kV-bIh" secondAttribute="bottom" constant="17" id="krX-1N-GCq"/>
+                        <constraint firstItem="5ro-kV-bIh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8cc-cH-HyZ" secondAttribute="leading" constant="20" id="tGr-3n-N6J"/>
                         <constraint firstAttribute="centerX" secondItem="5ro-kV-bIh" secondAttribute="centerX" id="twR-qA-kPh"/>
                         <constraint firstItem="83D-Z8-lqT" firstAttribute="leading" secondItem="UDo-bu-4n8" secondAttribute="trailing" constant="8" symbolic="YES" id="yPC-l1-ldg"/>
                         <constraint firstAttribute="trailing" secondItem="LyX-nJ-Fkd" secondAttribute="trailing" id="z7C-4Q-XJb"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Bi1-z5-8qv"/>
+                        </mask>
+                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wvh-92-4Hw">
                     <rect key="frame" x="0.0" y="225" width="600" height="95"/>
@@ -272,7 +283,7 @@
                             <accessibility key="accessibilityConfiguration" hint="Charges card" label="Charge card"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="58" id="GFL-um-ULt"/>
-                                <constraint firstAttribute="width" constant="322" id="keM-1l-QKz"/>
+                                <constraint firstAttribute="width" priority="900" constant="322" id="keM-1l-QKz"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <color key="tintColor" red="0.7686274509803922" green="0.77647058823529413" blue="0.78431372549019607" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -326,7 +337,9 @@
                         <constraint firstItem="zYE-ZD-kf1" firstAttribute="width" secondItem="Y7O-Rp-Rl5" secondAttribute="width" id="Mnl-TM-urW"/>
                         <constraint firstAttribute="bottom" secondItem="zYE-ZD-kf1" secondAttribute="bottom" priority="500" constant="97" id="dA8-AV-oN3"/>
                         <constraint firstItem="Y7O-Rp-Rl5" firstAttribute="centerX" secondItem="uSO-Ry-8D4" secondAttribute="centerX" id="fU2-RP-0Ul"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Y7O-Rp-Rl5" secondAttribute="trailing" constant="20" id="hCA-6b-RZo"/>
                         <constraint firstItem="Y7O-Rp-Rl5" firstAttribute="top" secondItem="uSO-Ry-8D4" secondAttribute="top" constant="17" id="jxR-jw-VLQ"/>
+                        <constraint firstItem="Y7O-Rp-Rl5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uSO-Ry-8D4" secondAttribute="leading" constant="20" id="wAg-0b-nio"/>
                         <constraint firstAttribute="centerX" secondItem="zYE-ZD-kf1" secondAttribute="centerX" constant="-1" id="zDK-Ec-ulg"/>
                         <constraint firstItem="Y7O-Rp-Rl5" firstAttribute="top" secondItem="uSO-Ry-8D4" secondAttribute="top" constant="17" id="zK5-cz-gO5"/>
                         <constraint firstItem="zYE-ZD-kf1" firstAttribute="top" secondItem="Y7O-Rp-Rl5" secondAttribute="bottom" constant="26" id="zjJ-4l-iyM"/>

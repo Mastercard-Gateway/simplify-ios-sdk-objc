@@ -58,9 +58,9 @@
                                 <rect key="frame" x="16" y="65" width="568" height="396"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5-pack of buttons with the app icons." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ee-p3-hqJ">
-                                        <rect key="frame" x="8" y="361" width="209" height="15"/>
+                                        <rect key="frame" x="8" y="361" width="400" height="15"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="15" id="9ML-FA-nzo"/>
+                                            <constraint firstAttribute="height" constant="15" id="ggy-P8-PQo"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -83,10 +83,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="price" translatesAutoresizingMaskIntoConstraints="NO" id="IRK-Wy-4cq" userLabel="priceButton">
-                                        <rect key="frame" x="335" y="300" width="73" height="73"/>
+                                        <rect key="frame" x="335" y="256" width="73" height="73"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VpK-81-Tkh">
-                                        <rect key="frame" x="350" y="300" width="42" height="73"/>
+                                        <rect key="frame" x="350" y="256" width="42" height="73"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="42" id="z7p-Aj-6bA"/>
                                         </constraints>
@@ -101,14 +101,15 @@
                                     <constraint firstItem="IRK-Wy-4cq" firstAttribute="top" secondItem="VpK-81-Tkh" secondAttribute="top" id="E4F-4N-BSa"/>
                                     <constraint firstItem="fsN-is-0Hk" firstAttribute="top" secondItem="ZFk-dI-ZHr" secondAttribute="bottom" constant="8" symbolic="YES" id="HL6-3c-8C6"/>
                                     <constraint firstItem="IRK-Wy-4cq" firstAttribute="centerX" secondItem="VpK-81-Tkh" secondAttribute="centerX" constant="0.5" id="Pm3-P1-5eZ"/>
-                                    <constraint firstItem="9ee-p3-hqJ" firstAttribute="leading" secondItem="Mj7-Vq-vAH" secondAttribute="leadingMargin" id="Qy7-hi-uP7"/>
-                                    <constraint firstAttribute="bottom" secondItem="9ee-p3-hqJ" secondAttribute="bottom" constant="20" id="Vzm-89-Yda"/>
-                                    <constraint firstItem="9ee-p3-hqJ" firstAttribute="top" secondItem="fsN-is-0Hk" secondAttribute="bottom" constant="8" symbolic="YES" id="chd-zD-yqZ"/>
+                                    <constraint firstItem="9ee-p3-hqJ" firstAttribute="trailing" secondItem="IRK-Wy-4cq" secondAttribute="trailing" id="Y4j-x8-T0b"/>
                                     <constraint firstAttribute="centerX" secondItem="ZFk-dI-ZHr" secondAttribute="centerX" constant="-4" id="dxB-tW-vxb"/>
+                                    <constraint firstItem="9ee-p3-hqJ" firstAttribute="leading" secondItem="fsN-is-0Hk" secondAttribute="leading" id="f06-wk-lfK"/>
                                     <constraint firstItem="ZFk-dI-ZHr" firstAttribute="top" secondItem="Mj7-Vq-vAH" secondAttribute="top" id="gfL-Ba-tLV"/>
-                                    <constraint firstItem="9ee-p3-hqJ" firstAttribute="leading" secondItem="fsN-is-0Hk" secondAttribute="leading" id="gwi-RS-GDL"/>
                                     <constraint firstItem="IRK-Wy-4cq" firstAttribute="centerY" secondItem="VpK-81-Tkh" secondAttribute="centerY" id="iL8-lK-g29"/>
-                                    <constraint firstAttribute="bottom" secondItem="IRK-Wy-4cq" secondAttribute="bottom" constant="23" id="ltO-d3-vgO"/>
+                                    <constraint firstAttribute="bottom" secondItem="IRK-Wy-4cq" secondAttribute="bottom" constant="67" id="ltO-d3-vgO"/>
+                                    <constraint firstItem="9ee-p3-hqJ" firstAttribute="top" secondItem="fsN-is-0Hk" secondAttribute="bottom" constant="8" symbolic="YES" id="o9f-yx-ZiD"/>
+                                    <constraint firstAttribute="bottom" secondItem="9ee-p3-hqJ" secondAttribute="bottom" constant="20" id="u5A-c4-5ao"/>
+                                    <constraint firstItem="9ee-p3-hqJ" firstAttribute="leading" secondItem="Mj7-Vq-vAH" secondAttribute="leadingMargin" id="zda-Zi-1es"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8.0"/>
