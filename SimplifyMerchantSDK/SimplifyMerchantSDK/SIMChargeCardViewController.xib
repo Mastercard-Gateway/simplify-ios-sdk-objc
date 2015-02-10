@@ -159,7 +159,7 @@
                                     </constraints>
                                 </imageView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exp" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="h1S-BC-nB4" userLabel="expirationTextField">
-                                    <rect key="frame" x="41" y="3" width="140" height="40"/>
+                                    <rect key="frame" x="43" y="3" width="138" height="40"/>
                                     <accessibility key="accessibilityConfiguration" hint="Expiration date in digits, first two digits are month, last two digits are year" label="Expiration date"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -170,7 +170,7 @@
                             <constraints>
                                 <constraint firstItem="li5-xg-VpK" firstAttribute="leading" secondItem="vIA-JG-qgI" secondAttribute="leadingMargin" priority="900" id="Har-8l-V3B"/>
                                 <constraint firstItem="li5-xg-VpK" firstAttribute="top" secondItem="vIA-JG-qgI" secondAttribute="top" constant="11" id="OJy-Gu-8dq"/>
-                                <constraint firstItem="h1S-BC-nB4" firstAttribute="leading" secondItem="li5-xg-VpK" secondAttribute="trailing" constant="8" symbolic="YES" id="SxR-5q-zgZ"/>
+                                <constraint firstItem="h1S-BC-nB4" firstAttribute="leading" secondItem="li5-xg-VpK" secondAttribute="trailing" constant="10" id="SxR-5q-zgZ"/>
                                 <constraint firstItem="h1S-BC-nB4" firstAttribute="centerY" secondItem="li5-xg-VpK" secondAttribute="centerY" id="XVh-vs-bqC"/>
                                 <constraint firstItem="h1S-BC-nB4" firstAttribute="centerY" secondItem="vIA-JG-qgI" secondAttribute="centerY" id="cja-ou-xUS"/>
                                 <constraint firstAttribute="height" constant="46" id="jQ7-NN-jqj"/>
