@@ -80,7 +80,6 @@
         self.chargeCardModel.delegate = self;
 
         [self setCardTypeImage];
-//        [self displayPaymentValidity];
         [self.submitPaymentButton setBackgroundColor:[UIColor buttonBackgroundColorDisabled]];
         [self.cardNumberField becomeFirstResponder];
     }
@@ -102,7 +101,7 @@
                                                                           toItem:self.headerView
                                                                        attribute:NSLayoutAttributeBottom
                                                                       multiplier:1.0
-                                                                        constant:0.0];
+                                                                        constant:15.0];
         
         [self.view addConstraint:self.cardEntryViewTopConstraint];
     }
@@ -212,7 +211,6 @@
         if ([self.chargeCardModel isCVCCodeValid]) {
             [self.zipField becomeFirstResponder];
         }
-        
         
     } else if (textField == self.zipField) {
 
