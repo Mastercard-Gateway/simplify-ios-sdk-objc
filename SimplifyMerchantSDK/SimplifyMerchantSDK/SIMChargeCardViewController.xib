@@ -32,16 +32,16 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAH-q3-iQQ">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAH-q3-iQQ" userLabel="headerView">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="77"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Charge A Card" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hz7-cC-AWu">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Charge A Card" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hz7-cC-AWu" userLabel="titleLabel">
                             <rect key="frame" x="232" y="32" width="136" height="24"/>
                             <accessibility key="accessibilityConfiguration" label="Charge a Card"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i43-v9-uv5">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i43-v9-uv5" userLabel="cancelButton">
                             <rect key="frame" x="8" y="27" width="48" height="30"/>
                             <state key="normal" title="Cancel">
                                 <color key="titleColor" red="0.94509803921568625" green="0.41568627450980394" blue="0.14509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -61,27 +61,27 @@
                         <constraint firstAttribute="bottom" secondItem="hz7-cC-AWu" secondAttribute="bottom" constant="21" id="r6Q-CU-VVs"/>
                     </constraints>
                 </view>
-                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cc-cH-HyZ">
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cc-cH-HyZ" userLabel="applePayView">
                     <rect key="frame" x="0.0" y="85" width="600" height="128"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LyX-nJ-Fkd">
-                            <rect key="frame" x="316" y="115" width="284" height="1"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDo-bu-4n8">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDo-bu-4n8" userLabel="leftSpacerView">
                             <rect key="frame" x="0.0" y="115" width="284" height="1"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="b76-dN-m28"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83D-Z8-lqT">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LyX-nJ-Fkd" userLabel="rightSpacerView">
+                            <rect key="frame" x="316" y="115" width="284" height="1"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83D-Z8-lqT" userLabel="orLabel">
                             <rect key="frame" x="292" y="104" width="16" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ro-kV-bIh">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ro-kV-bIh" userLabel="applePayButton">
                             <rect key="frame" x="139" y="41" width="322" height="46"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="5ro-kV-bIh" secondAttribute="height" multiplier="7:1" priority="900" id="8Sg-Kj-zRt"/>
@@ -99,7 +99,6 @@
                         <constraint firstAttribute="bottom" secondItem="UDo-bu-4n8" secondAttribute="bottom" constant="12" id="1d1-bY-7e9"/>
                         <constraint firstItem="5ro-kV-bIh" firstAttribute="top" secondItem="8cc-cH-HyZ" secondAttribute="top" constant="41" id="7vA-2N-H3M"/>
                         <constraint firstAttribute="centerX" secondItem="83D-Z8-lqT" secondAttribute="centerX" id="A4N-oS-pCY"/>
-                        <constraint firstAttribute="trailing" secondItem="5ro-kV-bIh" secondAttribute="trailing" constant="139" id="Bi1-z5-8qv"/>
                         <constraint firstItem="UDo-bu-4n8" firstAttribute="leading" secondItem="8cc-cH-HyZ" secondAttribute="leading" id="D9Z-YJ-hRK"/>
                         <constraint firstItem="UDo-bu-4n8" firstAttribute="top" secondItem="LyX-nJ-Fkd" secondAttribute="top" id="DjL-kP-fl7"/>
                         <constraint firstAttribute="bottom" secondItem="83D-Z8-lqT" secondAttribute="bottom" constant="3" id="Fn3-OV-uNG"/>
@@ -115,25 +114,80 @@
                         <constraint firstItem="83D-Z8-lqT" firstAttribute="leading" secondItem="UDo-bu-4n8" secondAttribute="trailing" constant="8" symbolic="YES" id="yPC-l1-ldg"/>
                         <constraint firstAttribute="trailing" secondItem="LyX-nJ-Fkd" secondAttribute="trailing" id="z7C-4Q-XJb"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="Bi1-z5-8qv"/>
-                        </mask>
-                    </variation>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wvh-92-4Hw">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wvh-92-4Hw" userLabel="cardDetailsView">
                     <rect key="frame" x="0.0" y="225" width="600" height="95"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P7X-Fp-cdo">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xli-Iu-iqb" userLabel="cardNumberView">
+                            <rect key="frame" x="0.0" y="1" width="600" height="46"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="pPN-OC-lV3" userLabel="cardNumberImage">
+                                    <rect key="frame" x="8" y="10" width="30" height="25"/>
+                                    <accessibility key="accessibilityConfiguration" hint="Card type based on card number" label="Card Type">
+                                        <bool key="isElement" value="YES"/>
+                                    </accessibility>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="ecb-Oe-tN4"/>
+                                    </constraints>
+                                </imageView>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter card number" adjustsFontSizeToFit="NO" minimumFontSize="20" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4mp-r7-IAa" userLabel="cardNumberTextField">
+                                    <rect key="frame" x="46" y="3" width="541" height="40"/>
+                                    <accessibility key="accessibilityConfiguration" hint="Enter card number here" label="Card number"/>
+                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="pPN-OC-lV3" firstAttribute="leading" secondItem="xli-Iu-iqb" secondAttribute="leadingMargin" id="IhW-sl-GpP"/>
+                                <constraint firstItem="pPN-OC-lV3" firstAttribute="top" secondItem="xli-Iu-iqb" secondAttribute="top" constant="10" id="LqT-PL-SoI"/>
+                                <constraint firstItem="4mp-r7-IAa" firstAttribute="top" secondItem="xli-Iu-iqb" secondAttribute="top" constant="3" id="PNU-yw-ocH"/>
+                                <constraint firstItem="4mp-r7-IAa" firstAttribute="centerY" secondItem="xli-Iu-iqb" secondAttribute="centerY" id="XXg-dF-zIo"/>
+                                <constraint firstItem="4mp-r7-IAa" firstAttribute="leading" secondItem="pPN-OC-lV3" secondAttribute="trailing" constant="8" symbolic="YES" id="gD9-m9-UfN"/>
+                                <constraint firstAttribute="trailing" secondItem="4mp-r7-IAa" secondAttribute="trailing" constant="13" id="rrY-KU-ZOn"/>
+                                <constraint firstAttribute="bottom" secondItem="pPN-OC-lV3" secondAttribute="bottom" constant="11" id="zb8-Ss-4Eu"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIA-JG-qgI" userLabel="expirationView">
+                            <rect key="frame" x="0.0" y="48" width="199" height="46"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expiryInput" translatesAutoresizingMaskIntoConstraints="NO" id="li5-xg-VpK" userLabel="expirationImage">
+                                    <rect key="frame" x="8" y="11" width="25" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="Z3d-IN-qXb"/>
+                                    </constraints>
+                                </imageView>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exp" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="h1S-BC-nB4" userLabel="expirationTextField">
+                                    <rect key="frame" x="41" y="3" width="140" height="40"/>
+                                    <accessibility key="accessibilityConfiguration" hint="Expiration date in digits, first two digits are month, last two digits are year" label="Expiration date"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="li5-xg-VpK" firstAttribute="leading" secondItem="vIA-JG-qgI" secondAttribute="leadingMargin" priority="900" id="Har-8l-V3B"/>
+                                <constraint firstItem="li5-xg-VpK" firstAttribute="top" secondItem="vIA-JG-qgI" secondAttribute="top" constant="11" id="OJy-Gu-8dq"/>
+                                <constraint firstItem="h1S-BC-nB4" firstAttribute="leading" secondItem="li5-xg-VpK" secondAttribute="trailing" constant="8" symbolic="YES" id="SxR-5q-zgZ"/>
+                                <constraint firstItem="h1S-BC-nB4" firstAttribute="centerY" secondItem="li5-xg-VpK" secondAttribute="centerY" id="XVh-vs-bqC"/>
+                                <constraint firstItem="h1S-BC-nB4" firstAttribute="centerY" secondItem="vIA-JG-qgI" secondAttribute="centerY" id="cja-ou-xUS"/>
+                                <constraint firstAttribute="height" constant="46" id="jQ7-NN-jqj"/>
+                                <constraint firstItem="h1S-BC-nB4" firstAttribute="top" secondItem="vIA-JG-qgI" secondAttribute="top" constant="3" id="nxH-k6-25l"/>
+                                <constraint firstAttribute="trailing" secondItem="h1S-BC-nB4" secondAttribute="trailing" priority="900" constant="18" id="ogI-t1-dSO"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P7X-Fp-cdo" userLabel="cvcView">
                             <rect key="frame" x="200" y="48" width="200" height="46"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cvcInput" translatesAutoresizingMaskIntoConstraints="NO" id="8Fh-sM-y0p">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cvcInput" translatesAutoresizingMaskIntoConstraints="NO" id="8Fh-sM-y0p" userLabel="cvcImage">
                                     <rect key="frame" x="8" y="10" width="30" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="sUG-6n-9vW"/>
                                     </constraints>
                                 </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CVC" minimumFontSize="20" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="R1X-5S-mSK">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CVC" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="R1X-5S-mSK" userLabel="cvcTextField">
                                     <rect key="frame" x="46" y="3" width="141" height="40"/>
                                     <accessibility key="accessibilityConfiguration" hint="Enter CVC code for card.  Optional" label="CVC code"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -153,45 +207,16 @@
                                 <constraint firstAttribute="trailing" secondItem="R1X-5S-mSK" secondAttribute="trailing" constant="13" id="iHi-ki-sDW"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIA-JG-qgI">
-                            <rect key="frame" x="0.0" y="48" width="199" height="46"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expiryInput" translatesAutoresizingMaskIntoConstraints="NO" id="li5-xg-VpK">
-                                    <rect key="frame" x="8" y="11" width="25" height="24"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="25" id="Z3d-IN-qXb"/>
-                                    </constraints>
-                                </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exp" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h1S-BC-nB4">
-                                    <rect key="frame" x="41" y="3" width="140" height="40"/>
-                                    <accessibility key="accessibilityConfiguration" hint="Expiration date in digits, first two digits are month, last two digits are year" label="Expiration date"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
-                                </textField>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="li5-xg-VpK" firstAttribute="leading" secondItem="vIA-JG-qgI" secondAttribute="leadingMargin" id="Har-8l-V3B"/>
-                                <constraint firstItem="li5-xg-VpK" firstAttribute="top" secondItem="vIA-JG-qgI" secondAttribute="top" constant="11" id="OJy-Gu-8dq"/>
-                                <constraint firstItem="h1S-BC-nB4" firstAttribute="leading" secondItem="li5-xg-VpK" secondAttribute="trailing" constant="8" symbolic="YES" id="SxR-5q-zgZ"/>
-                                <constraint firstItem="h1S-BC-nB4" firstAttribute="centerY" secondItem="li5-xg-VpK" secondAttribute="centerY" id="XVh-vs-bqC"/>
-                                <constraint firstItem="h1S-BC-nB4" firstAttribute="centerY" secondItem="vIA-JG-qgI" secondAttribute="centerY" id="cja-ou-xUS"/>
-                                <constraint firstAttribute="height" constant="46" id="jQ7-NN-jqj"/>
-                                <constraint firstItem="h1S-BC-nB4" firstAttribute="top" secondItem="vIA-JG-qgI" secondAttribute="top" constant="3" id="nxH-k6-25l"/>
-                                <constraint firstAttribute="trailing" secondItem="h1S-BC-nB4" secondAttribute="trailing" priority="900" constant="18" id="ogI-t1-dSO"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYT-Qv-Otu">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYT-Qv-Otu" userLabel="zipView">
                             <rect key="frame" x="401" y="48" width="199" height="46"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zipInput" translatesAutoresizingMaskIntoConstraints="NO" id="MAB-W3-O7s">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zipInput" translatesAutoresizingMaskIntoConstraints="NO" id="MAB-W3-O7s" userLabel="zipImage">
                                     <rect key="frame" x="8" y="11" width="25" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="9XU-fg-Oev"/>
                                     </constraints>
                                 </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ZIP" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="rZI-jC-JMa">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ZIP" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="rZI-jC-JMa" userLabel="zipTextField">
                                     <rect key="frame" x="41" y="3" width="145" height="40"/>
                                     <accessibility key="accessibilityConfiguration" hint="Enter CVC code for card.  Optional" label="CVC code"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -209,37 +234,6 @@
                                 <constraint firstAttribute="height" constant="46" id="vB4-Mv-zSh"/>
                                 <constraint firstItem="rZI-jC-JMa" firstAttribute="leading" secondItem="MAB-W3-O7s" secondAttribute="trailing" constant="8" symbolic="YES" id="wXE-UH-oIq"/>
                                 <constraint firstItem="rZI-jC-JMa" firstAttribute="top" secondItem="cYT-Qv-Otu" secondAttribute="top" constant="3" id="yU7-sc-jy7"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xli-Iu-iqb">
-                            <rect key="frame" x="0.0" y="1" width="600" height="46"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="pPN-OC-lV3">
-                                    <rect key="frame" x="8" y="10" width="30" height="25"/>
-                                    <accessibility key="accessibilityConfiguration" hint="Card type based on card number" label="Card Type">
-                                        <bool key="isElement" value="YES"/>
-                                    </accessibility>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="30" id="ecb-Oe-tN4"/>
-                                    </constraints>
-                                </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter card number" adjustsFontSizeToFit="NO" minimumFontSize="20" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4mp-r7-IAa">
-                                    <rect key="frame" x="46" y="3" width="541" height="40"/>
-                                    <accessibility key="accessibilityConfiguration" hint="Enter card number here" label="Card number"/>
-                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
-                                </textField>
-                            </subviews>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstItem="pPN-OC-lV3" firstAttribute="leading" secondItem="xli-Iu-iqb" secondAttribute="leadingMargin" id="IhW-sl-GpP"/>
-                                <constraint firstItem="pPN-OC-lV3" firstAttribute="top" secondItem="xli-Iu-iqb" secondAttribute="top" constant="10" id="LqT-PL-SoI"/>
-                                <constraint firstItem="4mp-r7-IAa" firstAttribute="top" secondItem="xli-Iu-iqb" secondAttribute="top" constant="3" id="PNU-yw-ocH"/>
-                                <constraint firstItem="4mp-r7-IAa" firstAttribute="centerY" secondItem="xli-Iu-iqb" secondAttribute="centerY" id="XXg-dF-zIo"/>
-                                <constraint firstItem="4mp-r7-IAa" firstAttribute="leading" secondItem="pPN-OC-lV3" secondAttribute="trailing" constant="8" symbolic="YES" id="gD9-m9-UfN"/>
-                                <constraint firstAttribute="trailing" secondItem="4mp-r7-IAa" secondAttribute="trailing" constant="13" id="rrY-KU-ZOn"/>
-                                <constraint firstAttribute="bottom" secondItem="pPN-OC-lV3" secondAttribute="bottom" constant="11" id="zb8-Ss-4Eu"/>
                             </constraints>
                         </view>
                     </subviews>
