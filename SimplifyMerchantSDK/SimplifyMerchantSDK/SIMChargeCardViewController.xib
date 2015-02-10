@@ -293,7 +293,7 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zYE-ZD-kf1" userLabel="disclaimerView">
-                            <rect key="frame" x="140" y="101" width="322" height="67"/>
+                            <rect key="frame" x="140" y="101" width="322" height="83"/>
                             <subviews>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BNT-c2-zGX" userLabel="disclaimerTextView">
                                     <rect key="frame" x="11" y="8" width="300" height="67"/>
@@ -315,6 +315,7 @@
                             <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="tintColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
+                                <constraint firstAttribute="centerY" secondItem="BNT-c2-zGX" secondAttribute="centerY" id="6Ut-aP-XkV"/>
                                 <constraint firstItem="BNT-c2-zGX" firstAttribute="leading" secondItem="zYE-ZD-kf1" secondAttribute="leading" constant="11" id="BGD-oN-R77"/>
                                 <constraint firstItem="BNT-c2-zGX" firstAttribute="centerX" secondItem="zYE-ZD-kf1" secondAttribute="centerX" id="C4q-Hh-Lbx"/>
                                 <constraint firstItem="BNT-c2-zGX" firstAttribute="top" secondItem="zYE-ZD-kf1" secondAttribute="topMargin" id="CkT-6h-vg8"/>
