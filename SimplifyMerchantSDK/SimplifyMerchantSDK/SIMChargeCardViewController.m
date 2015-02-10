@@ -80,7 +80,8 @@
         self.chargeCardModel.delegate = self;
 
         [self setCardTypeImage];
-        [self displayPaymentValidity];
+//        [self displayPaymentValidity];
+        [self.submitPaymentButton setBackgroundColor:[UIColor buttonBackgroundColorDisabled]];
         [self.cardNumberField becomeFirstResponder];
     }
     
