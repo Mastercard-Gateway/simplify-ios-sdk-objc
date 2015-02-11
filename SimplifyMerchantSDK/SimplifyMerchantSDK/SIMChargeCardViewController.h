@@ -48,7 +48,7 @@
 @property (nonatomic, weak) id <SIMChargeCardViewControllerDelegate> delegate; /**< Delegate for SIMChargeCardModelDelegate */
 
 @property (nonatomic, strong) NSDecimalNumber *amount;
-@property (nonatomic) BOOL isZipRequired;
-@property (nonatomic) BOOL isCVCRequired;
+@property (nonatomic) BOOL isCVCRequired;   /**< Enable validation on the CVC field */
+@property (nonatomic) BOOL isZipRequired;   /**< Enable validation on the Zip field */
 
 @end
