@@ -10,6 +10,7 @@
 @property (strong, nonatomic) SIMChargeCardModel *chargeCardModel;
 @property (strong, nonatomic) NSString *publicKey;
 @property (strong, nonatomic) NSError *modelError;
+@property (strong, nonatomic) PKPaymentRequest *paymentRequest;
 @property (strong, nonatomic) UIColor *primaryColor;
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
@@ -49,7 +50,7 @@
     if (self) {
         self.publicKey = publicKey;
         self.primaryColor = primaryColor ? primaryColor : [UIColor buttonBackgroundColorEnabled];
-        self.chargeCardModel.paymentRequest = paymentRequest;
+        self.paymentRequest = paymentRequest;
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
     
@@ -73,6 +74,7 @@
     self.chargeCardModel = [[SIMChargeCardModel alloc] initWithPublicKey:self.publicKey error:&error];
     self.chargeCardModel.isZipRequired = self.isZipRequired;
     self.chargeCardModel.isCVCRequired = self.isCVCRequired;
+    self.chargeCardModel.paymentRequest = self.paymentRequest;
     
     if (error) {
         self.modelError = error;
@@ -90,7 +92,7 @@
     [super viewWillAppear:animated];
     
     //Remove the Apple Pay button if there is no PKPaymentRequest or if the device is not capable of doing Apple Pay
-    if ([self.chargeCardModel isApplePayAvailable]) {
+    if (![self.chargeCardModel isApplePayAvailable]) {
         
         self.applePayViewHolder.hidden = YES;
         [self.applePayViewHolder removeFromSuperview];
