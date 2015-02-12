@@ -90,20 +90,10 @@
     [super viewWillAppear:animated];
     
     //Remove the Apple Pay button if there is no PKPaymentRequest or if the device is not capable of doing Apple Pay
-    if ([self.chargeCardModel isApplePayAvailable]) {
+    if (![self.chargeCardModel isApplePayAvailable]) {
         
-        self.applePayViewHolder.hidden = YES;
         [self.applePayViewHolder removeFromSuperview];
-        [self.view removeConstraint:self.cardEntryViewTopConstraint];
-        self.cardEntryViewTopConstraint = [NSLayoutConstraint constraintWithItem:self.cardEntryView
-                                                                       attribute:NSLayoutAttributeTop
-                                                                       relatedBy:NSLayoutRelationEqual
-                                                                          toItem:self.headerView
-                                                                       attribute:NSLayoutAttributeBottom
-                                                                      multiplier:1.0
-                                                                        constant:15.0];
-        
-        [self.view addConstraint:self.cardEntryViewTopConstraint];
+        self.cardEntryViewTopConstraint.constant = 15.0;
     }
     
     [self changeTitle:self.amount];
