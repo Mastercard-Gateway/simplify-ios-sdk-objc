@@ -12,8 +12,6 @@
 {
     ABRecordRef ref = [payment billingAddress];
     
-    
-    
     NSString *cardHolderName = [[NSString alloc] initWithFormat:@"%@ %@", (__bridge NSString *)(ABRecordCopyValue(ref, kABPersonFirstNameProperty)), (__bridge NSString *)ABRecordCopyValue(ref, kABPersonLastNameProperty)];
     NSObject *paymentTokenData = [NSJSONSerialization JSONObjectWithData:[[payment token] paymentData] options:kNilOptions error:&error];
     

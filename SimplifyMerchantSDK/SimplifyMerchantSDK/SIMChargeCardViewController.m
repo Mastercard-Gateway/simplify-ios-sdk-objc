@@ -309,6 +309,7 @@
 -(void) paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus))completion {
     
     SIMSimplify* simplify = [[SIMSimplify alloc] initWithPublicKey:self.publicKey error:nil];
+
     [simplify createCardTokenWithPayment:payment completionHandler:^(SIMCreditCardToken *cardToken, NSError *error)
      {
          completion(PKPaymentAuthorizationStatusSuccess);
