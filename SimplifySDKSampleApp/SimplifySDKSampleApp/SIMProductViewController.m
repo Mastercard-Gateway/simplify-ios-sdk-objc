@@ -41,7 +41,7 @@
     
         PKPaymentSummaryItem *mposButtons = [[PKPaymentSummaryItem alloc] init];
         mposButtons.label = @"mPOS Buttons";
-        mposButtons.amount = [[NSDecimalNumber alloc] initWithString:@"10.00"];
+        mposButtons.amount = [[NSDecimalNumber alloc] initWithString:@"1.00"];
         
         PKPaymentRequest* paymentRequest = [[PKPaymentRequest alloc] init];
         paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
@@ -49,14 +49,18 @@
         paymentRequest.currencyCode = @"USD";
     
         //2. SDKDemo.entitlements needs to be updated to use the new merchant id
-        paymentRequest.merchantIdentifier = @"<#INSERT_YOUR_MERCHANT_ID_HERE#>";
+//        paymentRequest.merchantIdentifier = @"<#INSERT_YOUR_MERCHANT_ID_HERE#>";
+        paymentRequest.merchantIdentifier = @"merchant.com.simplify.payments.apple-pay";
+    
         paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV | PKMerchantCapability3DS;
         paymentRequest.paymentSummaryItems = @[mposButtons];
         paymentRequest.requiredBillingAddressFields = PKAddressFieldAll;
         paymentRequest.requiredShippingAddressFields = PKAddressFieldPostalAddress;
 
         //3. Create a SIMChargeViewController with your public api key
-        SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_<#INSERT_YOUR_PUBLIC_KEY_HERE#>" paymentRequest:paymentRequest primaryColor:self.primaryColor];
+
+//    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_<#INSERT_YOUR_PUBLIC_KEY_HERE#>" paymentRequest:paymentRequest primaryColor:self.primaryColor];
+    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_MmNlNjE3MjctNmRmYy00NmY4LWI0MzEtNTVhY2RhYjU3Njcx" paymentRequest:paymentRequest primaryColor:self.primaryColor];
     
         //4. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
         chargeController.delegate = self;
@@ -94,7 +98,8 @@
     //Process Request on your own server
     //See https://github.com/simplifycom/simplify-php-server for a sample implementation.
 
-    NSURL *url= [NSURL URLWithString:@"<#INSERT_YOUR_SIMPLIFY_SERVER_HERE#>"];
+//    NSURL *url= [NSURL URLWithString:@"<#INSERT_YOUR_SIMPLIFY_SERVER_HERE#>"];
+    NSURL *url= [NSURL URLWithString:@"https://simplify-example-php-server.herokuapp.com/charge.php"];
     
     SIMWaitingView *waitingView = [[SIMWaitingView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:waitingView];
@@ -102,7 +107,7 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
     [request setHTTPMethod:@"POST"];
 
-    NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@&amount=1000", token.token];
+    NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@&amount=100", token.token];
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -112,6 +117,7 @@
         
         NSString *responseData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         BOOL isResponseApproved = [responseData containsString:@"APPROVED"];
+        NSLog(@"response:%@", responseData);
         
         if (error || !isResponseApproved) {
 

@@ -69,7 +69,7 @@
 		49748F51191829A400738BC9 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		49748F52191829A400738BC9 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		4977D080191ABFE200AC621F /* SimplifyMerchantSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SimplifyMerchantSDK.xcodeproj; path = ../SimplifyMerchantSDK/SimplifyMerchantSDK.xcodeproj; sourceTree = "<group>"; };
-		7ED9E9EF1917E2930082C2C3 /* SDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ED9E9EF1917E2930082C2C3 /* SimplifyApplePayTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplifyApplePayTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED9E9F21917E2930082C2C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7ED9E9F41917E2930082C2C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7ED9E9F61917E2930082C2C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -147,7 +147,7 @@
 		7ED9E9F01917E2930082C2C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7ED9E9EF1917E2930082C2C3 /* SDKDemo.app */,
+				7ED9E9EF1917E2930082C2C3 /* SimplifyApplePayTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,7 +211,7 @@
 			);
 			name = SimplifySDKSampleApp;
 			productName = SimplifyiOSSDK;
-			productReference = 7ED9E9EF1917E2930082C2C3 /* SDKDemo.app */;
+			productReference = 7ED9E9EF1917E2930082C2C3 /* SimplifyApplePayTest.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -427,7 +427,7 @@
 					"$(",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = SDKDemo;
+				PRODUCT_NAME = SimplifyApplePayTest;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -456,7 +456,7 @@
 					"$(",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = SDKDemo;
+				PRODUCT_NAME = SimplifyApplePayTest;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

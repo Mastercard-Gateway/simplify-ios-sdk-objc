@@ -69,6 +69,8 @@
 		4977D057191A9D6700AC621F /* SIMCardTypeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4977D034191A9C6F00AC621F /* SIMCardTypeTests.m */; };
 		4977D058191A9D6700AC621F /* SIMDigitVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4977D049191A9C6F00AC621F /* SIMDigitVerifierTests.m */; };
 		4977D05F191AB89C00AC621F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4977D05E191AB89C00AC621F /* CoreFoundation.framework */; };
+		497EF7DE1A9F8F3F00162299 /* SIMWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 497EF7DD1A9F8D9500162299 /* SIMWaitingView.m */; };
+		497EF7DF1A9F908500162299 /* SIMWaitingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 497EF7DC1A9F8D9500162299 /* SIMWaitingView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49C499321925645F00402775 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C499311925645F00402775 /* Accelerate.framework */; };
 		49C499391925C2E700402775 /* SIMResponseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49C499371925C2E700402775 /* SIMResponseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49C4993A1925C2E800402775 /* SIMResponseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C499381925C2E700402775 /* SIMResponseViewController.m */; };
@@ -167,6 +169,8 @@
 		4977D049191A9C6F00AC621F /* SIMDigitVerifierTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMDigitVerifierTests.m; sourceTree = "<group>"; };
 		4977D05D191AB89C00AC621F /* Simplify.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Simplify.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		4977D05E191AB89C00AC621F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		497EF7DC1A9F8D9500162299 /* SIMWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMWaitingView.h; sourceTree = "<group>"; };
+		497EF7DD1A9F8D9500162299 /* SIMWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMWaitingView.m; sourceTree = "<group>"; };
 		49C499311925645F00402775 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		49C499371925C2E700402775 /* SIMResponseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMResponseViewController.h; sourceTree = "<group>"; };
 		49C499381925C2E700402775 /* SIMResponseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMResponseViewController.m; sourceTree = "<group>"; };
@@ -237,6 +241,8 @@
 				495EEF7F192401D700AEC402 /* SIMChargeCardModel.h */,
 				495EEF7D192401D700AEC402 /* SIMChargeCardModel.m */,
 				495EEF7E192401D700AEC402 /* SIMChargeCardModelTests.m */,
+				497EF7DC1A9F8D9500162299 /* SIMWaitingView.h */,
+				497EF7DD1A9F8D9500162299 /* SIMWaitingView.m */,
 			);
 			name = ChargeView;
 			sourceTree = "<group>";
@@ -419,6 +425,7 @@
 				495EEF83192401D700AEC402 /* SIMChargeCardModel.h in Headers */,
 				495EEF911924049700AEC402 /* NSBundle+Simplify.h in Headers */,
 				2C335FDB1A769D6700868847 /* SIMTokenProcessor.h in Headers */,
+				497EF7DF1A9F908500162299 /* SIMWaitingView.h in Headers */,
 				495EEF781923DFE700AEC402 /* UIColor+Simplify.h in Headers */,
 				495EEECC191B387200AEC402 /* SIMCreditCardToken.h in Headers */,
 				49748F9E1918734600738BC9 /* Simplify.h in Headers */,
@@ -580,6 +587,7 @@
 				2C7F2E961A716A71006A4E80 /* SIMTokenProcessor.m in Sources */,
 				495EEEC9191B372900AEC402 /* SIMAddress.m in Sources */,
 				495EEECD191B387200AEC402 /* SIMCreditCardToken.m in Sources */,
+				497EF7DE1A9F8F3F00162299 /* SIMWaitingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
