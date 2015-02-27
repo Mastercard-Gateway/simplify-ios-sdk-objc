@@ -313,12 +313,15 @@
     [simplify createCardTokenWithPayment:payment completionHandler:^(SIMCreditCardToken *cardToken, NSError *error)
      {
          completion(PKPaymentAuthorizationStatusSuccess);
-         [controller dismissViewControllerAnimated:YES completion:^{
-
-             [self dismissViewControllerAnimated:YES completion:^{
-                 [self.delegate creditCardTokenProcessed:cardToken];
+         
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [controller dismissViewControllerAnimated:YES completion:^{
+                 
+                 [self dismissViewControllerAnimated:YES completion:^{
+                     [self.delegate creditCardTokenProcessed:cardToken];
+                 }];
              }];
-         }];
+         });
      }];
 }
 
