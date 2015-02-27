@@ -313,9 +313,11 @@
     [simplify createCardTokenWithPayment:payment completionHandler:^(SIMCreditCardToken *cardToken, NSError *error)
      {
          completion(PKPaymentAuthorizationStatusSuccess);
-         [controller dismissViewControllerAnimated:YES completion:nil];
-         [self dismissViewControllerAnimated:YES completion:^{
-             [self.delegate creditCardTokenProcessed:cardToken];
+         [controller dismissViewControllerAnimated:YES completion:^{
+
+             [self dismissViewControllerAnimated:YES completion:^{
+                 [self.delegate creditCardTokenProcessed:cardToken];
+             }];
          }];
      }];
 }
