@@ -49,8 +49,7 @@
         paymentRequest.currencyCode = @"USD";
     
         //2. SDKDemo.entitlements needs to be updated to use the new merchant id
-//        paymentRequest.merchantIdentifier = @"<#INSERT_YOUR_MERCHANT_ID_HERE#>";
-        paymentRequest.merchantIdentifier = @"merchant.com.simplify.payments.apple-pay";
+        paymentRequest.merchantIdentifier = @"<#INSERT_YOUR_MERCHANT_ID_HERE#>";
     
         paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV | PKMerchantCapability3DS;
         paymentRequest.paymentSummaryItems = @[mposButtons];
@@ -59,8 +58,7 @@
 
         //3. Create a SIMChargeViewController with your public api key
 
-//    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_<#INSERT_YOUR_PUBLIC_KEY_HERE#>" paymentRequest:paymentRequest primaryColor:self.primaryColor];
-    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_MmNlNjE3MjctNmRmYy00NmY4LWI0MzEtNTVhY2RhYjU3Njcx" paymentRequest:paymentRequest primaryColor:self.primaryColor];
+    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_<#INSERT_YOUR_PUBLIC_KEY_HERE#>" paymentRequest:paymentRequest primaryColor:self.primaryColor];
     
         //4. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
         chargeController.delegate = self;
@@ -98,8 +96,7 @@
     //Process Request on your own server
     //See https://github.com/simplifycom/simplify-php-server for a sample implementation.
 
-//    NSURL *url= [NSURL URLWithString:@"<#INSERT_YOUR_SIMPLIFY_SERVER_HERE#>"];
-    NSURL *url= [NSURL URLWithString:@"https://simplify-example-php-server.herokuapp.com/charge.php"];
+    NSURL *url= [NSURL URLWithString:@"<#INSERT_YOUR_SIMPLIFY_SERVER_HERE#>"];
     
     SIMWaitingView *waitingView = [[SIMWaitingView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:waitingView];
