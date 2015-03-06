@@ -307,22 +307,28 @@
 
 #pragma mark PKPaymentAuthorizationViewControllerDelegate
 -(void) paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus))completion {
-    
-    SIMSimplify* simplify = [[SIMSimplify alloc] initWithPublicKey:self.publicKey error:nil];
+    NSError *error = nil;
+    SIMSimplify* simplify = [[SIMSimplify alloc] initWithPublicKey:self.publicKey error:error];
 
-    [simplify createCardTokenWithPayment:payment completionHandler:^(SIMCreditCardToken *cardToken, NSError *error)
-     {
-         completion(PKPaymentAuthorizationStatusSuccess);
-         
-         dispatch_async(dispatch_get_main_queue(), ^{
-             [controller dismissViewControllerAnimated:YES completion:^{
+    if (error) {
+        completion(PKPaymentAuthorizationStatusFailure);
+    } else {
+        
+        [simplify createCardTokenWithPayment:payment completionHandler:^(SIMCreditCardToken *cardToken, NSError *error)
+         {
+             
+             dispatch_async(dispatch_get_main_queue(), ^{
                  
-                 [self dismissViewControllerAnimated:YES completion:^{
-                     [self.delegate creditCardTokenProcessed:cardToken];
+                 completion(PKPaymentAuthorizationStatusSuccess);
+                 [controller dismissViewControllerAnimated:YES completion:^{
+                     
+                     [self dismissViewControllerAnimated:YES completion:^{
+                         [self.delegate creditCardTokenProcessed:cardToken];
+                     }];
                  }];
-             }];
-         });
-     }];
+             });
+         }];
+    }
 }
 
 -(void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller {
