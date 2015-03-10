@@ -308,7 +308,7 @@
 #pragma mark PKPaymentAuthorizationViewControllerDelegate
 -(void) paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus))completion {
     NSError *error = nil;
-    SIMSimplify* simplify = [[SIMSimplify alloc] initWithPublicKey:self.publicKey error:error];
+    SIMSimplify* simplify = [[SIMSimplify alloc] initWithPublicKey:self.publicKey error:&error];
 
     if (error) {
         completion(PKPaymentAuthorizationStatusFailure);
