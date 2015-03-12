@@ -17,7 +17,7 @@
  
  @class SIMChargeCardViewController
  
- @author Copyright (c) 2015 Mastercard International Incorporated. All Rights Reserved.
+ @author Copyright (c) 2016 Mastercard International Incorporated. All Rights Reserved.
  @file
  */
 

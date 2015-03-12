@@ -19,12 +19,13 @@
   Using the SDK
   --------------
 
-  For examples see https://www.simplify.com/commerce/docs/sdk/ios.
+  For examples see https://www.simplify.com/commerce/docs/sdk/ios and 
+  https://www.simplify.com/commerce/docs/sdk/ios_applepay.
 
   Version
   -------
 
-  This is version 1.3.0 of the SDK.  See CHANGES.txt for a list of updates to the SDK.
+  This is version 2.0.0 of the SDK.  See CHANGES.txt for a list of updates to the SDK.
   For an up-to-date version check at https://www.simplify.com/commerce/docs/sdk/ios.
 
   Licensing
@@ -45,6 +46,6 @@
   Copyright
   ---------
 
-  Copyright (c) 2014, 2015 MasterCard International Incorporated
+  Copyright (c) 2015, 2016 MasterCard International Incorporated
   All rights reserved.
 
