@@ -319,11 +319,20 @@
              
              dispatch_async(dispatch_get_main_queue(), ^{
                  
-                 completion(PKPaymentAuthorizationStatusSuccess);
+                 if (error) {
+                     completion(PKPaymentAuthorizationStatusFailure);
+                 } else {
+                     completion(PKPaymentAuthorizationStatusSuccess);
+                 }
+                 
                  [controller dismissViewControllerAnimated:YES completion:^{
                      
                      [self dismissViewControllerAnimated:YES completion:^{
-                         [self.delegate creditCardTokenProcessed:cardToken];
+                         if (error) {
+                             [self.delegate creditCardTokenFailedWithError:error];
+                         } else {
+                             [self.delegate creditCardTokenProcessed:cardToken];
+                         }
                      }];
                  }];
              });

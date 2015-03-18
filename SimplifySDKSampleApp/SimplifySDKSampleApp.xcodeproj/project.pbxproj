@@ -61,6 +61,7 @@
 /* Begin PBXFileReference section */
 		2CD3F7E51A793E5300A4DD48 /* SDKDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SDKDemo.entitlements; sourceTree = "<group>"; };
 		495EEF741923D0CA00AEC402 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4963D6B51AB9B12D00506516 /* SimplifyApplePayTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SimplifyApplePayTest.entitlements; sourceTree = "<group>"; };
 		49748F4B191829A400738BC9 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ocmock/libOCMock.a; sourceTree = "<group>"; };
 		49748F4D191829A400738BC9 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
 		49748F4E191829A400738BC9 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
@@ -169,6 +170,7 @@
 		7ED9E9F81917E2930082C2C3 /* SimplifySDKSampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				4963D6B51AB9B12D00506516 /* SimplifyApplePayTest.entitlements */,
 				2CD3F7E51A793E5300A4DD48 /* SDKDemo.entitlements */,
 				7ED9EA011917E2930082C2C3 /* SIMAppDelegate.h */,
 				7ED9EA021917E2930082C2C3 /* SIMAppDelegate.m */,
@@ -410,7 +412,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = SimplifySDKSampleApp/SDKDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SimplifySDKSampleApp/SimplifyApplePayTest.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -439,7 +441,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = SimplifySDKSampleApp/SDKDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SimplifySDKSampleApp/SimplifyApplePayTest.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
