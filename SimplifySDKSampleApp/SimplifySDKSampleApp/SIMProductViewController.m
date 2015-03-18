@@ -41,7 +41,7 @@
     
         PKPaymentSummaryItem *mposButtons = [[PKPaymentSummaryItem alloc] init];
         mposButtons.label = @"mPOS Buttons";
-        mposButtons.amount = [[NSDecimalNumber alloc] initWithString:@"1.00"];
+        mposButtons.amount = [[NSDecimalNumber alloc] initWithString:@"0.50"];
         
         PKPaymentRequest* paymentRequest = [[PKPaymentRequest alloc] init];
         paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
@@ -104,7 +104,7 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
     [request setHTTPMethod:@"POST"];
 
-    NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@&amount=100", token.token];
+    NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@&amount=50", token.token];
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];

@@ -318,7 +318,6 @@
          {
              
              dispatch_async(dispatch_get_main_queue(), ^{
-                 
                  [controller dismissViewControllerAnimated:YES completion:^{
                      
                      [self dismissViewControllerAnimated:YES completion:^{
@@ -327,6 +326,7 @@
                              [self.delegate creditCardTokenFailedWithError:error];
                          } else {
                              completion(PKPaymentAuthorizationStatusSuccess);
+                             [self.delegate creditCardTokenFailedWithError:error];
                              [self.delegate creditCardTokenProcessed:cardToken];
                          }
                      }];

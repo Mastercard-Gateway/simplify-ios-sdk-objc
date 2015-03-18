@@ -225,7 +225,7 @@
 				ORGANIZATIONNAME = MasterCard;
 				TargetAttributes = {
 					7ED9E9EE1917E2930082C2C3 = {
-						DevelopmentTeam = QJJJ72YP26;
+						DevelopmentTeam = FARWN7FEXX;
 						SystemCapabilities = {
 							com.apple.OMC = {
 								enabled = 1;
