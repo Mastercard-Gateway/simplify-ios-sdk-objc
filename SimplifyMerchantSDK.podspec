@@ -4,11 +4,7 @@ Pod::Spec.new do |s|
 
   s.name         = "SimplifyMerchantSDK"
   s.version      = "2.0.0"
-  s.summary      = "A Simple SDK for accepting payments"
-
-  s.description  = <<-DESC
-                   Simplify makes it easy to accept payments! Simply include the SimplifySDK and accept payments through Apple Pay or manual card entry today.
-                   DESC
+  s.summary      = "Official Simplify iOS SDK to add credit card and Apple Pay payments to your mobile app."
 
   s.homepage     = "http://simplify.com"
   s.documentation_url = 'https://www.simplify.com/commerce/docs/sdk/ios'
