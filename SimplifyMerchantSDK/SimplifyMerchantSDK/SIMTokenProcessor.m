@@ -16,7 +16,7 @@
     NSString *lastName = (__bridge NSString *)(ABRecordCopyValue(ref, kABPersonLastNameProperty));
     
     NSString *cardHolderName = nil;
-    if (ref != nil && firstName && lastName) {
+    if (firstName && lastName) {
         cardHolderName = [[NSString alloc] initWithFormat:@"%@ %@", firstName, lastName];
     }
     
