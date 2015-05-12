@@ -12,16 +12,26 @@
 {
     ABRecordRef ref = [payment billingAddress];
     
-    NSString *cardHolderName = [[NSString alloc] initWithFormat:@"%@ %@", (__bridge NSString *)(ABRecordCopyValue(ref, kABPersonFirstNameProperty)), (__bridge NSString *)ABRecordCopyValue(ref, kABPersonLastNameProperty)];
+    NSString *firstName = (__bridge NSString *)(ABRecordCopyValue(ref, kABPersonFirstNameProperty));
+    NSString *lastName = (__bridge NSString *)(ABRecordCopyValue(ref, kABPersonLastNameProperty));
+    
+    NSString *cardHolderName = nil;
+    if (ref != nil && firstName && lastName) {
+        cardHolderName = [[NSString alloc] initWithFormat:@"%@ %@", firstName, lastName];
+    }
+    
     NSObject *paymentTokenData = [NSJSONSerialization JSONObjectWithData:[[payment token] paymentData] options:kNilOptions error:&error];
+    
+    NSMutableDictionary *cardDict = [NSMutableDictionary new];
+    cardDict[@"cardEntryMode"] = @"APPLE_PAY_IN_APP";
+    cardDict[@"applePayData"] = @{ @"paymentToken" : paymentTokenData};
+    if (cardHolderName) {
+        cardDict[@"name"] = cardHolderName;
+    }
     
     NSDictionary *dict = @{
                            @"key" : publicKey,
-                           @"card" : @{
-                                   @"cardEntryMode" : @"APPLE_PAY_IN_APP",
-                                   @"applePayData" : @{ @"paymentToken" : paymentTokenData},
-                                   @"name" : cardHolderName
-                                   }
+                           @"card" : cardDict
                            };
     
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error];
