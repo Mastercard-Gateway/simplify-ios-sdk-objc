@@ -326,7 +326,6 @@
                              [self.delegate creditCardTokenFailedWithError:error];
                          } else {
                              completion(PKPaymentAuthorizationStatusSuccess);
-                             [self.delegate creditCardTokenFailedWithError:error];
                              [self.delegate creditCardTokenProcessed:cardToken];
                          }
                      }];
