@@ -176,8 +176,11 @@
         } else {
             [self.chargeCardModel deleteCharacterInCardNumber];
         }
+
+        NSString *unicodeMiddleDotString = [NSString stringWithFormat:@"%C", 0x2022];
         
-        self.cardNumberField.text = self.chargeCardModel.formattedCardNumber;
+        NSString *unicodeMaskedString = [self.chargeCardModel.formattedCardNumber stringByReplacingOccurrencesOfString:@"*" withString:unicodeMiddleDotString];
+        self.cardNumberField.text = unicodeMaskedString;
         [self setCardTypeImage];
         
     } else if (textField == self.expirationField) {
@@ -213,6 +216,7 @@
     [self displayPaymentValidity];
 
     return NO;
+
 }
 
 -(BOOL)textFieldShouldClear:(UITextField *)textField {

@@ -375,6 +375,46 @@
     XCTAssertEqualObjects(expectedStringWithNoSpaces, self.testSubject.cardNumber, "no spaces");
 }
 
+-(void)testFormattedCreditCardStringDoesNotMaskCardNumberIfCardNumberInvalid {
+    NSString *invalidMasterCardCardNumber = @"5555555555554441";
+    NSString *invalidAmexCardNumber = @"378282246310004";
+    NSString *invalidDinersCardNumber = @"30569309025903";
+    
+    NSString *expectedMasterCardFormattedNumber = @"5555 5555 5555 4441";
+    NSString *expectedAmexFormattedNumber = @"3782 822463 10004";
+    NSString *expectedDinersFormattedNumber = @"3056 9309 0259 03";
+    
+    [self.testSubject updateCardNumberWithString:invalidMasterCardCardNumber];
+    XCTAssertTrue([expectedMasterCardFormattedNumber isEqualToString:self.testSubject.formattedCardNumber]);
+    
+    [self.testSubject updateCardNumberWithString:invalidAmexCardNumber];
+    XCTAssertTrue([expectedAmexFormattedNumber isEqualToString:self.testSubject.formattedCardNumber]);
+    
+    [self.testSubject updateCardNumberWithString:invalidDinersCardNumber];
+    XCTAssertTrue([expectedDinersFormattedNumber isEqualToString:self.testSubject.formattedCardNumber]);
+    
+}
+
+-(void)testFormattedCreditCardStringMasksCardNumberIfValid {
+    NSString *validMasterCardCardNumber = @"5555555555554444";
+    NSString *validAmexCardNumber = @"378282246310005";
+    NSString *validDinersCardNumber = @"30569309025904";
+    
+    NSString *expectedMaskedMasterCardFormattedNumber = @"**** **** **** 4444";
+    NSString *expectedMaskedAmexFormattedNumber = @"**** ****** *0005";
+    NSString *expectedMaskedDinersFormattedNumber = @"**** **** **59 04";
+    
+    [self.testSubject updateCardNumberWithString:validMasterCardCardNumber];
+    XCTAssertTrue([expectedMaskedMasterCardFormattedNumber isEqualToString:self.testSubject.formattedCardNumber]);
+    
+    [self.testSubject updateCardNumberWithString:validAmexCardNumber];
+    XCTAssertTrue([expectedMaskedAmexFormattedNumber isEqualToString:self.testSubject.formattedCardNumber]);
+    
+    [self.testSubject updateCardNumberWithString:validDinersCardNumber];
+    XCTAssertTrue([expectedMaskedDinersFormattedNumber isEqualToString:self.testSubject.formattedCardNumber]);
+    
+}
+
 -(void)testUpdateExpirationDateWithStringCorrectlyRemovesSlashes {
     NSString *expectedStringWithNoSpaces = @"24";
     

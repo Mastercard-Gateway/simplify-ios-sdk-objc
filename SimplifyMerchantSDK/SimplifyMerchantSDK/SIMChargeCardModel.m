@@ -185,13 +185,27 @@
 }
 
 -(NSString *)formattedCardNumber {
-    NSMutableString *formattedString =[NSMutableString stringWithString:self.cardNumber];
-    if (![self.cardTypeString isEqual: @"amex"]) {
-        int index=4;
+    NSMutableString *formattedString = [NSMutableString stringWithString:self.cardNumber];
+    NSInteger maskLength = formattedString.length - 4;
+    
+    if (self.isCardNumberValid) {
+        NSRange cardNumberMasked = NSMakeRange(0, maskLength);
+        
+        NSMutableString *maskString = [@"" mutableCopy];
+        for (int i = 0; i < maskLength; i++) {
+            
+            [maskString appendString:@"*"];
+        }
+        
+        [formattedString replaceCharactersInRange:cardNumberMasked withString:maskString];
+    }
+    
+    if (![self.cardTypeString isEqual:@"amex"]) {
+        int index = 4;
         
         while (index < formattedString.length && formattedString.length < 23) {
             [formattedString insertString:@" " atIndex:index];
-            index +=5;
+            index += 5;
         }
     } else {
         if (self.cardNumber.length > 4 && self.cardNumber.length < 10) {
