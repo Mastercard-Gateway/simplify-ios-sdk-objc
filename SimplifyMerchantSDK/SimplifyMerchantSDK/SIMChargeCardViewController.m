@@ -76,6 +76,9 @@
     self.chargeCardModel.isCVCRequired = self.isCVCRequired;
     self.chargeCardModel.paymentRequest = self.paymentRequest;
     
+    [self.submitPaymentButton setTitle:self.paymentButtonNormalTitle forState:UIControlStateNormal];
+    [self.submitPaymentButton setTitle:self.paymentButtonDisabledTitle forState:UIControlStateDisabled];
+    
     if (error) {
         self.modelError = error;
     } else {
@@ -114,6 +117,14 @@
         [self presentViewController:viewController animated:YES completion:nil];
     }
     
+}
+
+-(NSString *)paymentButtonNormalTitle{
+    return _paymentButtonNormalTitle.length ? _paymentButtonNormalTitle : @"Submit Payment";
+}
+
+-(NSString *)paymentButtonDisabledTitle{
+    return _paymentButtonDisabledTitle.length ? _paymentButtonDisabledTitle : @"Submit Payment";
 }
 
 - (void)changeTitle:(NSDecimalNumber *)amount {
