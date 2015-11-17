@@ -26,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UIView *applePayViewHolder;
 @property (strong, nonatomic) IBOutlet UIView *cardEntryView;
 @property (strong, nonatomic) IBOutlet UIView *zipCodeView;
+@property (weak, nonatomic) IBOutlet UIImageView *zipImageView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *cardEntryViewTopConstraint;
 @property (strong, nonatomic) IBOutlet UILabel *headerTitle;
 
@@ -68,6 +69,7 @@
     self.cardNumberField.tintColor = self.primaryColor;
     self.expirationField.tintColor = self.primaryColor;
     self.cvcField.tintColor = self.primaryColor;
+    self.zipField.hidden = self.zipImageView.hidden = !self.isZipRequired;
     self.zipField.tintColor = self.primaryColor;
     
     NSError *error;
