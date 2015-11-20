@@ -12,28 +12,21 @@
 @interface SIMProductViewController ()<SIMChargeCardViewControllerDelegate>
 @property (nonatomic, strong) SIMChargeCardViewController *chargeController;
 @property (strong, nonatomic) IBOutlet UIButton *buyButton;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) UIColor *primaryColor;
 
 @end
 
 @implementation SIMProductViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
-    self.primaryColor = [UIColor colorWithRed:241.0/255.0 green:100.0/255.0 blue:33.0/255.0 alpha:1.0];
-    [self.buyButton setBackgroundColor:self.primaryColor];
-    
+    self.buyButton.backgroundColor = [UIColor buttonBackgroundColorEnabled];
+    self.headerView.backgroundColor = [UIColor buttonBackgroundColorEnabled];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
-- (BOOL) prefersStatusBarHidden
-{
-    return YES;
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Navigation
@@ -67,8 +60,11 @@
         chargeController.isZipRequired = YES;
     
         //5.  Customize your charge controller interface
-        //chargeController.paymentButtonNormalTitle = @"YOUR CUSTOM TITLE";
-        //chargeController.paymentButtonDisabledTitle = @"YOUR CUSTOM TITLE";
+        //chargeController.paymentButtonNormalTitle = @"YOUR CUSTOM BUTTON TITLE";
+        //chargeController.paymentButtonDisabledTitle = @"YOUR CUSTOM BUTTON TITLE";
+        //chargeController.headerTitle = @"YOUR CUSTOM HEADER TITLE";
+        //chargeController.headerTitleColor;
+        //chargeController.headerViewBackgroundColor;
     
         self.chargeController = chargeController;
 

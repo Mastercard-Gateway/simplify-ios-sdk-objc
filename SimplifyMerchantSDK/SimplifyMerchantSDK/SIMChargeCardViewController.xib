@@ -20,7 +20,7 @@
                 <outlet property="cvcField" destination="R1X-5S-mSK" id="Zq0-ey-cVt"/>
                 <outlet property="expirationDateView" destination="vIA-JG-qgI" id="mPC-2F-vTw"/>
                 <outlet property="expirationField" destination="h1S-BC-nB4" id="Xjz-6M-JSv"/>
-                <outlet property="headerTitle" destination="hz7-cC-AWu" id="pTB-Jx-DTf"/>
+                <outlet property="headerTitleLabel" destination="hz7-cC-AWu" id="7vT-Wy-WwB"/>
                 <outlet property="headerView" destination="jAH-q3-iQQ" id="S4b-Ay-XHn"/>
                 <outlet property="submitPaymentButton" destination="Y7O-Rp-Rl5" id="F3q-Ua-oJL"/>
                 <outlet property="view" destination="iN0-l3-epB" id="7pA-pt-KzA"/>
@@ -35,13 +35,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAH-q3-iQQ" userLabel="headerView">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="77"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Charge A Card" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hz7-cC-AWu" userLabel="headerTitle">
-                            <rect key="frame" x="230" y="32" width="140" height="24"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checkout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hz7-cC-AWu" userLabel="headerTitle">
+                            <rect key="frame" x="254" y="32" width="93" height="24"/>
                             <animations/>
                             <accessibility key="accessibilityConfiguration" label="Charge a Card"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i43-v9-uv5" userLabel="cancelButton">
@@ -62,13 +63,13 @@
                         </view>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.015686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="i43-v9-uv5" firstAttribute="top" secondItem="jAH-q3-iQQ" secondAttribute="top" constant="27" id="5Jn-dK-BKU"/>
                         <constraint firstItem="i43-v9-uv5" firstAttribute="leading" secondItem="jAH-q3-iQQ" secondAttribute="leadingMargin" id="FH9-Nz-eIk"/>
                         <constraint firstAttribute="centerX" secondItem="hz7-cC-AWu" secondAttribute="centerX" id="W8q-SL-3vU"/>
-                        <constraint firstAttribute="height" constant="77" id="q6h-eB-Xbq"/>
-                        <constraint firstAttribute="bottom" secondItem="hz7-cC-AWu" secondAttribute="bottom" constant="21" id="r6Q-CU-VVs"/>
+                        <constraint firstAttribute="height" constant="64" id="q6h-eB-Xbq"/>
+                        <constraint firstAttribute="bottom" secondItem="hz7-cC-AWu" secondAttribute="bottom" constant="8" id="r6Q-CU-VVs"/>
                     </constraints>
                 </view>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cc-cH-HyZ" userLabel="applePayView">
@@ -302,7 +303,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7O-Rp-Rl5" userLabel="submitPaymentButton">
                             <rect key="frame" x="139" y="17" width="322" height="44"/>
                             <animations/>
-                            <color key="backgroundColor" red="0.94509803921568625" green="0.39215686274509803" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.015686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <accessibility key="accessibilityConfiguration" hint="Charges card" label="Charge card"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="BfM-Wu-q7T"/>
@@ -311,7 +312,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <color key="tintColor" red="0.7686274509803922" green="0.77647058823529413" blue="0.78431372549019607" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal" title="Submit P">
+                            <state key="normal" title="Submit Payment">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
@@ -376,8 +377,8 @@
                 <constraint firstItem="wvh-92-4Hw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2oq-8X-7Kj"/>
                 <constraint firstItem="8cc-cH-HyZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="308-B6-MdH"/>
                 <constraint firstItem="jAH-q3-iQQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7nQ-zW-C5y"/>
-                <constraint firstItem="wvh-92-4Hw" firstAttribute="top" secondItem="jAH-q3-iQQ" secondAttribute="bottom" constant="106" id="OjI-z4-0Wk"/>
-                <constraint firstItem="8cc-cH-HyZ" firstAttribute="top" secondItem="jAH-q3-iQQ" secondAttribute="bottom" constant="-1" id="RtK-ZR-ijQ"/>
+                <constraint firstItem="wvh-92-4Hw" firstAttribute="top" secondItem="jAH-q3-iQQ" secondAttribute="bottom" constant="119" id="OjI-z4-0Wk"/>
+                <constraint firstItem="8cc-cH-HyZ" firstAttribute="top" secondItem="jAH-q3-iQQ" secondAttribute="bottom" constant="12" id="RtK-ZR-ijQ"/>
                 <constraint firstItem="uSO-Ry-8D4" firstAttribute="top" secondItem="wvh-92-4Hw" secondAttribute="bottom" constant="11" id="TTG-4P-vUx"/>
                 <constraint firstItem="wvh-92-4Hw" firstAttribute="top" secondItem="8cc-cH-HyZ" secondAttribute="bottom" constant="-21" id="aEG-3Z-vkq"/>
                 <constraint firstAttribute="bottom" secondItem="uSO-Ry-8D4" secondAttribute="bottom" constant="33" id="aQj-Bs-p7N"/>
@@ -390,6 +391,13 @@
             </constraints>
             <point key="canvasLocation" x="-636" y="827"/>
         </view>
+        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nKh-nf-Fdx">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="-636" y="158"/>
+        </tableView>
     </objects>
     <resources>
         <image name="applePayButton" width="322" height="46"/>

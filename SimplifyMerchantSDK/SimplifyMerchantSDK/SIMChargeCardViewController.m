@@ -28,7 +28,7 @@
 @property (strong, nonatomic) IBOutlet UIView *zipCodeView;
 @property (weak, nonatomic) IBOutlet UIImageView *zipImageView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *cardEntryViewTopConstraint;
-@property (strong, nonatomic) IBOutlet UILabel *headerTitle;
+@property (strong, nonatomic) IBOutlet UILabel *headerTitleLabel;
 
 @end
 
@@ -80,6 +80,10 @@
     
     [self.submitPaymentButton setTitle:self.paymentButtonNormalTitle forState:UIControlStateNormal];
     [self.submitPaymentButton setTitle:self.paymentButtonDisabledTitle forState:UIControlStateDisabled];
+    self.headerTitleLabel.text = self.headerTitle;
+    self.headerTitleLabel.textColor = self.headerTitleColor;
+    self.headerView.backgroundColor = self.headerViewBackgroundColor;
+    
     
     if (error) {
         self.modelError = error;
@@ -103,7 +107,7 @@
         self.cardEntryViewTopConstraint.constant = 15.0;
     }
     
-    [self changeTitle:self.amount];
+    [self changeButton:self.amount];
 
 }
 
@@ -129,18 +133,30 @@
     return _paymentButtonDisabledTitle.length ? _paymentButtonDisabledTitle : @"Submit Payment";
 }
 
-- (void)changeTitle:(NSDecimalNumber *)amount {
+-(NSString *)headerTitle{
+    return _headerTitle.length ? _headerTitle : @"Checkout";
+}
+
+-(UIColor *)headerTitleColor{
+    return _headerTitleColor ? _headerTitleColor : [UIColor whiteColor];
+}
+
+-(UIColor *)headerViewBackgroundColor{
+    return _headerViewBackgroundColor ? _headerViewBackgroundColor : [UIColor buttonBackgroundColorEnabled];
+    
+}
+
+- (void)changeButton:(NSDecimalNumber *)amount {
     if (amount) {
-        self.headerTitle.text = [NSString stringWithFormat:@"Charge $%@", [NSString amountStringFromNumber:amount]];
+        [self.submitPaymentButton setTitle:[NSString stringWithFormat:@"Pay $%@", [NSString amountStringFromNumber:amount]] forState:UIControlStateNormal];
     } else {
-        self.headerTitle.text = @"Charge Card";
+        [self.submitPaymentButton setTitle:@"Pay" forState:UIControlStateNormal];
     }
 }
 
 -(void)setAmount:(NSDecimalNumber *)amount {
     _amount = amount;
-    
-    [self changeTitle:amount];
+    [self changeButton:amount];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {

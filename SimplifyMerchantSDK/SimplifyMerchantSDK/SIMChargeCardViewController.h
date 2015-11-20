@@ -47,15 +47,36 @@
  */
 -(instancetype)initWithPublicKey:(NSString *)publicKey paymentRequest:(PKPaymentRequest *)paymentRequest primaryColor:(UIColor *)primaryColor;
 
-@property (nonatomic, weak) id <SIMChargeCardViewControllerDelegate> delegate; /**< Delegate for SIMChargeCardModelDelegate */
+/**
+ Delegate for SIMChargeCardModelDelegate
+ */
+@property (nonatomic, weak) id <SIMChargeCardViewControllerDelegate> delegate;
 
+/**
+ Amount to charge
+ */
 @property (nonatomic, strong) NSDecimalNumber *amount;
+
+/**
+ The title for the header
+ */
+@property (nonatomic, strong) NSString *headerTitle;
+
+
+/**
+ The title color for the header
+ */
+@property (nonatomic, strong) UIColor *headerTitleColor;
+
+/**
+ The color for the header
+ */
+@property (nonatomic, strong) UIColor *headerViewBackgroundColor;
 
 /**
  Title for the payment button when charging is possible with the entered data
  */
 @property (nonatomic, strong) NSString *paymentButtonNormalTitle;
-
 
 /**
  Title for the payment button when charging is not possible with the entered data
