@@ -26,6 +26,7 @@
                 <outlet property="view" destination="iN0-l3-epB" id="7pA-pt-KzA"/>
                 <outlet property="zipCodeView" destination="cYT-Qv-Otu" id="67C-9T-eV0"/>
                 <outlet property="zipField" destination="rZI-jC-JMa" id="1QS-qH-7EH"/>
+                <outlet property="zipImageView" destination="MAB-W3-O7s" id="9dE-Yr-KRq"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
