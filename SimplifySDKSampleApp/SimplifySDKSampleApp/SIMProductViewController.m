@@ -65,11 +65,14 @@
         chargeController.amount = mposButtons.amount;
         chargeController.isCVCRequired = NO;
         chargeController.isZipRequired = YES;
-    chargeController.paymentButtonNormalTitle = @"Submit Payment";
-    chargeController.paymentButtonDisabledTitle = @"Submit Payment";
+    
+        //5.  Customize your charge controller interface
+        //chargeController.paymentButtonNormalTitle = @"YOUR CUSTOM TITLE";
+        //chargeController.paymentButtonDisabledTitle = @"YOUR CUSTOM TITLE";
+    
         self.chargeController = chargeController;
 
-        //5. Add SIMChargeViewController to your view hierarchy
+        //6. Add SIMChargeViewController to your view hierarchy
         [self presentViewController:self.chargeController animated:YES completion:nil];
     
 }
