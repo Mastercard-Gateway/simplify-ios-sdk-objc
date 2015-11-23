@@ -61,11 +61,6 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    self.cardNumberField.delegate = self;
-    self.expirationField.delegate = self;
-    self.cvcField.delegate = self;
-    self.zipField.delegate = self;
-    
     self.cardNumberField.tintColor = self.primaryColor;
     self.expirationField.tintColor = self.primaryColor;
     self.cvcField.tintColor = self.primaryColor;
@@ -84,6 +79,10 @@
     self.headerTitleLabel.textColor = self.headerTitleColor;
     self.headerView.backgroundColor = self.headerViewBackgroundColor;
     
+    self.cardEntryView.layer.cornerRadius = 4.0;
+    self.cardEntryView.layer.borderColor = [UIColor colorWithRed:216.0/255 green:216.0/255 blue:216.0/255 alpha:1.0].CGColor;
+    self.cardEntryView.layer.borderWidth = 1.0;
+    self.cardEntryView.clipsToBounds = YES;
     
     if (error) {
         self.modelError = error;
