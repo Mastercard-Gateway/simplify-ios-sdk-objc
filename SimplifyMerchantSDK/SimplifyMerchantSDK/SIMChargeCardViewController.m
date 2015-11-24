@@ -31,6 +31,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *headerTitleLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *zipCodeViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *expirationDateViewCVCCodeViewWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cardEntryViewTopConstraint;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottomConstraint;
 
 @end
 
@@ -62,6 +65,8 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
     self.cardNumberField.tintColor = self.primaryColor;
     self.expirationField.tintColor = self.primaryColor;
@@ -103,6 +108,8 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    self.headerView.frame = CGRectMake(0, 0, self.view.frame.size.width, 64.0);
+    
     //Collapse the Apple Pay button if there is no PKPaymentRequest or if the device is not capable of doing Apple Pay
     if (![self.chargeCardModel isApplePayAvailable]) {
         self.applePayViewHolderHeightConstraint.constant = 0.0;
@@ -131,6 +138,15 @@
         viewController.isPaymentSuccessful = NO;
         [self presentViewController:viewController animated:YES completion:nil];
     }
+}
+
+-(void)keyboardWillChangeFrame:(NSNotification *)notification{
+    NSDictionary* info = [notification userInfo];
+    CGRect keyboardFrame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    //[UIView animateWithDuration:[info[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+        self.scrollViewBottomConstraint.constant = self.view.frame.size.height - keyboardFrame.origin.y;
+    //    [self.view layoutIfNeeded];
+    //}];
 }
 
 -(NSString *)paymentButtonNormalTitle{
@@ -202,7 +218,7 @@
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-
+    
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     NSUInteger fieldLength = string.length;
     
