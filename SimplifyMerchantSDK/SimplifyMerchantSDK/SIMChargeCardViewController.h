@@ -83,6 +83,26 @@
  */
 @property (nonatomic, strong) NSString *paymentButtonDisabledTitle;
 
+/**
+ Background color for the payment button when charging is possible with the entered data
+ */
+@property (nonatomic, strong) UIColor *paymentButtonNormalColor;
+
+/**
+ Background color for the payment button when charging is not possible with the entered data
+ */
+@property (nonatomic, strong) UIColor *paymentButtonDisabledColor;
+
+/**
+ Title color for the payment button when charging is possible with the entered data
+ */
+@property (nonatomic, strong) UIColor *paymentButtonNormalTitleColor;
+
+/**
+ Title color for the payment button when charging is not possible with the entered data
+ */
+@property (nonatomic, strong) UIColor *paymentButtonDisabledTitleColor;
+
 @property (nonatomic) BOOL isCVCRequired;   /**< Enable validation on the CVC field */
 @property (nonatomic) BOOL isZipRequired;   /**< Enable validation on the Zip field */
 

@@ -32,45 +32,47 @@
 #pragma mark - Navigation
 - (IBAction)buySimplifyButton:(id)sender {
     
-        PKPaymentSummaryItem *mposButtons = [[PKPaymentSummaryItem alloc] init];
-        mposButtons.label = @"mPOS Buttons";
-        mposButtons.amount = [[NSDecimalNumber alloc] initWithString:@"0.50"];
-        
-        PKPaymentRequest* paymentRequest = [[PKPaymentRequest alloc] init];
-        paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
-        paymentRequest.countryCode = @"US";
-        paymentRequest.currencyCode = @"USD";
+    PKPaymentSummaryItem *mposButtons = [[PKPaymentSummaryItem alloc] init];
+    mposButtons.label = @"mPOS Buttons";
+    mposButtons.amount = [[NSDecimalNumber alloc] initWithString:@"15.00"];
     
-        //2. SDKDemo.entitlements needs to be updated to use the new merchant id
-        paymentRequest.merchantIdentifier = @"<#INSERT_YOUR_MERCHANT_ID_HERE#>";
-    
-        paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV | PKMerchantCapability3DS;
-        paymentRequest.paymentSummaryItems = @[mposButtons];
-        paymentRequest.requiredBillingAddressFields = PKAddressFieldAll;
-        paymentRequest.requiredShippingAddressFields = PKAddressFieldPostalAddress;
+    PKPaymentRequest* paymentRequest = [[PKPaymentRequest alloc] init];
+    paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
+    paymentRequest.countryCode = @"US";
+    paymentRequest.currencyCode = @"USD";
 
-        //3. Create a SIMChargeViewController with your public api key
+    //2. SDKDemo.entitlements needs to be updated to use the new merchant id
+    paymentRequest.merchantIdentifier = @"<#INSERT_YOUR_MERCHANT_ID_HERE#>";
+
+    paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV | PKMerchantCapability3DS;
+    paymentRequest.paymentSummaryItems = @[mposButtons];
+    paymentRequest.requiredBillingAddressFields = PKAddressFieldAll;
+    paymentRequest.requiredShippingAddressFields = PKAddressFieldPostalAddress;
+
+    //3. Create a SIMChargeViewController with your public api key
 
     SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_<#INSERT_YOUR_PUBLIC_KEY_HERE#>" paymentRequest:paymentRequest primaryColor:self.primaryColor];
     
-        //4. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
-        chargeController.delegate = self;
-        chargeController.amount = mposButtons.amount;
-        chargeController.isCVCRequired = NO;
-        chargeController.isZipRequired = YES;
-    
-        //5.  Customize your charge controller interface
-        //chargeController.paymentButtonNormalTitle = @"YOUR CUSTOM BUTTON TITLE";
-        //chargeController.paymentButtonDisabledTitle = @"YOUR CUSTOM BUTTON TITLE";
-        //chargeController.headerTitle = @"YOUR CUSTOM HEADER TITLE";
-        //chargeController.headerTitleColor;
-        //chargeController.headerViewBackgroundColor;
-    
-        self.chargeController = chargeController;
+    //4. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
+    chargeController.delegate = self;
+    chargeController.amount = mposButtons.amount;
+    chargeController.isCVCRequired = NO;
+    chargeController.isZipRequired = YES;
 
-        //6. Add SIMChargeViewController to your view hierarchy
-        [self presentViewController:self.chargeController animated:YES completion:nil];
-    
+    //5.  Customize your charge controller interface colors and text
+    //chargeController.paymentButtonNormalTitle = @"YOUR CUSTOM BUTTON TITLE";
+    //chargeController.paymentButtonDisabledTitle = @"YOUR CUSTOM BUTTON TITLE";
+    //chargeController.headerTitle = @"YOUR CUSTOM HEADER TITLE";
+    //chargeController.headerTitleColor;
+    //chargeController.headerViewBackgroundColor;
+    //chargeController.paymentButtonDisabledColor;
+    //chargeController.paymentButtonNormalColor;
+    //chargeController.paymentButtonNormalTitleColor;
+    //chargeController.paymentButtonDisabledTitleColor;
+    self.chargeController = chargeController;
+
+    //6. Add SIMChargeViewController to your view hierarchy
+    [self presentViewController:self.chargeController animated:YES completion:nil];
 }
 
 #pragma mark - SIMChargeViewController Protocol

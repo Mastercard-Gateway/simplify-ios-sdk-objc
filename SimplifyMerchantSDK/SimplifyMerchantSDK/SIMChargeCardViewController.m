@@ -27,7 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIView *cardEntryView;
 @property (strong, nonatomic) IBOutlet UIView *zipCodeView;
 @property (weak, nonatomic) IBOutlet UIImageView *zipImageView;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *cardEntryViewTopConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *applePayViewHolderHeightConstraint;
 @property (strong, nonatomic) IBOutlet UILabel *headerTitleLabel;
 
 @end
@@ -64,7 +64,6 @@
     self.cardNumberField.tintColor = self.primaryColor;
     self.expirationField.tintColor = self.primaryColor;
     self.cvcField.tintColor = self.primaryColor;
-    self.zipField.hidden = self.zipImageView.hidden = !self.isZipRequired;
     self.zipField.tintColor = self.primaryColor;
     
     NSError *error;
@@ -75,8 +74,11 @@
     
     [self.submitPaymentButton setTitle:self.paymentButtonNormalTitle forState:UIControlStateNormal];
     [self.submitPaymentButton setTitle:self.paymentButtonDisabledTitle forState:UIControlStateDisabled];
+    [self.submitPaymentButton setTitleColor:self.paymentButtonNormalTitleColor forState:UIControlStateNormal];
+    [self.submitPaymentButton setTitleColor:self.paymentButtonDisabledTitleColor forState:UIControlStateDisabled];
     self.headerTitleLabel.text = self.headerTitle;
     self.headerTitleLabel.textColor = self.headerTitleColor;
+    [self.cancelButton setTitleColor:self.headerTitleColor forState:UIControlStateNormal];
     self.headerView.backgroundColor = self.headerViewBackgroundColor;
     
     self.cardEntryView.layer.cornerRadius = 4.0;
@@ -99,15 +101,12 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    //Remove the Apple Pay button if there is no PKPaymentRequest or if the device is not capable of doing Apple Pay
+    //Collapse the Apple Pay button if there is no PKPaymentRequest or if the device is not capable of doing Apple Pay
     if (![self.chargeCardModel isApplePayAvailable]) {
-        
-        [self.applePayViewHolder removeFromSuperview];
-        self.cardEntryViewTopConstraint.constant = 15.0;
+        self.applePayViewHolderHeightConstraint.constant = 0.0;
     }
-    
-    [self changeButton:self.amount];
 
+    [self displayPaymentValidity];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -121,15 +120,34 @@
         viewController.isPaymentSuccessful = NO;
         [self presentViewController:viewController animated:YES completion:nil];
     }
-    
 }
 
 -(NSString *)paymentButtonNormalTitle{
-    return _paymentButtonNormalTitle.length ? _paymentButtonNormalTitle : @"Submit Payment";
+    return _paymentButtonNormalTitle.length ? _paymentButtonNormalTitle :[self defaultTitle];
 }
 
 -(NSString *)paymentButtonDisabledTitle{
-    return _paymentButtonDisabledTitle.length ? _paymentButtonDisabledTitle : @"Submit Payment";
+    return _paymentButtonDisabledTitle.length ? _paymentButtonDisabledTitle : [self defaultTitle];
+}
+
+-(UIColor *)paymentButtonNormalTitleColor{
+   return _paymentButtonNormalTitleColor ? _paymentButtonNormalTitleColor : [UIColor whiteColor];
+}
+
+-(UIColor *)paymentButtonDisabledTitleColor{
+    return _paymentButtonDisabledTitleColor ? _paymentButtonDisabledTitleColor : [UIColor whiteColor];
+}
+
+-(NSString *)defaultTitle{
+    return [NSString stringWithFormat:@"Pay $%@", [NSString amountStringFromNumber:self.amount]];
+}
+
+-(UIColor *)paymentButtonColor{
+    if (self.submitPaymentButton.isEnabled) {
+        return _paymentButtonNormalColor ? _paymentButtonNormalColor : [UIColor buttonBackgroundColorEnabled];
+    }else{
+        return self.paymentButtonDisabledColor ? self.paymentButtonDisabledColor : [UIColor buttonBackgroundColorDisabled];
+    }
 }
 
 -(NSString *)headerTitle{
@@ -142,20 +160,10 @@
 
 -(UIColor *)headerViewBackgroundColor{
     return _headerViewBackgroundColor ? _headerViewBackgroundColor : [UIColor buttonBackgroundColorEnabled];
-    
-}
-
-- (void)changeButton:(NSDecimalNumber *)amount {
-    if (amount) {
-        [self.submitPaymentButton setTitle:[NSString stringWithFormat:@"Pay $%@", [NSString amountStringFromNumber:amount]] forState:UIControlStateNormal];
-    } else {
-        [self.submitPaymentButton setTitle:@"Pay" forState:UIControlStateNormal];
-    }
 }
 
 -(void)setAmount:(NSDecimalNumber *)amount {
     _amount = amount;
-    [self changeButton:amount];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -179,12 +187,7 @@
     
     BOOL isEnabled = [self.chargeCardModel isCardChargePossible];
     [self.submitPaymentButton setEnabled:isEnabled];
-    
-    if (isEnabled) {
-        [self.submitPaymentButton setBackgroundColor:self.primaryColor ? self.primaryColor : [UIColor buttonBackgroundColorEnabled]];
-    } else {
-        [self.submitPaymentButton setBackgroundColor:[UIColor buttonBackgroundColorDisabled]];
-    }
+    [self.submitPaymentButton setBackgroundColor:self.paymentButtonColor];
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
