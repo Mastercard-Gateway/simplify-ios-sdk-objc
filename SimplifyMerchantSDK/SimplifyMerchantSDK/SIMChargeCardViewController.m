@@ -29,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *zipImageView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *applePayViewHolderHeightConstraint;
 @property (strong, nonatomic) IBOutlet UILabel *headerTitleLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *zipCodeViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *expirationDateViewCVCCodeViewWidthConstraint;
 
 @end
 
@@ -104,6 +106,15 @@
     //Collapse the Apple Pay button if there is no PKPaymentRequest or if the device is not capable of doing Apple Pay
     if (![self.chargeCardModel isApplePayAvailable]) {
         self.applePayViewHolderHeightConstraint.constant = 0.0;
+    }
+    
+    if (!self.isCVCRequired) {
+        [self.view removeConstraint:self.expirationDateViewCVCCodeViewWidthConstraint];
+        [self.cvcCodeView removeFromSuperview];
+    }
+    
+    if (!self.isZipRequired) {
+        self.zipCodeViewHeightConstraint.constant = 0.0;
     }
 
     [self displayPaymentValidity];
@@ -225,16 +236,19 @@
         self.expirationField.text = self.chargeCardModel.formattedExpirationDate;
         
         if ([self.chargeCardModel isExpirationDateValid]) {
-            [self.cvcField becomeFirstResponder];
+            if (self.isCVCRequired) {
+                [self.cvcField becomeFirstResponder];
+            }else if (self.isZipRequired){
+                [self.zipField becomeFirstResponder];
+            }
         }
-        
 
     } else if (textField == self.cvcField) {
 
         [self.chargeCardModel updateCVCNumberWithString:newString];
         self.cvcField.text = self.chargeCardModel.cvcCode;
         
-        if ([self.chargeCardModel isCVCCodeValid]) {
+        if ([self.chargeCardModel isCVCCodeValid] && self.isZipRequired) {
             [self.zipField becomeFirstResponder];
         }
         

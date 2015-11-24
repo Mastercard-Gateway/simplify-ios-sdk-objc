@@ -56,7 +56,7 @@
     //4. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
     chargeController.delegate = self;
     chargeController.amount = mposButtons.amount;
-    chargeController.isCVCRequired = NO;
+    chargeController.isCVCRequired = YES;
     chargeController.isZipRequired = YES;
 
     //5.  Customize your charge controller interface colors and text

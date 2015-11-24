@@ -19,12 +19,14 @@
                 <outlet property="cvcCodeView" destination="Sfj-EB-mYA" id="7zm-5F-CeT"/>
                 <outlet property="cvcField" destination="bgD-dy-qTx" id="jX0-AY-O2f"/>
                 <outlet property="expirationDateView" destination="wRp-dr-Pgi" id="vfE-yQ-rBd"/>
+                <outlet property="expirationDateViewCVCCodeViewWidthConstraint" destination="hQN-BT-zbH" id="Wdm-lF-S8c"/>
                 <outlet property="expirationField" destination="I5R-05-qRh" id="EVR-qD-nng"/>
                 <outlet property="headerTitleLabel" destination="Vx8-Yu-a8a" id="oYW-Sx-rqr"/>
                 <outlet property="headerView" destination="r3F-Ew-1Jz" id="6fj-xk-YBW"/>
                 <outlet property="submitPaymentButton" destination="73H-mS-Ahn" id="FPx-ot-w6U"/>
                 <outlet property="view" destination="aTy-51-Uvk" id="FvH-xb-CKC"/>
                 <outlet property="zipCodeView" destination="Sc1-I6-k66" id="HHh-tL-1mW"/>
+                <outlet property="zipCodeViewHeightConstraint" destination="wg2-As-PVF" id="i4A-Ft-Gzd"/>
                 <outlet property="zipField" destination="QJP-A4-Zdk" id="yOe-cE-sTj"/>
                 <outlet property="zipImageView" destination="siR-nr-6nI" id="ysx-LZ-fGt"/>
             </connections>
@@ -296,6 +298,7 @@
                                 <constraint firstAttribute="trailing" secondItem="QJP-A4-Zdk" secondAttribute="trailing" constant="10" id="hKu-5h-5Qe"/>
                                 <constraint firstItem="QJP-A4-Zdk" firstAttribute="leading" secondItem="siR-nr-6nI" secondAttribute="trailing" constant="13" id="nxh-TM-AoF"/>
                                 <constraint firstItem="siR-nr-6nI" firstAttribute="top" secondItem="Sc1-I6-k66" secondAttribute="top" constant="16" id="u8I-DJ-4Pb"/>
+                                <constraint firstAttribute="height" constant="50" id="wg2-As-PVF"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
@@ -357,6 +360,7 @@
                         <constraint firstAttribute="height" constant="154" id="ATA-Bt-Cxp"/>
                         <constraint firstItem="Sfj-EB-mYA" firstAttribute="leading" secondItem="wRp-dr-Pgi" secondAttribute="trailing" id="CZ0-GF-fvD"/>
                         <constraint firstAttribute="bottom" secondItem="wRp-dr-Pgi" secondAttribute="bottom" constant="1" id="CcJ-T8-keD"/>
+                        <constraint firstAttribute="trailing" secondItem="wRp-dr-Pgi" secondAttribute="trailing" priority="500" constant="1" id="CvC-wK-3h1"/>
                         <constraint firstItem="Sc1-I6-k66" firstAttribute="top" secondItem="nNO-KJ-g0s" secondAttribute="bottom" constant="56" id="EYH-ID-kp9"/>
                         <constraint firstItem="wRp-dr-Pgi" firstAttribute="leading" secondItem="nvX-LM-R2p" secondAttribute="leading" constant="1" id="LhP-3c-pxI"/>
                         <constraint firstItem="Sfj-EB-mYA" firstAttribute="top" secondItem="nNO-KJ-g0s" secondAttribute="bottom" constant="1" id="Maf-sz-8R4"/>
@@ -372,12 +376,14 @@
                         <constraint firstItem="Sc1-I6-k66" firstAttribute="top" secondItem="Sfj-EB-mYA" secondAttribute="bottom" constant="1" id="glZ-Vf-NcA"/>
                         <constraint firstAttribute="trailing" secondItem="nNO-KJ-g0s" secondAttribute="trailing" constant="1" id="h0s-9k-7gT"/>
                         <constraint firstItem="wRp-dr-Pgi" firstAttribute="width" secondItem="Sfj-EB-mYA" secondAttribute="width" constant="2" id="hQN-BT-zbH"/>
+                        <constraint firstItem="Sc1-I6-k66" firstAttribute="top" secondItem="wRp-dr-Pgi" secondAttribute="bottom" constant="1" id="hwp-xW-dQw"/>
                         <constraint firstItem="wRp-dr-Pgi" firstAttribute="top" secondItem="nNO-KJ-g0s" secondAttribute="bottom" constant="1" id="kBX-Xt-DhP"/>
                         <constraint firstItem="wRp-dr-Pgi" firstAttribute="leading" secondItem="nvX-LM-R2p" secondAttribute="leading" id="l9P-kn-f0O"/>
                         <constraint firstItem="Sc1-I6-k66" firstAttribute="top" secondItem="nNO-KJ-g0s" secondAttribute="bottom" constant="56" id="r6O-HC-eNP"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="ATA-Bt-Cxp"/>
                             <exclude reference="CcJ-T8-keD"/>
                             <exclude reference="kBX-Xt-DhP"/>
                             <exclude reference="l9P-kn-f0O"/>
@@ -385,6 +391,8 @@
                             <exclude reference="Upt-VI-hA7"/>
                             <exclude reference="ZOa-ip-IHt"/>
                             <exclude reference="aOv-27-ehS"/>
+                            <exclude reference="dz7-Sk-hS8"/>
+                            <exclude reference="glZ-Vf-NcA"/>
                             <exclude reference="r6O-HC-eNP"/>
                         </mask>
                     </variation>
