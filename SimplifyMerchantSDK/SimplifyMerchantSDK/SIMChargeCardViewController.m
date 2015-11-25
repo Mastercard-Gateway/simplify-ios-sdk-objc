@@ -31,7 +31,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *headerTitleLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *zipCodeViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *expirationDateViewCVCCodeViewWidthConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cardEntryViewTopConstraint;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottomConstraint;
 
