@@ -4,19 +4,59 @@
 
 @interface SIMResponseViewController ()
 
-@property (nonatomic) UIImageView *backgroundView;
 @property (nonatomic) NSString *titleMessage;
 @property (nonatomic) NSString *descriptionMessage;
 @property (nonatomic) UIColor *primaryColor;
-@property (strong, nonatomic) IBOutlet UIImageView *successIndicatorImageView;
 
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
 
 @end
 
 @implementation SIMResponseViewController
 
+
+
+-(instancetype)initWithSuccess:(BOOL)success{
+    self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
+    if (self) {
+        if (success) {
+            self = [self initWithSuccess:success title:@"Success!" description:@"Your transaction is complete." imageView:nil primaryColor:nil];
+        }else{
+            self = [self initWithSuccess:success title:@"Uh oh." description:@"There was a problem with the payment." imageView:nil primaryColor:nil];
+        }
+    }
+    return self;
+}
+
+-(instancetype)initWithSuccess:(BOOL)success title:(NSString *)titleMessage description:(NSString *)descriptionMessage{
+    self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
+    if (self) {
+        self = [self initWithSuccess:success title:titleMessage description:descriptionMessage imageView:nil primaryColor:nil];
+    }
+    return self;
+}
+
+-(instancetype)initWithSuccess:(BOOL)success title:(NSString *)titleMessage description:(NSString *)descriptionMessage imageView:(UIImageView *)imageView primaryColor:(UIColor *)primaryColor{
+    self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
+    if (self) {
+        
+        self.titleMessage = titleMessage;
+        self.descriptionMessage = descriptionMessage;
+
+        //should check if there's an iv.
+        //if there is, then use that
+        //if there's not an iv, then just use the default success or failure
+        
+        //should check if there's a pc...
+
+    }
+    return self;
+}
+
+/*
 -(instancetype)initWithBackground:(UIImageView *)backgroundView primaryColor:(UIColor *)primaryColor title:(NSString *)titleMessage description:(NSString *)descriptionMessage {
     self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
     if (self) {
@@ -28,16 +68,17 @@
     }
     
     return self;
-}
+}*/
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    /*
     if (self.backgroundView) {
         [self.view addSubview:self.backgroundView];
     }
-    
+    */
     self.titleLabel.text = self.titleMessage;
     self.descriptionLabel.text = self.descriptionMessage;
 
@@ -45,7 +86,7 @@
     [self.view addGestureRecognizer:tapGestureRecognizer];
     
 }
-
+/*
 -(void)setIsPaymentSuccessful:(BOOL)isPaymentSuccessful {
     _isPaymentSuccessful = isPaymentSuccessful;
     
@@ -55,7 +96,7 @@
     self.view.backgroundColor = _isPaymentSuccessful ? [UIColor viewBackgroundColorValid] : [UIColor viewBackgroundColorInvalid];
     self.successIndicatorImageView.image = _isPaymentSuccessful ?  approvedIcon : declinedIcon;
     
-}
+}*/
 
 - (void)dismissSelf {
     [self dismissViewControllerAnimated:YES completion:nil];

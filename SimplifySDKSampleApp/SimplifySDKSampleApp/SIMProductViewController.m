@@ -87,9 +87,7 @@
 
     //There was a problem generating the token
     NSLog(@"Card Token Generation failed with error:%@", error);
-    SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Failure." description:@"There was a problem with the payment.\nPlease try again."];
-    viewController.isPaymentSuccessful = NO;
-    
+    SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Failure." description:@"There was a problem with the payment.\nPlease try again." imageView:nil primaryColor:nil];
     [self presentViewController:viewController animated:YES completion:nil];
 }
 
@@ -122,14 +120,12 @@
         if (error || !isResponseApproved) {
 
             NSLog(@"error:%@", error);
-            SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Failure." description:@"There was a problem with the payment.\nPlease try again."];
-            viewController.isPaymentSuccessful = NO;
+            SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Uh oh." description:@"There was a problem with the payment." imageView:nil primaryColor:nil];
             [self presentViewController:viewController animated:YES completion:nil];
             
         } else {
             
-            SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Success!" description:@"You purchased a pack of buttons!"];
-            viewController.isPaymentSuccessful = YES;
+            SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Success!" description:@"Your transaction is complete." imageView:nil primaryColor:nil];
             [self presentViewController:viewController animated:YES completion:nil];
         }
     }];
