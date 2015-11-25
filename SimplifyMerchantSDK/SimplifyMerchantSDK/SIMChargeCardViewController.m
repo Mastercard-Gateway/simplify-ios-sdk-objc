@@ -68,6 +68,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardDidChangeFrameNotification object:nil];
+    
     self.cardNumberField.tintColor = self.primaryColor;
     self.expirationField.tintColor = self.primaryColor;
     self.cvcField.tintColor = self.primaryColor;
@@ -140,13 +142,21 @@
     }
 }
 
+
 -(void)keyboardWillChangeFrame:(NSNotification *)notification{
-    NSDictionary* info = [notification userInfo];
-    CGRect keyboardFrame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    //[UIView animateWithDuration:[info[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+    CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat proposedBottomSpacing = self.view.frame.size.height - keyboardFrame.origin.y;
+    if (proposedBottomSpacing == 0.0) {
+        self.scrollViewBottomConstraint.constant = proposedBottomSpacing;
+    }
+}
+
+-(void)keyboardDidChangeFrame:(NSNotification *)notification{
+    CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat proposedBottomSpacing = self.view.frame.size.height - keyboardFrame.origin.y;
+    if (proposedBottomSpacing > 0.0) {
         self.scrollViewBottomConstraint.constant = self.view.frame.size.height - keyboardFrame.origin.y;
-    //    [self.view layoutIfNeeded];
-    //}];
+    }
 }
 
 -(NSString *)paymentButtonNormalTitle{
@@ -308,7 +318,7 @@
 
 - (IBAction)cancelTokenRequest:(id)sender {
     [self clearTextFields];
-
+    [self dismissKeyboard];
     [self dismissViewControllerAnimated:YES completion:^{
         [self.delegate chargeCardCancelled];
     }];
