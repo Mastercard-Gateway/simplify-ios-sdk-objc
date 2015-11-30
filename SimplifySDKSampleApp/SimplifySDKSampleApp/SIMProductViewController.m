@@ -87,7 +87,9 @@
 
     //There was a problem generating the token
     NSLog(@"Card Token Generation failed with error:%@", error);
-    SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Failure." description:@"There was a problem with the payment.\nPlease try again." imageView:nil primaryColor:nil];
+    
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"coffeeCupEmpty"]];
+    SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Failure." description:@"There was a problem with the payment.\nPlease try again." imageView:imageView primaryColor:nil];
     [self presentViewController:viewController animated:YES completion:nil];
 }
 
@@ -120,12 +122,15 @@
         if (error || !isResponseApproved) {
 
             NSLog(@"error:%@", error);
-            SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Uh oh." description:@"There was a problem with the payment." imageView:nil primaryColor:nil];
+            
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"coffeeCupEmpty"]];
+            SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Uh oh." description:@"There was a problem with the payment." imageView:imageView primaryColor:nil];
             [self presentViewController:viewController animated:YES completion:nil];
             
         } else {
             
-            SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Success!" description:@"Your transaction is complete." imageView:nil primaryColor:nil];
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"coffeeCup"]];
+            SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Success!" description:@"Your transaction is complete." imageView:imageView primaryColor:nil];
             [self presentViewController:viewController animated:YES completion:nil];
         }
     }];

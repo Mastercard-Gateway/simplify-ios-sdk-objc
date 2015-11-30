@@ -9,9 +9,14 @@
 @property (nonatomic) UIColor *primaryColor;
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) UIImageView *customImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (strong, nonatomic) UIImageView *customBackgroundImageView;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIView *backgroundView;
+
+- (IBAction)close:(id)sender;
 
 @end
 
@@ -27,6 +32,7 @@
         }else{
             self = [self initWithSuccess:success title:@"Uh oh." description:@"There was a problem with the payment." imageView:nil primaryColor:nil];
         }
+        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
     return self;
 }
@@ -48,10 +54,15 @@
 
         //should check if there's an iv.
         //if there is, then use that
-        //if there's not an iv, then just use the default success or failure
+        //if there's no frame, then use that
         
-        //should check if there's a pc...
-
+        if (imageView && (self.imageView.frame.size.width > 0.0 && self.imageView.frame.size.height > 0.0)) {
+            self.customImageView = imageView;
+        }else if (imageView){
+            self.customImageView = imageView;
+        }else{
+            
+        }
     }
     return self;
 }
@@ -81,6 +92,9 @@
     */
     self.titleLabel.text = self.titleMessage;
     self.descriptionLabel.text = self.descriptionMessage;
+    if (self.customImageView) {
+        self.backgroundImageView.image = self.customImageView.image;
+    }
 
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSelf)];
     [self.view addGestureRecognizer:tapGestureRecognizer];
@@ -107,4 +121,7 @@
     [super didReceiveMemoryWarning];
 }
 
+- (IBAction)close:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
