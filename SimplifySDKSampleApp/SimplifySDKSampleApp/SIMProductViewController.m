@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *buyButton;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) UIColor *primaryColor;
+@property (strong, nonatomic) NSDecimalNumber *amount;
 
 @end
 
@@ -23,6 +24,7 @@
     [super viewDidLoad];
     self.buyButton.backgroundColor = [UIColor buttonBackgroundColorEnabled];
     self.headerView.backgroundColor = [UIColor buttonBackgroundColorEnabled];
+    self.amount = [[NSDecimalNumber alloc] initWithString:@"15.00"];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -34,7 +36,7 @@
     
     PKPaymentSummaryItem *mposButtons = [[PKPaymentSummaryItem alloc] init];
     mposButtons.label = @"mPOS Buttons";
-    mposButtons.amount = [[NSDecimalNumber alloc] initWithString:@"15.00"];
+    mposButtons.amount = self.amount;
     
     PKPaymentRequest* paymentRequest = [[PKPaymentRequest alloc] init];
     paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
@@ -88,17 +90,17 @@
     //There was a problem generating the token
     NSLog(@"Card Token Generation failed with error:%@", error);
     
-    SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:nil description:nil iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupEmptyFullBG"]  tintColor:nil];
+    SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Uh oh." description:@"Something went wrong with your order. If you really want to spend a bunch of money, go ahead and try that again." iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupEmptyFullBG"]  tintColor:nil];
+    viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
+    viewController.buttonText = @"Try again";
+    viewController.buttonTextColor = [UIColor whiteColor];
     
-    //Example of a simpler response view controller
-    //viewController = [[SIMResponseViewController alloc]initWithSuccess:NO tintColor:[UIColor colorWithRed:255.0/255.0 green:29.0/255.0 blue:21.0/255.0 alpha:1.0]];
-    
-    //Customize your response view controller interface colors and text
+    //Further customize your response view controller interface colors and text
     //viewController.titleMessageColor;
     //viewController.titleDescriptionColor;
-    //viewController.buttonColor;
-    //viewController.buttonText = @"YOUR_BUTTON_TEXT";
-    //viewController.buttonTextColor;
+    
+    //Example of a simpler response view controller
+    //viewController = [[SIMResponseViewController alloc]initWithSuccess:NO tintColor:[UIColor redColor]];
     
     [self presentViewController:viewController animated:YES completion:nil];
 }
@@ -117,7 +119,7 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
     [request setHTTPMethod:@"POST"];
 
-    NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@&amount=50", token.token];
+    NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@&amount=%@", token.token, self.amount.stringValue];
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -132,17 +134,21 @@
 
             NSLog(@"error:%@", error);
             
-            SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Uh oh." description:@"Something went wrong with your order. If you really want to spend a bunch of money, go ahead and try that again." iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupEmptyFullBG"] tintColor:[UIColor buttonBackgroundColorDisabled]];
+            SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Uh oh." description:@"Something went wrong with your order. If you really want to spend a bunch of money, go ahead and try that again." iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupEmptyFullBG"] tintColor:[UIColor buttonBackgroundColorDisabled]];
+            viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
+            viewController.buttonText = @"Try again";
+            viewController.buttonTextColor = [UIColor whiteColor];
             [self presentViewController:viewController animated:YES completion:nil];
         } else {            
             SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Cheers!" description:@"Thanks for your order.  While you wait, check out our famous \"Nickel Scones.\"" iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupFullBG"] tintColor:[UIColor buttonBackgroundColorEnabled]];
+            viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
+            viewController.buttonText = @"Done";
+            viewController.buttonTextColor = [UIColor whiteColor];
             [self presentViewController:viewController animated:YES completion:nil];
         }
     }];
     
     [paymentTask resume];
-    
-    
 }
 
 @end
