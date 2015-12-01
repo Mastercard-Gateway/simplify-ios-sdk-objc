@@ -59,7 +59,7 @@
     chargeController.isCVCRequired = YES;
     chargeController.isZipRequired = YES;
 
-    //5.  Customize your charge controller interface colors and text
+    //5.  Customize your charge card view controller interface colors and text
     //chargeController.paymentButtonNormalTitle = @"YOUR CUSTOM BUTTON TITLE";
     //chargeController.paymentButtonDisabledTitle = @"YOUR CUSTOM BUTTON TITLE";
     //chargeController.headerTitle = @"YOUR CUSTOM HEADER TITLE";
@@ -88,8 +88,18 @@
     //There was a problem generating the token
     NSLog(@"Card Token Generation failed with error:%@", error);
     
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"coffeeCupEmpty"]];
-    SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Failure." description:@"There was a problem with the payment.\nPlease try again." imageView:imageView primaryColor:nil];
+    SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:nil description:nil iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupEmptyFullBG"]  tintColor:nil];
+    
+    //Example of a simpler response view controller
+    //viewController = [[SIMResponseViewController alloc]initWithSuccess:NO tintColor:[UIColor colorWithRed:255.0/255.0 green:29.0/255.0 blue:21.0/255.0 alpha:1.0]];
+    
+    //Customize your response view controller interface colors and text
+    //viewController.titleMessageColor;
+    //viewController.titleDescriptionColor;
+    //viewController.buttonColor;
+    //viewController.buttonText = @"YOUR_BUTTON_TEXT";
+    //viewController.buttonTextColor;
+    
     [self presentViewController:viewController animated:YES completion:nil];
 }
 
@@ -117,20 +127,15 @@
         
         NSString *responseData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         BOOL isResponseApproved = [responseData containsString:@"APPROVED"];
-        NSLog(@"response:%@", responseData);
         
         if (error || !isResponseApproved) {
 
             NSLog(@"error:%@", error);
             
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"coffeeCupEmpty"]];
-            SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Uh oh." description:@"There was a problem with the payment." imageView:imageView primaryColor:nil];
+            SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Uh oh." description:@"Something went wrong with your order. If you really want to spend a bunch of money, go ahead and try that again." iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupEmptyFullBG"] tintColor:[UIColor buttonBackgroundColorDisabled]];
             [self presentViewController:viewController animated:YES completion:nil];
-            
-        } else {
-            
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"coffeeCup"]];
-            SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Success!" description:@"Your transaction is complete." imageView:imageView primaryColor:nil];
+        } else {            
+            SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Cheers!" description:@"Thanks for your order.  While you wait, check out our famous \"Nickel Scones.\"" iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupFullBG"] tintColor:[UIColor buttonBackgroundColorEnabled]];
             [self presentViewController:viewController animated:YES completion:nil];
         }
     }];

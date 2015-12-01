@@ -4,11 +4,12 @@
 
 -(instancetype)initWithSuccess:(BOOL)success;
 
+-(instancetype)initWithSuccess:(BOOL)success tintColor:(UIColor *)tintColor;
+
 -(instancetype)initWithSuccess:(BOOL)success title:(NSString *)titleMessage description:(NSString *)descriptionMessage;
 
--(instancetype)initWithSuccess:(BOOL)success title:(NSString *)titleMessage description:(NSString *)descriptionMessage imageView:(UIImageView *)imageView primaryColor:(UIColor *)primaryColor;
+-(instancetype)initWithSuccess:(BOOL)success title:(NSString *)titleMessage description:(NSString *)descriptionMessage iconImage:(UIImage *)iconImage backgroundImage:(UIImage *)backgroundImage tintColor:(UIColor *)tintColor;
 
-@property (strong, nonatomic) UIColor *imageViewRenderColor;
 @property (strong, nonatomic) UIColor *titleMessageColor;
 @property (strong, nonatomic) UIColor *titleDescriptionColor;
 @property (strong, nonatomic) UIColor *buttonColor;

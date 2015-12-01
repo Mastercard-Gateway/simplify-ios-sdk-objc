@@ -133,8 +133,7 @@
     [super viewDidAppear:animated];
 
     if (self.modelError) {
-
-        SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Failure" description:@"There was a problem with your Public Key.\n\nPlease double-check your Public Key and try again." imageView:nil primaryColor:[UIColor redColor]];
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Failure" description:@"There was a problem with your Public Key.\n\nPlease double-check your Public Key and try again." iconImage:nil backgroundImage:nil tintColor:[UIColor redColor]];
         [self presentViewController:viewController animated:YES completion:nil];
     }
 }

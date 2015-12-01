@@ -6,15 +6,17 @@
 
 @property (nonatomic) NSString *titleMessage;
 @property (nonatomic) NSString *descriptionMessage;
-@property (nonatomic) UIColor *primaryColor;
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic) UIImageView *customImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
-@property (strong, nonatomic) UIImageView *customBackgroundImageView;
+@property (nonatomic) BOOL success;
+@property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (strong, nonatomic) UIImage *iconImage;
+@property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (strong, nonatomic) UIImage *backgroundImage;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIView *backgroundView;
+@property (weak, nonatomic) IBOutlet UIButton *bottomButton;
+@property (strong, nonatomic) UIColor *tintColor;
 
 - (IBAction)close:(id)sender;
 
@@ -25,100 +27,86 @@
 
 
 -(instancetype)initWithSuccess:(BOOL)success{
-    self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
-    if (self) {
-        if (success) {
-            self = [self initWithSuccess:success title:@"Success!" description:@"Your transaction is complete." imageView:nil primaryColor:nil];
-        }else{
-            self = [self initWithSuccess:success title:@"Uh oh." description:@"There was a problem with the payment." imageView:nil primaryColor:nil];
-        }
-        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    }
-    return self;
+    return [self initWithSuccess:success title:nil description:nil iconImage:nil backgroundImage:nil tintColor:nil];
+}
+
+-(instancetype)initWithSuccess:(BOOL)success tintColor:(UIColor *)tintColor{
+    return [self initWithSuccess:success title:nil description:nil iconImage:nil backgroundImage:nil tintColor:tintColor];
 }
 
 -(instancetype)initWithSuccess:(BOOL)success title:(NSString *)titleMessage description:(NSString *)descriptionMessage{
-    self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
-    if (self) {
-        self = [self initWithSuccess:success title:titleMessage description:descriptionMessage imageView:nil primaryColor:nil];
-    }
-    return self;
+    return [self initWithSuccess:success title:titleMessage description:descriptionMessage iconImage:nil backgroundImage:nil tintColor:nil];
 }
 
--(instancetype)initWithSuccess:(BOOL)success title:(NSString *)titleMessage description:(NSString *)descriptionMessage imageView:(UIImageView *)imageView primaryColor:(UIColor *)primaryColor{
+-(instancetype)initWithSuccess:(BOOL)success title:(NSString *)titleMessage description:(NSString *)descriptionMessage iconImage:(UIImage *)iconImage backgroundImage:(UIImage *)backgroundImage tintColor:(UIColor *)tintColor{
+
     self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
     if (self) {
         
-        self.titleMessage = titleMessage;
-        self.descriptionMessage = descriptionMessage;
-
-        //should check if there's an iv.
-        //if there is, then use that
-        //if there's no frame, then use that
+        self.success = success;
         
-        if (imageView && (self.imageView.frame.size.width > 0.0 && self.imageView.frame.size.height > 0.0)) {
-            self.customImageView = imageView;
-        }else if (imageView){
-            self.customImageView = imageView;
+        if (titleMessage) {
+            self.titleMessage = titleMessage;
         }else{
-            
+            self.titleMessage = success ? @"Success!" : @"Uh oh.";
         }
-    }
-    return self;
-}
-
-/*
--(instancetype)initWithBackground:(UIImageView *)backgroundView primaryColor:(UIColor *)primaryColor title:(NSString *)titleMessage description:(NSString *)descriptionMessage {
-    self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
-    if (self) {
-        self.backgroundView = backgroundView;
-        self.primaryColor = primaryColor ? primaryColor : [UIColor buttonBackgroundColorEnabled];
-        self.titleMessage = titleMessage ? titleMessage : @"Status Unknown";
-        self.descriptionMessage = descriptionMessage ? descriptionMessage : @"Please try again.";
+        
+        if (descriptionMessage) {
+            self.descriptionMessage = descriptionMessage;
+        }else{
+            self.descriptionMessage = success ? @"Your transaction is complete." : @"There was a problem with the payment.";
+        }
+        
+        if (iconImage) {
+            self.iconImage = iconImage;
+        }else if (!iconImage && !backgroundImage){
+            self.iconImage = success ? [[UIImage imageNamed:@"successGraphic" inBundle:[NSBundle frameworkBundle] compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] : [[UIImage imageNamed:@"failGraphic" inBundle:[NSBundle frameworkBundle] compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        }
+        
+        self.backgroundImage = backgroundImage ? backgroundImage : nil;
+        
+        self.tintColor = tintColor ? tintColor : [UIColor blackColor];
+        
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
-    
     return self;
-}*/
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    /*
-    if (self.backgroundView) {
-        [self.view addSubview:self.backgroundView];
-    }
-    */
     self.titleLabel.text = self.titleMessage;
     self.descriptionLabel.text = self.descriptionMessage;
-    if (self.customImageView) {
-        self.backgroundImageView.image = self.customImageView.image;
+    self.backgroundImageView.image = self.backgroundImage;
+    self.iconImageView.image = self.iconImage;
+    self.iconImageView.tintColor = self.tintColor;
+    self.titleLabel.textColor = self.titleMessageColor ? self.titleMessageColor : self.tintColor;
+    
+    if (self.titleDescriptionColor) {
+        self.descriptionLabel.textColor = self.titleDescriptionColor;
     }
-
+   
+    if (self.buttonColor) {
+        self.bottomButton.backgroundColor = self.buttonColor;
+    }
+    
+    if (!self.buttonText) {
+        self.buttonText = self.success ? @"Done" : @"Cancel";
+    }
+    [self.bottomButton setTitle:self.buttonText forState:UIControlStateNormal];
+    
+    if (self.buttonTextColor) {
+        [self.bottomButton setTitleColor:self.buttonTextColor forState:UIControlStateNormal];
+    }
+    
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSelf)];
     [self.view addGestureRecognizer:tapGestureRecognizer];
     
 }
-/*
--(void)setIsPaymentSuccessful:(BOOL)isPaymentSuccessful {
-    _isPaymentSuccessful = isPaymentSuccessful;
-    
-    UIImage *approvedIcon = [UIImage imageNamed:@"approvedIconWhite" inBundle:[NSBundle frameworkBundle] compatibleWithTraitCollection:nil];
-    UIImage *declinedIcon = [UIImage imageNamed:@"declinedIconGrey" inBundle:[NSBundle frameworkBundle] compatibleWithTraitCollection:nil];
-    
-    self.view.backgroundColor = _isPaymentSuccessful ? [UIColor viewBackgroundColorValid] : [UIColor viewBackgroundColorInvalid];
-    self.successIndicatorImageView.image = _isPaymentSuccessful ?  approvedIcon : declinedIcon;
-    
-}*/
 
 - (void)dismissSelf {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 - (IBAction)close:(id)sender {
