@@ -1,7 +1,7 @@
 @interface NSString (Simplify)
 
 /**
- Converts a string to it's URL-compatible counterpart
+ Converts a string to its URL-compatible counterpart
  @return URL-encoded string encoded by NSUTF8StringEncoding
  */
 +(NSString *)urlEncodedString:(NSString *)urlString;

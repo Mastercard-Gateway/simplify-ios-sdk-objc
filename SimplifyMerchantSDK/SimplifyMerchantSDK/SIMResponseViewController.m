@@ -4,27 +4,26 @@
 
 @interface SIMResponseViewController ()
 
-@property (nonatomic) NSString *titleMessage;
-@property (nonatomic) NSString *descriptionMessage;
 
 @property (nonatomic) BOOL success;
-@property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (strong, nonatomic) NSString *titleMessage;
+@property (strong, nonatomic) NSString *descriptionMessage;
 @property (strong, nonatomic) UIImage *iconImage;
-@property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (strong, nonatomic) UIImage *backgroundImage;
+@property (strong, nonatomic) UIColor *tintColor;
+
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UIView *backgroundView;
 @property (weak, nonatomic) IBOutlet UIButton *bottomButton;
-@property (strong, nonatomic) UIColor *tintColor;
 
 - (IBAction)close:(id)sender;
 
 @end
 
 @implementation SIMResponseViewController
-
-
 
 -(instancetype)initWithSuccess:(BOOL)success{
     return [self initWithSuccess:success title:nil description:nil iconImage:nil backgroundImage:nil tintColor:nil];
@@ -83,8 +82,8 @@
     self.iconImageView.tintColor = self.tintColor;
     self.titleLabel.textColor = self.titleMessageColor ? self.titleMessageColor : self.tintColor;
     
-    if (self.titleDescriptionColor) {
-        self.descriptionLabel.textColor = self.titleDescriptionColor;
+    if (self.descriptionMessageColor) {
+        self.descriptionLabel.textColor = self.descriptionMessageColor;
     }
    
     if (self.buttonColor) {
@@ -100,13 +99,9 @@
         [self.bottomButton setTitleColor:self.buttonTextColor forState:UIControlStateNormal];
     }
     
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSelf)];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(close:)];
     [self.view addGestureRecognizer:tapGestureRecognizer];
     
-}
-
-- (void)dismissSelf {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)close:(id)sender {
