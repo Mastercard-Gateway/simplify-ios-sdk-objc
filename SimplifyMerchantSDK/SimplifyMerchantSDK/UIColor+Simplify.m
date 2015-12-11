@@ -47,46 +47,46 @@
     return buttonDisableStrokeColor;
 }
 
-+(UIColor *)fieldBackgroundColorValid {
++(UIColor *)fieldBorderColorValid {
     
     static UIColor *validColor = nil;
     
     if (!validColor) {
-        validColor  = [UIColor colorWithRed:(235.0/255.0) green:(247.0/255.0) blue:(230.0/255.0) alpha:1.0];
+        validColor = [UIColor clearColor];
     }
     
     return validColor;
 }
 
-+(UIColor *)fieldBackgroundColorInvalid {
++(UIColor *)fieldBorderColorInvalid {
     
     static UIColor *invalidColor;
     
     if (!invalidColor) {
-        invalidColor  = [UIColor colorWithRed:(247.0/255.0) green:(230.0/255.0) blue:(230.0/255.0) alpha:1.0];
+        invalidColor  = [UIColor colorWithRed:(255.0/255.0) green:(0.0/255.0) blue:(0.0/255.0) alpha:1.0];
     }
     
     return invalidColor;
     
 }
 
-+(UIColor *)viewBackgroundColorValid {
++(UIColor *)viewBorderColorValid {
     
     static UIColor *validColor = nil;
     
     if (!validColor) {
-        validColor  = [UIColor colorWithRed:(81.0/255.0) green:(170.0/255.0) blue:(45.0/255.0) alpha:1.0];
+        validColor  = [UIColor colorWithWhite:216.0/255.0 alpha:1.0];
     }
     
     return validColor;
 }
 
-+(UIColor *)viewBackgroundColorInvalid {
++(UIColor *)viewBorderColorInvalid {
     
     static UIColor *invalidColor;
     
     if (!invalidColor) {
-        invalidColor  = [UIColor colorWithRed:(225.0/255.0) green:(38.0/255.0) blue:(41.0/255.0) alpha:1.0];
+        invalidColor  = [UIColor colorWithRed:(255.0/255.0) green:(0.0/255.0) blue:(0.0/255.0) alpha:1.0];
     }
     
     return invalidColor;

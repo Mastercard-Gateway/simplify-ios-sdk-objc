@@ -209,18 +209,24 @@
 
 -(void)displayPaymentValidity {
     
-    self.cardNumberView.backgroundColor = [self.chargeCardModel isCardNumberValid] ? [UIColor fieldBackgroundColorValid] : [UIColor fieldBackgroundColorInvalid];
-    
-    self.expirationDateView.backgroundColor = [self.chargeCardModel isExpirationDateValid] ? [UIColor fieldBackgroundColorValid] : [UIColor fieldBackgroundColorInvalid];
-
-    self.cvcCodeView.backgroundColor = [self.chargeCardModel isCVCCodeValid] ? [UIColor fieldBackgroundColorValid] : [UIColor fieldBackgroundColorInvalid];
-
-    self.zipCodeView.backgroundColor = [self.chargeCardModel isZipCodeValid] ? [UIColor fieldBackgroundColorValid] : [UIColor fieldBackgroundColorInvalid];
-
+    [self configureView:self.cardNumberView forValidity:(self.chargeCardModel.isCardNumberValid || self.chargeCardModel.cardNumber.length == 0)];
+    [self configureView:self.expirationDateView forValidity:(self.chargeCardModel.isExpirationDateValid || self.chargeCardModel.expirationDate.length == 0)];
+    [self configureView:self.cvcCodeView forValidity:(self.chargeCardModel.isCVCCodeValid || self.chargeCardModel.cvcCode.length == 0)];
+    [self configureView:self.zipCodeView forValidity:(self.chargeCardModel.isZipCodeValid || self.chargeCardModel.zipCode.length == 0)];
     
     BOOL isEnabled = [self.chargeCardModel isCardChargePossible];
     [self.submitPaymentButton setEnabled:isEnabled];
     [self.submitPaymentButton setBackgroundColor:self.paymentButtonColor];
+}
+
+-(void)configureView:(UIView *)view forValidity:(BOOL)valid{
+    view.layer.borderWidth = 1.0;
+    if (valid) {
+        view.layer.borderColor =  [UIColor viewBorderColorValid].CGColor;
+    }else{
+        view.layer.borderColor =  [UIColor viewBorderColorInvalid].CGColor;
+        [self.cardEntryView bringSubviewToFront:view];
+    }
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

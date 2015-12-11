@@ -107,7 +107,7 @@
     //viewController.titleDescriptionColor;
     
     //Example of a simpler response view controller
-    viewController = [[SIMResponseViewController alloc]initWithSuccess:NO tintColor:[UIColor redColor]];
+    //viewController = [[SIMResponseViewController alloc]initWithSuccess:NO tintColor:[UIColor redColor]];
     
     [self presentViewController:viewController animated:YES completion:nil];
 }
