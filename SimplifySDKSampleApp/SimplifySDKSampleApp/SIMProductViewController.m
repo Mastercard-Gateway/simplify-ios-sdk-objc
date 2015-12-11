@@ -40,12 +40,12 @@
     icedCoffee.amount = [NSDecimalNumber decimalNumberWithString:@"15.00"];
     
     PKPaymentRequest* paymentRequest = [[PKPaymentRequest alloc] init];
-    paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
+    paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkDiscover, PKPaymentNetworkMasterCard, PKPaymentNetworkPrivateLabel, PKPaymentNetworkVisa];
     paymentRequest.countryCode = @"US";
     paymentRequest.currencyCode = @"USD";
 
     //2. SDKDemo.entitlements needs to be updated to use the new merchant id
-    paymentRequest.merchantIdentifier = @"<#INSERT_YOUR_MERCHANT_ID_HERE#>";
+    paymentRequest.merchantIdentifier = @"<#INSERT_YOUR_APPLE_MERCHANT_ID_HERE#>";
 
     paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV | PKMerchantCapability3DS;
     paymentRequest.paymentSummaryItems = @[icedCoffee];
