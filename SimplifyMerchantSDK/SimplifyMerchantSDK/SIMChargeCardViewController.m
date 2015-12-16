@@ -12,6 +12,7 @@
 @property (strong, nonatomic) NSError *modelError;
 @property (strong, nonatomic) PKPaymentRequest *paymentRequest;
 @property (strong, nonatomic) UIColor *primaryColor;
+@property (strong, nonatomic) NSNumberFormatter *currencyFormatter;
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 @property (strong, nonatomic) IBOutlet UIButton *submitPaymentButton;
@@ -56,6 +57,11 @@
         self.publicKey = publicKey;
         self.primaryColor = primaryColor ? primaryColor : [UIColor buttonBackgroundColorEnabled];
         self.paymentRequest = paymentRequest;
+        
+        self.currencyFormatter = [[NSNumberFormatter alloc]init];
+        self.currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
+        self.currencyFormatter.currencyCode = paymentRequest.currencyCode;
+        
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
     
@@ -172,7 +178,7 @@
 }
 
 -(NSString *)defaultTitle{
-    return [NSString stringWithFormat:@"Pay $%@", [NSString amountStringFromNumber:self.amount]];
+    return [NSString stringWithFormat:@"Pay %@", [self.currencyFormatter stringFromNumber:self.amount]];
 }
 
 -(UIColor *)paymentButtonColor{
