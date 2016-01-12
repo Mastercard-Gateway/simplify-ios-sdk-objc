@@ -229,6 +229,20 @@
     }
 }
 
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    if ([textField isEqual:self.cardNumberField] && [textField.text containsString:[NSString stringWithFormat:@"%C", 0x2022]]) {
+        textField.text = self.chargeCardModel.formattedCardNumberNotObfuscated;
+    }
+    return YES;
+}
+
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    if ([textField isEqual:self.cardNumberField] && [textField.text containsString:[NSString stringWithFormat:@"%C", 0x2022]]) {
+        textField.text = self.chargeCardModel.formattedCardNumber;
+    }
+    return YES;
+}
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
@@ -247,10 +261,7 @@
             [self.chargeCardModel deleteCharacterInCardNumber];
         }
 
-        NSString *unicodeMiddleDotString = [NSString stringWithFormat:@"%C", 0x2022];
-        
-        NSString *unicodeMaskedString = [self.chargeCardModel.formattedCardNumber stringByReplacingOccurrencesOfString:@"*" withString:unicodeMiddleDotString];
-        self.cardNumberField.text = unicodeMaskedString;
+        self.cardNumberField.text = self.chargeCardModel.formattedCardNumber;
         [self setCardTypeImage];
         
     } else if (textField == self.expirationField) {
