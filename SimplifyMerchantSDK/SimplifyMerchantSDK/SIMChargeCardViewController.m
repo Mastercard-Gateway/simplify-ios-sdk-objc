@@ -28,6 +28,9 @@
 @property (strong, nonatomic) IBOutlet UIView *zipCodeView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *cardEntryViewTopConstraint;
 @property (strong, nonatomic) IBOutlet UILabel *headerTitle;
+#if TARGET_IPHONE_SIMULATOR
+@property (copy  , nonatomic) void (^applePayCompletion)(PKPaymentAuthorizationStatus);
+#endif
 
 @end
 
@@ -284,6 +287,11 @@
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self clearTextFields];
         [self dismissViewControllerAnimated:YES completion:^{
+#if TARGET_IPHONE_SIMULATOR
+            if (self.applePayCompletion) {
+                self.applePayCompletion(PKPaymentAuthorizationStatusFailure);
+            }
+#endif
             [self.delegate creditCardTokenFailedWithError:error];
             
         }];
@@ -298,7 +306,11 @@
             [self clearTextFields];
             [self dismissKeyboard];
             [self dismissViewControllerAnimated:YES completion:^{
-                
+#if TARGET_IPHONE_SIMULATOR
+                if (self.applePayCompletion) {
+                    self.applePayCompletion(PKPaymentAuthorizationStatusSuccess);
+                }
+#endif
                 [self.delegate creditCardTokenProcessed:token];
             }];
             
@@ -313,10 +325,16 @@
     if (error) {
         completion(PKPaymentAuthorizationStatusFailure);
     } else {
-        
+#if TARGET_IPHONE_SIMULATOR
+        if ([@"Simulated Identifier" isEqualToString:payment.token.transactionIdentifier]) {
+            [controller dismissViewControllerAnimated:YES completion:^{
+                self.applePayCompletion = completion;
+                [self.chargeCardModel retrieveToken];
+            }];
+        }
+#else
         [simplify createCardTokenWithPayment:payment completionHandler:^(SIMCreditCardToken *cardToken, NSError *error)
          {
-             
              dispatch_async(dispatch_get_main_queue(), ^{
                  [controller dismissViewControllerAnimated:YES completion:^{
                      
@@ -332,6 +350,7 @@
                  }];
              });
          }];
+#endif
     }
 }
 
