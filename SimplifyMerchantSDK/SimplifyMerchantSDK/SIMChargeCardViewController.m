@@ -427,6 +427,8 @@
     } else {
 #if TARGET_IPHONE_SIMULATOR
         if ([@"Simulated Identifier" isEqualToString:payment.token.transactionIdentifier]) {
+            NSLog(@"You will need to run this on a device in order to actually test Apple Pay. Simulated Apple Pay:%@", simplify.description);
+
             [controller dismissViewControllerAnimated:YES completion:^{
                 self.applePayCompletion = completion;
                 [self.chargeCardModel retrieveToken];
