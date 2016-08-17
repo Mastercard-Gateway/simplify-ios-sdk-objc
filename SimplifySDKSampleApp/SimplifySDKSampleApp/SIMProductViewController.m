@@ -12,80 +12,102 @@
 @interface SIMProductViewController ()<SIMChargeCardViewControllerDelegate>
 @property (nonatomic, strong) SIMChargeCardViewController *chargeController;
 @property (strong, nonatomic) IBOutlet UIButton *buyButton;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) UIColor *primaryColor;
 
 @end
 
 @implementation SIMProductViewController
 
-- (void)viewDidLoad
-{
+#pragma mark - View lifeycycle
+
+- (void)viewDidLoad{
     [super viewDidLoad];
-    self.primaryColor = [UIColor colorWithRed:241.0/255.0 green:100.0/255.0 blue:33.0/255.0 alpha:1.0];
-    [self.buyButton setBackgroundColor:self.primaryColor];
-    
+    self.buyButton.backgroundColor = [UIColor buttonBackgroundColorEnabled];
+    self.headerView.backgroundColor = [UIColor buttonBackgroundColorEnabled];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+#pragma mark - UI setup
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
-- (BOOL) prefersStatusBarHidden
-{
-    return YES;
-}
-
-#pragma mark - Navigation
 - (IBAction)buySimplifyButton:(id)sender {
     
-        PKPaymentSummaryItem *mposButtons = [[PKPaymentSummaryItem alloc] init];
-        mposButtons.label = @"mPOS Buttons";
-        mposButtons.amount = [[NSDecimalNumber alloc] initWithString:@"0.50"];
-        
-        PKPaymentRequest* paymentRequest = [[PKPaymentRequest alloc] init];
-        paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
-        paymentRequest.countryCode = @"US";
-        paymentRequest.currencyCode = @"USD";
+    PKPaymentSummaryItem *icedCoffee = [[PKPaymentSummaryItem alloc] init];
+    icedCoffee.label = @"Iced Coffee";
+    icedCoffee.amount = [NSDecimalNumber decimalNumberWithString:@"15.00"];
     
-        //2. SDKDemo.entitlements needs to be updated to use the new merchant id
-        paymentRequest.merchantIdentifier = @"<#INSERT_YOUR_MERCHANT_ID_HERE#>";
-    
-        paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV | PKMerchantCapability3DS;
-        paymentRequest.paymentSummaryItems = @[mposButtons];
-        paymentRequest.requiredBillingAddressFields = PKAddressFieldAll;
-        paymentRequest.requiredShippingAddressFields = PKAddressFieldPostalAddress;
+    PKPaymentRequest* paymentRequest = [[PKPaymentRequest alloc] init];
+    paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkDiscover, PKPaymentNetworkMasterCard, PKPaymentNetworkPrivateLabel, PKPaymentNetworkVisa];
+    paymentRequest.countryCode = @"US";
+    paymentRequest.currencyCode = @"USD";
 
-        //3. Create a SIMChargeViewController with your public api key
+    //2. SDKDemo.entitlements needs to be updated to use the new merchant id
+    paymentRequest.merchantIdentifier = @"<#INSERT_YOUR_APPLE_MERCHANT_ID_HERE#>";
+
+    paymentRequest.merchantCapabilities = PKMerchantCapabilityEMV | PKMerchantCapability3DS;
+    paymentRequest.paymentSummaryItems = @[icedCoffee];
+    paymentRequest.requiredBillingAddressFields = PKAddressFieldAll;
+    paymentRequest.requiredShippingAddressFields = PKAddressFieldPostalAddress;
+
+    //3. Create a SIMChargeViewController with your public api key
 
     SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_<#INSERT_YOUR_PUBLIC_KEY_HERE#>" paymentRequest:paymentRequest primaryColor:self.primaryColor];
     
-        //4. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
-        chargeController.delegate = self;
-        chargeController.amount = mposButtons.amount;
-        chargeController.isCVCRequired = NO;
-        chargeController.isZipRequired = YES;
-        self.chargeController = chargeController;
-
-        //5. Add SIMChargeViewController to your view hierarchy
-        [self presentViewController:self.chargeController animated:YES completion:nil];
+    //4. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
     
+    chargeController.delegate = self;
+    chargeController.amount = icedCoffee.amount;
+    
+    //5. Specify requirements
+    
+    chargeController.isCVCRequired = YES;
+    chargeController.isZipRequired = YES;
+
+    //6.  Customize your charge card view controller interface colors and text
+    
+    //chargeController.paymentButtonNormalTitle = @"YOUR CUSTOM BUTTON TITLE";
+    //chargeController.paymentButtonDisabledTitle = @"YOUR CUSTOM BUTTON TITLE";
+    //chargeController.headerTitle = @"YOUR CUSTOM HEADER TITLE";
+    //chargeController.headerTitleColor;
+    //chargeController.headerViewBackgroundColor;
+    //chargeController.paymentButtonDisabledColor;
+    //chargeController.paymentButtonNormalColor;
+    //chargeController.paymentButtonNormalTitleColor;
+    //chargeController.paymentButtonDisabledTitleColor;
+
+    //7. Add SIMChargeViewController to your view hierarchy
+    
+    self.chargeController = chargeController;
+    [self presentViewController:self.chargeController animated:YES completion:nil];
 }
 
-#pragma mark - SIMChargeViewController Protocol
+#pragma mark - SIMChargeViewController delegate
+
 -(void)chargeCardCancelled {
+    
     //User cancelled the SIMChargeCardViewController
     [self.chargeController dismissViewControllerAnimated:YES completion:nil];
-    
-    NSLog(@"User Cancelled");
 }
 
 -(void)creditCardTokenFailedWithError:(NSError *)error {
 
     //There was a problem generating the token
     NSLog(@"Card Token Generation failed with error:%@", error);
-    SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Failure." description:@"There was a problem with the payment.\nPlease try again."];
-    viewController.isPaymentSuccessful = NO;
+    
+    SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Uh oh." description:@"Something went wrong with your order. If you really want to spend a bunch of money, go ahead and try that again." iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupEmptyFullBG" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]  tintColor:nil];
+    viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
+    viewController.buttonText = @"Try again";
+    viewController.buttonTextColor = [UIColor whiteColor];
+    
+    //Further customize your response view controller interface colors and text
+    //viewController.titleMessageColor;
+    //viewController.titleDescriptionColor;
+    
+    //Example of a simpler response view controller
+    //viewController = [[SIMResponseViewController alloc]initWithSuccess:NO tintColor:[UIColor redColor]];
     
     [self presentViewController:viewController animated:YES completion:nil];
 }
@@ -103,37 +125,41 @@
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
     [request setHTTPMethod:@"POST"];
-
-    NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@&amount=50", token.token];
+    NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@&amount=1500", token.token];
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-    
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSURLSessionDataTask *paymentTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        [waitingView removeFromSuperview];
+        NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         
-        NSString *responseData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        BOOL isResponseApproved = [responseData containsString:@"APPROVED"];
-        NSLog(@"response:%@", responseData);
-        
-        if (error || !isResponseApproved) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [waitingView removeFromSuperview];
+            
+            if (error || ![responseObject[@"status"] isEqualToString:@"APPROVED"]) {
 
-            NSLog(@"error:%@", error);
-            SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Failure." description:@"There was a problem with the payment.\nPlease try again."];
-            viewController.isPaymentSuccessful = NO;
-            [self presentViewController:viewController animated:YES completion:nil];
-            
-        } else {
-            
-            SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Success!" description:@"You purchased a pack of buttons!"];
-            viewController.isPaymentSuccessful = YES;
-            [self presentViewController:viewController animated:YES completion:nil];
-        }
+                NSLog(@"error:%@", error);
+                
+                SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Uh oh." description:@"Something went wrong with your order. If you really want to spend a bunch of money, go ahead and try that again." iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupEmptyFullBG" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] tintColor:nil];
+                viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
+                viewController.buttonText = @"Try again";
+                viewController.buttonTextColor = [UIColor whiteColor];
+                [self presentViewController:viewController animated:YES completion:nil];
+            } else {            
+                SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Cheers!" description:@"Thanks for your order.  While you wait, check out our famous \"Nickel Scones.\"" iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupFullBG" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] tintColor:nil];
+                viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
+                viewController.buttonText = @"Done";
+                viewController.buttonTextColor = [UIColor whiteColor];
+                
+                //Example of a simpler response view controller
+                //viewController = [[SIMResponseViewController alloc]initWithSuccess:YES tintColor:[UIColor orangeColor]];
+                
+                [self presentViewController:viewController animated:YES completion:nil];
+            }
+        });
     }];
     
     [paymentTask resume];
-    
-    
 }
 
 @end

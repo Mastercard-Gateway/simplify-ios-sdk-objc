@@ -6,10 +6,10 @@
 + (UIColor *)buttonHighlightColorEnabled;
 + (UIColor *)buttonBackgroundColorDisabled;
 + (UIColor *)buttonHighlightColorDisabled;
-+ (UIColor *)fieldBackgroundColorValid;
-+ (UIColor *)fieldBackgroundColorInvalid;
-+ (UIColor *)viewBackgroundColorValid;
-+ (UIColor *)viewBackgroundColorInvalid;
++ (UIColor *)fieldBorderColorValid;
++ (UIColor *)fieldBorderInvalid;
++ (UIColor *)viewBorderColorValid;
++ (UIColor *)viewBorderColorInvalid;
 
 
 + (UIColor *)darkerColorThanColor:(UIColor *)originalColor;

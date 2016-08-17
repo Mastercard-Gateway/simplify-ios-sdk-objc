@@ -12,6 +12,7 @@
 @property (nonatomic, strong, readwrite) NSString *expirationMonth;
 @property (nonatomic, strong, readwrite) NSString *expirationYear;
 @property (nonatomic, strong, readwrite) NSString *formattedCardNumber;
+@property (nonatomic, strong, readwrite) NSString *formattedCardNumberNotObfuscated;
 @property (nonatomic, strong, readwrite) NSString *formattedExpirationDate;
 @property (nonatomic, strong, readwrite) NSString *cvcCode;
 @property (nonatomic, strong, readwrite) NSString *zipCode;
@@ -184,14 +185,15 @@
     }
 }
 
--(NSString *)formattedCardNumber {
-    NSMutableString *formattedString =[NSMutableString stringWithString:self.cardNumber];
-    if (![self.cardTypeString isEqual: @"amex"]) {
-        int index=4;
+-(NSString *)formattedCardNumberNotObfuscated{
+    NSMutableString *formattedString = [NSMutableString stringWithString:self.cardNumber];
+    
+    if (![self.cardTypeString isEqual:@"amex"]) {
+        int index = 4;
         
         while (index < formattedString.length && formattedString.length < 23) {
             [formattedString insertString:@" " atIndex:index];
-            index +=5;
+            index += 5;
         }
     } else {
         if (self.cardNumber.length > 4 && self.cardNumber.length < 10) {
@@ -203,6 +205,25 @@
     }
     
     return formattedString;
+}
+
+-(NSString *)formattedCardNumber {
+    NSMutableString *formattedString = self.formattedCardNumberNotObfuscated.mutableCopy;
+    
+    NSInteger maskLength = formattedString.length - 4;
+    
+    if (self.isCardNumberValid) {
+        NSRange cardNumberMasked = NSMakeRange(0, maskLength);
+        NSMutableString *maskString = [@"" mutableCopy];
+        for (int i = 0; i < maskLength; i++) {
+            [maskString appendString:@"*"];
+        }
+        [formattedString replaceCharactersInRange:cardNumberMasked withString:maskString];
+    }
+    
+    NSString *unicodeMiddleDotString = [NSString stringWithFormat:@"%C", 0x2022];
+    NSString *unicodeMaskedString = [formattedString stringByReplacingOccurrencesOfString:@"*" withString:unicodeMiddleDotString];
+    return unicodeMaskedString;
 }
 
 -(NSString *)formattedExpirationDate {

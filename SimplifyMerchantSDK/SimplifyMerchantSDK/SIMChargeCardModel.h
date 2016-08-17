@@ -30,7 +30,9 @@
 @property (nonatomic, strong, readonly) NSString *expirationDate; /**< Unformatted expiration date (MMYYY), digits only, can be 3-4 digits */
 @property (nonatomic, strong, readonly) NSString *expirationMonth; /**< Expiration month of the card, digits only. Format is MM. Example: January = 1 or 01 */
 @property (nonatomic, strong, readonly) NSString *expirationYear; /**< Expiration year of the card. Format is YY, digits only. Example: Example: 2013 = 13 */
-@property (nonatomic, strong, readonly) NSString *formattedCardNumber; /**< Credit card number with proper spacing based on type of card, digits and spaces only */
+@property (nonatomic, strong, readonly) NSString *formattedCardNumber; /**< Credit card number with proper spacing based on type of card, digits and spaces only, and obfuscated if necessary */
+@property (nonatomic, strong, readonly) NSString *formattedCardNumberNotObfuscated; /**< Credit card number with proper spacing based on type of card, digits and spaces only, but not obfuscated */
+
 @property (nonatomic, strong, readonly) NSString *formattedExpirationDate; /**< Expiration date string formatted as MM/YY, digits and slash only */
 @property (nonatomic, strong, readonly) NSString *cvcCode; /**< 3-4 digit CVC code, digits only */
 @property (nonatomic, strong, readonly) NSString *zipCode; /**< 5 digit zip code, digits only */
