@@ -1,6 +1,6 @@
 # Simplify iOS SDK
 
-Please download the [iOS SDK](https://www.simplify.com/commerce/distribution/ios/simplify.zip) and follow the [instructions](https://www.simplify.com/commerce/docs/sdk/ios) to get started.
+Please download the [iOS SDK](https://www.simplify.com/commerce/distribution/ios/simplify.zip) and follow the [instructions](https://www.simplify.com/commerce/docs/sdk/ios) to get started. If you are interested in Apple Pay, please follow the [Apple Pay instructions](https://www.simplify.com/commerce/docs/sdk/ios_applepay).
 
 ## Overview
 
