@@ -7,7 +7,7 @@
 + (UIColor *)buttonBackgroundColorDisabled;
 + (UIColor *)buttonHighlightColorDisabled;
 + (UIColor *)fieldBorderColorValid;
-+ (UIColor *)fieldBorderInvalid;
++ (UIColor *)fieldBorderColorInvalid;
 + (UIColor *)viewBorderColorValid;
 + (UIColor *)viewBorderColorInvalid;
 

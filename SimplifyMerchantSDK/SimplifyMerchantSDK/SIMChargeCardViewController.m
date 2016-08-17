@@ -28,7 +28,6 @@
 @property (strong, nonatomic) IBOutlet UIView *cardEntryView;
 @property (strong, nonatomic) IBOutlet UIView *zipCodeView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *cardEntryViewTopConstraint;
-@property (strong, nonatomic) IBOutlet UILabel *headerTitle;
 #if TARGET_IPHONE_SIMULATOR
 @property (copy  , nonatomic) void (^applePayCompletion)(PKPaymentAuthorizationStatus);
 #endif
