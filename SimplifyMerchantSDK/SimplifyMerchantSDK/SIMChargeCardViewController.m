@@ -355,7 +355,12 @@
     if (self.chargeCardModel.paymentRequest) {
         PKPaymentAuthorizationViewController *pavc = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:self.chargeCardModel.paymentRequest];
         pavc.delegate = self;
-        [self presentViewController:pavc animated:YES completion:nil];
+        
+        if (pavc) {
+            [self presentViewController:pavc animated:YES completion:nil];
+        } else {
+            NSLog(@"PKPaymentAuhthorizationViewController failure. Have you added any cards to the device?");
+        }
     }
 }
 
