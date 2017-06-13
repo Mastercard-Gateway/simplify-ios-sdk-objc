@@ -27,27 +27,82 @@
 
 /**
  This is the turn key solution. Simply create a SIMChargeCardViewController, signup as a SIMChargeCardViewControllerDelegate and implement the callbacks. All card input validation and token creation is handled for you. You simply present the UIViewController subclass and wait for for the token.
-
  */
 
 @interface SIMChargeCardViewController : UIViewController
 
 -(instancetype)initWithPublicKey:(NSString *)publicKey;
 -(instancetype)initWithPublicKey:(NSString *)publicKey primaryColor:(UIColor *)primaryColor;
+
 /**
  See Apple's documentation at: https://developer.apple.com/library/ios/ApplePay_Guide/CreateRequest.html
  for more infromation on creating a PKPaymentRequest
  */
+
 -(instancetype)initWithPublicKey:(NSString *)publicKey paymentRequest:(PKPaymentRequest *)paymentRequest;
+
 /**
  See Apple's documentation at: https://developer.apple.com/library/ios/ApplePay_Guide/CreateRequest.html
  for more infromation on creating a PKPaymentRequest
  */
 -(instancetype)initWithPublicKey:(NSString *)publicKey paymentRequest:(PKPaymentRequest *)paymentRequest primaryColor:(UIColor *)primaryColor;
 
-@property (nonatomic, weak) id <SIMChargeCardViewControllerDelegate> delegate; /**< Delegate for SIMChargeCardModelDelegate */
+/**
+ Delegate for SIMChargeCardModelDelegate
+ */
+@property (nonatomic, weak) id <SIMChargeCardViewControllerDelegate> delegate;
 
+/**
+ Amount to charge
+ */
 @property (nonatomic, strong) NSDecimalNumber *amount;
+
+/**
+ The title for the header
+ */
+@property (nonatomic, strong) NSString *headerTitle;
+
+
+/**
+ The title color for the header
+ */
+@property (nonatomic, strong) UIColor *headerTitleColor;
+
+/**
+ The color for the header
+ */
+@property (nonatomic, strong) UIColor *headerViewBackgroundColor;
+
+/**
+ Title for the payment button when charging is possible with the entered data
+ */
+@property (nonatomic, strong) NSString *paymentButtonNormalTitle;
+
+/**
+ Title for the payment button when charging is not possible with the entered data
+ */
+@property (nonatomic, strong) NSString *paymentButtonDisabledTitle;
+
+/**
+ Background color for the payment button when charging is possible with the entered data
+ */
+@property (nonatomic, strong) UIColor *paymentButtonNormalColor;
+
+/**
+ Background color for the payment button when charging is not possible with the entered data
+ */
+@property (nonatomic, strong) UIColor *paymentButtonDisabledColor;
+
+/**
+ Title color for the payment button when charging is possible with the entered data
+ */
+@property (nonatomic, strong) UIColor *paymentButtonNormalTitleColor;
+
+/**
+ Title color for the payment button when charging is not possible with the entered data
+ */
+@property (nonatomic, strong) UIColor *paymentButtonDisabledTitleColor;
+
 @property (nonatomic) BOOL isCVCRequired;   /**< Enable validation on the CVC field */
 @property (nonatomic) BOOL isZipRequired;   /**< Enable validation on the Zip field */
 

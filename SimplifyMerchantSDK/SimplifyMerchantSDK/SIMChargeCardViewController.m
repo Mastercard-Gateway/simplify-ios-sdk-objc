@@ -12,6 +12,7 @@
 @property (strong, nonatomic) NSError *modelError;
 @property (strong, nonatomic) PKPaymentRequest *paymentRequest;
 @property (strong, nonatomic) UIColor *primaryColor;
+@property (strong, nonatomic) NSNumberFormatter *currencyFormatter;
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 @property (strong, nonatomic) IBOutlet UIButton *submitPaymentButton;
@@ -27,7 +28,16 @@
 @property (strong, nonatomic) IBOutlet UIView *cardEntryView;
 @property (strong, nonatomic) IBOutlet UIView *zipCodeView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *cardEntryViewTopConstraint;
-@property (strong, nonatomic) IBOutlet UILabel *headerTitle;
+#if TARGET_IPHONE_SIMULATOR
+@property (copy  , nonatomic) void (^applePayCompletion)(PKPaymentAuthorizationStatus);
+#endif
+@property (weak, nonatomic) IBOutlet UIImageView *zipImageView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *applePayViewHolderHeightConstraint;
+@property (strong, nonatomic) IBOutlet UILabel *headerTitleLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *zipCodeViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *expirationDateViewCVCCodeViewWidthConstraint;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottomConstraint;
 
 @end
 
@@ -51,6 +61,11 @@
         self.publicKey = publicKey;
         self.primaryColor = primaryColor ? primaryColor : [UIColor buttonBackgroundColorEnabled];
         self.paymentRequest = paymentRequest;
+        
+        self.currencyFormatter = [[NSNumberFormatter alloc]init];
+        self.currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
+        self.currencyFormatter.currencyCode = paymentRequest.currencyCode;
+        
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
     
@@ -60,10 +75,9 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    self.cardNumberField.delegate = self;
-    self.expirationField.delegate = self;
-    self.cvcField.delegate = self;
-    self.zipField.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardDidChangeFrameNotification object:nil];
     
     self.cardNumberField.tintColor = self.primaryColor;
     self.expirationField.tintColor = self.primaryColor;
@@ -75,6 +89,20 @@
     self.chargeCardModel.isZipRequired = self.isZipRequired;
     self.chargeCardModel.isCVCRequired = self.isCVCRequired;
     self.chargeCardModel.paymentRequest = self.paymentRequest;
+    
+    [self.submitPaymentButton setTitle:self.paymentButtonNormalTitle forState:UIControlStateNormal];
+    [self.submitPaymentButton setTitle:self.paymentButtonDisabledTitle forState:UIControlStateDisabled];
+    [self.submitPaymentButton setTitleColor:self.paymentButtonNormalTitleColor forState:UIControlStateNormal];
+    [self.submitPaymentButton setTitleColor:self.paymentButtonDisabledTitleColor forState:UIControlStateDisabled];
+    self.headerTitleLabel.text = self.headerTitle;
+    self.headerTitleLabel.textColor = self.headerTitleColor;
+    [self.cancelButton setTitleColor:self.headerTitleColor forState:UIControlStateNormal];
+    self.headerView.backgroundColor = self.headerViewBackgroundColor;
+    
+    self.cardEntryView.layer.cornerRadius = 4.0;
+    self.cardEntryView.layer.borderColor = [UIColor colorWithRed:216.0/255 green:216.0/255 blue:216.0/255 alpha:1.0].CGColor;
+    self.cardEntryView.layer.borderWidth = 1.0;
+    self.cardEntryView.clipsToBounds = YES;
     
     if (error) {
         self.modelError = error;
@@ -91,15 +119,23 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    //Remove the Apple Pay button if there is no PKPaymentRequest or if the device is not capable of doing Apple Pay
+    self.headerView.frame = CGRectMake(0, 0, self.view.frame.size.width, 64.0);
+    
+    //Collapse the Apple Pay button if there is no PKPaymentRequest or if the device is not capable of doing Apple Pay
     if (![self.chargeCardModel isApplePayAvailable]) {
-        
-        [self.applePayViewHolder removeFromSuperview];
-        self.cardEntryViewTopConstraint.constant = 15.0;
+        self.applePayViewHolderHeightConstraint.constant = 0.0;
     }
     
-    [self changeTitle:self.amount];
+    if (!self.isCVCRequired) {
+        [self.view removeConstraint:self.expirationDateViewCVCCodeViewWidthConstraint];
+        [self.cvcCodeView removeFromSuperview];
+    }
+    
+    if (!self.isZipRequired) {
+        self.zipCodeViewHeightConstraint.constant = 0.0;
+    }
 
+    [self displayPaymentValidity];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -107,27 +143,70 @@
     [super viewDidAppear:animated];
 
     if (self.modelError) {
-
-        SIMResponseViewController *viewController = [[SIMResponseViewController alloc] initWithBackground:nil primaryColor:self.primaryColor title:@"Failure." description:@"\n\nThere was a problem with your Public Key.\n\nPlease double-check your Public Key and try again."];
-        
-        viewController.isPaymentSuccessful = NO;
+        SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Failure" description:@"There was a problem with your Public Key.\n\nPlease double-check your Public Key and try again." iconImage:nil backgroundImage:nil tintColor:[UIColor redColor]];
         [self presentViewController:viewController animated:YES completion:nil];
     }
-    
 }
 
-- (void)changeTitle:(NSDecimalNumber *)amount {
-    if (amount) {
-        self.headerTitle.text = [NSString stringWithFormat:@"Charge $%@", [NSString amountStringFromNumber:amount]];
-    } else {
-        self.headerTitle.text = @"Charge Card";
+
+-(void)keyboardWillChangeFrame:(NSNotification *)notification{
+    CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat proposedBottomSpacing = self.view.frame.size.height - keyboardFrame.origin.y;
+    if (proposedBottomSpacing == 0.0) {
+        self.scrollViewBottomConstraint.constant = proposedBottomSpacing;
     }
+}
+
+-(void)keyboardDidChangeFrame:(NSNotification *)notification{
+    CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat proposedBottomSpacing = self.view.frame.size.height - keyboardFrame.origin.y;
+    if (proposedBottomSpacing > 0.0) {
+        self.scrollViewBottomConstraint.constant = self.view.frame.size.height - keyboardFrame.origin.y;
+    }
+}
+
+-(NSString *)paymentButtonNormalTitle{
+    return _paymentButtonNormalTitle.length ? _paymentButtonNormalTitle :[self defaultTitle];
+}
+
+-(NSString *)paymentButtonDisabledTitle{
+    return _paymentButtonDisabledTitle.length ? _paymentButtonDisabledTitle : [self defaultTitle];
+}
+
+-(UIColor *)paymentButtonNormalTitleColor{
+   return _paymentButtonNormalTitleColor ? _paymentButtonNormalTitleColor : [UIColor whiteColor];
+}
+
+-(UIColor *)paymentButtonDisabledTitleColor{
+    return _paymentButtonDisabledTitleColor ? _paymentButtonDisabledTitleColor : [UIColor whiteColor];
+}
+
+-(NSString *)defaultTitle{
+    return [NSString stringWithFormat:@"Pay %@", [self.currencyFormatter stringFromNumber:self.amount]];
+}
+
+-(UIColor *)paymentButtonColor{
+    if (self.submitPaymentButton.isEnabled) {
+        return _paymentButtonNormalColor ? _paymentButtonNormalColor : [UIColor buttonBackgroundColorEnabled];
+    }else{
+        return self.paymentButtonDisabledColor ? self.paymentButtonDisabledColor : [UIColor buttonBackgroundColorDisabled];
+    }
+}
+
+-(NSString *)headerTitle{
+    return _headerTitle.length ? _headerTitle : @"Checkout";
+}
+
+-(UIColor *)headerTitleColor{
+    return _headerTitleColor ? _headerTitleColor : [UIColor whiteColor];
+}
+
+-(UIColor *)headerViewBackgroundColor{
+    return _headerViewBackgroundColor ? _headerViewBackgroundColor : [UIColor buttonBackgroundColorEnabled];
 }
 
 -(void)setAmount:(NSDecimalNumber *)amount {
     _amount = amount;
-    
-    [self changeTitle:amount];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -140,27 +219,42 @@
 
 -(void)displayPaymentValidity {
     
-    self.cardNumberView.backgroundColor = [self.chargeCardModel isCardNumberValid] ? [UIColor fieldBackgroundColorValid] : [UIColor fieldBackgroundColorInvalid];
-    
-    self.expirationDateView.backgroundColor = [self.chargeCardModel isExpirationDateValid] ? [UIColor fieldBackgroundColorValid] : [UIColor fieldBackgroundColorInvalid];
-
-    self.cvcCodeView.backgroundColor = [self.chargeCardModel isCVCCodeValid] ? [UIColor fieldBackgroundColorValid] : [UIColor fieldBackgroundColorInvalid];
-
-    self.zipCodeView.backgroundColor = [self.chargeCardModel isZipCodeValid] ? [UIColor fieldBackgroundColorValid] : [UIColor fieldBackgroundColorInvalid];
-
+    [self configureView:self.cardNumberView forValidity:(self.chargeCardModel.isCardNumberValid || self.chargeCardModel.cardNumber.length == 0)];
+    [self configureView:self.expirationDateView forValidity:(self.chargeCardModel.isExpirationDateValid || self.chargeCardModel.expirationDate.length == 0)];
+    [self configureView:self.cvcCodeView forValidity:(self.chargeCardModel.isCVCCodeValid || self.chargeCardModel.cvcCode.length == 0)];
+    [self configureView:self.zipCodeView forValidity:(self.chargeCardModel.isZipCodeValid || self.chargeCardModel.zipCode.length == 0)];
     
     BOOL isEnabled = [self.chargeCardModel isCardChargePossible];
     [self.submitPaymentButton setEnabled:isEnabled];
-    
-    if (isEnabled) {
-        [self.submitPaymentButton setBackgroundColor:self.primaryColor ? self.primaryColor : [UIColor buttonBackgroundColorEnabled]];
-    } else {
-        [self.submitPaymentButton setBackgroundColor:[UIColor buttonBackgroundColorDisabled]];
+    [self.submitPaymentButton setBackgroundColor:self.paymentButtonColor];
+}
+
+-(void)configureView:(UIView *)view forValidity:(BOOL)valid{
+    view.layer.borderWidth = 1.0;
+    if (valid) {
+        view.layer.borderColor =  [UIColor viewBorderColorValid].CGColor;
+    }else{
+        view.layer.borderColor =  [UIColor viewBorderColorInvalid].CGColor;
+        [self.cardEntryView bringSubviewToFront:view];
     }
 }
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    if ([textField isEqual:self.cardNumberField] && [textField.text containsString:[NSString stringWithFormat:@"%C", 0x2022]]) {
+        textField.text = self.chargeCardModel.formattedCardNumberNotObfuscated;
+    }
+    return YES;
+}
 
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    if ([textField isEqual:self.cardNumberField] && [textField.text containsString:[NSString stringWithFormat:@"%C", 0x2022]]) {
+        textField.text = self.chargeCardModel.formattedCardNumber;
+    }
+    return YES;
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     NSUInteger fieldLength = string.length;
     
@@ -176,7 +270,7 @@
         } else {
             [self.chargeCardModel deleteCharacterInCardNumber];
         }
-        
+
         self.cardNumberField.text = self.chargeCardModel.formattedCardNumber;
         [self setCardTypeImage];
         
@@ -191,16 +285,19 @@
         self.expirationField.text = self.chargeCardModel.formattedExpirationDate;
         
         if ([self.chargeCardModel isExpirationDateValid]) {
-            [self.cvcField becomeFirstResponder];
+            if (self.isCVCRequired) {
+                [self.cvcField becomeFirstResponder];
+            }else if (self.isZipRequired){
+                [self.zipField becomeFirstResponder];
+            }
         }
-        
 
     } else if (textField == self.cvcField) {
 
         [self.chargeCardModel updateCVCNumberWithString:newString];
         self.cvcField.text = self.chargeCardModel.cvcCode;
         
-        if ([self.chargeCardModel isCVCCodeValid]) {
+        if ([self.chargeCardModel isCVCCodeValid] && self.isZipRequired) {
             [self.zipField becomeFirstResponder];
         }
         
@@ -213,6 +310,7 @@
     [self displayPaymentValidity];
 
     return NO;
+
 }
 
 -(BOOL)textFieldShouldClear:(UITextField *)textField {
@@ -243,7 +341,7 @@
 
 - (IBAction)cancelTokenRequest:(id)sender {
     [self clearTextFields];
-
+    [self dismissKeyboard];
     [self dismissViewControllerAnimated:YES completion:^{
         [self.delegate chargeCardCancelled];
     }];
@@ -257,7 +355,12 @@
     if (self.chargeCardModel.paymentRequest) {
         PKPaymentAuthorizationViewController *pavc = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:self.chargeCardModel.paymentRequest];
         pavc.delegate = self;
-        [self presentViewController:pavc animated:YES completion:nil];
+        
+        if (pavc) {
+            [self presentViewController:pavc animated:YES completion:nil];
+        } else {
+            NSLog(@"PKPaymentAuhthorizationViewController failure. Have you added any cards to the device?");
+        }
     }
 }
 
@@ -284,6 +387,11 @@
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self clearTextFields];
         [self dismissViewControllerAnimated:YES completion:^{
+#if TARGET_IPHONE_SIMULATOR
+            if (self.applePayCompletion) {
+                self.applePayCompletion(PKPaymentAuthorizationStatusFailure);
+            }
+#endif
             [self.delegate creditCardTokenFailedWithError:error];
             
         }];
@@ -298,7 +406,11 @@
             [self clearTextFields];
             [self dismissKeyboard];
             [self dismissViewControllerAnimated:YES completion:^{
-                
+#if TARGET_IPHONE_SIMULATOR
+                if (self.applePayCompletion) {
+                    self.applePayCompletion(PKPaymentAuthorizationStatusSuccess);
+                }
+#endif
                 [self.delegate creditCardTokenProcessed:token];
             }];
             
@@ -313,10 +425,18 @@
     if (error) {
         completion(PKPaymentAuthorizationStatusFailure);
     } else {
-        
+#if TARGET_IPHONE_SIMULATOR
+        if ([@"Simulated Identifier" isEqualToString:payment.token.transactionIdentifier]) {
+            NSLog(@"You will need to run this on a device in order to actually test Apple Pay. Simulated Apple Pay:%@", simplify.description);
+
+            [controller dismissViewControllerAnimated:YES completion:^{
+                self.applePayCompletion = completion;
+                [self.chargeCardModel retrieveToken];
+            }];
+        }
+#else
         [simplify createCardTokenWithPayment:payment completionHandler:^(SIMCreditCardToken *cardToken, NSError *error)
          {
-             
              dispatch_async(dispatch_get_main_queue(), ^{
                  [controller dismissViewControllerAnimated:YES completion:^{
                      
@@ -332,6 +452,7 @@
                  }];
              });
          }];
+#endif
     }
 }
 

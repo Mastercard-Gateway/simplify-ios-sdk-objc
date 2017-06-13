@@ -4,29 +4,70 @@
 
 @interface SIMResponseViewController ()
 
-@property (nonatomic) UIImageView *backgroundView;
-@property (nonatomic) NSString *titleMessage;
-@property (nonatomic) NSString *descriptionMessage;
-@property (nonatomic) UIColor *primaryColor;
-@property (strong, nonatomic) IBOutlet UIImageView *successIndicatorImageView;
+
+@property (nonatomic) BOOL success;
+@property (strong, nonatomic) NSString *titleMessage;
+@property (strong, nonatomic) NSString *descriptionMessage;
+@property (strong, nonatomic) UIImage *iconImage;
+@property (strong, nonatomic) UIImage *backgroundImage;
+@property (strong, nonatomic) UIColor *tintColor;
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
+@property (weak, nonatomic) IBOutlet UIButton *bottomButton;
+
+- (IBAction)close:(id)sender;
 
 @end
 
 @implementation SIMResponseViewController
 
--(instancetype)initWithBackground:(UIImageView *)backgroundView primaryColor:(UIColor *)primaryColor title:(NSString *)titleMessage description:(NSString *)descriptionMessage {
+-(instancetype)initWithSuccess:(BOOL)success{
+    return [self initWithSuccess:success title:nil description:nil iconImage:nil backgroundImage:nil tintColor:nil];
+}
+
+-(instancetype)initWithSuccess:(BOOL)success tintColor:(UIColor *)tintColor{
+    return [self initWithSuccess:success title:nil description:nil iconImage:nil backgroundImage:nil tintColor:tintColor];
+}
+
+-(instancetype)initWithSuccess:(BOOL)success title:(NSString *)titleMessage description:(NSString *)descriptionMessage{
+    return [self initWithSuccess:success title:titleMessage description:descriptionMessage iconImage:nil backgroundImage:nil tintColor:nil];
+}
+
+-(instancetype)initWithSuccess:(BOOL)success title:(NSString *)titleMessage description:(NSString *)descriptionMessage iconImage:(UIImage *)iconImage backgroundImage:(UIImage *)backgroundImage tintColor:(UIColor *)tintColor{
+
     self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
     if (self) {
-        self.backgroundView = backgroundView;
-        self.primaryColor = primaryColor ? primaryColor : [UIColor buttonBackgroundColorEnabled];
-        self.titleMessage = titleMessage ? titleMessage : @"Status Unknown";
-        self.descriptionMessage = descriptionMessage ? descriptionMessage : @"Please try again.";
+        
+        self.success = success;
+        
+        if (titleMessage) {
+            self.titleMessage = titleMessage;
+        }else{
+            self.titleMessage = success ? @"Success!" : @"Uh oh.";
+        }
+        
+        if (descriptionMessage) {
+            self.descriptionMessage = descriptionMessage;
+        }else{
+            self.descriptionMessage = success ? @"Your transaction is complete." : @"There was a problem with the payment.";
+        }
+        
+        if (iconImage) {
+            self.iconImage = iconImage;
+        }else if (!iconImage && !backgroundImage){
+            self.iconImage = success ? [[UIImage imageNamed:@"successGraphic" inBundle:[NSBundle frameworkBundle] compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] : [[UIImage imageNamed:@"failGraphic" inBundle:[NSBundle frameworkBundle] compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        }
+        
+        self.backgroundImage = backgroundImage ? backgroundImage : nil;
+        
+        self.tintColor = tintColor ? tintColor : [UIColor blackColor];
+        
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
-    
     return self;
 }
 
@@ -34,36 +75,36 @@
 {
     [super viewDidLoad];
     
-    if (self.backgroundView) {
-        [self.view addSubview:self.backgroundView];
-    }
-    
     self.titleLabel.text = self.titleMessage;
     self.descriptionLabel.text = self.descriptionMessage;
-
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSelf)];
+    self.backgroundImageView.image = self.backgroundImage;
+    self.iconImageView.image = self.iconImage;
+    self.iconImageView.tintColor = self.tintColor;
+    self.titleLabel.textColor = self.titleMessageColor ? self.titleMessageColor : self.tintColor;
+    
+    if (self.descriptionMessageColor) {
+        self.descriptionLabel.textColor = self.descriptionMessageColor;
+    }
+   
+    if (self.buttonColor) {
+        self.bottomButton.backgroundColor = self.buttonColor;
+    }
+    
+    if (!self.buttonText) {
+        self.buttonText = self.success ? @"Done" : @"Cancel";
+    }
+    [self.bottomButton setTitle:self.buttonText forState:UIControlStateNormal];
+    
+    if (self.buttonTextColor) {
+        [self.bottomButton setTitleColor:self.buttonTextColor forState:UIControlStateNormal];
+    }
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(close:)];
     [self.view addGestureRecognizer:tapGestureRecognizer];
     
 }
 
--(void)setIsPaymentSuccessful:(BOOL)isPaymentSuccessful {
-    _isPaymentSuccessful = isPaymentSuccessful;
-    
-    UIImage *approvedIcon = [UIImage imageNamed:@"approvedIconWhite" inBundle:[NSBundle frameworkBundle] compatibleWithTraitCollection:nil];
-    UIImage *declinedIcon = [UIImage imageNamed:@"declinedIconGrey" inBundle:[NSBundle frameworkBundle] compatibleWithTraitCollection:nil];
-    
-    self.view.backgroundColor = _isPaymentSuccessful ? [UIColor viewBackgroundColorValid] : [UIColor viewBackgroundColorInvalid];
-    self.successIndicatorImageView.image = _isPaymentSuccessful ?  approvedIcon : declinedIcon;
-    
-}
-
-- (void)dismissSelf {
+- (IBAction)close:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 @end
