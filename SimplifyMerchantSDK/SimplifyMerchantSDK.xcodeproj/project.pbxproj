@@ -74,6 +74,8 @@
 		49C499321925645F00402775 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C499311925645F00402775 /* Accelerate.framework */; };
 		49C499391925C2E700402775 /* SIMResponseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49C499371925C2E700402775 /* SIMResponseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49C4993A1925C2E800402775 /* SIMResponseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C499381925C2E700402775 /* SIMResponseViewController.m */; };
+		6B9AD38422497012004EA8CE /* SIM3DSecureData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9AD38322497012004EA8CE /* SIM3DSecureData.m */; };
+		6B9AD386224979B4004EA8CE /* SIM3DSecureData.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B9AD38522497034004EA8CE /* SIM3DSecureData.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +177,8 @@
 		49C499371925C2E700402775 /* SIMResponseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMResponseViewController.h; sourceTree = "<group>"; };
 		49C499381925C2E700402775 /* SIMResponseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMResponseViewController.m; sourceTree = "<group>"; };
 		49C499481929B70400402775 /* SimplifyMerchantSDK-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SimplifyMerchantSDK-Info.plist"; sourceTree = "<group>"; };
+		6B9AD38322497012004EA8CE /* SIM3DSecureData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SIM3DSecureData.m; sourceTree = "<group>"; };
+		6B9AD38522497034004EA8CE /* SIM3DSecureData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIM3DSecureData.h; sourceTree = "<group>"; };
 		6FABF4271D18206D00ABCDAA /* SimplifyMerchantSDK-Resources-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SimplifyMerchantSDK-Resources-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -283,6 +287,7 @@
 		49748F64191849C600738BC9 /* SimplifyMerchantSDK */ = {
 			isa = PBXGroup;
 			children = (
+				6B9AD38222496FB9004EA8CE /* 3DSecureData */,
 				2CE146711A81790F002B5439 /* framework.xcassets */,
 				2C7F2E941A716A22006A4E80 /* PKTokenProcessor */,
 				495EEF7A192401B600AEC402 /* ChargeView */,
@@ -388,6 +393,15 @@
 			name = "Digit Verification";
 			sourceTree = "<group>";
 		};
+		6B9AD38222496FB9004EA8CE /* 3DSecureData */ = {
+			isa = PBXGroup;
+			children = (
+				6B9AD38522497034004EA8CE /* SIM3DSecureData.h */,
+				6B9AD38322497012004EA8CE /* SIM3DSecureData.m */,
+			);
+			path = 3DSecureData;
+			sourceTree = "<group>";
+		};
 		7EF161B819229EA8008F805A /* Simplify */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +440,7 @@
 				495EEF95192406FF00AEC402 /* UIImage+Simplify.h in Headers */,
 				495EEF83192401D700AEC402 /* SIMChargeCardModel.h in Headers */,
 				495EEF911924049700AEC402 /* NSBundle+Simplify.h in Headers */,
+				6B9AD386224979B4004EA8CE /* SIM3DSecureData.h in Headers */,
 				2C335FDB1A769D6700868847 /* SIMTokenProcessor.h in Headers */,
 				497EF7DF1A9F908500162299 /* SIMWaitingView.h in Headers */,
 				495EEF781923DFE700AEC402 /* UIColor+Simplify.h in Headers */,
@@ -588,6 +603,7 @@
 				4977D04A191A9C6F00AC621F /* SIMLuhnValidator.m in Sources */,
 				2C7F2E961A716A71006A4E80 /* SIMTokenProcessor.m in Sources */,
 				495EEEC9191B372900AEC402 /* SIMAddress.m in Sources */,
+				6B9AD38422497012004EA8CE /* SIM3DSecureData.m in Sources */,
 				495EEECD191B387200AEC402 /* SIMCreditCardToken.m in Sources */,
 				497EF7DE1A9F8F3F00162299 /* SIMWaitingView.m in Sources */,
 			);
