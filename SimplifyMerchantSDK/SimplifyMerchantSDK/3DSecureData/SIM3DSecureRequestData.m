@@ -4,7 +4,7 @@
 
 @property (nonatomic, readwrite) NSNumber *amount;
 @property (nonatomic, readwrite) NSString *currency;
-@property (nonatomic, readwrite) NSString *description;
+@property (nonatomic, readwrite) NSString *descriptionMessage;
 
 @end
 
@@ -16,7 +16,7 @@
     if (self) {
         self.amount = amount ? amount : @0;
         self.currency = currency ? currency : @"";
-        self.description = description ? description : @"";
+        self.descriptionMessage = description ? description : @"";
     }
     return self;
 }

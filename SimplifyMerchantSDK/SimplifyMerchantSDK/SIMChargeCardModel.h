@@ -38,6 +38,7 @@
 @property (nonatomic, strong, readonly) NSString *zipCode; /**< 5 digit zip code, digits only */
 @property (nonatomic, strong, readonly) NSString *cardTypeString; /**< String with the card type.  Example "mastercard" */
 @property (nonatomic, strong, readonly) SIMAddress *address; /**< SIMAddress with all address details of the card holder */
+@property (nonatomic, strong, readonly) SIM3DSecureRequestData *threeDSinfo;
 @property (nonatomic, strong, readonly) SIMCardType *cardType; /**< card type, including validations of CVC code length and card number length */
 @property (nonatomic, strong) PKPaymentRequest *paymentRequest; /**< user-created PKPaymentRequest for Apple Pay */
 

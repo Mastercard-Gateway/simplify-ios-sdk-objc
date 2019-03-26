@@ -1,5 +1,5 @@
 #import "SIMCreditCardToken.h"
-#import "SIM3DSecureRequestData.h"
+#import "SIM3DSecureData.h"
 
 @interface SIMCreditCardToken ()
 
@@ -12,14 +12,14 @@
 @property (nonatomic, readwrite) NSNumber *expMonth;
 @property (nonatomic, readwrite) NSNumber *expYear;
 @property (nonatomic, readwrite) NSDate *dateCreated;
-@property (nonatomic, readwrite) SIM3DSecureRequestData *threeDSecureData;
+@property (nonatomic, readwrite) SIM3DSecureData *threeDSecureData;
 
 @end
 
 @implementation SIMCreditCardToken
 
 -(instancetype)initWithToken:(NSString *)token tokenId:(NSString *)tokenId name:(NSString *)name type:(NSString *)type last4:(NSNumber *)last4
-address:(SIMAddress *)address expMonth:(NSNumber *)expMonth expYear:(NSNumber *)expYear dateCreated:(NSDate *)dateCreated threeDSecureData:(SIM3DSecureRequestData *)threeDSecureData {
+address:(SIMAddress *)address expMonth:(NSNumber *)expMonth expYear:(NSNumber *)expYear dateCreated:(NSDate *)dateCreated threeDSecureData:(SIM3DSecureData *)threeDSecureData {
     
     self = [super init];
 	if (self) {
@@ -55,7 +55,11 @@ address:(SIMAddress *)address expMonth:(NSNumber *)expMonth expYear:(NSNumber *)
 	cardToken.expYear = dictionary[@"card"][@"expYear"];
 	NSString *date = [dictionary[@"card"][@"dateCreated"] description];
 	cardToken.dateCreated = [[NSDate alloc] initWithTimeIntervalSince1970:[date longLongValue] / 1000];
-	return cardToken;
+    
+    SIM3DSecureData *threeDS = [SIM3DSecureData threeDSecureDataFromDictionary:dictionary[@"card"][@"secure3DData"]];
+    cardToken.threeDSecureData = threeDS;
+	
+    return cardToken;
 }
 
 @end

@@ -3,6 +3,7 @@
 #import "NSBundle+Simplify.h"
 #import <UIKit/UIKit.h>
 #import "SIMTokenProcessor.h"
+#import "SIM3DSecureRequestData.h"
 
 typedef enum {
     SIMSimplifyModeLive,
@@ -78,7 +79,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
 }
 
 -(void)createCardTokenWithExpirationMonth:(NSString *)expirationMonth expirationYear:(NSString *)expirationYear
-                                cardNumber:(NSString *)cardNumber cvc:(NSString *)cvc address:(SIMAddress *)address completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler {
+                               cardNumber:(NSString *)cardNumber cvc:(NSString *)cvc address:(SIMAddress *)address threeDSData:(SIM3DSecureRequestData *)threeDSData completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler {
 
     NSError *jsonSerializationError;
 	NSURL *url = [self.currentAPIURL URLByAppendingPathComponent:endpointCardToken];
@@ -111,6 +112,19 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
 	if (address.country.length) {
         cardData[@"addressCountry"] = address.country;
 	}
+    
+    if (threeDSData.amount) {
+        cardData[@"secure3DRequestData"][@"amount"] = threeDSData.amount;
+    }
+    
+    if (threeDSData.descriptionMessage.length) {
+        cardData[@"secure3DRequestData"][@"description"] = threeDSData.descriptionMessage;
+    }
+    
+    if (threeDSData.currency.length) {
+        cardData[@"secure3DRequestData"][@"currency"] = threeDSData.currency;
+    }
+    
     
     NSDictionary *tokenData = @{@"key": [NSString urlEncodedString:self.publicKey], @"card":cardData};
     

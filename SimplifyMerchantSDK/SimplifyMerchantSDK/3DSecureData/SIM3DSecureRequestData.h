@@ -3,7 +3,7 @@
 
 @property (nonatomic, readonly) NSNumber *amount; /**< Amount of transaction */
 @property (nonatomic, readonly) NSString *currency; /**< Currency of the transaction */
-@property (nonatomic, readonly) NSString *description; /**< Description of transaction */
+@property (nonatomic, readonly) NSString *descriptionMessage; /**< Description of transaction */
 
 
 /**

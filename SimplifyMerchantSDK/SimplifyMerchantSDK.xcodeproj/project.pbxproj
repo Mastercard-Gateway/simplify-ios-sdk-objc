@@ -26,6 +26,8 @@
 		2C335FDB1A769D6700868847 /* SIMTokenProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7F2E971A716A98006A4E80 /* SIMTokenProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C7F2E961A716A71006A4E80 /* SIMTokenProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7F2E951A716A71006A4E80 /* SIMTokenProcessor.m */; };
 		2CE146721A81797B002B5439 /* framework.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CE146711A81790F002B5439 /* framework.xcassets */; };
+		33544ABB224A3D8D0062D586 /* SIM3DSecureData.m in Sources */ = {isa = PBXBuildFile; fileRef = 33544ABA224A3D8D0062D586 /* SIM3DSecureData.m */; };
+		33544ABD224A3DAC0062D586 /* SIM3DSecureData.h in Headers */ = {isa = PBXBuildFile; fileRef = 33544ABC224A3DAC0062D586 /* SIM3DSecureData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		491C6D821A82D27A004EFA15 /* SIMResponseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 491C6D7D1A82C786004EFA15 /* SIMResponseViewController.xib */; };
 		495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEEC6191B372900AEC402 /* SIMAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		495EEEC9191B372900AEC402 /* SIMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEEC7191B372900AEC402 /* SIMAddress.m */; };
@@ -119,6 +121,8 @@
 		2C7F2E951A716A71006A4E80 /* SIMTokenProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMTokenProcessor.m; sourceTree = "<group>"; };
 		2C7F2E971A716A98006A4E80 /* SIMTokenProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIMTokenProcessor.h; sourceTree = "<group>"; };
 		2CE146711A81790F002B5439 /* framework.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = framework.xcassets; sourceTree = "<group>"; };
+		33544ABA224A3D8D0062D586 /* SIM3DSecureData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SIM3DSecureData.m; sourceTree = "<group>"; };
+		33544ABC224A3DAC0062D586 /* SIM3DSecureData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIM3DSecureData.h; sourceTree = "<group>"; };
 		491C6D7D1A82C786004EFA15 /* SIMResponseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SIMResponseViewController.xib; sourceTree = "<group>"; };
 		495EEEC6191B372900AEC402 /* SIMAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMAddress.h; sourceTree = "<group>"; };
 		495EEEC7191B372900AEC402 /* SIMAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMAddress.m; sourceTree = "<group>"; };
@@ -398,6 +402,8 @@
 			children = (
 				6B9AD38522497034004EA8CE /* SIM3DSecureRequestData.h */,
 				6B9AD38322497012004EA8CE /* SIM3DSecureRequestData.m */,
+				33544ABC224A3DAC0062D586 /* SIM3DSecureData.h */,
+				33544ABA224A3D8D0062D586 /* SIM3DSecureData.m */,
 			);
 			path = 3DSecureData;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 				49748FAF1919323600738BC9 /* NSString+Simplify.h in Headers */,
 				49748FA819188D2C00738BC9 /* SIMSimplify.h in Headers */,
 				495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */,
+				33544ABD224A3DAC0062D586 /* SIM3DSecureData.h in Headers */,
 				49C499391925C2E700402775 /* SIMResponseViewController.h in Headers */,
 				495EEF891924021E00AEC402 /* SIMChargeCardViewController.h in Headers */,
 				495EEF95192406FF00AEC402 /* UIImage+Simplify.h in Headers */,
@@ -599,6 +606,7 @@
 				49C4993A1925C2E800402775 /* SIMResponseViewController.m in Sources */,
 				495EEF921924049700AEC402 /* NSBundle+Simplify.m in Sources */,
 				495EEF96192406FF00AEC402 /* UIImage+Simplify.m in Sources */,
+				33544ABB224A3D8D0062D586 /* SIM3DSecureData.m in Sources */,
 				4977D04D191A9C6F00AC621F /* SIMCardType.m in Sources */,
 				4977D04A191A9C6F00AC621F /* SIMLuhnValidator.m in Sources */,
 				2C7F2E961A716A71006A4E80 /* SIMTokenProcessor.m in Sources */,
