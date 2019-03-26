@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #import <PassKit/PassKit.h>
 #import "SIMCreditCardToken.h"
+#import "SIM3DSecureRequestData.h"
 
 /**
  Public Protocol for communicating success or failure of the token generation after the user completes data entry.
@@ -46,6 +47,12 @@
  for more infromation on creating a PKPaymentRequest
  */
 -(instancetype)initWithPublicKey:(NSString *)publicKey paymentRequest:(PKPaymentRequest *)paymentRequest primaryColor:(UIColor *)primaryColor;
+
+/**
+ To use 3DS 1.0 with SIMChargeCardViewController you will need to pass in a SIM3DSecureRequestData
+*/
+-(instancetype)initWithPublicKey:(NSString *)publicKey threeDSecureRequest:(SIM3DSecureRequestData *)threeDSRequest;
+-(instancetype)initWithPublicKey:(NSString *)publicKey threeDSecureRequest:(SIM3DSecureRequestData *)threeDSRequest primaryColor:(UIColor *)primaryColor;
 
 /**
  Delegate for SIMChargeCardModelDelegate

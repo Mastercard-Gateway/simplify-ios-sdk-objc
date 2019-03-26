@@ -54,7 +54,13 @@
 
     //3. Create a SIMChargeViewController with your public api key
 
-    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_OTA0NzkwNDktM2UwZC00NWU4LWJjMDMtOWYwN2RmZDY3Yzlh" paymentRequest:paymentRequest primaryColor:self.primaryColor];
+    //TODO: Put back & comment out the new 3DS 1.0 flow
+    
+//    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_<#INSERT_YOUR_PUBLIC_KEY_HERE#>" paymentRequest:paymentRequest primaryColor:self.primaryColor];
+    
+    //To use process 3DS 1.0 transactions use
+    SIM3DSecureRequestData *threeDSRequest = [[SIM3DSecureRequestData alloc] initWithAmount:[NSDecimalNumber decimalNumberWithString:@"200.00"] currency:@"AUD" description:@"Test"];
+    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_OTA0NzkwNDktM2UwZC00NWU4LWJjMDMtOWYwN2RmZDY3Yzlh" threeDSecureRequest:threeDSRequest primaryColor:self.primaryColor];
     
     //4. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
     
@@ -118,7 +124,7 @@
     //Process Request on your own server
     //See https://github.com/simplifycom/simplify-php-server for a sample implementation.
 
-    NSURL *url= [NSURL URLWithString:@"https://api.uat.simplify.com/v1/api"];
+    NSURL *url= [NSURL URLWithString:@"<#INSERT_YOUR_SIMPLIFY_SERVER_HERE#>"];
     
     SIMWaitingView *waitingView = [[SIMWaitingView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:waitingView];

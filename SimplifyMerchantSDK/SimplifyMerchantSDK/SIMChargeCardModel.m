@@ -18,7 +18,6 @@
 @property (nonatomic, strong, readwrite) NSString *zipCode;
 @property (nonatomic, strong, readwrite) NSString *cardTypeString;
 @property (nonatomic, strong, readwrite) SIMAddress *address;
-@property (nonatomic, strong, readwrite) SIM3DSecureRequestData *threeDSinfo;
 @property (nonatomic, readwrite) int cvcLength;
 @property (nonatomic, readwrite) int cardNumberMinLength;
 @property (nonatomic, readwrite) int cardNumberMaxLength;
@@ -290,7 +289,7 @@
         }
     };
     
-    [self.simplify createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address threeDSData: self.threeDSinfo completionHander:completionHandler];
+    [self.simplify createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address threeDSData: self.threeDSRequest completionHander:completionHandler];
 }
 
 @end

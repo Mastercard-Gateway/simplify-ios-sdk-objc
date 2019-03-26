@@ -49,7 +49,8 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
         } else {
             self.publicKey = publicKey;
             NSString *apiURLString = (self.isLiveMode) ? prodAPILiveURL : prodAPISandboxURL;
-            self.currentAPIURL = [NSURL URLWithString:apiURLString];
+            //TODO: Put back to: self.currentAPIURL = [NSURL URLWithString:apiURLString];
+            self.currentAPIURL = [NSURL URLWithString:@"https://api.uat.simplify.com/v1/api"];
             [self.request setURL:self.currentAPIURL];
         }
                 
@@ -60,7 +61,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
 
 -(BOOL)isPublicKeyLiveMode:(NSString *)publicKey error:(NSError **) error{
 
-    BOOL isLive = NO;
+    BOOL isLive = YES;
     
     if ([publicKey hasPrefix:SIMSimplifyPrefixLive]) {
         isLive = YES;
@@ -113,20 +114,23 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
         cardData[@"addressCountry"] = address.country;
 	}
     
+    NSMutableDictionary *threeDSRequest = [NSMutableDictionary dictionaryWithDictionary:@{}];
     if (threeDSData.amount) {
-        cardData[@"secure3DRequestData"][@"amount"] = threeDSData.amount;
+        threeDSRequest[@"amount"] = threeDSData.amount;
     }
-    
+
     if (threeDSData.descriptionMessage.length) {
-        cardData[@"secure3DRequestData"][@"description"] = threeDSData.descriptionMessage;
+        threeDSRequest[@"description"] = threeDSData.descriptionMessage;
     }
-    
+
     if (threeDSData.currency.length) {
-        cardData[@"secure3DRequestData"][@"currency"] = threeDSData.currency;
+        threeDSRequest[@"currency"] = threeDSData.currency;
     }
     
-    
-    NSDictionary *tokenData = @{@"key": [NSString urlEncodedString:self.publicKey], @"card":cardData};
+    NSMutableDictionary *tokenData = [NSMutableDictionary dictionaryWithDictionary:@{@"key": [NSString urlEncodedString:self.publicKey], @"card":cardData}];
+    if (threeDSRequest.allKeys.count) {
+        tokenData[@"secure3DRequestData"] = threeDSRequest;
+    }
     
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:tokenData options:0 error:&jsonSerializationError];
     
