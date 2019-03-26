@@ -59,7 +59,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
 
 -(BOOL)isPublicKeyLiveMode:(NSString *)publicKey error:(NSError **) error{
 
-    BOOL isLive;
+    BOOL isLive = NO;
     
     if ([publicKey hasPrefix:SIMSimplifyPrefixLive]) {
         isLive = YES;
@@ -166,8 +166,10 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
     self.request.HTTPBody = jsonData;
     [self.request setURL:url];
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    });
+                   
     [NSURLConnection sendAsynchronousRequest:self.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
@@ -187,7 +189,9 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
             apiCompletionHandler(nil, responseError);
         }
         
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        });
 
     }];
 }

@@ -1,6 +1,6 @@
-#import "SIM3DSecureData.h"
+#import "SIM3DSecureRequestData.h"
 
-@interface SIM3DSecureData()
+@interface SIM3DSecureRequestData()
 
 @property (nonatomic, readwrite) NSNumber *amount;
 @property (nonatomic, readwrite) NSString *currency;
@@ -8,7 +8,7 @@
 
 @end
 
-@implementation SIM3DSecureData
+@implementation SIM3DSecureRequestData
 
 -(instancetype)initWithAmount:(NSNumber *)amount currency:(NSString *)currency description:(NSString *)description {
     

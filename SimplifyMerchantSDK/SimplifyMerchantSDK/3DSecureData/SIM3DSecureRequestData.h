@@ -1,5 +1,5 @@
 /**< Holds data for 3D Secure 1.0 authentication */
-@interface SIM3DSecureData : NSObject
+@interface SIM3DSecureRequestData : NSObject
 
 @property (nonatomic, readonly) NSNumber *amount; /**< Amount of transaction */
 @property (nonatomic, readonly) NSString *currency; /**< Currency of the transaction */

@@ -1,5 +1,5 @@
 #import "SIMCreditCardToken.h"
-#import "SIM3DSecureData.h"
+#import "SIM3DSecureRequestData.h"
 
 @interface SIMCreditCardToken ()
 
@@ -12,14 +12,14 @@
 @property (nonatomic, readwrite) NSNumber *expMonth;
 @property (nonatomic, readwrite) NSNumber *expYear;
 @property (nonatomic, readwrite) NSDate *dateCreated;
-@property (nonatomic, readwrite) SIM3DSecureData *threeDSecureData;
+@property (nonatomic, readwrite) SIM3DSecureRequestData *threeDSecureData;
 
 @end
 
 @implementation SIMCreditCardToken
 
 -(instancetype)initWithToken:(NSString *)token tokenId:(NSString *)tokenId name:(NSString *)name type:(NSString *)type last4:(NSNumber *)last4
-address:(SIMAddress *)address expMonth:(NSNumber *)expMonth expYear:(NSNumber *)expYear dateCreated:(NSDate *)dateCreated threeDSecureData:(SIM3DSecureData *)threeDSecureData {
+address:(SIMAddress *)address expMonth:(NSNumber *)expMonth expYear:(NSNumber *)expYear dateCreated:(NSDate *)dateCreated threeDSecureData:(SIM3DSecureRequestData *)threeDSecureData {
     
     self = [super init];
 	if (self) {

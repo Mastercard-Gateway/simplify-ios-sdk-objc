@@ -54,7 +54,7 @@
 
     //3. Create a SIMChargeViewController with your public api key
 
-    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_<#INSERT_YOUR_PUBLIC_KEY_HERE#>" paymentRequest:paymentRequest primaryColor:self.primaryColor];
+    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_OTA0NzkwNDktM2UwZC00NWU4LWJjMDMtOWYwN2RmZDY3Yzlh" paymentRequest:paymentRequest primaryColor:self.primaryColor];
     
     //4. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
     
@@ -118,7 +118,7 @@
     //Process Request on your own server
     //See https://github.com/simplifycom/simplify-php-server for a sample implementation.
 
-    NSURL *url= [NSURL URLWithString:@"<#INSERT_YOUR_SIMPLIFY_SERVER_HERE#>"];
+    NSURL *url= [NSURL URLWithString:@"https://api.uat.simplify.com/v1/api"];
     
     SIMWaitingView *waitingView = [[SIMWaitingView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:waitingView];
