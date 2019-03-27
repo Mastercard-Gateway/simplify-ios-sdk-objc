@@ -30,6 +30,10 @@
 		33544ABD224A3DAC0062D586 /* SIM3DSecureData.h in Headers */ = {isa = PBXBuildFile; fileRef = 33544ABC224A3DAC0062D586 /* SIM3DSecureData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		33AF0CE3224BB7EC0077FB11 /* SIM3DSecureRequestDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF0CE2224BB7EC0077FB11 /* SIM3DSecureRequestDataTests.m */; };
 		33AF0CE5224BB8030077FB11 /* SIM3DSecureDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF0CE4224BB8030077FB11 /* SIM3DSecureDataTests.m */; };
+		33AF0CEA224BD77E0077FB11 /* SIMThreeDSWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 33AF0CE8224BD77E0077FB11 /* SIMThreeDSWebViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		33AF0CEB224BD77E0077FB11 /* SIMThreeDSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF0CE9224BD77E0077FB11 /* SIMThreeDSWebViewController.m */; };
+		33AF0CEE224BD7A90077FB11 /* SIMThreeDSWebViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 33AF0CEC224BD7A90077FB11 /* SIMThreeDSWebViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		33AF0CEF224BD7A90077FB11 /* SIMThreeDSWebViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF0CED224BD7A90077FB11 /* SIMThreeDSWebViewModel.m */; };
 		491C6D821A82D27A004EFA15 /* SIMResponseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 491C6D7D1A82C786004EFA15 /* SIMResponseViewController.xib */; };
 		495EEEC8191B372900AEC402 /* SIMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 495EEEC6191B372900AEC402 /* SIMAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		495EEEC9191B372900AEC402 /* SIMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 495EEEC7191B372900AEC402 /* SIMAddress.m */; };
@@ -127,6 +131,10 @@
 		33544ABC224A3DAC0062D586 /* SIM3DSecureData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIM3DSecureData.h; sourceTree = "<group>"; };
 		33AF0CE2224BB7EC0077FB11 /* SIM3DSecureRequestDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SIM3DSecureRequestDataTests.m; sourceTree = "<group>"; };
 		33AF0CE4224BB8030077FB11 /* SIM3DSecureDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SIM3DSecureDataTests.m; sourceTree = "<group>"; };
+		33AF0CE8224BD77E0077FB11 /* SIMThreeDSWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIMThreeDSWebViewController.h; sourceTree = "<group>"; };
+		33AF0CE9224BD77E0077FB11 /* SIMThreeDSWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SIMThreeDSWebViewController.m; sourceTree = "<group>"; };
+		33AF0CEC224BD7A90077FB11 /* SIMThreeDSWebViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIMThreeDSWebViewModel.h; sourceTree = "<group>"; };
+		33AF0CED224BD7A90077FB11 /* SIMThreeDSWebViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SIMThreeDSWebViewModel.m; sourceTree = "<group>"; };
 		491C6D7D1A82C786004EFA15 /* SIMResponseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SIMResponseViewController.xib; sourceTree = "<group>"; };
 		495EEEC6191B372900AEC402 /* SIMAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMAddress.h; sourceTree = "<group>"; };
 		495EEEC7191B372900AEC402 /* SIMAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMAddress.m; sourceTree = "<group>"; };
@@ -232,6 +240,17 @@
 			name = PKTokenProcessor;
 			sourceTree = "<group>";
 		};
+		33AF0CE7224BD73C0077FB11 /* 3DSWebView */ = {
+			isa = PBXGroup;
+			children = (
+				33AF0CE8224BD77E0077FB11 /* SIMThreeDSWebViewController.h */,
+				33AF0CE9224BD77E0077FB11 /* SIMThreeDSWebViewController.m */,
+				33AF0CEC224BD7A90077FB11 /* SIMThreeDSWebViewModel.h */,
+				33AF0CED224BD7A90077FB11 /* SIMThreeDSWebViewModel.m */,
+			);
+			path = 3DSWebView;
+			sourceTree = "<group>";
+		};
 		495EEEC5191B36D800AEC402 /* Credit Card Token */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +314,7 @@
 		49748F64191849C600738BC9 /* SimplifyMerchantSDK */ = {
 			isa = PBXGroup;
 			children = (
+				33AF0CE7224BD73C0077FB11 /* 3DSWebView */,
 				6B9AD38222496FB9004EA8CE /* 3DSecureData */,
 				2CE146711A81790F002B5439 /* framework.xcassets */,
 				2C7F2E941A716A22006A4E80 /* PKTokenProcessor */,
@@ -441,6 +461,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33AF0CEA224BD77E0077FB11 /* SIMThreeDSWebViewController.h in Headers */,
 				4977D04F191A9C6F00AC621F /* SIMLuhnValidator.h in Headers */,
 				4977D050191A9C6F00AC621F /* SIMDigitVerifier.h in Headers */,
 				4977D04C191A9C6F00AC621F /* SIMCardType.h in Headers */,
@@ -452,6 +473,7 @@
 				495EEF891924021E00AEC402 /* SIMChargeCardViewController.h in Headers */,
 				495EEF95192406FF00AEC402 /* UIImage+Simplify.h in Headers */,
 				495EEF83192401D700AEC402 /* SIMChargeCardModel.h in Headers */,
+				33AF0CEE224BD7A90077FB11 /* SIMThreeDSWebViewModel.h in Headers */,
 				495EEF911924049700AEC402 /* NSBundle+Simplify.h in Headers */,
 				6B9AD386224979B4004EA8CE /* SIM3DSecureRequestData.h in Headers */,
 				2C335FDB1A769D6700868847 /* SIMTokenProcessor.h in Headers */,
@@ -606,6 +628,7 @@
 				495EEF791923DFE700AEC402 /* UIColor+Simplify.m in Sources */,
 				49748FA919188D2C00738BC9 /* SIMSimplify.m in Sources */,
 				495EEF81192401D700AEC402 /* SIMChargeCardModel.m in Sources */,
+				33AF0CEF224BD7A90077FB11 /* SIMThreeDSWebViewModel.m in Sources */,
 				495EEF80192401D700AEC402 /* SIMChargeCardViewController.m in Sources */,
 				4977D051191A9C6F00AC621F /* SIMDigitVerifier.m in Sources */,
 				49748FB01919323600738BC9 /* NSString+Simplify.m in Sources */,
@@ -613,6 +636,7 @@
 				495EEF921924049700AEC402 /* NSBundle+Simplify.m in Sources */,
 				495EEF96192406FF00AEC402 /* UIImage+Simplify.m in Sources */,
 				33544ABB224A3D8D0062D586 /* SIM3DSecureData.m in Sources */,
+				33AF0CEB224BD77E0077FB11 /* SIMThreeDSWebViewController.m in Sources */,
 				4977D04D191A9C6F00AC621F /* SIMCardType.m in Sources */,
 				4977D04A191A9C6F00AC621F /* SIMLuhnValidator.m in Sources */,
 				2C7F2E961A716A71006A4E80 /* SIMTokenProcessor.m in Sources */,
