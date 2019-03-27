@@ -9,7 +9,7 @@
 /**
  Creates an instance of SIM3DSecureRequestData
  @param amount is the amount of the transaction
- @param currency is the currency of the transaction
+ @param currenc is the currency code of the transaction
  @param descripiton is the description of the transaction
  @return an instnace of SIM3DSecureRequestData with all of the input information
  */

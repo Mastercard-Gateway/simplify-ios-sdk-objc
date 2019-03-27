@@ -11,10 +11,13 @@
 
 /**
  Creates an instance of SIM3DSecureData
- @param
- @param
- @param
- @return
+ @param threeDSID is the id of the 3DS transaction
+ @param enrollment a boolean value of if the card is enrolled in 3DS
+ @param acsUrl
+ @param paReq
+ @param md is a hash value
+ @param termUrl is the URL to the terms and conditions
+ @return is an instance of SIM3DSecureData initialised with all the values
  */
 -(instancetype)initWiththreeDSID:(NSString *)threeDSID isEnrolled:(BOOL)enrollment acsUrl:(NSString *)acsUrl paReq:(NSString *)paReq md:(NSString *)md termUrl:(NSString *)termUrl;
 
