@@ -18,8 +18,9 @@
     NSNumber *expirationMonth = @11;
     NSNumber *expirationYear = @15;
     NSDate *tokenDate = [NSDate date];
+    SIM3DSecureData *threeDS = [[SIM3DSecureData alloc] initWiththreeDSID:@"Test" isEnrolled:TRUE acsUrl:@"acsURL" paReq:@"paReq" md:@"md" termUrl:@"termUrl"];
     
-    self.testSubject = [[SIMCreditCardToken alloc] initWithToken:token tokenId:tokenId name:tokenName type:tokenType last4:last4Digits address:mockAddress expMonth:expirationMonth expYear:expirationYear dateCreated:tokenDate];
+    self.testSubject = [[SIMCreditCardToken alloc] initWithToken:token tokenId:tokenId name:tokenName type:tokenType last4:last4Digits address:mockAddress expMonth:expirationMonth expYear:expirationYear dateCreated:tokenDate threeDSecureData:threeDS];
 
     XCTAssertTrue([self.testSubject.token isEqualToString:token], @"");
     XCTAssertTrue([self.testSubject.tokenId isEqualToString:tokenId], @"");
@@ -27,12 +28,12 @@
     XCTAssertTrue([self.testSubject.type isEqualToString:tokenType], @"");
     XCTAssertTrue([self.testSubject.expMonth isEqual:expirationMonth], @"");
     XCTAssertTrue([self.testSubject.expYear isEqual:expirationYear], @"");
-    
+    XCTAssertTrue([self.testSubject.threeDSecureData isEqual:threeDS], @"");
 }
 
 -(void)testThatSimCardTokenCanBeCreatedWithNilValuesReturnsNilSafeValues {
     
-    self.testSubject = [[SIMCreditCardToken alloc] initWithToken:nil tokenId:nil name:nil type:nil last4:nil address:nil expMonth:nil expYear:nil dateCreated:nil];
+    self.testSubject = [[SIMCreditCardToken alloc] initWithToken:nil tokenId:nil name:nil type:nil last4:nil address:nil expMonth:nil expYear:nil dateCreated:nil threeDSecureData: nil];
     
     XCTAssertNotNil(self.testSubject.token, @"");
     XCTAssertNotNil(self.testSubject.tokenId, @"");
@@ -40,6 +41,7 @@
     XCTAssertNotNil(self.testSubject.type, @"");
     XCTAssertNotNil(self.testSubject.expMonth, @"");
     XCTAssertNotNil(self.testSubject.expYear, @"");
+    XCTAssertNil(self.testSubject.threeDSecureData);
     
 }
 

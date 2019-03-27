@@ -1,13 +1,12 @@
 /**< Holds data for 3D Secure 1.0 response */
 @interface SIM3DSecureData : NSObject
 
-@property (nonatomic, readonly) NSString *id; /**<  */
-@property (nonatomic, readonly) BOOL isEnrolled; /**<  */
-@property (nonatomic, readonly) NSString *acsUrl; /**<  */
-@property (nonatomic, readonly) NSString *paReq; /**<  */
-@property (nonatomic, readonly) NSString *md; /**<  */
-@property (nonatomic, readonly) NSString *termUrl; /**<  */
-
+@property (nonatomic, readonly) NSString *threeDSID; /**< ID of the 3DS Data */
+@property (nonatomic, readonly) BOOL isEnrolled; /**< Is the card enrolled for 3DS Authentication  */
+@property (nonatomic, readonly) NSString *acsUrl; /**< Url of  */
+@property (nonatomic, readonly) NSString *paReq; /**< Paramerter Requirement  */
+@property (nonatomic, readonly) NSString *md; /**< MD hash */
+@property (nonatomic, readonly) NSString *termUrl; /**< Terms and conditions URL */
 
 /**
  Creates an instance of SIM3DSecureData
