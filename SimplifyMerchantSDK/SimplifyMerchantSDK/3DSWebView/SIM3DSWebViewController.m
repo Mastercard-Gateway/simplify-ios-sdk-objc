@@ -105,6 +105,7 @@
         }
         
         [self.delegate acsAuthResult:result];
+        [self dismissViewControllerAnimated:true completion:nil];
     } else {
         decisionHandler(WKNavigationActionPolicyAllow);
     }
