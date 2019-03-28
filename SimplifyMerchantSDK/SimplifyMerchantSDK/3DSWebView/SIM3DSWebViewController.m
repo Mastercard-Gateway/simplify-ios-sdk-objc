@@ -1,18 +1,12 @@
-//
-//  3DSWebViewController.m
-//  Simplify
-//
-//  Created by Andrew Joyce on 27/03/2019.
-//  Copyright © 2019 MasterCard Labs. All rights reserved.
-//
-
 #import "SIM3DSWebViewController.h"
+#import "NSString+Simplify.h"
 
 @interface SIM3DSWebViewController () <WKNavigationDelegate>
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @property (strong, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (nonatomic) WKWebView *webView;
+@property (nonatomic) NSString *navigateURL;
 @end
 
 @implementation SIM3DSWebViewController
@@ -83,8 +77,9 @@
 }
 
 -(void)cancelAction {
-    [self.delegate acsAuthCanceled];
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.webView loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:self.navigateURL]]];
+//    [self.delegate acsAuthCanceled];
+//    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 
@@ -118,14 +113,19 @@
 }
 
 -(void)authenticateCardHolderWithSecureData:(SIM3DSecureData *)secureData {
-    NSURLComponents *components = [NSURLComponents componentsWithString:@"https://young-chamber-23463.herokuapp.com/mobile3ds1.html"];
-    NSURLQueryItem *acsUrl = [NSURLQueryItem queryItemWithName:@"acsUrl" value:secureData.acsUrl];
-    NSURLQueryItem *paReq = [NSURLQueryItem queryItemWithName:@"paReq" value:secureData.paReq];
-    NSURLQueryItem *md = [NSURLQueryItem queryItemWithName:@"md" value:secureData.md];
-    NSURLQueryItem *termUrl = [NSURLQueryItem queryItemWithName:@"paReq" value:secureData.termUrl];
-    components.queryItems = @[acsUrl, paReq, md, termUrl];
-    [self.webView loadRequest:[[NSURLRequest alloc] initWithURL:components.URL]];
+    NSString *baseUrl = @"https://young-chamber-23463.herokuapp.com/mobile3ds1.html";
+    NSMutableString *acsRequest = [[NSMutableString alloc] initWithString:baseUrl];
+    [acsRequest appendString: @"?acsUrl="];
+    [acsRequest appendString: [NSString urlEncodedString: secureData.acsUrl]];
+    [acsRequest appendString: @"&paReq="];
+    [acsRequest appendString: [NSString urlEncodedString: secureData.paReq]];
+    [acsRequest appendString: @"&md="];
+    [acsRequest appendString: [NSString urlEncodedString: secureData.md]];
+    [acsRequest appendString: @"&termUrl="];
+    [acsRequest appendString: [NSString urlEncodedString: secureData.termUrl]];
+
+    self.navigateURL = acsRequest;
 }
 
-@end
 
+@end

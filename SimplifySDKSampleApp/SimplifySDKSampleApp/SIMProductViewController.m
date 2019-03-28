@@ -127,15 +127,16 @@
     
     NSURL *url= [NSURL URLWithString:@"<#INSERT_YOUR_SIMPLIFY_SERVER_HERE#>"];
     
-    SIMWaitingView *waitingView = [[SIMWaitingView alloc] initWithFrame:self.view.frame];
-    [self.view addSubview:waitingView];
+//    SIMWaitingView *waitingView = [[SIMWaitingView alloc] initWithFrame:self.view.frame];
+//    [self.view addSubview:waitingView];
     
     if (token.threeDSecureData) {
         SIM3DSWebViewController *webview = [[SIM3DSWebViewController alloc] initWithNibName:nil bundle:nil];
         webview.delegate = self;
-        [self presentViewController:webview animated:YES completion:^{
-            [webview authenticateCardHolderWithSecureData:token.threeDSecureData];
-        }];
+        [self presentViewController:webview animated:YES completion:nil];
+        [webview authenticateCardHolderWithSecureData:token.threeDSecureData];
+    } else {
+        // Do Somethign else?
     }
     
 //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
