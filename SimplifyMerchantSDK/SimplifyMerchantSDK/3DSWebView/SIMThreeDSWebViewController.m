@@ -49,7 +49,32 @@
     navItem.leftBarButtonItem = self.cancelButton;
     navItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
     
+    self.navBar = [[UINavigationBar alloc] init];
+    self.navBar.translatesAutoresizingMaskIntoConstraints = false;
+    self.navBar.backgroundColor = UIColor.whiteColor;
+    self.navBar.items = [[NSArray alloc] initWithObjects:navItem, nil];
+    [self.view addSubview:self.navBar];
     
+    self.webView = [[WKWebView alloc]init];
+    self.webView.translatesAutoresizingMaskIntoConstraints = false;
+    self.webView.navigationDelegate = self;
+    [self.view addSubview:self.webView];
+    
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    if (@available(iOS 11.0, *)) {
+        [constraints addObject:[NSLayoutConstraint constraintWithItem: self.navBar attribute: NSLayoutAttributeTop relatedBy: NSLayoutRelationEqual toItem: self.view.safeAreaLayoutGuide attribute: NSLayoutAttributeTop multiplier: 1 constant: 0]];
+    } else {
+        // Fallback on earlier versions
+         [constraints addObject:[NSLayoutConstraint constraintWithItem: self.navBar attribute: NSLayoutAttributeTop relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeTop multiplier: 1 constant: 0]];
+    }
+     [constraints addObject:[NSLayoutConstraint constraintWithItem: self.navBar attribute: NSLayoutAttributeLeading relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeLeading multiplier: 1 constant: 0]];
+     [constraints addObject:[NSLayoutConstraint constraintWithItem: self.navBar attribute: NSLayoutAttributeTrailing relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeTrailing multiplier: 1 constant: 0]];
+    
+    [constraints addObject:[NSLayoutConstraint constraintWithItem: self.webView attribute: NSLayoutAttributeLeading relatedBy: NSLayoutRelationEqual toItem: self.navBar attribute: NSLayoutAttributeBottom multiplier: 1 constant: 0]];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem: self.webView attribute: NSLayoutAttributeLeading relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeLeading multiplier: 1 constant: 0]];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem: self.webView attribute: NSLayoutAttributeTrailing relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeTrailing multiplier: 1 constant: 0]];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem: self.webView attribute: NSLayoutAttributeBottom relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeBottom multiplier: 1 constant: 0]];
+    [NSLayoutConstraint activateConstraints:constraints];
 }
 
 -(void)viewDidLoad {

@@ -22,5 +22,9 @@
 
 -(void)authenticateCardHolderWithSecureData:(SIM3DSecureData *) secureData;
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
+
+- (instancetype)initWithCoder:(NSCoder *)coder;
+
 @end
 

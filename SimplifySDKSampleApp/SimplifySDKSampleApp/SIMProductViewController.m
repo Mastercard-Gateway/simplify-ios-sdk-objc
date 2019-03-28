@@ -60,7 +60,7 @@
     
     //To use process 3DS 1.0 transactions use
     SIM3DSecureRequestData *threeDSRequest = [[SIM3DSecureRequestData alloc] initWithAmount:[NSDecimalNumber decimalNumberWithString:@"200.00"] currency:@"AUD" description:@"Test"];
-    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_OTA0NzkwNDktM2UwZC00NWU4LWJjMDMtOWYwN2RmZDY3Yzlh" threeDSecureRequest:threeDSRequest primaryColor:self.primaryColor];
+    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_YmMzMzUyNGQtMzczNy00MDNhLWEyZmItZDcyZGYwODc4NmQw" threeDSecureRequest:threeDSRequest primaryColor:self.primaryColor];
     
     //4. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
     
