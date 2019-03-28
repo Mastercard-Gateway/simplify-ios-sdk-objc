@@ -77,9 +77,15 @@
     if ([components.scheme isEqualToString:@"simplifysdk"]) {
         decisionHandler(WKNavigationActionPolicyCancel);
         
-        // TODO consume result from URL params
+        NSString *result;
         
+        for (NSURLQueryItem *queryItem in components.queryItems) {
+            if ([queryItem.name isEqualToString:@"result"]) {
+                result = queryItem.value;
+            }
+        }
         
+        [self.delegate acsAuthResult:result];
     } else {
         decisionHandler(WKNavigationActionPolicyAllow);
     }
