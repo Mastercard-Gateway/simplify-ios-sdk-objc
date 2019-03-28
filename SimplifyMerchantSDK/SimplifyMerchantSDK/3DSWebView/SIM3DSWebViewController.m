@@ -6,16 +6,16 @@
 //  Copyright © 2019 MasterCard Labs. All rights reserved.
 //
 
-#import "SIMThreeDSWebViewController.h"
+#import "SIM3DSWebViewController.h"
 
-@interface SIMThreeDSWebViewController () <WKNavigationDelegate>
+@interface SIM3DSWebViewController () <WKNavigationDelegate>
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @property (strong, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (nonatomic) WKWebView *webView;
 @end
 
-@implementation SIMThreeDSWebViewController
+@implementation SIM3DSWebViewController
 
 
 
@@ -70,7 +70,7 @@
      [constraints addObject:[NSLayoutConstraint constraintWithItem: self.navBar attribute: NSLayoutAttributeLeading relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeLeading multiplier: 1 constant: 0]];
      [constraints addObject:[NSLayoutConstraint constraintWithItem: self.navBar attribute: NSLayoutAttributeTrailing relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeTrailing multiplier: 1 constant: 0]];
     
-    [constraints addObject:[NSLayoutConstraint constraintWithItem: self.webView attribute: NSLayoutAttributeLeading relatedBy: NSLayoutRelationEqual toItem: self.navBar attribute: NSLayoutAttributeBottom multiplier: 1 constant: 0]];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem: self.webView attribute: NSLayoutAttributeTop relatedBy: NSLayoutRelationEqual toItem: self.navBar attribute: NSLayoutAttributeBottom multiplier: 1 constant: 0]];
     [constraints addObject:[NSLayoutConstraint constraintWithItem: self.webView attribute: NSLayoutAttributeLeading relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeLeading multiplier: 1 constant: 0]];
     [constraints addObject:[NSLayoutConstraint constraintWithItem: self.webView attribute: NSLayoutAttributeTrailing relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeTrailing multiplier: 1 constant: 0]];
     [constraints addObject:[NSLayoutConstraint constraintWithItem: self.webView attribute: NSLayoutAttributeBottom relatedBy: NSLayoutRelationEqual toItem: self.view attribute: NSLayoutAttributeBottom multiplier: 1 constant: 0]];
@@ -84,6 +84,7 @@
 
 -(void)cancelAction {
     [self.delegate acsAuthCanceled];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 

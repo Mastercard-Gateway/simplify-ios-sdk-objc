@@ -7,9 +7,10 @@
 #import <Simplify/SIMResponseViewController.h>
 #import <Simplify/SIMTokenProcessor.h>
 #import <Simplify/SIMWaitingView.h>
+#import <Simplify/SIM3DSWebViewController.h>
 
 //1. Sign up to be a SIMChargeViewControllerDelegate so that you get the callback that gives you a token
-@interface SIMProductViewController ()<SIMChargeCardViewControllerDelegate>
+@interface SIMProductViewController ()<SIMChargeCardViewControllerDelegate, SIM3DSWebViewControllerDelegate>
 @property (nonatomic, strong) SIMChargeCardViewController *chargeController;
 @property (strong, nonatomic) IBOutlet UIButton *buyButton;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
@@ -70,7 +71,7 @@
     //5. Specify requirements
     
     chargeController.isCVCRequired = YES;
-    chargeController.isZipRequired = YES;
+    chargeController.isZipRequired = NO;
 
     //6.  Customize your charge card view controller interface colors and text
     
@@ -123,49 +124,69 @@
     //Token was generated successfully, now you must use it
     //Process Request on your own server
     //See https://github.com/simplifycom/simplify-php-server for a sample implementation.
-
+    
     NSURL *url= [NSURL URLWithString:@"<#INSERT_YOUR_SIMPLIFY_SERVER_HERE#>"];
     
     SIMWaitingView *waitingView = [[SIMWaitingView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:waitingView];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
-    [request setHTTPMethod:@"POST"];
-    NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@&amount=1500", token.token];
-    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURLSessionDataTask *paymentTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [waitingView removeFromSuperview];
-            
-            if (error || ![responseObject[@"status"] isEqualToString:@"APPROVED"]) {
-
-                NSLog(@"error:%@", error);
-                
-                SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Uh oh." description:@"Something went wrong with your order. If you really want to spend a bunch of money, go ahead and try that again." iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupEmptyFullBG" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] tintColor:nil];
-                viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
-                viewController.buttonText = @"Try again";
-                viewController.buttonTextColor = [UIColor whiteColor];
-                [self presentViewController:viewController animated:YES completion:nil];
-            } else {            
-                SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Cheers!" description:@"Thanks for your order.  While you wait, check out our famous \"Nickel Scones.\"" iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupFullBG" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] tintColor:nil];
-                viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
-                viewController.buttonText = @"Done";
-                viewController.buttonTextColor = [UIColor whiteColor];
-                
-                //Example of a simpler response view controller
-                //viewController = [[SIMResponseViewController alloc]initWithSuccess:YES tintColor:[UIColor orangeColor]];
-                
-                [self presentViewController:viewController animated:YES completion:nil];
-            }
-        });
-    }];
+    if (token.threeDSecureData) {
+        SIM3DSWebViewController *webview = [[SIM3DSWebViewController alloc] initWithNibName:nil bundle:nil];
+        webview.delegate = self;
+        [self presentViewController:webview animated:YES completion:^{
+            [webview authenticateCardHolderWithSecureData:token.threeDSecureData];
+        }];
+    }
     
-    [paymentTask resume];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+//    [request setHTTPMethod:@"POST"];
+//    NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@&amount=1500", token.token];
+//    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+//    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+//    NSURLSessionDataTask *paymentTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//
+//        NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//
+//            [waitingView removeFromSuperview];
+//
+//            if (error || ![responseObject[@"status"] isEqualToString:@"APPROVED"]) {
+//
+//                NSLog(@"error:%@", error);
+//
+//                SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Uh oh." description:@"Something went wrong with your order. If you really want to spend a bunch of money, go ahead and try that again." iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupEmptyFullBG" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] tintColor:nil];
+//                viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
+//                viewController.buttonText = @"Try again";
+//                viewController.buttonTextColor = [UIColor whiteColor];
+//                [self presentViewController:viewController animated:YES completion:nil];
+//            } else {
+//                SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Cheers!" description:@"Thanks for your order.  While you wait, check out our famous \"Nickel Scones.\"" iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupFullBG" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] tintColor:nil];
+//                viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
+//                viewController.buttonText = @"Done";
+//                viewController.buttonTextColor = [UIColor whiteColor];
+//
+//                //Example of a simpler response view controller
+//                //viewController = [[SIMResponseViewController alloc]initWithSuccess:YES tintColor:[UIColor orangeColor]];
+//
+//                [self presentViewController:viewController animated:YES completion:nil];
+//            }
+//        });
+//    }];
+//
+//    [paymentTask resume];
+}
+
+- (void)acsAuthCanceled {
+    
+}
+
+- (void)acsAuthError:(NSError *)error {
+    
+}
+
+- (void)acsAuthResult:(NSString *)acsResult {
+    
 }
 
 @end

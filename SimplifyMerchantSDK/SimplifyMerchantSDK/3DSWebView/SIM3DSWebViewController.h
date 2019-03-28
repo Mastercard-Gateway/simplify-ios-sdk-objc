@@ -3,7 +3,7 @@
 #import "SIM3DSecureData.h"
 
 
-@protocol SIMThreeDSWebViewControllerDelegate
+@protocol SIM3DSWebViewControllerDelegate
 
 -(void)acsAuthResult:(NSString *)acsResult;
 
@@ -13,12 +13,12 @@
 
 @end
 
-@interface SIMThreeDSWebViewController : UIViewController
+@interface SIM3DSWebViewController : UIViewController
 
 /**
  Delegate for SIMThreeDSWebViewControllerDelegate
  */
-@property (nonatomic, weak) id <SIMThreeDSWebViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <SIM3DSWebViewControllerDelegate> delegate;
 
 -(void)authenticateCardHolderWithSecureData:(SIM3DSecureData *) secureData;
 
