@@ -6,7 +6,6 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @property (strong, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (nonatomic) WKWebView *webView;
-@property (nonatomic) NSString *navigateURL;
 @end
 
 @implementation SIM3DSWebViewController
@@ -77,9 +76,8 @@
 }
 
 -(void)cancelAction {
-    [self.webView loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:self.navigateURL]]];
-//    [self.delegate acsAuthCanceled];
-//    [self dismissViewControllerAnimated:true completion:nil];
+    [self.delegate acsAuthCanceled];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 
@@ -113,7 +111,7 @@
 }
 
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
-    //MARK: Check this out 
+    //MARK: Check this out
     //TODO: Need to check this out... I think it is blindly trusting any cert at the momment but need to do some digging on this!!!
     NSURLCredential * credential = [[NSURLCredential alloc] initWithTrust:[challenge protectionSpace].serverTrust];
     completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
@@ -131,7 +129,7 @@
     [acsRequest appendString: @"&termUrl="];
     [acsRequest appendString: [NSString urlEncodedString: secureData.termUrl]];
 
-    self.navigateURL = acsRequest;
+    [self.webView loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:acsRequest]]];
 }
 
 
