@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *buyButton;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) UIColor *primaryColor;
+@property (strong, nonatomic) SIMCreditCardToken *secure3DCardToken;
 
 @end
 
@@ -121,73 +122,83 @@
 
 //6. This method will be called on your class whenever the user presses the Charge Card button and tokenization succeeds
 -(void)creditCardTokenProcessed:(SIMCreditCardToken *)token {
-    //Token was generated successfully, now you must use it
-    //Process Request on your own server
-    //See https://github.com/simplifycom/simplify-php-server for a sample implementation.
-    
-    NSURL *url= [NSURL URLWithString:@"<#INSERT_YOUR_SIMPLIFY_SERVER_HERE#>"];
-    
-//    SIMWaitingView *waitingView = [[SIMWaitingView alloc] initWithFrame:self.view.frame];
-//    [self.view addSubview:waitingView];
-    
-    if (token.threeDSecureData) {
+    if (token.threeDSecureData && token.threeDSecureData.isEnrolled) {
+        
+        //Keep reference to token for after auth
+        self.secure3DCardToken = token;
+        
         SIM3DSWebViewController *webview = [[SIM3DSWebViewController alloc] initWithNibName:nil bundle:nil];
         webview.delegate = self;
         [self presentViewController:webview animated:YES completion:nil];
         [webview authenticateCardHolderWithSecureData:token.threeDSecureData];
     } else {
-        // Do Somethign else?
+        //Token was generated successfully, now you must use it to
+        //Process Request on your own server
+        //See https://github.com/simplifycom/simplify-php-server for a sample implementation.
+        [self createTransactionWithCardToken:token];
     }
     
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
-//    [request setHTTPMethod:@"POST"];
-//    NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@&amount=1500", token.token];
-//    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-//    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-//    NSURLSessionDataTask *paymentTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//
-//        NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-//
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//
-//            [waitingView removeFromSuperview];
-//
-//            if (error || ![responseObject[@"status"] isEqualToString:@"APPROVED"]) {
-//
-//                NSLog(@"error:%@", error);
-//
-//                SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Uh oh." description:@"Something went wrong with your order. If you really want to spend a bunch of money, go ahead and try that again." iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupEmptyFullBG" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] tintColor:nil];
-//                viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
-//                viewController.buttonText = @"Try again";
-//                viewController.buttonTextColor = [UIColor whiteColor];
-//                [self presentViewController:viewController animated:YES completion:nil];
-//            } else {
-//                SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Cheers!" description:@"Thanks for your order.  While you wait, check out our famous \"Nickel Scones.\"" iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupFullBG" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] tintColor:nil];
-//                viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
-//                viewController.buttonText = @"Done";
-//                viewController.buttonTextColor = [UIColor whiteColor];
-//
-//                //Example of a simpler response view controller
-//                //viewController = [[SIMResponseViewController alloc]initWithSuccess:YES tintColor:[UIColor orangeColor]];
-//
-//                [self presentViewController:viewController animated:YES completion:nil];
-//            }
-//        });
-//    }];
-//
-//    [paymentTask resume];
+
 }
 
 - (void)acsAuthCanceled {
-    
+    self.secure3DCardToken = nil;
 }
 
 - (void)acsAuthError:(NSError *)error {
-    
+    self.secure3DCardToken = nil;
 }
 
 - (void)acsAuthResult:(NSString *)acsResult {
+    //Proceed with creating transaction with Card Token
+    [self createTransactionWithCardToken:self.secure3DCardToken];
+    self.secure3DCardToken = nil;
+}
+
+-(void)createTransactionWithCardToken:(SIMCreditCardToken *)cardToken {
+//    NSURL *url= [NSURL URLWithString:@"<#INSERT_YOUR_SIMPLIFY_SERVER_HERE#>"];
+    NSURL *url= [NSURL URLWithString:@"https://young-chamber-23463.herokuapp.com/charge.php"];
     
+    SIMWaitingView *waitingView = [[SIMWaitingView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:waitingView];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+    [request setHTTPMethod:@"POST"];
+    NSString *postString = [NSString stringWithFormat:@"simplifyToken=%@&amount=1500", cardToken.token];
+    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionDataTask *paymentTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    
+        NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+        dispatch_async(dispatch_get_main_queue(), ^{
+    
+                [waitingView removeFromSuperview];
+    
+                if (error || ![responseObject[@"status"] isEqualToString:@"APPROVED"]) {
+    
+                    NSLog(@"error:%@", error);
+    
+                    SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:NO title:@"Uh oh." description:@"Something went wrong with your order. If you really want to spend a bunch of money, go ahead and try that again." iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupEmptyFullBG" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] tintColor:nil];
+                    viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
+                    viewController.buttonText = @"Try again";
+                    viewController.buttonTextColor = [UIColor whiteColor];
+                    [self presentViewController:viewController animated:YES completion:nil];
+                } else {
+                    SIMResponseViewController *viewController = [[SIMResponseViewController alloc]initWithSuccess:YES title:@"Cheers!" description:@"Thanks for your order.  While you wait, check out our famous \"Nickel Scones.\"" iconImage:nil backgroundImage:[UIImage imageNamed:@"coffeeCupFullBG" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] tintColor:nil];
+                    viewController.buttonColor = [UIColor buttonBackgroundColorEnabled];
+                    viewController.buttonText = @"Done";
+                    viewController.buttonTextColor = [UIColor whiteColor];
+    
+                    //Example of a simpler response view controller
+                    //viewController = [[SIMResponseViewController alloc]initWithSuccess:YES tintColor:[UIColor orangeColor]];
+    
+                    [self presentViewController:viewController animated:YES completion:nil];
+                }
+            });
+        }];
+    
+        [paymentTask resume];
 }
 
 @end
