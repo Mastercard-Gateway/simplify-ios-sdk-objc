@@ -118,17 +118,13 @@
 }
 
 -(void)authenticateCardHolderWithSecureData:(SIM3DSecureData *)secureData {
-    NSString *baseUrl = @"https://young-chamber-23463.herokuapp.com/mobile3ds1.html";
-    NSMutableString *acsRequest = [[NSMutableString alloc] initWithString:baseUrl];
-    [acsRequest appendString:@"?acsUrl="];
-    [acsRequest appendString:secureData.acsUrl];
-    [acsRequest appendString:@"&paReq="];
-    [acsRequest appendString:secureData.paReq];
-    [acsRequest appendString:@"&md="];
-    [acsRequest appendString:secureData.md];
-    [acsRequest appendString:@"&termUrl="];
-    [acsRequest appendString:secureData.termUrl];
-    [self.webView loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:acsRequest]]];
+    NSURLComponents *components = [NSURLComponents componentsWithString:@"https://young-chamber-23463.herokuapp.com/mobile3ds1.html"];
+    NSURLQueryItem *acsUrl = [NSURLQueryItem queryItemWithName:@"acsUrl" value:secureData.acsUrl];
+    NSURLQueryItem *paReq = [NSURLQueryItem queryItemWithName:@"paReq" value:secureData.paReq];
+    NSURLQueryItem *md = [NSURLQueryItem queryItemWithName:@"md" value:secureData.md];
+    NSURLQueryItem *termUrl = [NSURLQueryItem queryItemWithName:@"paReq" value:secureData.termUrl];
+    components.queryItems = @[acsUrl, paReq, md, termUrl];
+    [self.webView loadRequest:[[NSURLRequest alloc] initWithURL:components.URL]];
 }
 
 @end
