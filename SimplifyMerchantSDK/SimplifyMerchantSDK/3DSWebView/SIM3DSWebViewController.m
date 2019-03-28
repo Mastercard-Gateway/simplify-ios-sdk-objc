@@ -112,6 +112,13 @@
     }
 }
 
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
+    //MARK: Check this out 
+    //TODO: Need to check this out... I think it is blindly trusting any cert at the momment but need to do some digging on this!!!
+    NSURLCredential * credential = [[NSURLCredential alloc] initWithTrust:[challenge protectionSpace].serverTrust];
+    completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
+}
+
 -(void)authenticateCardHolderWithSecureData:(SIM3DSecureData *)secureData {
     NSString *baseUrl = @"https://young-chamber-23463.herokuapp.com/mobile3ds1.html";
     NSMutableString *acsRequest = [[NSMutableString alloc] initWithString:baseUrl];
