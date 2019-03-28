@@ -8,7 +8,7 @@
 
 #import "SIMThreeDSWebViewController.h"
 
-@interface SIMThreeDSWebViewController () <WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler>
+@interface SIMThreeDSWebViewController () <WKNavigationDelegate>
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @property (strong, nonatomic) IBOutlet UINavigationBar *navBar;
@@ -17,10 +17,12 @@
 
 @implementation SIMThreeDSWebViewController
 
+
+
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
-    [ self setupView];
+    [self setupView];
 //    if (self) {
 //
 //    }
@@ -56,65 +58,45 @@
 }
 
 -(void)cancelAction {
-//    completion?(self, .cancelled)
+    [self.delegate acsAuthCanceled];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (void)userContentController:(nonnull WKUserContentController *)userContentController didReceiveScriptMessage:(nonnull WKScriptMessage *)message {
-    <#code#>
+-(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    [self.activityIndicator startAnimating];
 }
 
-- (void)encodeWithCoder:(nonnull NSCoder *)aCoder {
-    <#code#>
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [self.activityIndicator stopAnimating];
 }
 
-- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
-    <#code#>
+-(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    NSURL *url = navigationAction.request.URL;
+    NSURLComponents *components = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:false];
+    
+    if ([components.scheme isEqualToString:@"simplifysdk"]) {
+        decisionHandler(WKNavigationActionPolicyCancel);
+        
+        // TODO consume result from URL params
+        
+        
+    } else {
+        decisionHandler(WKNavigationActionPolicyAllow);
+    }
 }
 
-- (void)preferredContentSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
-    <#code#>
-}
-
-- (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize {
-    <#code#>
-}
-
-- (void)systemLayoutFittingSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
-    <#code#>
-}
-
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
-    <#code#>
-}
-
-- (void)willTransitionToTraitCollection:(nonnull UITraitCollection *)newCollection withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
-    <#code#>
-}
-
-- (void)didUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context withAnimationCoordinator:(nonnull UIFocusAnimationCoordinator *)coordinator {
-    <#code#>
-}
-
-- (void)setNeedsFocusUpdate {
-    <#code#>
-}
-
-- (BOOL)shouldUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context {
-    <#code#>
-}
-
-- (void)updateFocusIfNeeded {
-    <#code#>
+-(void)authenticateCardHolderWithSecureData:(SIM3DSecureData *)secureData {
+    NSString *baseUrl = @"https://young-chamber-23463.herokuapp.com/mobile3ds1.html";
+    NSMutableString *acsRequest = [[NSMutableString alloc] initWithString:baseUrl];
+    [acsRequest appendString:@"?acsUrl="];
+    [acsRequest appendString:secureData.acsUrl];
+    [acsRequest appendString:@"&paReq="];
+    [acsRequest appendString:secureData.paReq];
+    [acsRequest appendString:@"&md="];
+    [acsRequest appendString:secureData.md];
+    [acsRequest appendString:@"&termUrl="];
+    [acsRequest appendString:secureData.termUrl];
+    [self.webView loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:acsRequest]]];
 }
 
 @end
