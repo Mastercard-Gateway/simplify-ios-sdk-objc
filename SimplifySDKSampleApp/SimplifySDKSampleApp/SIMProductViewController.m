@@ -163,8 +163,7 @@
 
 #pragma mark - Token submission to process payment
 -(void)createTransactionWithCardToken:(SIMCreditCardToken *)cardToken {
-//    NSURL *url= [NSURL URLWithString:@"<#INSERT_YOUR_SIMPLIFY_SERVER_HERE#>"];
-    NSURL *url= [NSURL URLWithString:@"https://young-chamber-23463.herokuapp.com/charge.php"];
+    NSURL *url= [NSURL URLWithString:@"<#INSERT_YOUR_SIMPLIFY_SERVER_HERE#>"];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
     [request setHTTPMethod:@"POST"];
