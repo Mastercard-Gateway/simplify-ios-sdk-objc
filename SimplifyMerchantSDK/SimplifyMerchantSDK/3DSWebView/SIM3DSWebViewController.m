@@ -42,9 +42,9 @@
     navItem.leftBarButtonItem = self.cancelButton;
     navItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
     
+    [[UINavigationBar appearance] setBarTintColor: UIColor.whiteColor];
     self.navBar = [[UINavigationBar alloc] init];
     self.navBar.translatesAutoresizingMaskIntoConstraints = false;
-    self.navBar.backgroundColor = UIColor.whiteColor;
     self.navBar.items = [[NSArray alloc] initWithObjects:navItem, nil];
     [self.view addSubview:self.navBar];
     
