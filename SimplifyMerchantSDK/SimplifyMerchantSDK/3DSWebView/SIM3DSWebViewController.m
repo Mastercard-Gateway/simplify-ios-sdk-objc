@@ -10,8 +10,6 @@
 
 @implementation SIM3DSWebViewController
 
-
-
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
@@ -70,16 +68,15 @@
     [NSLayoutConstraint activateConstraints:constraints];
 }
 
--(void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.activityIndicator startAnimating];
 }
 
 -(void)cancelAction {
     [self.delegate acsAuthCanceled];
     [self dismissViewControllerAnimated:true completion:nil];
 }
-
 
 -(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     [self.activityIndicator startAnimating];
@@ -111,27 +108,10 @@
     }
 }
 
-- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
-    //MARK: Check this out
-    //TODO: Need to check this out... I think it is blindly trusting any cert at the momment but need to do some digging on this!!!
-    NSURLCredential * credential = [[NSURLCredential alloc] initWithTrust:[challenge protectionSpace].serverTrust];
-    completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
-}
-
 -(void)authenticateCardHolderWithSecureData:(SIM3DSecureData *)secureData {
-    NSString *baseUrl = @"https://young-chamber-23463.herokuapp.com/mobile3ds1.html";
-    NSMutableString *acsRequest = [[NSMutableString alloc] initWithString:baseUrl];
-    [acsRequest appendString: @"?acsUrl="];
-    [acsRequest appendString: [NSString urlEncodedString: secureData.acsUrl]];
-    [acsRequest appendString: @"&paReq="];
-    [acsRequest appendString: [NSString urlEncodedString: secureData.paReq]];
-    [acsRequest appendString: @"&md="];
-    [acsRequest appendString: [NSString urlEncodedString: secureData.md]];
-    [acsRequest appendString: @"&termUrl="];
-    [acsRequest appendString: [NSString urlEncodedString: secureData.termUrl]];
-
-    [self.webView loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:acsRequest]]];
+    NSString *htmlString = [NSString stringWithFormat:@"<!DOCTYPE html> <html lang=\"en\" dir=\"ltr\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\"> <script> window.onload = function() { var html = '<form id=\"myform\" method=\"post\" enctype=\"application/x-www-form-urlencoded\" action=\"%@\" >' + '<input type=\"hidden\" name=\"PaReq\" value=\"%@\" />' + '<input type=\"hidden\" name=\"MD\" value=\"%@\" />' + '<input type=\"hidden\" name=\"TermUrl\" value=\"%@\" />' + '</form>'; var iframe = document.getElementById('iframe'); var doc = iframe.document; if (iframe.contentDocument) { doc = iframe.contentDocument; } doc.open(); doc.writeln(html); doc.close(); doc.getElementById('myform').submit(); }; function handle3DSResponse(evt) { window.location.href = 'simplifysdk://secure3d?result=' + encodeURIComponent(evt.data); } window.addEventListener(\"message\", handle3DSResponse, false); </script> </head> <body style=\"margin: 0;\"> <iframe id=\"iframe\" style=\"display:block; border:none; width:100vw; height:100vh;\"></iframe> </body> </html>", secureData.acsUrl, secureData.paReq, secureData.md, secureData.termUrl];
+    
+    [self.webView loadHTMLString: htmlString baseURL:nil];
 }
-
 
 @end
