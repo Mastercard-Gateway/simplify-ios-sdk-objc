@@ -3,6 +3,7 @@
 #import "NSBundle+Simplify.h"
 #import <UIKit/UIKit.h>
 #import "SIMTokenProcessor.h"
+#import "SIM3DSecureRequestData.h"
 
 typedef enum {
     SIMSimplifyModeLive,
@@ -51,7 +52,6 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
             self.currentAPIURL = [NSURL URLWithString:apiURLString];
             [self.request setURL:self.currentAPIURL];
         }
-                
     }
 
     return self;
@@ -59,7 +59,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
 
 -(BOOL)isPublicKeyLiveMode:(NSString *)publicKey error:(NSError **) error{
 
-    BOOL isLive;
+    BOOL isLive = YES;
     
     if ([publicKey hasPrefix:SIMSimplifyPrefixLive]) {
         isLive = YES;
@@ -78,7 +78,7 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
 }
 
 -(void)createCardTokenWithExpirationMonth:(NSString *)expirationMonth expirationYear:(NSString *)expirationYear
-                                cardNumber:(NSString *)cardNumber cvc:(NSString *)cvc address:(SIMAddress *)address completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler {
+                               cardNumber:(NSString *)cardNumber cvc:(NSString *)cvc address:(SIMAddress *)address threeDSData:(SIM3DSecureRequestData *)threeDSData completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler {
 
     NSError *jsonSerializationError;
 	NSURL *url = [self.currentAPIURL URLByAppendingPathComponent:endpointCardToken];
@@ -112,7 +112,23 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
         cardData[@"addressCountry"] = address.country;
 	}
     
-    NSDictionary *tokenData = @{@"key": [NSString urlEncodedString:self.publicKey], @"card":cardData};
+    NSMutableDictionary *threeDSRequest = [NSMutableDictionary dictionaryWithDictionary:@{}];
+    if (threeDSData.amount) {
+        threeDSRequest[@"amount"] = threeDSData.amount;
+    }
+
+    if (threeDSData.descriptionMessage.length) {
+        threeDSRequest[@"description"] = threeDSData.descriptionMessage;
+    }
+
+    if (threeDSData.currency.length) {
+        threeDSRequest[@"currency"] = threeDSData.currency;
+    }
+    
+    NSMutableDictionary *tokenData = [NSMutableDictionary dictionaryWithDictionary:@{@"key": [NSString urlEncodedString:self.publicKey], @"card":cardData}];
+    if (threeDSRequest.allKeys.count) {
+        tokenData[@"secure3DRequestData"] = threeDSRequest;
+    }
     
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:tokenData options:0 error:&jsonSerializationError];
     
@@ -166,8 +182,10 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
     self.request.HTTPBody = jsonData;
     [self.request setURL:url];
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    });
+                   
     [NSURLConnection sendAsynchronousRequest:self.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
@@ -187,7 +205,9 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
             apiCompletionHandler(nil, responseError);
         }
         
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        });
 
     }];
 }

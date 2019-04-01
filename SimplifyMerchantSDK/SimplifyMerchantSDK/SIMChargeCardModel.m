@@ -289,7 +289,7 @@
         }
     };
     
-    [self.simplify createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address completionHander:completionHandler];
+    [self.simplify createCardTokenWithExpirationMonth:self.expirationMonth expirationYear:self.expirationYear cardNumber:self.cardNumber cvc:self.cvcCode address:self.address threeDSData: self.threeDSRequest completionHander:completionHandler];
 }
 
 @end

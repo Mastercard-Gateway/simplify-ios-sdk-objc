@@ -1,5 +1,6 @@
 #import "SIMAddress.h"
 #import "SIMCreditCardToken.h"
+#import "SIM3DSecureRequestData.h"
 #import <PassKit/PassKit.h>
 
 /**
@@ -38,10 +39,11 @@ typedef void (^CardTokenCompletionHandler)(SIMCreditCardToken *cardToken, NSErro
  @param cardNumber is the card number string that should only be digits
  @param cvc is the 3-4 digit CVC code on the back of the card
  @param address is a SIMAddress object with address information of the cardholder
+ @param threeDSData is a SIM3DSecureRequestData object with information about the transaction
  @param completionHandler is a block that is excuted after the create token call is made.  It can deal with an error or deal with a token if it has one.
  */
 -(void)createCardTokenWithExpirationMonth:(NSString *)expirationMonth expirationYear:(NSString *)expirationYear
-        cardNumber:(NSString *)cardNumber cvc:(NSString *)cvc address:(SIMAddress *)address completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler;
+                               cardNumber:(NSString *)cardNumber cvc:(NSString *)cvc address:(SIMAddress *)address threeDSData:(SIM3DSecureRequestData *)threeDSData completionHander:(CardTokenCompletionHandler)cardTokenCompletionHandler;
 
 /**
  Creates a token from a PKPayment and a completion handler

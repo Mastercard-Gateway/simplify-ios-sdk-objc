@@ -1,4 +1,5 @@
 #import "SIMAddress.h"
+#import "SIM3DSecureData.h"
 
 /**
  * SIMCardType holds the card type as well as validation parameters such as maximum CVC length, minimum card number length, and maximum card number length.  The card number does not need to be complete for the card type to be determined.  If the card number does not match any type, card type "blank" is returned with loose validation parameters.
@@ -14,6 +15,7 @@
 @property (nonatomic, readonly) NSNumber *expMonth; /**< Expiration month of the card. Format is MM. Example: January = 01 */
 @property (nonatomic, readonly) NSNumber *expYear; /**< Expiration year of the card. Format is YY. Example: 2013 = 13 */
 @property (nonatomic, readonly) NSDate *dateCreated; /**<  Unique ID of the card associated with the payment */
+@property (nonatomic, readonly) SIM3DSecureData *threeDSecureData;
 
 /**
  Credit Card Token object
@@ -29,7 +31,7 @@
  @return SIMCreditCardToken
  */
 -(instancetype)initWithToken:(NSString *)token tokenId:(NSString *)tokenId name:(NSString *)name type:(NSString *)type last4:(NSNumber *)last4
-address:(SIMAddress *)address expMonth:(NSNumber *)expMonth expYear:(NSNumber *)expYear dateCreated:(NSDate *)dateCreated;
+                     address:(SIMAddress *)address expMonth:(NSNumber *)expMonth expYear:(NSNumber *)expYear dateCreated:(NSDate *)dateCreated threeDSecureData:(SIM3DSecureData *)threeDSecureData;
 
 /**
  Credit Card Token object created from a dictionary (usually from a JSON dictionary) so that all properties are easily accessible

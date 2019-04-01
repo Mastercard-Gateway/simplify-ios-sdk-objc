@@ -609,7 +609,7 @@
 
 -(void)testRetrieveTokenWithCallsSimplify {
     
-    [[self.mockSimplify expect] createCardTokenWithExpirationMonth:OCMOCK_ANY expirationYear:OCMOCK_ANY cardNumber:OCMOCK_ANY cvc:OCMOCK_ANY address:OCMOCK_ANY completionHander:OCMOCK_ANY];
+    [[self.mockSimplify expect] createCardTokenWithExpirationMonth:OCMOCK_ANY expirationYear:OCMOCK_ANY cardNumber:OCMOCK_ANY cvc:OCMOCK_ANY address:OCMOCK_ANY threeDSData:OCMOCK_ANY completionHander:OCMOCK_ANY];
     
     [self.testSubject retrieveToken];
     

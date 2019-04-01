@@ -98,6 +98,38 @@ Once the user fills in the form and taps Charge Card, you will receive a callbac
 
 All of the work of gathering information of the user, validating the inputs, creating the request to Simplify and submitting it is handled for you by the SDK. You simply need to implement the above method and you will receive the SIMCreditCardToken in the callback. If you would like to access the API directly, follow [the Manual Card Token generation instructions](https://www.simplify.com/commerce/docs/sdk/ios_viewless) if you'd like to see how the Card Token is actually requested.
 
+##### Check if Card Holder needs to perform 3DS v1 authentication
+
+If the token has threeDSecureData and isEnrolled is true then the Card Holder must perform 3DS v1 authentication before you can process a transaction with the CardToken.
+
+To perform 3DS v1 authentication pass the threeDSecureData to the SIM3DSWebViewController and handle the callbacks
+
+```
+-(void)creditCardTokenProcessed:(SIMCreditCardToken *)token {
+    if (token.threeDSecureData && token.threeDSecureData.isEnrolled) {
+
+        //Keep reference to token for after auth
+        self.secure3DCardToken = token;
+
+        SIM3DSWebViewController *webview = [[SIM3DSWebViewController alloc] initWithNibName:nil bundle:nil];
+        webview.delegate = self;
+        [self presentViewController:webview animated:YES completion:nil];
+        [webview authenticateCardHolderWithSecureData:token.threeDSecureData];
+    } else {
+        //Token was generated successfully, now you must use it to
+        //Process Request on your own server
+        //See https://github.com/simplifycom/simplify-php-server for a sample implementation.
+        [self createTransactionWithCardToken:token];
+    }
+
+
+- (void)acsAuthResult:(NSString *)acsResult {
+    //Proceed with creating transaction with Card Token
+    [self createTransactionWithCardToken:self.secure3DCardToken];
+    self.secure3DCardToken = nil;
+}
+```
+
 ### 4. Charge a Card
 
 The example below shows how to handle three callbacks relating to tokens in SIMProductViewController, but you can implement these three callbacks in your own view controller. The first callback, chargeCardCancelled, is called if the user cancels inputting card details in the SIMChargeCardViewController. The controller will dismiss itself and then call this method.
@@ -245,6 +277,7 @@ Several initialization methods are available for use.
 -(instancetype)initWithSuccess:(BOOL)success title:(NSString *)titleMessage description:(NSString *)descriptionMessage iconImage:(UIImage *)iconImage backgroundImage:(UIImage *)backgroundImage tintColor:(UIColor *)tintColor;
 
 ```
+
 #### Further modification
 
 Optionally, you can modify the following properties after instantiating the view controller but prior to presenting it.
@@ -275,4 +308,4 @@ Optionally, you can modify the following properties after instantiating the view
 */
 @property (strong, nonatomic) NSString *buttonText;
 
-``` 
+```

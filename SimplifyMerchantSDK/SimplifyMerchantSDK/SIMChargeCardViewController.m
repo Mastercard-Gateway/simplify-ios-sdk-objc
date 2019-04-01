@@ -5,12 +5,14 @@
 #import "NSBundle+Simplify.h"
 #import "NSString+Simplify.h"
 #import "SIMResponseViewController.h"
+#import "SIM3DSecureRequestData.h"
 
 @interface SIMChargeCardViewController () <SIMChargeCardModelDelegate, UITextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate>
 @property (strong, nonatomic) SIMChargeCardModel *chargeCardModel;
 @property (strong, nonatomic) NSString *publicKey;
 @property (strong, nonatomic) NSError *modelError;
 @property (strong, nonatomic) PKPaymentRequest *paymentRequest;
+@property (strong, nonatomic) SIM3DSecureRequestData *threeDSRequest;
 @property (strong, nonatomic) UIColor *primaryColor;
 @property (strong, nonatomic) NSNumberFormatter *currencyFormatter;
 @property (strong, nonatomic) IBOutlet UIView *headerView;
@@ -72,6 +74,27 @@
     return  self;
 }
 
+-(instancetype)initWithPublicKey:(NSString *)publicKey threeDSecureRequest:(SIM3DSecureRequestData *)threeDSRequest {
+    return [self initWithPublicKey:publicKey threeDSecureRequest:threeDSRequest primaryColor:nil];
+}
+
+-(instancetype)initWithPublicKey:(NSString *)publicKey threeDSecureRequest:(SIM3DSecureRequestData *)threeDSRequest primaryColor:(UIColor *)primaryColor {
+    self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle frameworkBundle]];
+    if (self) {
+        self.publicKey = publicKey;
+        self.primaryColor = primaryColor ? primaryColor : [UIColor buttonBackgroundColorEnabled];
+        self.threeDSRequest = threeDSRequest;
+        
+        self.currencyFormatter = [[NSNumberFormatter alloc]init];
+        self.currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
+        self.currencyFormatter.currencyCode = threeDSRequest.currency;
+        
+        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    }
+    
+    return  self;
+}
+
 -(void)viewDidLoad {
     [super viewDidLoad];
     
@@ -89,6 +112,7 @@
     self.chargeCardModel.isZipRequired = self.isZipRequired;
     self.chargeCardModel.isCVCRequired = self.isCVCRequired;
     self.chargeCardModel.paymentRequest = self.paymentRequest;
+    self.chargeCardModel.threeDSRequest = self.threeDSRequest;
     
     [self.submitPaymentButton setTitle:self.paymentButtonNormalTitle forState:UIControlStateNormal];
     [self.submitPaymentButton setTitle:self.paymentButtonDisabledTitle forState:UIControlStateDisabled];
