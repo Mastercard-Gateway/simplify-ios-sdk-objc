@@ -49,11 +49,9 @@ typedef void (^SimplifyApiCompletionHandler)(NSDictionary *jsonResponse, NSError
         } else {
             self.publicKey = publicKey;
             NSString *apiURLString = (self.isLiveMode) ? prodAPILiveURL : prodAPISandboxURL;
-            //TODO: Put back to: self.currentAPIURL = [NSURL URLWithString:apiURLString];
-            self.currentAPIURL = [NSURL URLWithString:@"https://api.uat.simplify.com/v1/api"];
+            self.currentAPIURL = [NSURL URLWithString:apiURLString];
             [self.request setURL:self.currentAPIURL];
         }
-                
     }
 
     return self;

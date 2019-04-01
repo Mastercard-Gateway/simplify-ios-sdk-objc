@@ -55,27 +55,23 @@
     paymentRequest.requiredBillingAddressFields = PKAddressFieldAll;
     paymentRequest.requiredShippingAddressFields = PKAddressFieldPostalAddress;
 
-    //3. Create a SIMChargeViewController with your public api key
-
-    //TODO: Put back & comment out the new 3DS 1.0 flow
-    
-//    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_<#INSERT_YOUR_PUBLIC_KEY_HERE#>" paymentRequest:paymentRequest primaryColor:self.primaryColor];
-    
-    //To use process 3DS 1.0 transactions use
+    //3. To process a transaction with 3DS 1.0 you need to create a SIM3DSecureRequestData with valid transaction data
     SIM3DSecureRequestData *threeDSRequest = [[SIM3DSecureRequestData alloc] initWithAmount:[NSDecimalNumber decimalNumberWithString:@"200.00"] currency:@"AUD" description:@"Test"];
-    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_YmMzMzUyNGQtMzczNy00MDNhLWEyZmItZDcyZGYwODc4NmQw" threeDSecureRequest:threeDSRequest primaryColor:self.primaryColor];
     
-    //4. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
+    //4. Create a SIMChargeViewController with your public api key
+    SIMChargeCardViewController *chargeController = [[SIMChargeCardViewController alloc] initWithPublicKey:@"lvpb_<#INSERT_YOUR_PUBLIC_KEY_HERE#>" threeDSecureRequest:threeDSRequest primaryColor:self.primaryColor];
+    
+    //5. Assign your class as the delegate to the SIMChargeViewController class which takes the user input and requests a token
     
     chargeController.delegate = self;
     chargeController.amount = icedCoffee.amount;
     
-    //5. Specify requirements
+    //6. Specify requirements
     
     chargeController.isCVCRequired = YES;
     chargeController.isZipRequired = NO;
 
-    //6.  Customize your charge card view controller interface colors and text
+    //7.  Customize your charge card view controller interface colors and text
     
     //chargeController.paymentButtonNormalTitle = @"YOUR CUSTOM BUTTON TITLE";
     //chargeController.paymentButtonDisabledTitle = @"YOUR CUSTOM BUTTON TITLE";
@@ -87,7 +83,7 @@
     //chargeController.paymentButtonNormalTitleColor;
     //chargeController.paymentButtonDisabledTitleColor;
 
-    //7. Add SIMChargeViewController to your view hierarchy
+    //8. Add SIMChargeViewController to your view hierarchy
     
     self.chargeController = chargeController;
     [self presentViewController:self.chargeController animated:YES completion:nil];
